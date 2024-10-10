@@ -205,6 +205,14 @@ public class PlayerController : MonoBehaviour
         RegenPotion();
         FlashWhileInvincible();
         pState.canAttack = timeSinceAttack > timeBetweenAttack; //lantaran if else dito pano to
+        if (pState.Transitioning || pState.blocking)
+        {
+            rb.drag = 1000;
+        }
+        else
+        {
+            rb.drag = 0.05f;
+        }
         if (rb.velocity.x == 0 && rb.velocity.y == 0)
         {
             pState.running = false;
@@ -606,12 +614,10 @@ public class PlayerController : MonoBehaviour
                 if (parryTimer < 0.3f)
                 {
                     pState.parry = true;
-                    parryTimer = 0;
-
+                    parryTimer = 0;                    
                 }
                 canDash = false;
                 pState.walking = false;
-                rb.drag = 1000;
                 anim.SetBool("Blocking", true);
                 anim.SetBool("Walking", false);
                 pState.blocking = true;
@@ -621,7 +627,6 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.E))
             {
                 canDash = true;
-                rb.drag = 0;
                 anim.SetBool("Blocking", false);
                 pState.canMove = true;
                 pState.blocking = false;
@@ -645,7 +650,7 @@ public class PlayerController : MonoBehaviour
         {
             shieldCount -= damage;
             ShieldBar.fillAmount = shieldCount / maxShield;
-        }
+        }       
     }
     void FlashWhileInvincible()
     {
@@ -936,7 +941,7 @@ public class PlayerController : MonoBehaviour
         {
             pState.walking = true;
             rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
-            anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
+            anim.SetBool("Walking", rb.velocity.x != 0 && Grounded() || !pState.Transitioning);
             if (stamina > 0 && canrun == true && Input.GetButtonDown("Run"))
             {
                 walkSpeed = 13;

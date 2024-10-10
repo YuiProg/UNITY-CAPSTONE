@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TransitionState : MonoBehaviour
@@ -14,11 +15,19 @@ public class TransitionState : MonoBehaviour
         if (PlayerController.Instance.pState.Transitioning)
         {
             TransitionPIC.SetActive(true);
+            StartCoroutine(MoveState(4f));
             anim.SetTrigger("Transition");
         }
         else
         {
             TransitionPIC.SetActive(false);
         }
+    }
+
+    IEnumerator MoveState(float time)
+    {
+        PlayerController.Instance.pState.canMove = false;        
+        yield return new WaitForSeconds(time);
+        PlayerController.Instance.pState.canMove = true;
     }
 }
