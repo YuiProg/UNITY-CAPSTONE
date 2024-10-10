@@ -1,0 +1,1410 @@
+fileFormatVersion: 2
+guid: bc9c65da48b923b4396a01f873b84e0f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 30
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_0
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 64
+        width: 45
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 771fc75d6916501498b96e4681186797
+      internalID: 734223784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_1
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 64
+        width: 45
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a440821977b959243814242a9a131884
+      internalID: 1002523683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_2
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 64
+        width: 45
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4770c06e3e8b42149b19c31468d4bb4e
+      internalID: 1453576572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_3
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 64
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed840c51ff26c5841bc4e0fbf8ca83ed
+      internalID: 1611033291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_4
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 64
+        width: 45
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2914514250b79746ba91caf7e14f145
+      internalID: -2074188220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_5
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 64
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2776483f33863348b7b8e7b66caaa77
+      internalID: -160619550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_6
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 64
+        width: 46
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18326fad6b910e3409e4315b46c8ca27
+      internalID: -1169791673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_7
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 103
+        width: 29
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2ba8da8df1d1e42bb73731966a38df
+      internalID: 619256867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_8
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 64
+        width: 45
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 426ea553a29cd9249a2018995f346fa5
+      internalID: -1022339466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_9
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 104
+        width: 34
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ac9f7691ecb3d348a053c2125150fb1
+      internalID: 739953888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_10
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 64
+        width: 45
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ea587d825b5529468ee9014b9e5b388
+      internalID: 1039653538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_11
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 103
+        width: 32
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f817693a9de61d47b7e5b7d5f29cf61
+      internalID: -711613887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_12
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 64
+        width: 45
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28578045b916c4941accc00e406bad18
+      internalID: -1883769288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_13
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 102
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3fb649350ade6f43af5aeed65efe44e
+      internalID: 455170187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_14
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 64
+        width: 45
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b79725e0e7b32594984ad9412072a7ea
+      internalID: 2064002550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_15
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 105
+        width: 31
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c11aac9d329d5be4bb68260367462102
+      internalID: -2125985874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_16
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 64
+        width: 45
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dffa5b3d78eea5e43b2620734ae48741
+      internalID: 1717204053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_17
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 104
+        width: 33
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 215a9f1036305aa4793d060dff8b1f9d
+      internalID: -872785275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_18
+      rect:
+        serializedVersion: 2
+        x: 1577
+        y: 64
+        width: 45
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbbe3f7fecbc28d45ada875f7705f34c
+      internalID: -156514044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_19
+      rect:
+        serializedVersion: 2
+        x: 1585
+        y: 103
+        width: 35
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54a3936ca5b6d084e8e0acc445886322
+      internalID: -237409911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_20
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 64
+        width: 45
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ea9d8aa9fd405541b65eb26cc94b6b3
+      internalID: 592204560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_21
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 102
+        width: 33
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77511840782b3b345a285f36056a3ada
+      internalID: 737487157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_22
+      rect:
+        serializedVersion: 2
+        x: 1833
+        y: 64
+        width: 45
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e46141bdd08ab3499e73ef63744ab5a
+      internalID: -309303927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_23
+      rect:
+        serializedVersion: 2
+        x: 1845
+        y: 101
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a1d9898aeb69c459537054aa6dba02
+      internalID: -1853624621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_24
+      rect:
+        serializedVersion: 2
+        x: 1961
+        y: 64
+        width: 45
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac0e7665f635b3842b6b9d96f3f5df49
+      internalID: 620094592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_25
+      rect:
+        serializedVersion: 2
+        x: 1972
+        y: 102
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1d74071cc22fc49965113e79fae7fc
+      internalID: 2143164205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_26
+      rect:
+        serializedVersion: 2
+        x: 2089
+        y: 64
+        width: 45
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0b58b1683795f44385d487a2fc8b68b
+      internalID: 936508378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_27
+      rect:
+        serializedVersion: 2
+        x: 2099
+        y: 105
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f76a3a63f63e4a34f84be4cb0c6ab128
+      internalID: 1698344263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_28
+      rect:
+        serializedVersion: 2
+        x: 2217
+        y: 64
+        width: 45
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc44b312e02bf84393959c1a6c0ddd6
+      internalID: -504264047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_29
+      rect:
+        serializedVersion: 2
+        x: 2226
+        y: 104
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6be56313136ccf418f26e4baeecf4be
+      internalID: 728060803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_30
+      rect:
+        serializedVersion: 2
+        x: 2345
+        y: 64
+        width: 45
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3a954b6585e78449fd2145895d6b74
+      internalID: -352767431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_31
+      rect:
+        serializedVersion: 2
+        x: 2473
+        y: 64
+        width: 45
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0c2c90ff28f6db4da83e70742a9a241
+      internalID: -284311495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_32
+      rect:
+        serializedVersion: 2
+        x: 2610
+        y: 64
+        width: 36
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0d1c71879997ca44b1157839042ce05
+      internalID: -1129770648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_33
+      rect:
+        serializedVersion: 2
+        x: 2740
+        y: 64
+        width: 30
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8107e94679f0a447864218c91da289c
+      internalID: -863835555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_34
+      rect:
+        serializedVersion: 2
+        x: 2867
+        y: 71
+        width: 27
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1699b058fb37598449f16952004c4052
+      internalID: 572968486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_35
+      rect:
+        serializedVersion: 2
+        x: 2994
+        y: 87
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68d29b2393fa1944692d85691ca05729
+      internalID: 205240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_36
+      rect:
+        serializedVersion: 2
+        x: 3121
+        y: 98
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0163aec0a202cf44be89513f4b5a975
+      internalID: -1106743592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_37
+      rect:
+        serializedVersion: 2
+        x: 3248
+        y: 102
+        width: 33
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583aacffd542ab343afc5dab51e9b35e
+      internalID: -967482858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_38
+      rect:
+        serializedVersion: 2
+        x: 3381
+        y: 101
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ba7eb1136286584a9e833b77bd99c60
+      internalID: -1349644963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_39
+      rect:
+        serializedVersion: 2
+        x: 3508
+        y: 102
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67a873e770a910e4a9691ecb1b751a2e
+      internalID: 334667138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_40
+      rect:
+        serializedVersion: 2
+        x: 3635
+        y: 101
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11f96eea3d8697244bcd92597667bad5
+      internalID: 1594466557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_41
+      rect:
+        serializedVersion: 2
+        x: 3762
+        y: 100
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4292d24c6e3dde04691873b088efdef0
+      internalID: -1436096796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_42
+      rect:
+        serializedVersion: 2
+        x: 3889
+        y: 103
+        width: 31
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e993af10de8d60c4a947422e2954893d
+      internalID: 1977221219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_43
+      rect:
+        serializedVersion: 2
+        x: 4016
+        y: 102
+        width: 33
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74ce25ff237ed87499545205318ffb74
+      internalID: 1287496591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_44
+      rect:
+        serializedVersion: 2
+        x: 4149
+        y: 101
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f25e1603bd467749904d872a3beb423
+      internalID: -2105498954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_45
+      rect:
+        serializedVersion: 2
+        x: 4276
+        y: 102
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78fd0d9d0d5d9904f8ee4c70d0be29b1
+      internalID: 7887117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_46
+      rect:
+        serializedVersion: 2
+        x: 4403
+        y: 101
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9548103dd47b4346862311ba32dcc80
+      internalID: -172396656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_47
+      rect:
+        serializedVersion: 2
+        x: 4530
+        y: 100
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12d3a453fcb3aa040a6fb8cac0dc1052
+      internalID: -1930614754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_48
+      rect:
+        serializedVersion: 2
+        x: 4657
+        y: 103
+        width: 31
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d763b4d7ea165846b8221489252c952
+      internalID: 1813074827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_49
+      rect:
+        serializedVersion: 2
+        x: 4784
+        y: 102
+        width: 33
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d64ad4602228f34c9494a60f61688b1
+      internalID: -301029852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_50
+      rect:
+        serializedVersion: 2
+        x: 4917
+        y: 101
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 291bdf8dc511399488c7b737d461e146
+      internalID: -832335117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_51
+      rect:
+        serializedVersion: 2
+        x: 5044
+        y: 102
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0cb866bf29ddd847a2fcc50a383f9e1
+      internalID: 1345212736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_52
+      rect:
+        serializedVersion: 2
+        x: 5171
+        y: 101
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d9dc30d0d59b2c4fbdf27f009de1aae
+      internalID: -68513435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_53
+      rect:
+        serializedVersion: 2
+        x: 5298
+        y: 100
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a5f4bea72a43d479392f877a575bcb
+      internalID: -1491216013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_54
+      rect:
+        serializedVersion: 2
+        x: 5425
+        y: 103
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb0087d5b06268b479a2957ecc9789b8
+      internalID: 49484111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_55
+      rect:
+        serializedVersion: 2
+        x: 5552
+        y: 102
+        width: 29
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 898aa4c03d183e645aa7fcf6bda8ae9b
+      internalID: -479131367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_56
+      rect:
+        serializedVersion: 2
+        x: 5687
+        y: 101
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 761eae1f9c3d2124e9942a4d173412a5
+      internalID: 583468853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_PaladinDeathWithEffect_strip65_57
+      rect:
+        serializedVersion: 2
+        x: 5816
+        y: 106
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b62bfc22cbc86414ab639fd6fa5ce14b
+      internalID: 898176134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      spr_PaladinDeathWithEffect_strip65_0: 734223784
+      spr_PaladinDeathWithEffect_strip65_1: 1002523683
+      spr_PaladinDeathWithEffect_strip65_10: 1039653538
+      spr_PaladinDeathWithEffect_strip65_11: -711613887
+      spr_PaladinDeathWithEffect_strip65_12: -1883769288
+      spr_PaladinDeathWithEffect_strip65_13: 455170187
+      spr_PaladinDeathWithEffect_strip65_14: 2064002550
+      spr_PaladinDeathWithEffect_strip65_15: -2125985874
+      spr_PaladinDeathWithEffect_strip65_16: 1717204053
+      spr_PaladinDeathWithEffect_strip65_17: -872785275
+      spr_PaladinDeathWithEffect_strip65_18: -156514044
+      spr_PaladinDeathWithEffect_strip65_19: -237409911
+      spr_PaladinDeathWithEffect_strip65_2: 1453576572
+      spr_PaladinDeathWithEffect_strip65_20: 592204560
+      spr_PaladinDeathWithEffect_strip65_21: 737487157
+      spr_PaladinDeathWithEffect_strip65_22: -309303927
+      spr_PaladinDeathWithEffect_strip65_23: -1853624621
+      spr_PaladinDeathWithEffect_strip65_24: 620094592
+      spr_PaladinDeathWithEffect_strip65_25: 2143164205
+      spr_PaladinDeathWithEffect_strip65_26: 936508378
+      spr_PaladinDeathWithEffect_strip65_27: 1698344263
+      spr_PaladinDeathWithEffect_strip65_28: -504264047
+      spr_PaladinDeathWithEffect_strip65_29: 728060803
+      spr_PaladinDeathWithEffect_strip65_3: 1611033291
+      spr_PaladinDeathWithEffect_strip65_30: -352767431
+      spr_PaladinDeathWithEffect_strip65_31: -284311495
+      spr_PaladinDeathWithEffect_strip65_32: -1129770648
+      spr_PaladinDeathWithEffect_strip65_33: -863835555
+      spr_PaladinDeathWithEffect_strip65_34: 572968486
+      spr_PaladinDeathWithEffect_strip65_35: 205240
+      spr_PaladinDeathWithEffect_strip65_36: -1106743592
+      spr_PaladinDeathWithEffect_strip65_37: -967482858
+      spr_PaladinDeathWithEffect_strip65_38: -1349644963
+      spr_PaladinDeathWithEffect_strip65_39: 334667138
+      spr_PaladinDeathWithEffect_strip65_4: -2074188220
+      spr_PaladinDeathWithEffect_strip65_40: 1594466557
+      spr_PaladinDeathWithEffect_strip65_41: -1436096796
+      spr_PaladinDeathWithEffect_strip65_42: 1977221219
+      spr_PaladinDeathWithEffect_strip65_43: 1287496591
+      spr_PaladinDeathWithEffect_strip65_44: -2105498954
+      spr_PaladinDeathWithEffect_strip65_45: 7887117
+      spr_PaladinDeathWithEffect_strip65_46: -172396656
+      spr_PaladinDeathWithEffect_strip65_47: -1930614754
+      spr_PaladinDeathWithEffect_strip65_48: 1813074827
+      spr_PaladinDeathWithEffect_strip65_49: -301029852
+      spr_PaladinDeathWithEffect_strip65_5: -160619550
+      spr_PaladinDeathWithEffect_strip65_50: -832335117
+      spr_PaladinDeathWithEffect_strip65_51: 1345212736
+      spr_PaladinDeathWithEffect_strip65_52: -68513435
+      spr_PaladinDeathWithEffect_strip65_53: -1491216013
+      spr_PaladinDeathWithEffect_strip65_54: 49484111
+      spr_PaladinDeathWithEffect_strip65_55: -479131367
+      spr_PaladinDeathWithEffect_strip65_56: 583468853
+      spr_PaladinDeathWithEffect_strip65_57: 898176134
+      spr_PaladinDeathWithEffect_strip65_58: 1307824258
+      spr_PaladinDeathWithEffect_strip65_59: 15068278
+      spr_PaladinDeathWithEffect_strip65_6: -1169791673
+      spr_PaladinDeathWithEffect_strip65_60: -1470488766
+      spr_PaladinDeathWithEffect_strip65_61: -223069853
+      spr_PaladinDeathWithEffect_strip65_62: 204543502
+      spr_PaladinDeathWithEffect_strip65_63: 1247537730
+      spr_PaladinDeathWithEffect_strip65_64: 1049129738
+      spr_PaladinDeathWithEffect_strip65_7: 619256867
+      spr_PaladinDeathWithEffect_strip65_8: -1022339466
+      spr_PaladinDeathWithEffect_strip65_9: 739953888
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

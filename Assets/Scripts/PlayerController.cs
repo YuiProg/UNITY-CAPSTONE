@@ -1,0 +1,1070 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlayerController : MonoBehaviour
+{
+    [Header("Horizontal Movement Settings:")]
+    [SerializeField] private float walkSpeed;
+    [Space(5)]
+
+    [Header("Vertical Movement Settings")]
+    [SerializeField] private float jumpForce = 45f;
+    private int jumpBufferCounter = 0;
+    [SerializeField] private int jumpBufferFrames;
+    private float coyoteTimeCounter = 0;
+    [SerializeField] private float coyoteTime;
+    private int airJumpCounter = 0;
+    [SerializeField] private int maxAirJumps;
+    [Space(5)]
+
+    [Header("Ground Check Settings:")]
+    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private float groundCheckY = 0.2f;
+    [SerializeField] private float groundCheckX = 0.5f;
+    [SerializeField] private LayerMask whatIsGround;
+    [Space(5)]
+
+    [Header("Dash Settings")]
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashTime;
+    [SerializeField] private float dashCooldown;
+    [Space(5)]
+
+
+    [Header("Attacking")]
+    [SerializeField] public float damage;
+    [SerializeField] public float hdamage;
+    [SerializeField] public float Cdamage;
+    [SerializeField] public float normal_damage;
+    [SerializeField] public float normal_hdamage;
+    [SerializeField] public float normal_slash_Damage;
+    [SerializeField] public Text parryCounter;
+    [SerializeField] public Text comboCounter;
+    bool attack = true;
+
+
+    //skill
+    bool combo = true;
+    [SerializeField] float comboTimer;
+    [SerializeField] ParticleSystem comboFX;
+
+    //heal skill
+    float healAmount = 20f;
+    float healTimer;
+
+    [HideInInspector]public PlayerState pState;
+    private Rigidbody2D rb;
+    private float xAxis, yAxis;
+    private float gravity;
+    Animator anim;
+    private bool canDash = true;
+    private bool dashed;
+
+
+    [Header("Attack")]
+    [SerializeField] float normalAttackLS;
+    [SerializeField] float hardAttackLS;
+    [SerializeField] float jumpAttackLS;
+    float parryDamageBonus = 0;
+    bool canjump = true;
+    bool attacking = false;
+    bool canrun = true;
+    bool HardAttack = false;
+    [SerializeField]float timeBetweenAttack;
+    [SerializeField]float timeSinceAttack;
+    [SerializeField] Transform sideAttack, upAttack, downAttack;
+    [SerializeField] Vector2 sideAttackArea, upAttackArea, downAttackArea;
+    [SerializeField] LayerMask attackable;
+    [Space(5)]
+
+    [Header("Stamina Settings")]
+    public Image Stamina;
+    public Image ShieldBar;
+    public float stamina, maxstamina;
+    public float shieldCount, maxShield;
+    [SerializeField] private float jumpCost;
+    [SerializeField] private float runCost;
+    [SerializeField] private float blockCost;
+    [SerializeField] private float attackCost;
+    [SerializeField] private float comboCost;
+    [SerializeField] private float hardattackCost;
+    [SerializeField] private float dashCost;
+    private Coroutine recharge;
+    [SerializeField] private float chargeRate;
+    [Space(5)]
+
+    [Header("Health Settings")]
+    [SerializeField] public GameObject blood;
+    [SerializeField] public GameObject blockFx;
+    public Image HealthBar;
+    public float health;
+    public float maxHealth;
+    public Enemy Edamage;
+    public int potionCount = 3;
+    public float potionHealBar;
+    bool canHeal = false;
+    [Space(5)]
+
+    [SerializeField] float hitFlashSpeed;
+
+    [Header("Recoil Settings:")]
+    [SerializeField] private int recoilXSteps = 5;
+    [SerializeField] private int recoilYSteps = 5;
+    [SerializeField] private float recoilXSpeed = 100; 
+    [SerializeField] private float recoilYSpeed = 100; 
+    private int stepsXRecoiled, stepsYRecoiled;
+    [Space(5)]
+
+
+
+
+
+    bool restoreTime;
+    float restoreTimeSpeed;
+    public bool takingDamage;
+    [SerializeField]float parryTimer;
+    [SerializeField] public ParticleSystem parryFX;
+    public static PlayerController Instance;
+    private SpriteRenderer sr;
+    public ParticleSystem dust;
+    [SerializeField] public Text text;
+    [SerializeField] public Text Hp;
+    [SerializeField] public Text StaminaCount;
+    [SerializeField] public GameObject DeathScreen;
+    Vector2 checkpointpos;
+
+    AudioManager audioManager;
+    private void Awake()
+    {
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+        
+        health = maxHealth;
+        Time.timeScale = 1;
+        float x = PlayerPrefs.GetFloat("X");
+        float y = PlayerPrefs.GetFloat("Y");
+        transform.position = new Vector2(x, y);
+
+        audioManager.PlaySFX(audioManager.Respawn);
+    }
+
+   
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+
+        anim = GetComponent<Animator>();
+
+        pState = GetComponent<PlayerState>();
+
+        checkpointpos = transform.position;
+        gravity = rb.gravityScale;
+        sr = GetComponent<SpriteRenderer>();
+        text.text = $"FLASK: {potionCount}";
+        parryCounter.text = "";
+        hdamage = normal_hdamage;
+        damage = normal_damage;
+        Cdamage = normal_slash_Damage;
+        comboTimer = 5;
+        healTimer = 30;
+    }
+
+    void Update()
+    {
+        //timers
+        comboTimer += Time.deltaTime;
+        healTimer += Time.deltaTime;
+        timeSinceAttack += Time.deltaTime;
+
+        //methods
+        GetInputs();
+        checkSkills();
+        if (pState.dashing) return;
+        RestoreTimeScale();
+        Flip();
+        Recoil();
+        Attack();
+        Block();
+        runCheck();
+        Move();
+        Jump();
+        StartDash();               
+        RegenPotion();
+        FlashWhileInvincible();
+        pState.canAttack = timeSinceAttack > timeBetweenAttack; //lantaran if else dito pano to
+        if (rb.velocity.x == 0 && rb.velocity.y == 0)
+        {
+            pState.running = false;
+            pState.jumping = false;
+            pState.dashing = false;
+        }
+        if (combo && pState.SLASH)
+        {
+            if (comboTimer > 5)
+            {
+                StartCoroutine(ComboAttack());
+            }
+            
+        }
+        if (comboTimer > 5)
+        {
+            comboTimer = 5;
+        }
+        if (healTimer > 30)
+        {
+            healTimer = 30;
+        }         
+        if (pState.running == false)
+        {
+            walkSpeed = 7;
+        }
+        if (stamina <= 0)
+        {
+            canrun = false;
+            canjump = false;
+            walkSpeed = 5;
+        }
+        if (health >= maxHealth)
+        {
+            
+            health = maxHealth;
+            canHeal = false;
+        }
+        if (health < maxHealth)
+        {
+            canHeal = true;
+        }
+        text.text = $"POTION: {potionCount}";
+        if (potionCount == 0) text.text = $"POTION: EMPTY";
+        if (health <= 0 && !hasDied)
+        {
+            DeathScreen.SetActive(true);
+            pState.canMove = false;
+            pState.jumping = false;
+            pState.running = false;
+            pState.dashing = false;
+            pState.isAlive = false;
+            rb.drag = 1000;
+            rb.velocity = Vector2.zero;
+            Dead();
+            hasDied = true;
+            return;
+        }
+        Hp.text = $"{Mathf.RoundToInt(health)}/{Mathf.RoundToInt(maxHealth)}";
+        StaminaCount.text = $"{Mathf.RoundToInt(stamina)}/{Mathf.RoundToInt(maxstamina)}";
+        parryTimer += Time.deltaTime;
+        if (parryTimer > 0.3f)
+        {
+            parryTimer = 0;
+            pState.parry = false;
+        }
+        comboCounter.text = $"{Math.Round(comboTimer)}";
+        healtxtCount.text = $"{Math.Round(healTimer)}";
+    }
+
+    bool hasDied = false;
+    bool isRespawning = false;
+    IEnumerator Respawn(float wait)
+    {
+        anim.SetTrigger("Death");
+        yield return new WaitForSeconds(wait);       
+        anim.SetBool("Walking", false);        
+        pState.canMove = true;
+        pState.isAlive = true;
+        isRespawning = false;
+        hasDied = false;
+        LevelManager.instance.loadscene("Cave_1");
+        
+    }
+    //health Bars
+    void Dead()
+    {
+        if (!isRespawning)
+        {
+            pState.Transitioning = true;
+            StartCoroutine(Respawn(4f));
+            isRespawning = true;
+            return;
+        }
+               
+    }
+    bool doubleJump = true;
+    void Jump()
+    {
+        if (canjump)
+        {
+            if (Grounded() && !Input.GetButtonDown("Jump"))
+            {
+                doubleJump = true;
+                anim.SetBool("Jumping", false);
+            }
+            if (Input.GetButtonDown("Jump"))
+            {
+                
+                if (Grounded() || doubleJump)
+                {
+                    anim.SetBool("Jumping", true);
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                    doubleJump = !doubleJump;
+                }
+                if (recharge != null) StopCoroutine(recharge);
+                recharge = StartCoroutine(RechargeStamina());
+                stamina -= jumpCost;
+                Stamina.fillAmount = stamina / maxstamina;
+            }
+        }
+        else if (Grounded())
+        {
+            anim.SetBool("Jumping", false);
+        }         
+    }
+    public void updatecheckpoint(Vector2 pos)
+    {
+        checkpointpos = pos;
+    }
+    void RegenPotion()
+    {
+        if (potionCount > 3) potionCount = 3;
+        if (Input.GetButtonDown("Heal") && potionCount > 0 && canHeal)
+        {
+            health += potionHealBar;
+            HealthBar.fillAmount = health / maxHealth;
+            potionCount--;
+        }
+        else if (potionCount <= 0)
+        {
+            potionCount = 0;
+            canHeal = false;
+        }
+    }
+    void Recoil()
+    {
+        if (pState.recoilingX)
+        {
+            if (pState.lookingRight)
+            {
+                rb.velocity = new Vector2(-recoilXSpeed, 0);
+            }
+            else
+            {
+                rb.velocity = new Vector2(recoilXSpeed, 0);
+            }
+        }
+
+        if (pState.recoilingY)
+        {
+            rb.gravityScale = 0;
+            if (yAxis < 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, recoilYSpeed);
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -recoilYSpeed);
+            }
+            airJumpCounter = 0;
+        }
+        else
+        {
+            rb.gravityScale = gravity;
+        }
+
+        //stop recoil
+        if (pState.recoilingX && stepsXRecoiled < recoilXSteps)
+        {
+            stepsXRecoiled++;
+        }
+        else
+        {
+            StopRecoilX();
+        }
+        if (pState.recoilingY && stepsYRecoiled < recoilYSteps)
+        {
+            stepsYRecoiled++;
+        }
+        else
+        {
+            StopRecoilY();
+        }
+
+        if (Grounded())
+        {
+            StopRecoilY();
+        }
+    }
+    void StopRecoilX()
+    {
+        stepsXRecoiled = 0;
+        pState.recoilingX = false;
+    }
+    void StopRecoilY()
+    {
+        stepsYRecoiled = 0;
+        pState.recoilingY = false;
+    }
+    public void HitStopTime(float _newTimeScale, int _restoreSpeed, float _delay)
+    {
+        restoreTimeSpeed = _restoreSpeed;
+        Time.timeScale = _newTimeScale;
+        if (_delay > 0)
+        {
+            StopCoroutine(StartTimeAgain(_delay));
+            StartCoroutine(StartTimeAgain(_delay));
+        }
+        else
+        {
+            restoreTime = true;
+        }
+    }
+
+    IEnumerator StartTimeAgain(float _delay)
+    {
+        restoreTime = true;
+        yield return new WaitForSeconds(_delay);
+    }
+
+    void RestoreTimeScale ()
+    {
+        if (restoreTime)
+        {
+            if (Time.timeScale < 1)
+            {
+                Time.timeScale += Time.deltaTime * restoreTimeSpeed;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                restoreTime = false;
+            }
+        }
+    }
+    void GetInputs()
+    {
+        xAxis = Input.GetAxisRaw("Horizontal");
+        yAxis = Input.GetAxisRaw("Vertical");
+        attack = Input.GetMouseButtonDown(0);
+        combo = Input.GetKeyDown(KeyCode.R);
+        HardAttack = Input.GetMouseButtonDown(1);
+        
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            pState.SLASH = true;
+            pState.HPBUFF = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            pState.SLASH = false;
+            pState.HPBUFF = true;
+            
+        }
+        if (Input.GetKeyDown(KeyCode.R) && pState.HPBUFF)
+        {
+            if (healTimer > 30)
+            {
+                health = maxHealth;
+                HealthBar.fillAmount = health;
+                healTimer = 0;
+            }           
+        }
+    }
+    [SerializeField] GameObject SlashIMG;
+    [SerializeField] GameObject HealIMG;
+    [SerializeField] ParticleSystem HealFX;
+    [SerializeField] Text healtxtCount;
+    void checkSkills()
+    {
+        if (!pState.SLASH)
+        {
+            SlashIMG.SetActive(false);
+        }
+        else
+        {
+            SlashIMG.SetActive(true);
+        }
+        if (!pState.HPBUFF)
+        {
+            HealIMG.SetActive(false);
+        }
+        else
+        {
+            HealIMG.SetActive(true);
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(sideAttack.position, sideAttackArea);
+        Gizmos.DrawWireCube(upAttack.position, upAttackArea);
+        Gizmos.DrawWireCube(downAttack.position, downAttackArea);
+    }
+    void parryDamagePlus()
+    {
+        damage = damage + parryDamageBonus;
+        hdamage = hdamage + parryDamageBonus;
+        Cdamage = Cdamage + parryDamageBonus;
+    }
+    public void TakeDamage(float _damage)
+    {
+        if (!pState.blocking && !pState.invincible)
+        {
+            parryDamageBonus = 0;
+            parryCounter.text = "";
+            damage = normal_damage;
+            hdamage = normal_hdamage;
+            Cdamage = normal_slash_Damage;
+            audioManager.PlaySFX(audioManager.hurt);
+            print("Player is taking damage.");
+            GameObject _enemyBlood = Instantiate(blood, transform.position, Quaternion.identity);
+            Destroy(_enemyBlood, 5.5f);
+            takingDamage = true;
+            health -= Mathf.RoundToInt(_damage);
+            HealthBar.fillAmount = health / maxHealth;
+            StartCoroutine(StopTakingDamage());
+        }
+        else if (pState.parry)
+        {
+            audioManager.PlaySFX(audioManager.parry);
+            Color color = Color.yellow;
+            Color white = Color.white;
+            parryFX.Play();
+            parryDamageBonus = parryDamageBonus + 1;
+            parryCounter.text = $"{parryDamageBonus}";
+            parryDamagePlus();
+            print("Player is parrying damage.");                     
+            if (parryDamageBonus > 5)
+            {
+                parryCounter.color = color;
+            }
+            else
+            {
+                parryCounter.color = white;
+            }
+            CameraShake.Instance.ShakeCamera();
+        }
+        else
+        {
+            parryDamageBonus = 0;
+            parryCounter.text = "";
+            damage = normal_damage;
+            hdamage = normal_hdamage;
+            Cdamage = normal_slash_Damage;
+            print("Player is blocking damage.");
+            audioManager.PlaySFX(audioManager.Block);
+            GameObject _enemyBlood = Instantiate(blockFx, transform.position, Quaternion.identity);
+            Destroy(_enemyBlood, 5.5f);
+            shieldCount -= Mathf.RoundToInt(_damage);
+            ShieldBar.fillAmount = shieldCount / maxShield;
+            CameraShake.Instance.ShakeCamera();
+        }       
+    }
+
+    IEnumerator StopTakingDamage()
+    {
+        if (!pState.blocking)
+        {
+            pState.invincible = true;
+            canDash = false;
+            anim.SetTrigger("TakeDamage");
+            ClampHealth();
+            yield return new WaitForSeconds(0.2f);
+            pState.invincible = false;
+            canDash = true;
+            takingDamage = false;
+        }
+        else if (pState.blocking)
+        {
+            pState.invincible = true;
+            canDash = false;
+            ClampHealth();
+            yield return new WaitForSeconds(0.2f);
+            pState.invincible = false;
+            canDash = true;
+            takingDamage = false;
+        }
+    }
+
+    void Block()
+    {
+        
+        if (!pState.jumping && !pState.running && Grounded())
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {               
+                if (parryTimer < 0.3f)
+                {
+                    pState.parry = true;
+                    parryTimer = 0;
+
+                }
+                canDash = false;
+                pState.walking = false;
+                rb.drag = 1000;
+                anim.SetBool("Blocking", true);
+                anim.SetBool("Walking", false);
+                pState.blocking = true;
+                print("BLOCKING");
+                pState.canMove = false;
+            }
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                canDash = true;
+                rb.drag = 0;
+                anim.SetBool("Blocking", false);
+                pState.canMove = true;
+                pState.blocking = false;
+                
+            }
+        }
+        if (shieldCount <= 0)
+        {
+            anim.SetBool("Blocking", false);
+            shieldCount = 0;
+            pState.blocking = false;
+        }
+        if (shieldCount > maxShield)
+        {
+            shieldCount = maxShield;
+        }
+    }
+    public void blockCheck(float damage)
+    {
+        if (pState.blocking)
+        {
+            shieldCount -= damage;
+            ShieldBar.fillAmount = shieldCount / maxShield;
+        }
+    }
+    void FlashWhileInvincible()
+    {
+        sr.material.color = pState.invincible ? Color.Lerp(Color.white, Color.black, Mathf.PingPong(Time.time * hitFlashSpeed, 1.0f)) : Color.white;
+    }
+    void ClampHealth()
+    {
+        health = Mathf.Clamp(health, 0, maxHealth);
+    }
+
+    void Attack()
+    {
+        if (pState.canAttack && pState.isAlive && !pState.isPaused)
+        {
+            
+            if (attack && pState.isAlive && stamina > 10 && !pState.blocking)
+            {
+                timeSinceAttack = 0;
+                pState.canAttack = false;
+                anim.SetTrigger("Attacking");
+                if (recharge != null) StopCoroutine(recharge);
+                recharge = StartCoroutine(RechargeStamina());
+                stamina -= attackCost;
+                Stamina.fillAmount = stamina / maxstamina;
+
+                audioManager.PlaySFX(audioManager.Slash);
+
+                if (yAxis == 0 || yAxis < 0 && Grounded())
+                {
+                    int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                    print("sideAttackArea: " + sideAttackArea);
+                    NormalHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+                }
+                else if (yAxis > 0)
+                {
+                    print("upattackarea: " + upAttackArea);
+                    NormalHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+                }
+                else if (yAxis < 0 && !Grounded())
+                {
+                    print("downattackarea: " + downAttackArea);
+                    NormalHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+                }
+            }
+            else if (HardAttack && stamina > 30)
+            {
+                HardAttackk();
+            }
+        }                         
+    }
+    IEnumerator ComboAttack()
+    {
+        if (combo && pState.isAlive && stamina > 10 && !pState.blocking)
+        {
+            canDash = false;
+            comboTimer = 0;
+            rb.drag = 1000;
+            pState.invincible = true;
+
+            comboFX.Play();
+            timeSinceAttack = 0;
+            pState.canAttack = false;
+            anim.SetTrigger("Combo");
+            audioManager.PlaySFX(audioManager.Slash);
+
+            if (yAxis == 0 || yAxis < 0 && Grounded())
+            {
+                int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                print("COMBO ATTACK");
+                ComboHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+            }
+            else if (yAxis > 0)
+            {
+                print("upattackarea: " + upAttackArea);
+                ComboHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+            }
+            else if (yAxis < 0 && !Grounded())
+            {
+                print("downattackarea: " + downAttackArea);
+                ComboHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+            }
+        }
+        yield return new WaitForSeconds(0.3f);
+
+
+        if (pState.isAlive && stamina > 10 && !pState.blocking)
+        {
+            comboFX.Play();
+            timeSinceAttack = 0;
+            pState.canAttack = false;
+
+            audioManager.PlaySFX(audioManager.Slash);
+
+            if (yAxis == 0 || yAxis < 0 && Grounded())
+            {
+                int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                print("COMBO ATTACK");
+                ComboHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+            }
+            else if (yAxis > 0)
+            {
+                print("upattackarea: " + upAttackArea);
+                ComboHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+            }
+            else if (yAxis < 0 && !Grounded())
+            {
+                print("downattackarea: " + downAttackArea);
+                ComboHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+            }
+        }
+        yield return new WaitForSeconds(0.3f);
+
+
+        if (pState.isAlive && stamina > 10 && !pState.blocking)
+        {
+            comboFX.Play();
+            timeSinceAttack = 0;
+            pState.canAttack = false;
+
+            audioManager.PlaySFX(audioManager.Slash);
+
+            if (yAxis == 0 || yAxis < 0 && Grounded())
+            {
+                int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                print("COMBO ATTACK");
+                ComboHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+            }
+            else if (yAxis > 0)
+            {
+                print("upattackarea: " + upAttackArea);
+                ComboHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+            }
+            else if (yAxis < 0 && !Grounded())
+            {
+                print("downattackarea: " + downAttackArea);
+                ComboHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+            }
+        }
+        yield return new WaitForSeconds(0.3f);
+        rb.drag = 0;
+        pState.invincible = false;
+        canDash = true;
+
+
+    }
+    private void ComboHit(Transform _attackTransform, Vector2 _attackArea, ref bool _recoilBool, Vector2 _recoilDir, float _recoilStrength)
+    {
+        Collider2D[] objectstohit = Physics2D.OverlapBoxAll(_attackTransform.position, _attackArea, 0, attackable);
+        List<Enemy> hitenemies = new List<Enemy>();
+        if (objectstohit.Length > 0)
+        {
+            print("HIT");
+            _recoilBool = true;
+        }
+        for (int i = 0; i < objectstohit.Length; i++)
+        {
+            if (objectstohit[i].GetComponent<Enemy>() != null)
+            {
+                Enemy e = objectstohit[i].GetComponent<Enemy>();
+                if (e && !hitenemies.Contains(e))
+                {
+                    e.EnemyHit(Cdamage, (transform.position - objectstohit[i].transform.position).normalized, _recoilStrength);
+                    hitenemies.Add(e);
+                }
+                health += normalAttackLS;
+                HealthBar.fillAmount = health / maxHealth;
+
+                shieldCount += normalAttackLS + 2;
+                ShieldBar.fillAmount = shieldCount / maxShield;
+            }
+        }
+    }
+    private void NormalHit(Transform _attackTransform, Vector2 _attackArea, ref bool _recoilBool, Vector2 _recoilDir, float _recoilStrength)
+    {
+        Collider2D[] objectstohit = Physics2D.OverlapBoxAll(_attackTransform.position, _attackArea, 0, attackable);
+        List<Enemy> hitenemies = new List<Enemy>();
+        if (objectstohit.Length > 0)
+        {
+            print("HIT");
+            _recoilBool = true;
+        }
+        for (int i = 0; i < objectstohit.Length; i++)
+        {
+            if (objectstohit[i].GetComponent<Enemy>() != null)
+            {
+                Enemy e = objectstohit[i].GetComponent<Enemy>();
+                if (e && !hitenemies.Contains(e))
+                {
+                    e.EnemyHit(damage, (transform.position - objectstohit[i].transform.position).normalized, _recoilStrength);
+                    hitenemies.Add(e);  
+                }
+                health += normalAttackLS;
+                HealthBar.fillAmount = health / maxHealth;
+
+                shieldCount += normalAttackLS + 2;
+                ShieldBar.fillAmount = shieldCount / maxShield;
+            }
+        }
+    }
+    private void HardHit(Transform _attackTransform, Vector2 _attackArea, ref bool _recoilBool, Vector2 _recoilDir, float _recoilStrength)
+    {
+        Collider2D[] objectstohit = Physics2D.OverlapBoxAll(_attackTransform.position, _attackArea, 0, attackable);
+        List<Enemy> hitenemies = new List<Enemy>();
+        if (objectstohit.Length > 0)
+        {
+            print("HIT");
+            _recoilBool = true;
+        }
+        for (int i = 0; i < objectstohit.Length; i++)
+        {
+            if (objectstohit[i].GetComponent<Enemy>() != null)
+            {
+                Enemy e = objectstohit[i].GetComponent<Enemy>();
+                if (e && !hitenemies.Contains(e))
+                {
+                    e.EnemyHit(hdamage, (transform.position - objectstohit[i].transform.position).normalized, _recoilStrength);
+                    hitenemies.Add(e);
+                }
+                health += normalAttackLS;
+                HealthBar.fillAmount = health / maxHealth;
+
+                shieldCount += normalAttackLS + 2;
+                ShieldBar.fillAmount = shieldCount / maxShield;
+            }
+        }
+    }
+   
+
+    void HardAttackk()
+    {
+        if (pState.canAttack && pState.isAlive)
+        {           
+            if (HardAttack && timeSinceAttack >= timeBetweenAttack && pState.isAlive)
+            {
+                timeSinceAttack = 0;
+                pState.canAttack = false;
+                anim.SetTrigger("Hard Attack");
+                if (recharge != null) StopCoroutine(recharge);
+                recharge = StartCoroutine(RechargeStamina());
+                stamina -= hardattackCost;
+                Stamina.fillAmount = stamina / maxstamina;
+                audioManager.PlaySFX(audioManager.Slash);
+            }
+            if (yAxis == 0 || yAxis < 0 && Grounded())
+            {
+                int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                print("sideAttackArea: " + sideAttackArea);
+                HardHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+            }
+            else if (yAxis > 0)
+            {
+                print("upattackarea: " + upAttackArea);
+                HardHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+            }
+            else if (yAxis < 0 && !Grounded())
+            {
+                print("downattackarea: " + downAttackArea);
+                HardHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+            }
+        }
+        
+    }
+
+    void Flip()
+    {
+        if (pState.isAlive)
+        {
+            if (Grounded())
+            {
+                dust.Play();
+            }
+            if (xAxis < 0)
+            {
+                transform.localScale = new Vector2(-1, transform.localScale.y);
+                pState.lookingRight = false;
+            }
+            else if (xAxis > 0)
+            {
+                transform.localScale = new Vector2(1, transform.localScale.y);
+                pState.lookingRight = true;
+            }
+        }               
+    }
+
+    private void Move()
+    {
+        if (pState.canMove && pState.isAlive)
+        {
+            pState.walking = true;
+            rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
+            anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
+            if (stamina > 0 && canrun == true && Input.GetButtonDown("Run"))
+            {
+                walkSpeed = 13;
+                pState.running = true;
+                pState.walking = false;
+            }
+            else if (Input.GetButtonUp("Run"))
+            {
+                walkSpeed = 7;
+                pState.running = false;
+                pState.walking = true;
+            }
+            
+        }
+        else if (pState.canMove == false && pState.isAlive == false)
+        {
+            anim.SetBool("Death", true);
+            rb.MovePosition(rb.position);
+        }
+        
+             
+    }
+    void runCheck()
+    {
+        if (pState.running == true)
+        {
+            if (stamina <= 0)
+            if (stamina <= 0)
+            {
+                stamina = 0;
+            }
+            dust.Play();
+            anim.SetBool("Running", true);
+
+            
+            if (stamina <= 0 && pState.running == false)
+            {
+                canrun = false;
+            }
+        }
+        else if (pState.walking == true)
+        {
+            dust.Stop();
+            anim.SetBool("Walking", true);
+            anim.SetBool("Running", false);
+        }
+
+    }
+
+
+    void StartDash()
+    {
+        if (stamina > 0 && pState.isAlive && Input.GetButtonDown("Dash") && canDash && !dashed)
+        {
+            StartCoroutine(Dash());
+            dashed = true;
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
+            stamina -= dashCost;
+            Stamina.fillAmount = stamina / maxstamina;
+        }
+
+        if (Grounded())
+        {
+            dashed = false;
+        }
+    }
+
+    IEnumerator Dash() 
+    {
+        canDash = false;
+        pState.dashing = true;
+        dust.Play();
+        pState.invincible = true;
+        anim.SetTrigger("Dashing");
+        rb.velocity = new Vector2(transform.localScale.x * dashSpeed, 0);
+        yield return new WaitForSeconds(dashTime);
+        rb.gravityScale = gravity;
+        pState.dashing = false;
+        dust.Stop();
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+        pState.invincible = false;
+    }
+
+    public bool Grounded()
+    {
+        if (Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, whatIsGround)
+            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround)
+            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+   
+    private IEnumerator RechargeStamina()
+    {
+
+        
+            yield return new WaitForSeconds(1f);
+            while (stamina < maxstamina)
+            {
+                stamina += chargeRate / 10f;
+                if (stamina > maxstamina) stamina = maxstamina;
+                Stamina.fillAmount = stamina / maxstamina;
+                canrun = true;
+                canjump = true;
+                yield return new WaitForSeconds(.1f);
+            }
+               
+    }
+
+    private IEnumerator RechargeShield()
+    {
+        yield return new WaitForSeconds(1f);
+        while (shieldCount < maxShield)
+        {
+            shieldCount += chargeRate / 10f;
+            if (shieldCount > maxShield) shieldCount = maxShield;
+            ShieldBar.fillAmount = shieldCount / maxShield;
+            yield return new WaitForSeconds(.1f);
+        }
+
+    }
+
+}

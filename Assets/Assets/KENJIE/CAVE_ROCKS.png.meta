@@ -1,0 +1,787 @@
+fileFormatVersion: 2
+guid: cf94bb235dc46594b814fdc4176d7227
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 30
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CAVE_ROCKS_0
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 2871
+        width: 33
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c5705ebd360a4b499cb134848983680
+      internalID: -501054286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_1
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 2889
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d51c262ce4a9cb44c94ad8c3ed66c328
+      internalID: 383961205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_2
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 2873
+        width: 9
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6268c6ea5dab52245acb9a5d0c860bdd
+      internalID: 1260502994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_3
+      rect:
+        serializedVersion: 2
+        x: 1491
+        y: 2177
+        width: 1368
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6283d2d8a23d57d4aafb585642625b84
+      internalID: 317972194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_4
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 2854
+        width: 9
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9c3decb77bf96c47826d1403070e267
+      internalID: 2051519277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 2856
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1df85b46138a804498e96dc2934d2383
+      internalID: -1685804664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_6
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 2780
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 269c49f532547e04b92e6162c24fbee0
+      internalID: 1429265834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 2172
+        width: 1055
+        height: 679
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47d38105987a14545945eda1d954e605
+      internalID: 1927907441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_8
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 2152
+        width: 25
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 728af6797d0c5b5469a4ab53dec3b8b0
+      internalID: -637003313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_9
+      rect:
+        serializedVersion: 2
+        x: 1856
+        y: 2117
+        width: 41
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc30cbf2b71c2e842a5f9b2122eea164
+      internalID: -147219958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_10
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 2082
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b65bc3a50ee4d164ca04a97a154f3d83
+      internalID: -1912585742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_11
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 1922
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5569f91bfe099be4086d523190e9e46b
+      internalID: -752972185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_12
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 1427
+        width: 594
+        height: 614
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 034a34d0b7ac0b04d8bb599e38bfba30
+      internalID: -539745255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_13
+      rect:
+        serializedVersion: 2
+        x: 1876
+        y: 1446
+        width: 1041
+        height: 577
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72b38601791ed234cac66f863cf5eb20
+      internalID: 87436499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_14
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 1083
+        width: 716
+        height: 777
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12290b22c8893744facc98fa47e4e526
+      internalID: -1231204498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_15
+      rect:
+        serializedVersion: 2
+        x: 2029
+        y: 545
+        width: 513
+        height: 876
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87cf2f747d0ffc24485f4c6f9e18f055
+      internalID: -1545366862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_16
+      rect:
+        serializedVersion: 2
+        x: 2695
+        y: 1356
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05f8cbf9a658d044baf62658145a9abc
+      internalID: -1163687932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_17
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 828
+        width: 719
+        height: 521
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0664e6905c70584aa546cf86d610357
+      internalID: -2031212830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_18
+      rect:
+        serializedVersion: 2
+        x: 1931
+        y: 1088
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 646f21376e54b2d4cb0123e5d85e49cd
+      internalID: 1173527529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_19
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 971
+        width: 14
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fe77f5c19b64734ca1b200395d9ae72
+      internalID: -1623132068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_20
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 961
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3375e3625e3aff408e816ce12445017
+      internalID: 1890799636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_21
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 316
+        width: 1395
+        height: 597
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8550b17111d52a49a898ade1afe0875
+      internalID: -649606394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_22
+      rect:
+        serializedVersion: 2
+        x: 1983
+        y: 850
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b650c1dfd02b78c46bbb5cf467fa0e61
+      internalID: -43897302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_23
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 231
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bdbe5a061faa8b4da977aba3c0eb5d0
+      internalID: -598777416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_24
+      rect:
+        serializedVersion: 2
+        x: 2024
+        y: 101
+        width: 513
+        height: 442
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a048a960a6230bc409efc0529cc1affa
+      internalID: -479885647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_25
+      rect:
+        serializedVersion: 2
+        x: 2537
+        y: 136
+        width: 5
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f353f231fe6cf3428c83e2072093a5e
+      internalID: -768214038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_26
+      rect:
+        serializedVersion: 2
+        x: 2087
+        y: 98
+        width: 37
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31e4dbe4dfb4ddf42bb990b34a5a841b
+      internalID: 205833300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_27
+      rect:
+        serializedVersion: 2
+        x: 2314
+        y: 83
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a37d354dd344456408b709236030168b
+      internalID: -581091807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_28
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 78
+        width: 48
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ed838de21a62f49bd3925c5557ae38
+      internalID: 823101626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVE_ROCKS_29
+      rect:
+        serializedVersion: 2
+        x: 1966
+        y: 35
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6277f8714f16a74fb43ca670db20a5c
+      internalID: 1014930196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      CAVE_ROCKS_0: -501054286
+      CAVE_ROCKS_1: 383961205
+      CAVE_ROCKS_10: -1912585742
+      CAVE_ROCKS_11: -752972185
+      CAVE_ROCKS_12: -539745255
+      CAVE_ROCKS_13: 87436499
+      CAVE_ROCKS_14: -1231204498
+      CAVE_ROCKS_15: -1545366862
+      CAVE_ROCKS_16: -1163687932
+      CAVE_ROCKS_17: -2031212830
+      CAVE_ROCKS_18: 1173527529
+      CAVE_ROCKS_19: -1623132068
+      CAVE_ROCKS_2: 1260502994
+      CAVE_ROCKS_20: 1890799636
+      CAVE_ROCKS_21: -649606394
+      CAVE_ROCKS_22: -43897302
+      CAVE_ROCKS_23: -598777416
+      CAVE_ROCKS_24: -479885647
+      CAVE_ROCKS_25: -768214038
+      CAVE_ROCKS_26: 205833300
+      CAVE_ROCKS_27: -581091807
+      CAVE_ROCKS_28: 823101626
+      CAVE_ROCKS_29: 1014930196
+      CAVE_ROCKS_3: 317972194
+      CAVE_ROCKS_4: 2051519277
+      CAVE_ROCKS_5: -1685804664
+      CAVE_ROCKS_6: 1429265834
+      CAVE_ROCKS_7: 1927907441
+      CAVE_ROCKS_8: -637003313
+      CAVE_ROCKS_9: -147219958
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
