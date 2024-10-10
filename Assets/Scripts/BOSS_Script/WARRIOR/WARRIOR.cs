@@ -30,6 +30,7 @@ public class WARRIOR : Enemy
     bool isulti = false;
     bool canjump = false;
     bool canUlti = false;
+    bool isAttacking = false;
     [SerializeField] GameObject healthBarUI;
 
     protected override void Start()
@@ -99,17 +100,6 @@ public class WARRIOR : Enemy
         {
             canMove = false;
         }
-        if (!PlayerController.Instance.pState.isAlive)
-        {
-            transform.position = spawnPoint;
-            health = maxHealth;
-            parrypercent = parrymax;
-            parryBar.fillAmount = parrymax;
-            spottedPlayer = false;
-            Border_L.SetActive(false);
-            Border_R.SetActive(false);
-            ChangeStates(EnemyStates.warrior_jump);
-        }
         if (isulti)
         {
             anim.SetBool("Ultimate", true);
@@ -154,7 +144,7 @@ public class WARRIOR : Enemy
         }
         else
         {
-            if (canMove && spottedPlayer && PlayerController.Instance.pState.isAlive)
+            if (canMove && spottedPlayer && !isAttacking)
             {
                 switch (currentEnemyStates)
                 {
@@ -184,6 +174,10 @@ public class WARRIOR : Enemy
                             transform.position = Vector2.MoveTowards
                             (transform.position, new Vector2(PlayerController.Instance.transform.position.x, transform.position.y),
                             speed * Time.deltaTime);
+                            if (inRange())
+                            {
+                                ChangeStates(EnemyStates.warrior_attack);
+                            }
                         }
                         Flip();
                         break;
@@ -210,7 +204,18 @@ public class WARRIOR : Enemy
     }
     void Flip()
     {
-        sr.flipX = PlayerController.Instance.transform.position.x < transform.position.x;
+        if (!isAttacking && !parried)
+        {
+            if (PlayerController.Instance.transform.position.x < transform.position.x)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+        }
+        
     }
     IEnumerator jumpAttack(float time)
     {
@@ -228,7 +233,11 @@ public class WARRIOR : Enemy
         
     }
 
-    
+    bool inRange()
+    {
+        float _dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
+        return _dist < 2.8f;
+    }
 
     IEnumerator Ultimate(float time)
     {
@@ -260,12 +269,23 @@ public class WARRIOR : Enemy
 
     void attackanim()
     {
-        if (!isulti && Vector2.Distance(transform.position, PlayerController.Instance.transform.position) <= 5f)
+        if (!isulti && !isAttacking)
         {
             GameObject swordFX = Instantiate(swordhitFX, transform.position, Quaternion.identity);
             Destroy(swordFX, 5.5f);
-            anim.SetTrigger("Attack");
+            StartCoroutine(Attack1());
         }
+    }
+
+    IEnumerator Attack1()
+    {
+        isAttacking = true;
+        canMove = false;
+        anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(2f);
+        isAttacking = false;
+        canMove = true;
+        ChangeStates(EnemyStates.warrior_idle);
     }
     void shoot()
     {

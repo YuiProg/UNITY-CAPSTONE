@@ -14,8 +14,6 @@ public class Demon_King : Enemy
 
     //HITBOX
     [SerializeField] float chaseDistace;
-    [SerializeField] GameObject AttackHitBox;
-    [SerializeField] GameObject AttackHitBox2;
     [SerializeField] GameObject HealthBar;
 
     //Projectile
@@ -43,6 +41,7 @@ public class Demon_King : Enemy
     bool underattack;
     bool playerDead;
     bool isAlive = true;
+    bool isAttacking = false;
     [SerializeField]bool performUlti = false;
     [SerializeField] float fireTimer;
     protected override void Start()
@@ -56,8 +55,6 @@ public class Demon_King : Enemy
         rb.gravityScale = 12f;
         HealthBar.SetActive(false); 
         ChangeStates(EnemyStates.DK_Idle);
-        AttackHitBox.SetActive(false);
-        AttackHitBox2.SetActive(false);
         PreFire.SetActive(false);
         FireCharge.SetActive(false);
         Border_L.SetActive(false);
@@ -127,7 +124,7 @@ public class Demon_King : Enemy
             Border_R.SetActive(false);
             Border_L.SetActive(false);         
         }
-        if (PlayerController.Instance.pState.isAlive)
+        if (canMove && !isAttacking)
         {           
             switch (currentEnemyStates)
             {
@@ -165,8 +162,6 @@ public class Demon_King : Enemy
             health = maxHealth;
             transform.position = spawnpoint;
             spottedPlayer = false;
-            AttackHitBox.SetActive(false);
-            AttackHitBox2.SetActive(false);
             PreFire.SetActive(false);
             FireCharge.SetActive(false);
             Border_R.SetActive(false);
@@ -238,31 +233,27 @@ public class Demon_King : Enemy
 
     IEnumerator DK_Attack()
     {
+        isAttacking = true;
         yield return new WaitForSeconds(1);
         anim.SetTrigger("Attack");
         yield return new WaitForSeconds(1 - 0.3f);
         CameraShake.Instance.ShakeCamera();
-        AttackHitBox.SetActive(true);
-        AttackHitBox2.SetActive(true);
         yield return new WaitForSeconds(1 - 0.5f);
-        AttackHitBox.SetActive(false);
-        AttackHitBox2.SetActive(false);
         canMove = true;
+        isAttacking = false;
         ResetAllAttack();
     }
     IEnumerator DK_Attack2()
     {
+        isAttacking = true;
         yield return new WaitForSeconds(1);
         anim.SetTrigger("Attack");        
         yield return new WaitForSeconds(1 - 0.3f);
         StartCoroutine(fireAttack());
         CameraShake.Instance.ShakeCamera();
-        AttackHitBox.SetActive(true);
-        AttackHitBox2.SetActive(true);
         yield return new WaitForSeconds(1 - 0.5f);
-        AttackHitBox.SetActive(false);
-        AttackHitBox2.SetActive(false);
         canMove = true;
+        isAttacking = false;
         ResetAllAttack();
     }
     void Walk()
@@ -346,7 +337,7 @@ public class Demon_King : Enemy
 
     void Walk_2()
     {       
-        if (spottedPlayer && canMove && canAttack && !performUlti)
+        if (spottedPlayer && canMove && canAttack && !performUlti && !isAttacking)
         {
             
             if (spottedPlayer && Vector2.Distance(transform.position, PlayerController.Instance.transform.position) <= 12f)
@@ -380,6 +371,17 @@ public class Demon_King : Enemy
     }
     void Flip()
     {
-        sr.flipX = PlayerController.Instance.transform.position.x > transform.position.x;
+        if (!isAttacking && !parried)
+        {
+            if (PlayerController.Instance.transform.position.x < transform.position.x)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+        }
+        
     }
 }

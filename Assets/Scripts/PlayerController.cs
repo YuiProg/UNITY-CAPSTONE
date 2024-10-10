@@ -1039,19 +1039,16 @@ public class PlayerController : MonoBehaviour
    
     private IEnumerator RechargeStamina()
     {
-
-        
-            yield return new WaitForSeconds(1f);
-            while (stamina < maxstamina)
-            {
-                stamina += chargeRate / 10f;
-                if (stamina > maxstamina) stamina = maxstamina;
-                Stamina.fillAmount = stamina / maxstamina;
-                canrun = true;
-                canjump = true;
-                yield return new WaitForSeconds(.1f);
-            }
-               
+        yield return new WaitForSeconds(1f);
+        while (stamina < maxstamina)
+        {
+            stamina += chargeRate / 10f;
+            if (stamina > maxstamina) stamina = maxstamina;
+            Stamina.fillAmount = stamina / maxstamina;
+            canrun = true;
+            canjump = true;
+            yield return new WaitForSeconds(.1f);
+        }
     }
 
     private IEnumerator RechargeShield()
