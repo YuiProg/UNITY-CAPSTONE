@@ -941,7 +941,7 @@ public class PlayerController : MonoBehaviour
         {
             pState.walking = true;
             rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
-            anim.SetBool("Walking", rb.velocity.x != 0 && Grounded() || !pState.Transitioning);
+            anim.SetBool("Walking", rb.velocity.x != 0 && Grounded());
             if (stamina > 0 && canrun == true && Input.GetButtonDown("Run"))
             {
                 walkSpeed = 13;

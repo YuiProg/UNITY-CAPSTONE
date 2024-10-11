@@ -51316,7 +51316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &779814016
 Transform:
   m_ObjectHideFlags: 0
@@ -112708,7 +112708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600568532}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.97374386, w: -0.22764654}
+  m_LocalRotation: {x: -0, y: -0, z: 0.97640866, w: -0.21593106}
   m_LocalPosition: {x: 193.1, y: 461.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -112751,10 +112751,10 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 70.74
-  m_PointLightOuterAngle: 88.19
+  m_PointLightInnerAngle: 58.53
+  m_PointLightOuterAngle: 85.24
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 333.82922
+  m_PointLightOuterRadius: 320.80817
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
