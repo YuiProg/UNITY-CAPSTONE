@@ -7,21 +7,57 @@ public class Checkpoint : MonoBehaviour
 {
     public Transform respawnpoint;
     [SerializeField] Text saveTXT;
-    private void OnTriggerEnter2D(Collider2D collision)
+    public GameObject upgradeUI;
+    bool onTrigger;
+    bool onUI = false;
+    bool hasSaved = false;
+    private void Update()
+    {
+        if (onTrigger && Input.GetKeyDown(KeyCode.E))
+        {
+            if (onUI)
+            {
+                upgradeUI.SetActive(true);
+                Cursor.visible = true;
+                onUI = false;
+            }
+            else
+            {
+                onUI = true;
+                Cursor.visible = false;
+                upgradeUI.SetActive(false);
+            }
+        }        
+    }
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            onTrigger = true;
             Save.instance.saveData();
             StartCoroutine(save());
             PlayerController.Instance.updatecheckpoint(respawnpoint.position);
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            onTrigger = !onTrigger;
+            upgradeUI.SetActive(false);
+        }
+    }
+
     private IEnumerator save()
     {
+        if (!hasSaved)
+        {
+            saveTXT.text = "Saving...";
+            hasSaved = true;
+            yield return new WaitForSeconds(1.5f);
+            saveTXT.text = " ";
+        }
         
-        saveTXT.text = "Saving...";
-        yield return new WaitForSeconds(1.5f);
-        saveTXT.text = " ";
     }
 }

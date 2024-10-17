@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-
+    public int levels;
     bool restoreTime;
     float restoreTimeSpeed;
     public bool takingDamage;

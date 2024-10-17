@@ -19,6 +19,7 @@ public class SpearGirl : Enemy
     float transitionTime;
     bool isDead = false;
     public static SpearGirl instance;
+    bool dead = false;
     protected override void Start()
     {
         base.Start();
@@ -60,6 +61,7 @@ public class SpearGirl : Enemy
 
     protected override void UpdateEnemyStates()
     {
+        
         float _dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
         healthCheck();
         if (!attacking && spottedPlayer && !isDead)
@@ -78,12 +80,13 @@ public class SpearGirl : Enemy
             anim.SetBool("PARRIED", false);
             canMove = true;
         }
-        if (health <= 0)
+        if (health <= 0 && !dead)
         {
             PlayerPrefs.SetInt("SpearGirl", 1);
-            isDead = true;
             canMove = false;
             canAttack = false;
+            PlayerController.Instance.levels = PlayerController.Instance.levels + 1;
+            dead = true;
         }
         if (canMove && !attacking && !isDead)
         {

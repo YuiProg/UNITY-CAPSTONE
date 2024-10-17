@@ -36,4 +36,5 @@ public class PlayerState : MonoBehaviour
     public bool SLASH = false;
     public bool HPBUFF = false;
 
+
 }

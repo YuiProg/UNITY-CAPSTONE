@@ -38,7 +38,8 @@ public class Save : MonoBehaviour
         PlayerPrefs.SetFloat("Shield", PlayerController.Instance.shieldCount);
         PlayerPrefs.SetFloat("N_Damage", PlayerController.Instance.normal_damage);
         PlayerPrefs.SetFloat("H_Damage", PlayerController.Instance.normal_hdamage);
-        
+        PlayerPrefs.SetFloat("C_Damage", PlayerController.Instance.Cdamage);
+        PlayerPrefs.SetInt("Levels", PlayerController.Instance.levels);
         print("SAVED DATA");
 
     }
@@ -54,7 +55,8 @@ public class Save : MonoBehaviour
             float shield = PlayerPrefs.GetFloat("Shield");
             float Ndamage = PlayerPrefs.GetFloat("N_Damage");
             float Hdamage = PlayerPrefs.GetFloat("H_Damage");
-
+            float combo = PlayerPrefs.GetFloat("C_Damage");
+            int levels = PlayerPrefs.GetInt("Levels");
             //health
             PlayerController.Instance.health = health;
             PlayerController.Instance.maxHealth = maxHealth;
@@ -64,6 +66,9 @@ public class Save : MonoBehaviour
             //damage
             PlayerController.Instance.normal_damage = Ndamage;
             PlayerController.Instance.normal_hdamage = Hdamage;
+            PlayerController.Instance.Cdamage = combo;
+            //levels
+            PlayerController.Instance.levels = (int)levels;
         }
         catch (System.NullReferenceException test)
         {
