@@ -76,7 +76,7 @@ public class Mushroom : Enemy
     bool distanceCheck()
     {
         float _dist = Vector2.Distance(PlayerController.Instance.transform.position, transform.position);
-        return _dist < 1.8f;
+        return _dist < 1.5f;
     }
 
     IEnumerator Attacking()
