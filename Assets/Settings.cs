@@ -95,7 +95,7 @@ public class Settings : MonoBehaviour
 
     public void HIGH()
     {
-        PlayerPrefs.SetInt("LOW", 1);
+        PlayerPrefs.SetInt("LOW", 0);
         PlayerPrefs.SetInt("MEDIUM", 0);
         PlayerPrefs.SetInt("HIGH", 1);
         isLOW = false;
