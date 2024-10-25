@@ -7,12 +7,14 @@ public class Pause_Menu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject UI;
+    [SerializeField] GameObject SettingsUI;
     public void ResumeGame()
     {
         Time.timeScale = 1;
         UI.SetActive(true);
         PlayerController.Instance.pState.isPaused = false;
         pauseMenu.SetActive(false);
+        SettingsUI.SetActive(false);
     }
 
     public void QuitGame()
@@ -22,7 +24,8 @@ public class Pause_Menu : MonoBehaviour
 
     public void Settings()
     {
-
+        pauseMenu.SetActive(false);
+        SettingsUI.SetActive(true);
     }
 
 }

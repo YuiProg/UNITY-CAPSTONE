@@ -286,21 +286,7 @@ public class Demon_King : Enemy
         if (performUlti)
         {
             Debug.Log("Boss Ultimate started");
-            sr.flipX = PlayerController.Instance.transform.position.x < transform.position.x;
-
-            if (performUlti)
-            {
-                anim.SetBool("Walk", true);
-                transform.position = Vector2.MoveTowards
-                (transform.position, new Vector2(moveHere.position.x, transform.position.y),
-                speedulti * Time.deltaTime);
-            }
-
-
             anim.SetBool("DK_Power_UP", true);
-            yield return new WaitForSeconds(1); //TAKBO
-
-            //anim.SetBool("Walk", false);
             if (performUlti)
             {
 
