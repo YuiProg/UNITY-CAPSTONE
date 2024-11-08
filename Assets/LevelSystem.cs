@@ -33,6 +33,7 @@ public class LevelSystem : MonoBehaviour
             PlayerController.Instance.normal_damage = PlayerController.Instance.normal_damage + 2;
             PlayerController.Instance.normal_hdamage = PlayerController.Instance.normal_hdamage + 2;
             PlayerController.Instance.Cdamage = PlayerController.Instance.Cdamage + 2;
+            Save.instance.saveData();
         }
     }
 }

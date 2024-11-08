@@ -312,7 +312,7 @@ public class PlayerController : MonoBehaviour
     bool doubleJump = true;
     void Jump()
     {
-        if (canjump)
+        if (canjump && !pState.isNPC)
         {
             if (Grounded() && !Input.GetButtonDown("Jump"))
             {
@@ -663,7 +663,7 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        if (pState.canAttack && pState.isAlive && !pState.isPaused)
+        if (pState.canAttack && pState.isAlive && !pState.isPaused && !pState.isNPC)
         {
             
             if (attack && pState.isAlive && stamina > 10 && !pState.blocking)
@@ -703,7 +703,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator ComboAttack()
     {
-        if (combo && pState.isAlive && stamina > 10 && !pState.blocking)
+        if (combo && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
         {
             canDash = false;
             comboTimer = 0;
@@ -736,7 +736,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
 
-        if (pState.isAlive && stamina > 10 && !pState.blocking)
+        if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
         {
             comboFX.Play();
             timeSinceAttack = 0;
@@ -764,7 +764,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
 
-        if (pState.isAlive && stamina > 10 && !pState.blocking)
+        if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
         {
             comboFX.Play();
             timeSinceAttack = 0;
@@ -937,7 +937,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (pState.canMove && pState.isAlive)
+        if (pState.canMove && pState.isAlive && !pState.isNPC)
         {
             pState.walking = true;
             rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
@@ -994,7 +994,7 @@ public class PlayerController : MonoBehaviour
 
     void StartDash()
     {
-        if (stamina > 0 && pState.isAlive && Input.GetButtonDown("Dash") && canDash && !dashed)
+        if (stamina > 0 && pState.isAlive && Input.GetButtonDown("Dash") && canDash && !dashed && !pState.isNPC)
         {
             StartCoroutine(Dash());
             dashed = true;

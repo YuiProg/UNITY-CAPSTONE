@@ -14,6 +14,7 @@ public class Desert_BOSS : Enemy
     [SerializeField] GameObject BORDER_R;
     [SerializeField] GameObject BORDER_L;
     [SerializeField] AudioSource music;
+    [SerializeField] GameObject CheckPoint;
     bool dead = false;
     public static Desert_BOSS instance;
     
@@ -28,6 +29,7 @@ public class Desert_BOSS : Enemy
         BORDER_L.SetActive(false);
         BORDER_R.SetActive(false);
         HEALTHBAR.SetActive(false);
+        CheckPoint.SetActive(false);
     }
     private void Awake()
     {
@@ -51,6 +53,9 @@ public class Desert_BOSS : Enemy
         if (health <= 0 && !dead)
         {
             PlayerController.Instance.levels = PlayerController.Instance.levels + 1;
+            anim.SetTrigger("Dead");
+            Save.instance.saveData();
+            CheckPoint.SetActive(true);
             dead = true;
         }
         if (canMove && !attacking)

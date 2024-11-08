@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Settings : MonoBehaviour
 {
@@ -26,13 +27,11 @@ public class Settings : MonoBehaviour
     void Update()
     {
         AudioListener.volume = slider.value;
+        PlayerPrefs.SetFloat("VOLUME", slider.value);
+
     }
 
-    public void sliderValue(float value)
-    {
-        value = slider.value;
-        PlayerPrefs.SetFloat("VOLUME", value);
-    }
+    
     private void Awake()
     {
         AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");

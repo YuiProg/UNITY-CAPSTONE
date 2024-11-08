@@ -80,5 +80,12 @@ public class Save : MonoBehaviour
     {
 
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetFloat("VOLUME", 1);
+    }
+
+    public void saveLevels()
+    {
+        PlayerPrefs.SetInt("Levels", PlayerController.Instance.levels);
+        print("Saved Levels");
     }
 }

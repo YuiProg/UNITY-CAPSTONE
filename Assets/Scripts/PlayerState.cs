@@ -6,6 +6,7 @@ public class PlayerState : MonoBehaviour
     public bool isPaused = false;
     public bool Transitioning = false;
     public bool inParkourState = false;
+    public bool isNPC = false;
 
     //movement bool
     public bool jumping = false;
