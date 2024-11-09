@@ -73,8 +73,9 @@ public class QuestionAndAnswer : MonoBehaviour
         STATUE1.SetActive(false);
         yield return new WaitForSeconds(4f);
         PlayerController.Instance.pState.Transitioning = false;
-        dialogue.text = "You may not proceed on your adventure";
+        dialogue.text = "You may now proceed on your adventure";
         yield return new WaitForSeconds(3f);
+        dialogue.text = "";
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
     }

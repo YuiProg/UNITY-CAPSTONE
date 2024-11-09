@@ -142,7 +142,6 @@ public class PlayerController : MonoBehaviour
     {
 
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -153,12 +152,15 @@ public class PlayerController : MonoBehaviour
         }
         
         health = maxHealth;
+        stamina = maxstamina;
         Time.timeScale = 1;
         float x = PlayerPrefs.GetFloat("X");
         float y = PlayerPrefs.GetFloat("Y");
         transform.position = new Vector2(x, y);
-
+        
+        
         audioManager.PlaySFX(audioManager.Respawn);
+        
     }
 
    
@@ -175,11 +177,14 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         text.text = $"FLASK: {potionCount}";
         parryCounter.text = "";
-        hdamage = normal_hdamage;
-        damage = normal_damage;
-        Cdamage = normal_slash_Damage;
+
+        health = maxHealth;
+        stamina = maxstamina;
+
         comboTimer = 5;
         healTimer = 30;
+        Save.instance.loadStats();
+        statCheck();
     }
 
     void Update()
@@ -259,6 +264,7 @@ public class PlayerController : MonoBehaviour
         if (potionCount == 0) text.text = $"POTION: EMPTY";
         if (health <= 0 && !hasDied)
         {
+            
             DeathScreen.SetActive(true);
             pState.canMove = false;
             pState.jumping = false;
@@ -281,10 +287,36 @@ public class PlayerController : MonoBehaviour
         }
         comboCounter.text = $"{Math.Round(comboTimer)}";
         healtxtCount.text = $"{Math.Round(healTimer)}";
+        
     }
 
     bool hasDied = false;
     bool isRespawning = false;
+
+    void statCheck()
+    {
+        if (PlayerPrefs.GetInt("LOAD") >= 1)
+        {
+            normal_hdamage = PlayerPrefs.GetFloat("H_Damage");
+            normal_damage = PlayerPrefs.GetFloat("N_Damage");
+            normal_slash_Damage = PlayerPrefs.GetFloat("C_Damage");
+            maxHealth = PlayerPrefs.GetFloat("Max Health");
+            maxstamina = PlayerPrefs.GetFloat("Max Stamina");
+            Debug.Log("HAS STATS");
+        }
+        else if (PlayerPrefs.GetInt("LOAD") == 0 || !PlayerPrefs.HasKey("LOAD"))
+        {
+            normal_damage = 2;
+            normal_hdamage = 4;
+            normal_slash_Damage = 10;
+            damage = normal_damage;
+            hdamage = normal_hdamage;
+            Cdamage = normal_slash_Damage;
+            maxHealth = 50;
+            maxstamina = 100;
+            Debug.Log("NO STATS");
+        }
+    }
     IEnumerator Respawn(float wait)
     {
         anim.SetTrigger("Death");

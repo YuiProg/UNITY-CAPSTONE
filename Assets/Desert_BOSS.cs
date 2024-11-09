@@ -35,6 +35,7 @@ public class Desert_BOSS : Enemy
     {
         HEALTHBAR.SetActive(PlayerPrefs.GetInt("Desert") != 1);
         gameObject.SetActive(PlayerPrefs.GetInt("Desert") != 1);
+        CheckPoint.SetActive(PlayerPrefs.GetInt("Desert") == 1);
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -84,8 +85,10 @@ public class Desert_BOSS : Enemy
 
     void statusCheck()
     {
-        canMove = !parried;
+        canMove = !parried;       
+        canAttack = PlayerController.Instance.pState.isAlive;
         if (!attacking) flip();
+        if (parried) stopAttacks();
         HEALTHBAR.SetActive(spottedPlayer && PlayerPrefs.GetInt("Desert") != 1);
         BORDER_L.SetActive(spottedPlayer && PlayerPrefs.GetInt("Desert") != 1);
         BORDER_R.SetActive(spottedPlayer && PlayerPrefs.GetInt("Desert") != 1);
@@ -172,6 +175,15 @@ public class Desert_BOSS : Enemy
     }
 
     //ATTACKS WALA PHASE 2
+
+    void stopAttacks()
+    {
+        StopCoroutine(Attack1());
+        StopCoroutine(Attack2());
+        StopCoroutine(Attack3());
+        StopCoroutine(Attack4());
+        StopCoroutine(Attack5());
+    }
 
     IEnumerator Attack5()
     {

@@ -33,6 +33,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            PlayerPrefs.SetInt("LOAD", 1);
             onTrigger = true;
             Save.instance.saveData();
             StartCoroutine(save());
