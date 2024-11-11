@@ -39,10 +39,12 @@ public class Save : MonoBehaviour
         PlayerPrefs.SetFloat("stamina", PlayerController.Instance.stamina);
         PlayerPrefs.SetFloat("Max Stamina", PlayerController.Instance.maxstamina);
         PlayerPrefs.SetFloat("Shield", PlayerController.Instance.shieldCount);
+        PlayerPrefs.SetFloat("Max Shield", PlayerController.Instance.maxShield);
         PlayerPrefs.SetFloat("N_Damage", PlayerController.Instance.normal_damage);
         PlayerPrefs.SetFloat("H_Damage", PlayerController.Instance.normal_hdamage);
         PlayerPrefs.SetFloat("C_Damage", PlayerController.Instance.normal_slash_Damage);
         PlayerPrefs.SetInt("Levels", PlayerController.Instance.levels);
+        PlayerPrefs.SetInt("MainLevel", PlayerController.Instance.mainLevel);
         //print("SAVED DATA");
 
     }
@@ -53,6 +55,7 @@ public class Save : MonoBehaviour
         PlayerPrefs.SetFloat("H_Damage", PlayerController.Instance.normal_hdamage);
         PlayerPrefs.SetFloat("C_Damage", PlayerController.Instance.normal_slash_Damage);
         PlayerPrefs.SetInt("Levels", PlayerController.Instance.levels);
+        PlayerPrefs.SetInt("MainLevel", PlayerController.Instance.mainLevel);
         print("SAVED STATS");
     }
 
@@ -69,16 +72,21 @@ public class Save : MonoBehaviour
             float stamina = PlayerPrefs.GetFloat("Stamina");
             float maxstamina = PlayerPrefs.GetFloat("Max Stamina");
             float shield = PlayerPrefs.GetFloat("Shield");
+            float maxShield = PlayerPrefs.GetFloat("Max Shield");
             float Ndamage = PlayerPrefs.GetFloat("N_Damage");
             float Hdamage = PlayerPrefs.GetFloat("H_Damage");
             float combo = PlayerPrefs.GetFloat("C_Damage");
             int levels = PlayerPrefs.GetInt("Levels");
+            int mainLevel = PlayerPrefs.GetInt("MainLevel");
             //health
             PlayerController.Instance.health = health;
             PlayerController.Instance.maxHealth = maxHealth;
             PlayerController.Instance.stamina = stamina;
             PlayerController.Instance.maxstamina = maxstamina;
+            //shield
             PlayerController.Instance.shieldCount = shield;
+            PlayerController.Instance.maxShield = maxShield;
+            //position
             PlayerController.Instance.transform.position = new Vector2(x, y);
             PlayerController.Instance.HealthBar.fillAmount = health / maxHealth;
             //damage
@@ -87,6 +95,7 @@ public class Save : MonoBehaviour
             PlayerController.Instance.normal_slash_Damage = combo;
             //levels
             PlayerController.Instance.levels = levels;
+            PlayerController.Instance.mainLevel = mainLevel;
         }
         catch (System.NullReferenceException test)
         {

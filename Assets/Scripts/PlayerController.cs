@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
 
 
     public int levels;
+    public int mainLevel;
     bool restoreTime;
     float restoreTimeSpeed;
     public bool takingDamage;
@@ -180,7 +181,7 @@ public class PlayerController : MonoBehaviour
 
         health = maxHealth;
         stamina = maxstamina;
-
+        shieldCount = maxShield;
         comboTimer = 5;
         healTimer = 30;
         Save.instance.loadStats();
@@ -210,13 +211,15 @@ public class PlayerController : MonoBehaviour
         RegenPotion();
         FlashWhileInvincible();
         pState.canAttack = timeSinceAttack > timeBetweenAttack; //lantaran if else dito pano to
-        if (pState.Transitioning || pState.blocking)
+        if (pState.Transitioning || pState.blocking || pState.isNPC)
         {
             rb.drag = 1000;
+            anim.SetBool("Walking", false);
         }
         else
         {
             rb.drag = 0.05f;
+            
         }
         if (rb.velocity.x == 0 && rb.velocity.y == 0)
         {
@@ -287,7 +290,6 @@ public class PlayerController : MonoBehaviour
         }
         comboCounter.text = $"{Math.Round(comboTimer)}";
         healtxtCount.text = $"{Math.Round(healTimer)}";
-        
     }
 
     bool hasDied = false;
@@ -302,6 +304,8 @@ public class PlayerController : MonoBehaviour
             normal_slash_Damage = PlayerPrefs.GetFloat("C_Damage");
             maxHealth = PlayerPrefs.GetFloat("Max Health");
             maxstamina = PlayerPrefs.GetFloat("Max Stamina");
+            maxShield = PlayerPrefs.GetFloat("Max Shield");
+            mainLevel = PlayerPrefs.GetInt("MainLevel");
             Debug.Log("HAS STATS");
         }
         else if (PlayerPrefs.GetInt("LOAD") == 0 || !PlayerPrefs.HasKey("LOAD"))
@@ -314,6 +318,8 @@ public class PlayerController : MonoBehaviour
             Cdamage = normal_slash_Damage;
             maxHealth = 50;
             maxstamina = 100;
+            maxShield = 50;
+            mainLevel = 0;
             Debug.Log("NO STATS");
         }
     }

@@ -17,12 +17,14 @@ public class Checkpoint : MonoBehaviour
         {
             if (onUI)
             {
+                PlayerController.Instance.pState.isNPC = true;
                 upgradeUI.SetActive(true);
                 Cursor.visible = true;
                 onUI = false;
             }
             else
             {
+                PlayerController.Instance.pState.isNPC = false;
                 onUI = true;
                 Cursor.visible = false;
                 upgradeUI.SetActive(false);
