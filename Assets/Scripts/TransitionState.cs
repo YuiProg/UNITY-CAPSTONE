@@ -16,7 +16,7 @@ public class TransitionState : MonoBehaviour
         {
             TransitionPIC.SetActive(true);
             StartCoroutine(MoveState(4f));
-            anim.SetTrigger("Transition");
+            anim.Play("Transition");
         }
         else
         {

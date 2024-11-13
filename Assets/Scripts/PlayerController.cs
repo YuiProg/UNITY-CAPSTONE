@@ -215,6 +215,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.drag = 1000;
             anim.SetBool("Walking", false);
+            anim.SetBool("Running", false);
         }
         else
         {
@@ -733,7 +734,7 @@ public class PlayerController : MonoBehaviour
                     NormalHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
                 }
             }
-            else if (HardAttack && stamina > 30)
+            else if (HardAttack && stamina > 30 && !pState.blocking)
             {
                 HardAttackk();
             }

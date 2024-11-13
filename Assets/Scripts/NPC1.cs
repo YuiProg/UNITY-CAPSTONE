@@ -7,6 +7,7 @@ public class NPC1 : MonoBehaviour
 {
     bool ontrigger = false;
     [SerializeField] Text dlg;
+    [SerializeField] Text npcName;
     [SerializeField] GameObject npcDLG;
 
     //npcs
@@ -21,13 +22,18 @@ public class NPC1 : MonoBehaviour
     [SerializeField] Transform loc6;
     [SerializeField] Transform loc7;
     [SerializeField] Transform loc8;
+    //NPCBORDER
+    [SerializeField] GameObject BORDER1;
+    [SerializeField] GameObject BORDER2;
     //state
     public int count = 0;
     public int count2 = 0;
     bool talking = true;
-    // Update is called once per frame
+    
     private void Start()
     {
+        BORDER1.SetActive(true);
+        BORDER2.SetActive(true);
         if (PlayerPrefs.GetInt("NPCINCAVE") == 1)
         {
             npc1.transform.position = loc3.transform.position;
@@ -68,12 +74,12 @@ public class NPC1 : MonoBehaviour
                             StartCoroutine(Dialogue3(4.5f));
                         }
                         break;
-                    case 1:
-                        if (talking)
-                        {
-                            StartCoroutine(Dialogue4(4.5f));
-                        }
-                        break;
+                    //case 1:
+                    //    if (talking)
+                    //    {
+                    //        StartCoroutine(Dialogue4(4.5f));
+                    //    }
+                        //break;
                     default:
                         break;
                 }
@@ -103,13 +109,17 @@ public class NPC1 : MonoBehaviour
         talking = false;
         PlayerController.Instance.pState.isNPC = true;
         Cursor.visible = true;
-        dlg.text = "Suki - I can't believe it! We’re finally here. Months of research.";
+        dlg.text = "I can't believe it! We’re finally here. Months of research.";
+        npcName.text = "Christina";
         yield return new WaitForSeconds(time);
-        dlg.text = "Suki - Thanks from that village for helping us here.";
+        dlg.text = "Thanks from that village for helping us here.";
+        npcName.text = "Christina";
         yield return new WaitForSeconds(time);
-        dlg.text = "Jobert - The artifact should be here straight of that cliff. It won’t be easy, though; we’ll need to navigate through this rocky trail and climb up.";
+        dlg.text = "The artifact should be here straight of that cliff. It won’t be easy, though; we’ll need to navigate through this rocky trail and climb up.";
+        npcName.text = "Balweg";
         yield return new WaitForSeconds(time);
-        dlg.text = "Alright. Just keep your focus up there, Suki and Jobert. I’ll be right behind you all… carefully.";
+        dlg.text = "Alright. Just keep your focus up there, Christina and Balweg. I’ll be right behind you all… carefully.";
+        npcName.text = "";
         yield return new WaitForSeconds(time);
         dlg.text = "";
         PlayerController.Instance.pState.Transitioning = true;
@@ -120,6 +130,7 @@ public class NPC1 : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = false;
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
+        Destroy(BORDER1);
         talking = true;
         count++;
         npcDLG.SetActive(false);
@@ -131,13 +142,16 @@ public class NPC1 : MonoBehaviour
         Cursor.visible = true;
         talking = false;
         PlayerController.Instance.pState.isNPC = true;
-        dlg.text = "Jobert - Here we are. This is it—the entrance to the cave. Somewhere inside is the artifact jar we came all this way for. Everyone ready?";
+        dlg.text = "Here we are. This is it—the entrance to the cave. Somewhere inside is the artifact jar we came all this way for. Everyone ready?";
+        npcName.text = "Balweg";
         yield return new WaitForSeconds(time);
-        dlg.text = "Suki - I’ve been ready since we set foot in the forest! Just think, this jar has been hidden here for centuries, and can't wait to show it to the world.";
+        dlg.text = "I’ve been ready since we set foot in the forest! Just think, this jar has been hidden here for centuries, and can't wait to show it to the world.";
+        npcName.text = "Christina";
         yield return new WaitForSeconds(time);
-        dlg.text = "Hold that excitement, Jobert. This cave is ancient, and the footing might be tricky.";
+        dlg.text = "Hold that excitement, Balweg. This cave is ancient, and the footing might be tricky.";
         yield return new WaitForSeconds(time);
         dlg.text = "";
+        npcName.text = "";
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2.5f);
         npc1.transform.position = loc3.transform.position;
@@ -157,38 +171,13 @@ public class NPC1 : MonoBehaviour
         Cursor.visible = true;
         talking = false;
         PlayerController.Instance.pState.isNPC = true;
-        dlg.text = "Jobert - This cave are notorious for being unpredictable. We should watch for loose rocks or slippery patches. No heroics in here.";
+        dlg.text = "This cave are notorious for being unpredictable. We should watch for loose rocks or slippery patches. No heroics in here.";
+        npcName.text = "Balweg";
         yield return new WaitForSeconds(time);
-        dlg.text = "Good point, Jobert. And remember, everyone, they say there should be hidden chambers. Keep a close eye on your surroundings.";
-        yield return new WaitForSeconds(time);
-        dlg.text = "";
-        PlayerController.Instance.pState.Transitioning = true;
-        yield return new WaitForSeconds(2.5f);
-        npc1.transform.position = loc5.transform.position;
-        npc2.transform.position = loc6.transform.position;
-        yield return new WaitForSeconds(time + 1);
-        PlayerController.Instance.pState.Transitioning = false;
-        PlayerController.Instance.pState.isNPC = false;
-        Cursor.visible = false;
-        talking = true;
-        count2++;
-        npcDLG.SetActive(false);
-    }
-
-    IEnumerator Dialogue4(float time)
-    {
-        npcDLG.SetActive(true);
-        Cursor.visible = true;
-        talking = false;
-        PlayerController.Instance.pState.isNPC = true;
-        dlg.text = "i said don't rush it. maybe they are in there now.";
-        yield return new WaitForSeconds(time);
-        dlg.text = "Abi - Come on we're so close now!";
-        yield return new WaitForSeconds(time);
-        dlg.text = "Jobert - Try to catch up with us if you can.";
+        dlg.text = "Good point, Balweg. And remember, everyone, they say there should be hidden chambers. Keep a close eye on your surroundings.";
         yield return new WaitForSeconds(time);
         dlg.text = "";
-        count2++;
+        npcName.text = "";
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2.5f);
         npc1.transform.position = loc7.transform.position;
@@ -197,31 +186,59 @@ public class NPC1 : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = false;
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
-        yield return new WaitForSeconds(time + 2f);
-        dlg.text = "This isn’t funny. Where did you guys go? no response i should go inside.";
-        yield return new WaitForSeconds(time);
-        dlg.text = "";
         talking = true;
+        count2++;
+        Destroy(BORDER2);
         npcDLG.SetActive(false);
     }
-    IEnumerator ChamberDialogue(float time)
-    {
-        npcDLG.SetActive(true);
-        Cursor.visible = true;
-        talking = false;
-        PlayerController.Instance.pState.isNPC = true;
-        dlg.text = "Alright, stay calm, Zieck. You’ve been in strange situations before. Just… think. Where could they have gone? and the artifacts also are not here.";
-        yield return new WaitForSeconds(time);
-        dlg.text = "But i saw before i enter that this place have a indication of the jar.";
-        yield return new WaitForSeconds(time);
-        dlg.text = "What the hell is happenning?!";
-        yield return new WaitForSeconds(time);
-        dlg.text = "Maybe i should check them outside the cave.";
-        yield return new WaitForSeconds(time);
-        Cursor.visible = false;
-        dlg.text = "";
-        talking = true;
-        PlayerController.Instance.pState.isNPC = false;
-        npcDLG.SetActive(false);
-    }
+
+    //IEnumerator Dialogue4(float time)
+    //{
+    //    npcDLG.SetActive(true);
+    //    Cursor.visible = true;
+    //    talking = false;
+    //    PlayerController.Instance.pState.isNPC = true;
+    //    dlg.text = "i said don't rush it. maybe they are in there now.";
+    //    yield return new WaitForSeconds(time);
+    //    dlg.text = "Abi - Come on we're so close now!";
+    //    yield return new WaitForSeconds(time);
+    //    dlg.text = "Balweg - Try to catch up with us if you can.";
+    //    yield return new WaitForSeconds(time);
+    //    dlg.text = "";
+    //    count2++;
+    //    PlayerController.Instance.pState.Transitioning = true;
+    //    yield return new WaitForSeconds(2.5f);
+    //    npc1.transform.position = loc7.transform.position;
+    //    npc2.transform.position = loc8.transform.position;
+    //    yield return new WaitForSeconds(time + 1);
+    //    PlayerController.Instance.pState.Transitioning = false;
+    //    PlayerController.Instance.pState.isNPC = false;
+    //    Cursor.visible = false;
+    //    yield return new WaitForSeconds(time + 2f);
+    //    dlg.text = "This isn’t funny. Where did you guys go? no response i should go inside.";
+    //    yield return new WaitForSeconds(time);
+    //    dlg.text = "";
+    //    talking = true;
+    //    npcDLG.SetActive(false);
+    //}
+    //IEnumerator ChamberDialogue(float time)
+    //{
+    //    npcDLG.SetActive(true);
+    //    Cursor.visible = true;
+    //    talking = false;
+    //    PlayerController.Instance.pState.isNPC = true;
+    //    dlg.text = "Alright, stay calm, Zieck. You’ve been in strange situations before. Just… think. Where could they have gone? and the artifacts also are not here.";
+    //    yield return new WaitForSeconds(time);
+    //    dlg.text = "But i saw before i enter that this place have a indication of the jar.";
+    //    yield return new WaitForSeconds(time);
+    //    dlg.text = "What the hell is happenning?!";
+    //    yield return new WaitForSeconds(time);
+    //    dlg.text = "Maybe i should check them outside the cave.";
+    //    yield return new WaitForSeconds(time);
+    //    Cursor.visible = false;
+    //    dlg.text = "";
+    //    talking = true;
+    //    PlayerController.Instance.pState.isNPC = false;
+    //    npcDLG.SetActive(false);
+    //}
 }

@@ -1,18 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TeleporterOPTIONAL : MonoBehaviour
 {
     bool onTrigger = false;
     public Transform tpHere;
-
+    public bool canEnter = false;
+    public Text dlg;
+    public GameObject dialogue;
+    bool triggered = false;
+    public static TeleporterOPTIONAL instance;
     private void Update()
     {
-        if (onTrigger && Input.GetKeyDown(KeyCode.E))
+        if (onTrigger && Input.GetKeyDown(KeyCode.E) && canEnter)
         {
             StartCoroutine(Transition(5f));
         }
+        else if (onTrigger && Input.GetKeyDown(KeyCode.E) && !canEnter && !triggered)
+        {
+            StartCoroutine(dlgtext(2f));
+        }
+    }
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
+    IEnumerator dlgtext(float time)
+    {
+        triggered = true;
+        PlayerController.Instance.pState.isNPC = true;
+        dialogue.SetActive(true);
+        dlg.text = "Can't enter";
+        yield return new WaitForSeconds(time);
+        PlayerController.Instance.pState.isNPC = false;
+        dlg.text = "";
+        triggered = false;
+        dialogue.SetActive(false);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

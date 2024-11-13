@@ -1,0 +1,1632 @@
+fileFormatVersion: 2
+guid: 1f6083f07f9e55745b583eb6162027d2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 30
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: forest_rock_golem_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 770
+        width: 72
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce6f4b47b67d14e49a7bafe15212b6c9
+      internalID: 1157674943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_1
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 770
+        width: 72
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a75552f6971480049be8ce658e733814
+      internalID: 2146604438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_2
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 770
+        width: 72
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84cdaf22c56d7c4498618ddce28d5eca
+      internalID: -1674004313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_3
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 770
+        width: 72
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faab4b1111050404d90eb852d65dcc8f
+      internalID: 397449862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_4
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 770
+        width: 72
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a27c85b6f8bb0574db9dc2ca7c43b8ea
+      internalID: -1342491485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_5
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 770
+        width: 72
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b93cde4675963374cad684a00d51fe5b
+      internalID: 308320036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_6
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 770
+        width: 67
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d80c70b56d4d40d4c88c5d2a58dcd815
+      internalID: -530234506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_7
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 770
+        width: 58
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7857308155707cf45ba7ee1174e9f69c
+      internalID: 112271072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_8
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 660
+        width: 47
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e1cc438fada5f34e8203eb63ac80ed6
+      internalID: -770767621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_9
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 660
+        width: 42
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 278cc676da5c68a4c94d4985c8d2dbdc
+      internalID: 1237988855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_10
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 660
+        width: 46
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 592f3fa1bfc46984ea24c719db87e9ac
+      internalID: 507017825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_11
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 660
+        width: 45
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3021e40cede22f409836254c67f3c7c
+      internalID: -1767636794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_12
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 660
+        width: 42
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b784094b8dbc321458d8eba299138801
+      internalID: -110219073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_13
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 660
+        width: 57
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c6395eafdeadcc4688b88c3f3802f30
+      internalID: -1251187005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_14
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 660
+        width: 70
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a9dd834649ad784b8a09f3e51e66141
+      internalID: -808637964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_15
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 660
+        width: 81
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a40bf40cd59c54143ab3e78ba25c6549
+      internalID: 426055002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_16
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 550
+        width: 68
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d78c3fec2ac5a347a468c882b853ba8
+      internalID: -720667503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_17
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 550
+        width: 71
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f54d0b666523c8a49b1f074da5e1ff39
+      internalID: 1910284610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_18
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 550
+        width: 71
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea162b9469fb4b14b870576737790b4e
+      internalID: 1956435644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_19
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 550
+        width: 72
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42b327eea6464944ea505ca6a0363452
+      internalID: 1071332962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_20
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 550
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c1a1a1d30d304f4eb11827315e525d7
+      internalID: -1749155572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_21
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 550
+        width: 46
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6918d071e14e5a440b91b8c855a0a5c2
+      internalID: -1639696859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_22
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 550
+        width: 47
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 861d2499e31eaf540bdc120274f15b77
+      internalID: 303068081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_23
+      rect:
+        serializedVersion: 2
+        x: 1044
+        y: 550
+        width: 93
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b363fc31941f2b4bb1491865fcef5df
+      internalID: -293030131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_24
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 440
+        width: 94
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49f3f61b9a975544daf2d318f54b1d57
+      internalID: 1584144459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_25
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 440
+        width: 95
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe090a8a3cb78de468ce443116f7bdba
+      internalID: 1782960207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_26
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 440
+        width: 73
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a6c84fcf0afa1c4eb3224d45dd075be
+      internalID: 846239458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_27
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 440
+        width: 26
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f16bb19012335e94297e6511a0a38ba1
+      internalID: -629102542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_28
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 440
+        width: 56
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 341f5e733355b3543b8c634ba5ef73ce
+      internalID: 2101206993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_29
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 440
+        width: 54
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cf1fbfffa8caad49b85186812228f6b
+      internalID: 1476136539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_30
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 440
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e931d17bf0a6b1d458efec4c689bb985
+      internalID: -646695114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_31
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 440
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dd34eb1277d335419959ca5c0188303
+      internalID: -696828962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_32
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 440
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b66c7431f88016d40822c5ff44c6db4c
+      internalID: -1650098780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_33
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 330
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8374c85e5ab73124e881f0cd02434fbd
+      internalID: 183210443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_34
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 330
+        width: 54
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d14725fa87d743749868b313b51027ec
+      internalID: 604354287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_35
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 330
+        width: 54
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df5c32001601ae94f9a3ad4d036d73e8
+      internalID: 1732988203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_36
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 330
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6649b88d412e9748ab537dd5b58ad41
+      internalID: 1055756179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_37
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 330
+        width: 45
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 722492f0c7f0cad48a52109f293dadde
+      internalID: 1173407685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_38
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 330
+        width: 42
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 659559fed5933cb4a86f49e2012d3de1
+      internalID: -1581409063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_39
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 330
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c113443f55dfa954aa975b361527f0d4
+      internalID: -1223187630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_40
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 330
+        width: 42
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf7c7cc17de594f4591907eab177cce7
+      internalID: -1345819431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_41
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 220
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5db7ae80b9ec5749be0428ec4bd5f7f
+      internalID: 1779426654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_42
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 220
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f7b607b5bb82ae458a02fa7942b8653
+      internalID: -74970475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_43
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 220
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 749f6418cb15f0948a85ea04aa94862f
+      internalID: 1116437789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_44
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 220
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ea00581736bcba4888c3e68de770d40
+      internalID: 1801023295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_45
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 220
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20568c14329cf5d46b4c580b9aa16005
+      internalID: -1767099746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_46
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 220
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6bcd5de567b31f478d809a9d5d99ff7
+      internalID: 1394440433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_47
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 220
+        width: 42
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0209a2682e268b4b9b5179c48148979
+      internalID: -209993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_48
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 220
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0ea1ccfc8e253c4ca24c0a90c0fe666
+      internalID: -2062875479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_49
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 110
+        width: 42
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0ec1ea0c371a354199479c29080bc58
+      internalID: 224765383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_50
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 110
+        width: 45
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8d7033dbe35a6478f3d5ecb5168a00
+      internalID: 933866144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_51
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 110
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 129948e7204f47c468e46b8e47feea43
+      internalID: -461155883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_52
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 110
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f576193437e80a34a8dd36d2a1022cd7
+      internalID: -359441096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_53
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 110
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82054645eac99f44d85a74c32113e145
+      internalID: 366814997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_54
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 110
+        width: 64
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 687d9d7ded3956d45b2cb5d8a9115b2f
+      internalID: -265081285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_55
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 110
+        width: 76
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9f4b341c5c063941b7db8a45f2344ce
+      internalID: -1499035649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_56
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 140
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e83c5eec139c0542b0c8a51a0f57f2d
+      internalID: -1666418964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_57
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 137
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3e994df0fc98084484f6c18716e20d9
+      internalID: 866526608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_58
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 110
+        width: 83
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eee1b9131c98ff54186fe954d48f09b2
+      internalID: -462449745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_59
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 23
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66976f4d400fe5f459c653d4d47af00d
+      internalID: -997484410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_60
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 20
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb1907c2bd4927e47bb8f8eb003449fb
+      internalID: 1374279852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_61
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 17
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afb850f8123705845807f811b6b9ffea
+      internalID: 1819265953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_62
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 11
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 270835fe112e58749a6b6dcd15bc1726
+      internalID: -61183505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_63
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 80
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca418011f023704479615704b9ea4fcc
+      internalID: 1903027611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_64
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 94
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b45c4122f92a3f49be569cd83b9de2d
+      internalID: 512150738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_65
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 0
+        width: 97
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 271f3b2a75461f748b8ba656d362def8
+      internalID: -780133008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_66
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 0
+        width: 97
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c995503999deac740a1af3418e9c0b33
+      internalID: -2096382731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_67
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 0
+        width: 97
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c38709390148f0b478b1e45846c3dc31
+      internalID: 2019524363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_rock_golem_68
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 0
+        width: 97
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8040336eb50e62d4dae7d6edb30b2d7d
+      internalID: 1170197833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      forest_rock_golem_0: 1157674943
+      forest_rock_golem_1: 2146604438
+      forest_rock_golem_10: 507017825
+      forest_rock_golem_11: -1767636794
+      forest_rock_golem_12: -110219073
+      forest_rock_golem_13: -1251187005
+      forest_rock_golem_14: -808637964
+      forest_rock_golem_15: 426055002
+      forest_rock_golem_16: -720667503
+      forest_rock_golem_17: 1910284610
+      forest_rock_golem_18: 1956435644
+      forest_rock_golem_19: 1071332962
+      forest_rock_golem_2: -1674004313
+      forest_rock_golem_20: -1749155572
+      forest_rock_golem_21: -1639696859
+      forest_rock_golem_22: 303068081
+      forest_rock_golem_23: -293030131
+      forest_rock_golem_24: 1584144459
+      forest_rock_golem_25: 1782960207
+      forest_rock_golem_26: 846239458
+      forest_rock_golem_27: -629102542
+      forest_rock_golem_28: 2101206993
+      forest_rock_golem_29: 1476136539
+      forest_rock_golem_3: 397449862
+      forest_rock_golem_30: -646695114
+      forest_rock_golem_31: -696828962
+      forest_rock_golem_32: -1650098780
+      forest_rock_golem_33: 183210443
+      forest_rock_golem_34: 604354287
+      forest_rock_golem_35: 1732988203
+      forest_rock_golem_36: 1055756179
+      forest_rock_golem_37: 1173407685
+      forest_rock_golem_38: -1581409063
+      forest_rock_golem_39: -1223187630
+      forest_rock_golem_4: -1342491485
+      forest_rock_golem_40: -1345819431
+      forest_rock_golem_41: 1779426654
+      forest_rock_golem_42: -74970475
+      forest_rock_golem_43: 1116437789
+      forest_rock_golem_44: 1801023295
+      forest_rock_golem_45: -1767099746
+      forest_rock_golem_46: 1394440433
+      forest_rock_golem_47: -209993
+      forest_rock_golem_48: -2062875479
+      forest_rock_golem_49: 224765383
+      forest_rock_golem_5: 308320036
+      forest_rock_golem_50: 933866144
+      forest_rock_golem_51: -461155883
+      forest_rock_golem_52: -359441096
+      forest_rock_golem_53: 366814997
+      forest_rock_golem_54: -265081285
+      forest_rock_golem_55: -1499035649
+      forest_rock_golem_56: -1666418964
+      forest_rock_golem_57: 866526608
+      forest_rock_golem_58: -462449745
+      forest_rock_golem_59: -997484410
+      forest_rock_golem_6: -530234506
+      forest_rock_golem_60: 1374279852
+      forest_rock_golem_61: 1819265953
+      forest_rock_golem_62: -61183505
+      forest_rock_golem_63: 1903027611
+      forest_rock_golem_64: 512150738
+      forest_rock_golem_65: -780133008
+      forest_rock_golem_66: -2096382731
+      forest_rock_golem_67: 2019524363
+      forest_rock_golem_68: 1170197833
+      forest_rock_golem_7: 112271072
+      forest_rock_golem_8: -770767621
+      forest_rock_golem_9: 1237988855
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

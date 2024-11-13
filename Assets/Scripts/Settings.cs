@@ -24,6 +24,10 @@ public class Settings : MonoBehaviour
     [SerializeField] GameObject Light10;
     [SerializeField] GameObject LOWLIGHT;
 
+    //settingsbtn
+    [SerializeField] GameObject settings;
+    [SerializeField] GameObject MAIN;
+    [SerializeField] GameObject volBTN;
     void Update()
     {
         AudioListener.volume = slider.value;
@@ -31,11 +35,10 @@ public class Settings : MonoBehaviour
 
     }
 
-    
-    private void Awake()
+    private void Start()
     {
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
         slider.value = PlayerPrefs.GetFloat("VOLUME");
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
         if (PlayerPrefs.GetInt("LOW") == 1)
         {
             LOW();
@@ -49,67 +52,120 @@ public class Settings : MonoBehaviour
             HIGH();
         }
     }
+    
 
     public void LOW()
     {
-        PlayerPrefs.SetInt("LOW", 1);
-        PlayerPrefs.SetInt("MEDIUM", 0);
-        PlayerPrefs.SetInt("HIGH", 0);
-        isLOW = true;
-        isHIGH = false;
-        isMEDIUM = false;
-        Light1.SetActive(false);
-        Light2.SetActive(false);
-        Light3.SetActive(false);
-        Light4.SetActive(false);
-        Light5.SetActive(false);
-        Light6.SetActive(false);
-        Light7.SetActive(false);
-        Light8.SetActive(false);
-        Light9.SetActive(false);
-        Light10.SetActive(false);
-        LOWLIGHT.SetActive(true);
+        try
+        {
+            isLOW = true;
+            isHIGH = false;
+            isMEDIUM = false;
+            Light1.SetActive(false);
+            Light2.SetActive(false);
+            Light3.SetActive(false);
+            Light4.SetActive(false);
+            Light5.SetActive(false);
+            Light6.SetActive(false);
+            Light7.SetActive(false);
+            Light8.SetActive(false);
+            Light9.SetActive(false);
+            Light10.SetActive(false);
+            LOWLIGHT.SetActive(true);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log(e.Message);
+            throw;
+        }
+        
     }
 
     public void MEDIUM()
     {
-        PlayerPrefs.SetInt("LOW", 0);
-        PlayerPrefs.SetInt("MEDIUM", 1);
-        PlayerPrefs.SetInt("HIGH", 0);
-        isLOW = false;
-        isHIGH = false;
-        isMEDIUM = true;
-        Light1.SetActive(true);
-        Light2.SetActive(false);
-        Light3.SetActive(false);
-        Light4.SetActive(true);
-        Light5.SetActive(true);
-        Light6.SetActive(true);
-        Light7.SetActive(false);
-        Light8.SetActive(false);
-        Light9.SetActive(true);
-        Light10.SetActive(false);
-        LOWLIGHT.SetActive(false);
+        try
+        {
+            isLOW = false;
+            isHIGH = false;
+            isMEDIUM = true;
+            Light1.SetActive(true);
+            Light2.SetActive(false);
+            Light3.SetActive(false);
+            Light4.SetActive(true);
+            Light5.SetActive(true);
+            Light6.SetActive(true);
+            Light7.SetActive(false);
+            Light8.SetActive(false);
+            Light9.SetActive(true);
+            Light10.SetActive(false);
+            LOWLIGHT.SetActive(false);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log(e.Message);
+            throw;
+        }
+        
     }
 
     public void HIGH()
     {
+        try
+        {
+            isLOW = false;
+            isHIGH = true;
+            isMEDIUM = false;
+            Light1.SetActive(true);
+            Light2.SetActive(true);
+            Light3.SetActive(true);
+            Light4.SetActive(true);
+            Light5.SetActive(true);
+            Light6.SetActive(true);
+            Light7.SetActive(true);
+            Light8.SetActive(true);
+            Light9.SetActive(true);
+            Light10.SetActive(true);
+            LOWLIGHT.SetActive(false);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log(e.Message);
+            throw;
+        }
+        
+    }
+
+    public void settingsBTN()
+    {
+        MAIN.SetActive(false);
+        settings.SetActive(true);
+        volBTN.SetActive(true);
+    }
+
+
+    public void MainMenu()
+    {
+        MAIN.SetActive(true);
+        settings.SetActive(false);
+        volBTN.SetActive(false);
+    }
+
+    public void settingsLOW()
+    {
+        PlayerPrefs.SetInt("LOW", 1);
+        PlayerPrefs.SetInt("MEDIUM", 0);
+        PlayerPrefs.SetInt("HIGH", 0);
+    }
+    public void settingsMED()
+    {
+        PlayerPrefs.SetInt("LOW", 0);
+        PlayerPrefs.SetInt("MEDIUM", 1);
+        PlayerPrefs.SetInt("HIGH", 0);
+    }
+    public void settingsHIGH()
+    {
         PlayerPrefs.SetInt("LOW", 0);
         PlayerPrefs.SetInt("MEDIUM", 0);
         PlayerPrefs.SetInt("HIGH", 1);
-        isLOW = false;
-        isHIGH = true;
-        isMEDIUM = false;
-        Light1.SetActive(true);
-        Light2.SetActive(true);
-        Light3.SetActive(true);
-        Light4.SetActive(true);
-        Light5.SetActive(true);
-        Light6.SetActive(true);
-        Light7.SetActive(true);
-        Light8.SetActive(true);
-        Light9.SetActive(true);
-        Light10.SetActive(true);
-        LOWLIGHT.SetActive(false);
     }
 }
