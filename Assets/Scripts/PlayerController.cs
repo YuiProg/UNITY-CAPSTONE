@@ -121,7 +121,8 @@ public class PlayerController : MonoBehaviour
 
 
 
-
+    //statistics
+    public int barya;
     public int levels;
     public int mainLevel;
     bool restoreTime;
