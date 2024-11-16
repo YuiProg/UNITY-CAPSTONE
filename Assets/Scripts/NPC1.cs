@@ -9,6 +9,7 @@ public class NPC1 : MonoBehaviour
     [SerializeField] Text dlg;
     [SerializeField] Text npcName;
     [SerializeField] GameObject npcDLG;
+    [SerializeField] GameObject GameUI;
 
     //npcs
     [SerializeField] GameObject npc1;
@@ -98,6 +99,7 @@ public class NPC1 : MonoBehaviour
     }
     IEnumerator Dialogue1(float time)
     {
+        GameUI.SetActive(false);
         npcDLG.SetActive(true);
         talking = false;
         PlayerController.Instance.pState.isNPC = true;
@@ -150,11 +152,13 @@ public class NPC1 : MonoBehaviour
         Destroy(BORDER1);
         talking = true;
         count++;
+        GameUI.SetActive(true);
         npcDLG.SetActive(false);
     }
 
     IEnumerator Dialogue2(float time)
     {
+        GameUI.SetActive(false);
         npcDLG.SetActive(true);
         Cursor.visible = true;
         talking = false;
@@ -205,10 +209,12 @@ public class NPC1 : MonoBehaviour
         talking = true;
         PlayerPrefs.SetInt("NPCINCAVE", 1);
         npcDLG.SetActive(false);
+        GameUI.SetActive(true);
     }
 
     IEnumerator Dialogue3(float time)
     {
+        GameUI.SetActive(false);
         npcDLG.SetActive(true);
         Cursor.visible = true;
         talking = false;
@@ -255,5 +261,6 @@ public class NPC1 : MonoBehaviour
         count2++;
         Destroy(BORDER2);
         npcDLG.SetActive(false);
+        GameUI.SetActive(true);
     }
 }

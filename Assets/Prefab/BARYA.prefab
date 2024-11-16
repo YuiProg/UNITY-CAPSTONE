@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5769710491154595232}
   - component: {fileID: 3561927456403596775}
   - component: {fileID: -5680883883844825759}
-  - component: {fileID: 4698689546088210806}
-  - component: {fileID: -8644302178997382945}
+  - component: {fileID: 4636001989971016897}
+  - component: {fileID: 1411473059776050924}
   m_Layer: 0
   m_Name: BARYA
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -853.46, y: -429.05, z: 0}
-  m_LocalScale: {x: 0.6832, y: 0.6832, z: 1}
+  m_LocalScale: {x: 0.04931402, y: 0.038887147, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: -198428261
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4ebfe52f38d395f4d842ba6cc6e23c7b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -429586033, guid: 00495fec99c520f4ab7da86860c7736f, type: 3}
+  m_Color: {r: 0.764151, g: 0.7605465, b: 0.7605465, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,8 +127,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &4698689546088210806
-CircleCollider2D:
+--- !u!61 &4636001989971016897
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,10 +160,20 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 13.805191, y: 31.199999}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.49999997
---- !u!58 &-8644302178997382945
-CircleCollider2D:
+  m_Size: {x: 13.805191, y: 31.199999}
+  m_EdgeRadius: 0
+--- !u!70 &1411473059776050924
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -195,5 +205,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.49999997
+  m_Size: {x: 13.805191, y: 31.199999}
+  m_Direction: 0

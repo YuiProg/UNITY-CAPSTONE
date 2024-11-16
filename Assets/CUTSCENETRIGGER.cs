@@ -17,6 +17,7 @@ public class CUTSCENETRIGGER : MonoBehaviour
     [SerializeField] GameObject jar5;
     [SerializeField] Transform player;
     [SerializeField] GameObject border;
+    [SerializeField] GameObject GameUI;
     // Update is called once per frame
     void Update()
     {
@@ -43,6 +44,7 @@ public class CUTSCENETRIGGER : MonoBehaviour
     }
     IEnumerator Dialogue(float time)
     {
+        GameUI.SetActive(false);
         triggered = true;
         NPCTEXT.SetActive(true);
         Cursor.visible = true;
@@ -140,5 +142,6 @@ public class CUTSCENETRIGGER : MonoBehaviour
         Cursor.visible = false;
         PlayerController.Instance.pState.isNPC = false;
         NPCTEXT.SetActive(false);
+        GameUI.SetActive(true);
     }
 }

@@ -10,4 +10,9 @@ public class ChangeSceneButton : MonoBehaviour
         LevelManager.instance.loadscene(scenename);
     }
 
+    public void saveStats()
+    {
+        Save.instance.saveStats();
+    }
+
 }

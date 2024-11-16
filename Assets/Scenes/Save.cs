@@ -51,6 +51,12 @@ public class Save : MonoBehaviour
 
     public void saveStats()
     {
+        PlayerPrefs.SetFloat("Health", PlayerController.Instance.health);
+        PlayerPrefs.SetFloat("Max Health", PlayerController.Instance.maxHealth);
+        PlayerPrefs.SetFloat("stamina", PlayerController.Instance.stamina);
+        PlayerPrefs.SetFloat("Max Stamina", PlayerController.Instance.maxstamina);
+        PlayerPrefs.SetFloat("Shield", PlayerController.Instance.shieldCount);
+        PlayerPrefs.SetFloat("Max Shield", PlayerController.Instance.maxShield);
         PlayerPrefs.SetFloat("N_Damage", PlayerController.Instance.normal_damage);
         PlayerPrefs.SetFloat("H_Damage", PlayerController.Instance.normal_hdamage);
         PlayerPrefs.SetFloat("C_Damage", PlayerController.Instance.normal_slash_Damage);

@@ -8,10 +8,22 @@ public class SilverChest : Enemy
     public Transform baryahere;
     [SerializeField] GameObject Barya;
     bool isopen = false;
+    public string chestID;
     protected override void Start()
     {
         base.Start();
         anim = GetComponent<Animator>();
+
+        chestID = chestID + transform.position;
+
+        isopen = PlayerPrefs.GetInt(chestID, 0) == 1;
+
+        if (isopen)
+        {
+            health = 0; 
+            anim.SetBool("Open", true);
+        }
+
     }
 
     protected override void UpdateEnemyStates()
@@ -21,6 +33,9 @@ public class SilverChest : Enemy
             isopen = true;
             drop(5);
             anim.SetBool("Open", true);
+
+            PlayerPrefs.SetInt(chestID, 1);
+            PlayerPrefs.Save();
         }
     }
 
