@@ -307,6 +307,9 @@ public class PlayerController : MonoBehaviour
             maxHealth = PlayerPrefs.GetFloat("Max Health");
             maxstamina = PlayerPrefs.GetFloat("Max Stamina");
             maxShield = PlayerPrefs.GetFloat("Max Shield");
+            damage = normal_damage;
+            hdamage = normal_hdamage;
+            Cdamage = normal_slash_Damage;
             mainLevel = PlayerPrefs.GetInt("MainLevel");
             Debug.Log("HAS STATS");
         }

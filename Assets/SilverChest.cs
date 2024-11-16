@@ -16,10 +16,6 @@ public class SilverChest : Enemy
 
     protected override void UpdateEnemyStates()
     {
-        if (isRecoiling)
-        {
-            anim.SetTrigger("Hit");
-        }
         if (health <= 0 && !isopen)
         {
             isopen = true;
