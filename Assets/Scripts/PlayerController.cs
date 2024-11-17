@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
     public float health;
     public float maxHealth;
     public Enemy Edamage;
-    public int potionCount = 3;
+    public int potionCount;
     public float potionHealBar;
     bool canHeal = false;
     [Space(5)]
@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour
             canHeal = true;
         }
         text.text = $"POTION: {potionCount}";
-        if (potionCount == 0) text.text = $"POTION: EMPTY";
+        if (potionCount <= 0) text.text = $"POTION: EMPTY";
         if (health <= 0 && !hasDied)
         {
             
@@ -307,6 +307,7 @@ public class PlayerController : MonoBehaviour
             maxHealth = PlayerPrefs.GetFloat("Max Health");
             maxstamina = PlayerPrefs.GetFloat("Max Stamina");
             maxShield = PlayerPrefs.GetFloat("Max Shield");
+            potionCount = PlayerPrefs.GetInt("Potion");
             damage = normal_damage;
             hdamage = normal_hdamage;
             Cdamage = normal_slash_Damage;
@@ -325,6 +326,7 @@ public class PlayerController : MonoBehaviour
             maxstamina = 100;
             maxShield = 50;
             mainLevel = 0;
+            potionCount = 3;
             Debug.Log("NO STATS");
         }
     }
@@ -388,7 +390,7 @@ public class PlayerController : MonoBehaviour
     }
     void RegenPotion()
     {
-        if (potionCount > 3) potionCount = 3;
+        if (potionCount > 8) potionCount = 8;
         if (Input.GetButtonDown("Heal") && potionCount > 0 && canHeal)
         {
             health += potionHealBar;

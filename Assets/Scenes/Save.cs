@@ -34,6 +34,7 @@ public class Save : MonoBehaviour
     {
         PlayerPrefs.SetFloat("X", transform.position.x);
         PlayerPrefs.SetFloat("Y", transform.position.y);
+        PlayerPrefs.SetInt("Potion", PlayerController.Instance.potionCount);
         PlayerPrefs.SetFloat("Health", PlayerController.Instance.health);
         PlayerPrefs.SetFloat("Max Health", PlayerController.Instance.maxHealth);
         PlayerPrefs.SetFloat("stamina", PlayerController.Instance.stamina);
@@ -51,6 +52,7 @@ public class Save : MonoBehaviour
 
     public void saveStats()
     {
+        PlayerPrefs.SetInt("Potion", PlayerController.Instance.potionCount);
         PlayerPrefs.SetFloat("Health", PlayerController.Instance.health);
         PlayerPrefs.SetFloat("Max Health", PlayerController.Instance.maxHealth);
         PlayerPrefs.SetFloat("stamina", PlayerController.Instance.stamina);
@@ -84,7 +86,9 @@ public class Save : MonoBehaviour
             float combo = PlayerPrefs.GetFloat("C_Damage");
             int levels = PlayerPrefs.GetInt("Levels");
             int mainLevel = PlayerPrefs.GetInt("MainLevel");
+            int potions = PlayerPrefs.GetInt("Potion");
             //health
+            PlayerController.Instance.potionCount = potions;
             PlayerController.Instance.health = health;
             PlayerController.Instance.maxHealth = maxHealth;
             PlayerController.Instance.stamina = stamina;
