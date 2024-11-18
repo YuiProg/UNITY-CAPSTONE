@@ -25,7 +25,6 @@ public class Settings : MonoBehaviour
     //settingsbtn
     [SerializeField] GameObject settings;
     [SerializeField] GameObject MAIN;
-    [SerializeField] GameObject volBTN;
 
     private void Start()
     {
@@ -129,7 +128,6 @@ public class Settings : MonoBehaviour
     {
         MAIN.SetActive(false);
         settings.SetActive(true);
-        volBTN.SetActive(true);
     }
 
 
@@ -137,7 +135,6 @@ public class Settings : MonoBehaviour
     {
         MAIN.SetActive(true);
         settings.SetActive(false);
-        volBTN.SetActive(false);
     }
 
     public void settingsLOW()

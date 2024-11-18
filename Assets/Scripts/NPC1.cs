@@ -141,6 +141,7 @@ public class NPC1 : MonoBehaviour
         }
 
         dlg.text = "";
+        npcDLG.SetActive (false);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2.5f);
         npc1.transform.position = loc1.transform.position;
@@ -153,7 +154,6 @@ public class NPC1 : MonoBehaviour
         talking = true;
         count++;
         GameUI.SetActive(true);
-        npcDLG.SetActive(false);
     }
 
     IEnumerator Dialogue2(float time)
@@ -198,6 +198,7 @@ public class NPC1 : MonoBehaviour
         PlayerController.Instance.pState.isNPC = true;
         dlg.text = "";
         npcName.text = "";
+        npcDLG.SetActive(false);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2.5f);
         npc1.transform.position = loc3.transform.position;
@@ -207,8 +208,7 @@ public class NPC1 : MonoBehaviour
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
         talking = true;
-        PlayerPrefs.SetInt("NPCINCAVE", 1);
-        npcDLG.SetActive(false);
+        PlayerPrefs.SetInt("NPCINCAVE", 1);       
         GameUI.SetActive(true);
     }
 
@@ -249,6 +249,7 @@ public class NPC1 : MonoBehaviour
             }
         }
         dlg.text = "";
+        npcDLG.SetActive (false);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2.5f);
         npc1.transform.position = loc7.transform.position;
@@ -260,7 +261,6 @@ public class NPC1 : MonoBehaviour
         talking = true;
         count2++;
         Destroy(BORDER2);
-        npcDLG.SetActive(false);
         GameUI.SetActive(true);
     }
 }

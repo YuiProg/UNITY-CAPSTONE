@@ -2717,7 +2717,7 @@ MonoBehaviour:
   m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3983,7 +3983,6 @@ MonoBehaviour:
   LOWLIGHT: {fileID: 0}
   settings: {fileID: 1303115595}
   MAIN: {fileID: 946824484}
-  volBTN: {fileID: 0}
 --- !u!1 &1729576641
 GameObject:
   m_ObjectHideFlags: 0
@@ -4182,7 +4181,7 @@ MonoBehaviour:
   m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4506,7 +4505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 907236280056616584, guid: 1dc71b445e4a8244cbf98851ffa1528f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2640711208413140143, guid: 1dc71b445e4a8244cbf98851ffa1528f, type: 3}
       propertyPath: m_Pivot.x
@@ -4590,7 +4589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3665325289804866162, guid: 1dc71b445e4a8244cbf98851ffa1528f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7984216784982393562, guid: 1dc71b445e4a8244cbf98851ffa1528f, type: 3}
       propertyPath: m_Camera
@@ -4598,7 +4597,7 @@ PrefabInstance:
       objectReference: {fileID: 1727033641}
     - target: {fileID: 9188218453438534848, guid: 1dc71b445e4a8244cbf98851ffa1528f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5142,7 +5141,7 @@ MonoBehaviour:
   m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

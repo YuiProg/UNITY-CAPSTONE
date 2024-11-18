@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
     public float maxHealth;
     public Enemy Edamage;
     public int potionCount;
-    public float potionHealBar;
+    public float potionHealBar = 10f;
     bool canHeal = false;
     [Space(5)]
 
@@ -961,7 +961,7 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
-        if (pState.isAlive)
+        if (pState.isAlive && !pState.isPaused && !pState.isNPC)
         {
             if (Grounded())
             {
@@ -982,7 +982,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (pState.canMove && pState.isAlive && !pState.isNPC)
+        if (pState.canMove && pState.isAlive && !pState.isNPC && !pState.isPaused)
         {
             pState.walking = true;
             rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
