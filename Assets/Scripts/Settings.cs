@@ -7,8 +7,6 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class Settings : MonoBehaviour
 {
-    public float audiovolume = 1f;
-    public Slider slider;
     public bool isLOW = false;
     public bool isMEDIUM = false;
     public bool isHIGH = false;
@@ -28,17 +26,9 @@ public class Settings : MonoBehaviour
     [SerializeField] GameObject settings;
     [SerializeField] GameObject MAIN;
     [SerializeField] GameObject volBTN;
-    void Update()
-    {
-        AudioListener.volume = slider.value;
-        PlayerPrefs.SetFloat("VOLUME", slider.value);
-
-    }
 
     private void Start()
     {
-        slider.value = PlayerPrefs.GetFloat("VOLUME");
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
         if (PlayerPrefs.GetInt("LOW") == 1)
         {
             LOW();
