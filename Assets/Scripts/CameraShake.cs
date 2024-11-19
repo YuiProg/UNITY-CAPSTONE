@@ -11,6 +11,7 @@ public class CameraShake : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject UI;
     [SerializeField] GameObject settingsUI;
+    [SerializeField] GameObject statUI;
     
 
     private float timer;
@@ -75,6 +76,7 @@ public class CameraShake : MonoBehaviour
                 pauseMenu.SetActive(false);
                 UI.SetActive(true);
                 settingsUI.SetActive(false);
+                statUI.SetActive(false);
                 PlayerController.Instance.pState.isPaused = false;
             }
             else
@@ -84,6 +86,7 @@ public class CameraShake : MonoBehaviour
                 Time.timeScale = 0;
                 UI.SetActive(false);
                 settingsUI.SetActive(false);
+                statUI.SetActive(false);
                 isPaused = true;
                 pauseMenu.SetActive(true);
                 

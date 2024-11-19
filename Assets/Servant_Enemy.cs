@@ -7,10 +7,16 @@ public class Servant_Enemy : Enemy
 {
     bool spottedPlayer = false;
     bool isAttacking = false;
-    public float chaseDistance;
+    bool hasTalked = false;
+    bool isTalking = false;
+    public bool servantscanATK = false;
+    public float chaseDistance = 2f;
     Animator anim;
     [SerializeField] Text status;
-
+    [SerializeField] GameObject DLG;
+    [SerializeField] Text dialogue;
+    [SerializeField] Text npcName;
+    public static Servant_Enemy instance;
     protected override void Start()
     {
         base.Start();
@@ -19,12 +25,24 @@ public class Servant_Enemy : Enemy
         ChangeStates(EnemyStates.S_Idle);
     }
 
+    private void Awake()
+    {
+        if (instance == this && instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     protected override void UpdateEnemyStates()
     {
         float _dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
         flip();
         stateCheck();
-        if (canMove)
+        if (canMove && !isTalking)
         {
             switch (currentEnemyStates)
             {
@@ -32,8 +50,20 @@ public class Servant_Enemy : Enemy
                     if (_dist < chaseDistance)
                     {
                         spottedPlayer = true;
+                        ChangeStates(EnemyStates.S_Dialogue);
+                    }
+                    break;
+                case EnemyStates.S_Dialogue:
+                    if (!hasTalked)
+                    {
+                        hasTalked = true;
+                        StartCoroutine(Dialogue(4.5f));
+                    }
+                    else
+                    {
                         ChangeStates(EnemyStates.S_Chase);
                     }
+                    
                     break;
                 case EnemyStates.S_Chase:
                     anim.SetBool("Running", true);
@@ -59,6 +89,23 @@ public class Servant_Enemy : Enemy
         
     }
 
+    IEnumerator Dialogue(float time)
+    {
+        PlayerController.Instance.pState.isNPC = true;
+        isTalking = true;
+        canMove = false;
+        DLG.SetActive(true);
+        dialogue.text = "The book—it’s in his hands! Take it!";
+        npcName.text = "Servant";
+        yield return new WaitForSeconds(time);
+        PlayerController.Instance.pState.isNPC = false;
+        chaseDistance = 30f;
+        canMove = true;
+        DLG.SetActive(false);
+        isTalking = false;
+        servantscanATK = true;
+        ChangeStates(EnemyStates.S_Idle);
+    }
     void stopattacks()
     {
         StopCoroutine(Attack1());
@@ -118,7 +165,7 @@ public class Servant_Enemy : Enemy
         yield return new WaitForSeconds(1f);
         isAttacking = false;
         canMove = true;
-        ChangeStates(EnemyStates.S_Idle);
+        ChangeStates(EnemyStates.S_Chase);
     }
 
     IEnumerator Attack2()
@@ -129,7 +176,7 @@ public class Servant_Enemy : Enemy
         yield return new WaitForSeconds(2f);
         isAttacking = false;
         canMove = true;
-        ChangeStates(EnemyStates.S_Idle);
+        ChangeStates(EnemyStates.S_Chase);
     }
     
     void flip()

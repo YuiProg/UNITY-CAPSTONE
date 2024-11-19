@@ -13,6 +13,7 @@ public class STATS : MonoBehaviour
     [SerializeField] Text sDamage;
     [SerializeField] Text potionHeal;
     [SerializeField] Text Stamina;
+    [SerializeField] Text Amber;
     private void Start()
     {
         getStats();
@@ -21,6 +22,7 @@ public class STATS : MonoBehaviour
     void getStats()
     {
         LEVEL.text = $"LEVEL {PlayerController.Instance.mainLevel}";
+        Amber.text = $"AMBER - {PlayerController.Instance.barya}";
         maxHealth.text = $"MAX HEALTH: {PlayerController.Instance.maxHealth}";
         Defence.text = $"DEFENCE: {PlayerController.Instance.shieldCount}";
         nDamage.text = $"NORMAL ATTACK DAMAGE: {PlayerController.Instance.normal_damage}";

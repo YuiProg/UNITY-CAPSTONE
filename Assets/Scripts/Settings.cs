@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using static UnityEngine.Rendering.DebugUI;
 
 public class Settings : MonoBehaviour
@@ -22,11 +23,12 @@ public class Settings : MonoBehaviour
     [SerializeField] GameObject Light10;
     [SerializeField] GameObject LOWLIGHT;
 
+    
     //settingsbtn
     [SerializeField] GameObject settings;
     [SerializeField] GameObject MAIN;
 
-    private void Start()
+    public void Awake()
     {
         if (PlayerPrefs.GetInt("LOW") == 1)
         {
@@ -155,4 +157,6 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetInt("MEDIUM", 0);
         PlayerPrefs.SetInt("HIGH", 1);
     }
+
+
 }

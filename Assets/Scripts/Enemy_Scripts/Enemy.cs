@@ -130,10 +130,16 @@ public class Enemy : MonoBehaviour
         DB_Chase,
         DB_AttackBehavior,
 
-        //SERVANT ENEMY
+        //SERVANT ENEMY DIALOGUE
         S_Idle,
+        S_Dialogue,
         S_Chase,
         S_AttackBehavior,
+
+        //SERVANTS
+        S1_Idle,
+        S1_Chase,
+        S1_AttackBehavior
     }
 
     protected EnemyStates currentEnemyStates;

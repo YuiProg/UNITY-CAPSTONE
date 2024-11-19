@@ -47,7 +47,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            onTrigger = !onTrigger;
+            onTrigger = false;
             upgradeUI.SetActive(false);
         }
     }

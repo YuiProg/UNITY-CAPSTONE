@@ -11,6 +11,7 @@ public class Pause_Menu : MonoBehaviour
     [SerializeField] GameObject StatsUI;
     public void ResumeGame()
     {
+        Cursor.visible = false;
         Time.timeScale = 1;
         UI.SetActive(true);
         PlayerController.Instance.pState.isPaused = false;
