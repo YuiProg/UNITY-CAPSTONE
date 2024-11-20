@@ -37,9 +37,9 @@ public class TutorialTrigger : MonoBehaviour
     {
         onGoing = true;
         DLG.SetActive(true);
-        dialogue.text = "Right Click to Attack";
+        dialogue.text = "Left Click for Normal Attack";
         yield return new WaitForSeconds(time);
-        dialogue.text = "Left Click for Hard Attack";
+        dialogue.text = "Right Click for Heavy Attack";
         yield return new WaitForSeconds(time);
         dialogue.text = "E to Block";
         yield return new WaitForSeconds(time);
