@@ -109,6 +109,7 @@ public class CUTSCENETRIGGER : MonoBehaviour
             }
         }
         dlg.text = "";
+
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2f);
         PlayerController.Instance.transform.position = player.transform.position;
@@ -137,7 +138,7 @@ public class CUTSCENETRIGGER : MonoBehaviour
             }
         }
 
-        TeleporterOPTIONAL.instance.canEnter = true;
+        TeleportToCS.instance.canEnter = true;
         yield return new WaitForSeconds(time);     
         Cursor.visible = false;
         PlayerController.Instance.pState.isNPC = false;

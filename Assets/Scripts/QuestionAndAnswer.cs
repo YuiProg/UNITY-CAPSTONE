@@ -85,17 +85,19 @@ public class QuestionAndAnswer : MonoBehaviour
             }
             
         }
-
+        NPCDIALOGUE.SetActive(false);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(time);
         STATUE2.SetActive(true);
         STATUE1.SetActive(false);
         yield return new WaitForSeconds(time);
         PlayerController.Instance.pState.Transitioning = false;
+        NPCDIALOGUE.SetActive(true);
         dialogue.text = "You may now proceed on your adventure";
         yield return new WaitForSeconds(time);
         dialogue.text = "";
         PlayerController.Instance.pState.isNPC = false;
+        NPCDIALOGUE.SetActive(false);
         Cursor.visible = false;
     }
 
@@ -141,12 +143,32 @@ public class QuestionAndAnswer : MonoBehaviour
         InputAnswer.SetActive(true);
     }
 
-    IEnumerator CORRECTANSWER()
+    IEnumerator CORRECTANSWER(float time)
     {
         InputAnswer.SetActive(false);
-        dialogue.text = "Yes... the curse has been broke but you can't leave here without the heroic essence.";
-        yield return new WaitForSeconds(3f);
-        dialogue.text = "You must defeat the datu batungan to obtain his essence.";
+
+        string[] dialogues = new[]
+        {
+            "Yes... the curse has been broke but you can't leave here without the heroic essence.",
+            "You must defeat the datu batungan to obtain his essence.",
+            ""
+        };
+
+        for (int i = 0; i < dialogues.Length; i++)
+        {
+            dialogue.text = dialogues[i];
+            float elapsedtime = 0f;
+            while (elapsedtime < time)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    elapsedtime = time;
+                    break;
+                }
+                elapsedtime += Time.deltaTime;
+                yield return null;
+            }
+        }
         yield return new WaitForSeconds(3f);
         dialogue.text = "";
         NPCDIALOGUE.SetActive(false);
@@ -158,7 +180,7 @@ public class QuestionAndAnswer : MonoBehaviour
 
     public void CloseUI()
     {
-        StartCoroutine(CORRECTANSWER());
+        StartCoroutine(CORRECTANSWER(4.5f));
     }
 
     public void WrongAnswer()

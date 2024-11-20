@@ -6,6 +6,8 @@ using UnityEngine.Video;
 
 public class CutsceneCHECK : MonoBehaviour
 {
+
+    public string scenename;
     public VideoPlayer videoPlayer;
     public Text skip;
     private bool showSkipText = false;
@@ -38,7 +40,7 @@ public class CutsceneCHECK : MonoBehaviour
     {
         if (!pressedSpaceToSkip)
         {
-            LevelManager.instance.loadscene("Cave_1");
+            LevelManager.instance.loadscene(scenename);
         }
     }
 }

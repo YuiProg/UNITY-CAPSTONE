@@ -7,6 +7,7 @@ public class ChangeSceneButton : MonoBehaviour
 {
     public void changeScene(string scenename)
     {
+        Time.timeScale = 1;
         LevelManager.instance.loadscene(scenename);
     }
 

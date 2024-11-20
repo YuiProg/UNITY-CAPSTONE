@@ -14,6 +14,7 @@ public class NPC1 : MonoBehaviour
     //npcs
     [SerializeField] GameObject npc1;
     [SerializeField] GameObject npc2;
+    [SerializeField] Text interact;
     //changeloc
     [SerializeField] Transform loc1;
     [SerializeField] Transform loc2;
@@ -102,6 +103,7 @@ public class NPC1 : MonoBehaviour
         GameUI.SetActive(false);
         npcDLG.SetActive(true);
         talking = false;
+        interact.text = "";
         PlayerController.Instance.pState.isNPC = true;
         Cursor.visible = true;
 
@@ -150,6 +152,7 @@ public class NPC1 : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = false;
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
+        interact.text = "E to Interact";
         Destroy(BORDER1);
         talking = true;
         count++;
@@ -161,6 +164,7 @@ public class NPC1 : MonoBehaviour
         GameUI.SetActive(false);
         npcDLG.SetActive(true);
         Cursor.visible = true;
+        interact.text = "";
         talking = false;
         PlayerController.Instance.pState.isNPC = true;
         string[] dialogues = new[]
@@ -208,7 +212,8 @@ public class NPC1 : MonoBehaviour
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
         talking = true;
-        PlayerPrefs.SetInt("NPCINCAVE", 1);       
+        PlayerPrefs.SetInt("NPCINCAVE", 1);
+        interact.text = "E to Interact";
         GameUI.SetActive(true);
     }
 
@@ -217,6 +222,7 @@ public class NPC1 : MonoBehaviour
         GameUI.SetActive(false);
         npcDLG.SetActive(true);
         Cursor.visible = true;
+        interact.text = "";
         talking = false;
         PlayerController.Instance.pState.isNPC = true;
         string[] dialogues = new[]
