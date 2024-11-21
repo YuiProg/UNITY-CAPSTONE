@@ -163,6 +163,8 @@ public class GOLEM_BOSS : Enemy
 
 
     //ATTACKS
+
+    //ETO ROLL NI ZECH HAHAAHA
     IEnumerator Rolling()
     {
         isAttacking = true;
