@@ -139,7 +139,13 @@ public class Enemy : MonoBehaviour
         //SERVANTS
         S1_Idle,
         S1_Chase,
-        S1_AttackBehavior
+        S1_AttackBehavior,
+
+        //GOLEM BOSS
+        G_Idle,
+        G_Chase,
+        G_Roll,
+        G_AttackBehavior
     }
 
     protected EnemyStates currentEnemyStates;

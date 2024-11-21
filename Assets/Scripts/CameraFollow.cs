@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         if (BANDIT_BOSS.instance.spottedPlayer || SpearGirl.instance.spottedPlayer ||
-            Paladin_BOSS.instance.spottedPlayer || PlayerController.Instance.pState.inParkourState || Desert_BOSS.instance.spottedPlayer)
+            Paladin_BOSS.instance.spottedPlayer || PlayerController.Instance.pState.inParkourState || Desert_BOSS.instance.spottedPlayer || GOLEM_BOSS.Instance.spottedPlayer)
         {
             Vector3 newPoss = new Vector3(target.position.x, target.position.y + Yoffset, -30f);
             transform.position = Vector3.Slerp(transform.position, newPoss, FollowSpeed * Time.deltaTime);

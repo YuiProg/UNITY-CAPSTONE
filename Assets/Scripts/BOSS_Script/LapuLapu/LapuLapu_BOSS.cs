@@ -6,13 +6,11 @@ using UnityEngine.UI;
 
 public class LapuLapu_BOSS : Enemy
 {
-
-    [SerializeField] GameObject HealthBar;
     public float chaseDistance;
     bool spottedPlayer = false;
     Vector2 spawnPoint;
     Animator anim;
-    [SerializeField] GameObject Music;
+    bool isdead = false;
     protected override void Start()
     {
         base.Start();
@@ -22,36 +20,14 @@ public class LapuLapu_BOSS : Enemy
         rb.gravityScale = 12f;
         spawnPoint = transform.position;
         ChangeStates(EnemyStates.LP_Idle);
-        HealthBar.SetActive(false);
     }
 
-    private void Awake()
-    {
-        loadcheck();
-    }
-
-    void loadcheck()
-    {
-        if (PlayerPrefs.GetInt("LapuLapu") == 1)
-        {
-            gameObject.SetActive(false);
-        }
-        else if (PlayerPrefs.GetInt("LapuLapu") == 0)
-        {
-            gameObject.SetActive(true);
-        }
-    }
     protected override void UpdateEnemyStates()
     {
         float _dist = Vector2.Distance(PlayerController.Instance.transform.position, transform.position);
         if (!attacking)
         {
             flip();
-        }
-        if (spottedPlayer)
-        {
-            HealthBar.SetActive(true);
-            Music.SetActive(true);
         }
         if (parried)
         {
@@ -72,20 +48,16 @@ public class LapuLapu_BOSS : Enemy
             parrypercent = parrymax;
             parryBar.fillAmount = parrymax;
             spottedPlayer = false;
-            Music.SetActive(false);
-            HealthBar.SetActive(false);
             ChangeStates(EnemyStates.LP_Idle);
             return;
         }
-        if (health <= 0)
+        if (health <= 0 && !isdead)
         {
-            PlayerPrefs.SetInt("LapuLapu", 1);
-            anim.SetTrigger("Dead");
-            HealthBar.SetActive(false);
-            Destroy(gameObject, 2f);
-            return;
+            isdead = true;
+            anim.SetTrigger("Die");
+            Destroy(gameObject, 1.5f);
         }
-        if (canMove)
+        if (canMove && !isdead)
         {
             switch (currentEnemyStates)
             {
