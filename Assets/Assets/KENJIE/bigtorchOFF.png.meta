@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KUBOO_0
+      name: bigtorchOFF_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 331
-        width: 414
-        height: 389
+        x: 4
+        y: 0
+        width: 23
+        height: 116
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,29 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 446a350fc3cebc24db819efd2318f4d7
-      internalID: -1848434781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: KUBOO_1
-      rect:
-        serializedVersion: 2
-        x: 495
-        y: 276
-        width: 453
-        height: 414
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ba7e4edf4baa1441b1b4fc01d483bfe
-      internalID: -1841124178
+      spriteID: 7d474a8686aecfe47a912fd2d62b3966
+      internalID: 147701869
       vertices: []
       indices: 
       edges: []
@@ -149,8 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      KUBOO_0: -1848434781
-      KUBOO_1: -1841124178
+      bigtorchOFF_0: 147701869
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
