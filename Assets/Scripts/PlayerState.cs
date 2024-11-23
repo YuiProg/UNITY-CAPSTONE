@@ -19,6 +19,7 @@ public class PlayerState : MonoBehaviour
     public bool canMove = true;
     public bool isAlive = true;
     public bool canAttack = true;
+    public bool killedABoss = false;
 
     //parry,block
     public bool blocking = false;

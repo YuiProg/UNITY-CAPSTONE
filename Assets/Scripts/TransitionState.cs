@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 
@@ -5,7 +6,8 @@ public class TransitionState : MonoBehaviour
 {
     Animator anim;
     [SerializeField] public GameObject TransitionPIC;
-
+    [SerializeField] GameObject DEFEATEDUI;
+    float time;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -21,6 +23,18 @@ public class TransitionState : MonoBehaviour
         else
         {
             TransitionPIC.SetActive(false);
+        }
+        if (PlayerController.Instance.pState.killedABoss)
+        {
+            DEFEATEDUI.SetActive(true);
+            anim.Play("BOSSDEFEATED");
+            PlayerController.Instance.pState.killedABoss = false;
+
+        }
+        else
+        {
+            time = 0f;
+            DEFEATEDUI.SetActive(true);
         }
     }
 

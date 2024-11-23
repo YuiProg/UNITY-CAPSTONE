@@ -36,10 +36,24 @@ public class NPC1 : MonoBehaviour
     {
         BORDER1.SetActive(true);
         BORDER2.SetActive(true);
+        
+        if (PlayerPrefs.GetInt("ATENTRANCE") == 1)
+        {
+            count++;
+            npc1.transform.position = loc1.transform.position;
+            npc2.transform.position = loc2.transform.position;
+            BORDER1.SetActive(false);
+        }
         if (PlayerPrefs.GetInt("NPCINCAVE") == 1)
         {
             npc1.transform.position = loc3.transform.position;
             npc2.transform.position = loc4.transform.position;
+        }
+        if (PlayerPrefs.GetInt("HIDENPC") == 1)
+        {
+            npc1.transform.position = loc7.transform.position;
+            npc2.transform.position = loc8.transform.position;
+            BORDER2.SetActive(false);
         }
     }
     void Update()
@@ -153,6 +167,7 @@ public class NPC1 : MonoBehaviour
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
         interact.text = "E to Interact";
+        PlayerPrefs.SetInt("ATENTRANCE", 1);
         Destroy(BORDER1);
         talking = true;
         count++;
@@ -265,6 +280,7 @@ public class NPC1 : MonoBehaviour
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
         talking = true;
+        PlayerPrefs.SetInt("HIDENPC", 1);
         count2++;
         Destroy(BORDER2);
         GameUI.SetActive(true);

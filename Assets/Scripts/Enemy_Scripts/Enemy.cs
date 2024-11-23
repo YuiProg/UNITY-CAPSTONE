@@ -145,7 +145,11 @@ public class Enemy : MonoBehaviour
         G_Idle,
         G_Chase,
         G_Roll,
-        G_AttackBehavior
+        G_AttackBehavior,
+
+        //archer enemy
+        ARCH_Idle,
+        ARCH_Attack,
     }
 
     protected EnemyStates currentEnemyStates;

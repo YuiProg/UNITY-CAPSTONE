@@ -139,11 +139,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject DeathScreen;
     Vector2 checkpointpos;
 
-    AudioManager audioManager;
     private void Awake()
     {
 
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -159,9 +157,7 @@ public class PlayerController : MonoBehaviour
         float x = PlayerPrefs.GetFloat("X");
         float y = PlayerPrefs.GetFloat("Y");
         transform.position = new Vector2(x, y);
-        
-        
-        audioManager.PlaySFX(audioManager.Respawn);
+
         
     }
 
@@ -359,17 +355,16 @@ public class PlayerController : MonoBehaviour
     {
         if (canjump && !pState.isNPC)
         {
+            anim.SetBool("Jumping", !Grounded());
             if (Grounded() && !Input.GetButtonDown("Jump"))
             {
                 doubleJump = true;
-                anim.SetBool("Jumping", false);
             }
             if (Input.GetButtonDown("Jump"))
             {
                 
                 if (Grounded() || doubleJump)
                 {
-                    anim.SetBool("Jumping", true);
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                     doubleJump = !doubleJump;
                 }
@@ -578,7 +573,6 @@ public class PlayerController : MonoBehaviour
             damage = normal_damage;
             hdamage = normal_hdamage;
             Cdamage = normal_slash_Damage;
-            audioManager.PlaySFX(audioManager.hurt);
             print("Player is taking damage.");
             GameObject _enemyBlood = Instantiate(blood, transform.position, Quaternion.identity);
             Destroy(_enemyBlood, 5.5f);
@@ -589,7 +583,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (pState.parry)
         {
-            audioManager.PlaySFX(audioManager.parry);
             Color color = Color.yellow;
             Color white = Color.white;
             parryFX.Play();
@@ -615,7 +608,6 @@ public class PlayerController : MonoBehaviour
             hdamage = normal_hdamage;
             Cdamage = normal_slash_Damage;
             print("Player is blocking damage.");
-            audioManager.PlaySFX(audioManager.Block);
             GameObject _enemyBlood = Instantiate(blockFx, transform.position, Quaternion.identity);
             Destroy(_enemyBlood, 5.5f);
             shieldCount -= Mathf.RoundToInt(_damage);
@@ -721,7 +713,6 @@ public class PlayerController : MonoBehaviour
                 stamina -= attackCost;
                 Stamina.fillAmount = stamina / maxstamina;
 
-                audioManager.PlaySFX(audioManager.Slash);
 
                 if (yAxis == 0 || yAxis < 0 && Grounded())
                 {
@@ -759,7 +750,6 @@ public class PlayerController : MonoBehaviour
             timeSinceAttack = 0;
             pState.canAttack = false;
             anim.SetTrigger("Combo");
-            audioManager.PlaySFX(audioManager.Slash);
 
             if (yAxis == 0 || yAxis < 0 && Grounded())
             {
@@ -787,7 +777,6 @@ public class PlayerController : MonoBehaviour
             timeSinceAttack = 0;
             pState.canAttack = false;
 
-            audioManager.PlaySFX(audioManager.Slash);
 
             if (yAxis == 0 || yAxis < 0 && Grounded())
             {
@@ -815,7 +804,7 @@ public class PlayerController : MonoBehaviour
             timeSinceAttack = 0;
             pState.canAttack = false;
 
-            audioManager.PlaySFX(audioManager.Slash);
+
 
             if (yAxis == 0 || yAxis < 0 && Grounded())
             {
@@ -937,7 +926,6 @@ public class PlayerController : MonoBehaviour
                 recharge = StartCoroutine(RechargeStamina());
                 stamina -= hardattackCost;
                 Stamina.fillAmount = stamina / maxstamina;
-                audioManager.PlaySFX(audioManager.Slash);
             }
             if (yAxis == 0 || yAxis < 0 && Grounded())
             {
@@ -1019,7 +1007,7 @@ public class PlayerController : MonoBehaviour
                 stamina = 0;
             }
             dust.Play();
-            anim.SetBool("Running", true);
+            anim.SetBool("Running", pState.running && Grounded());
 
             
             if (stamina <= 0 && pState.running == false)

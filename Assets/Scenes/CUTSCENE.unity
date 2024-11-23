@@ -180,8 +180,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7b17c3edfb88cb648be6abf3ecf330c7, type: 3}
-    m_FontSize: 73
+    m_Font: {fileID: 12800000, guid: b4532d0b88195c44ab9123ecf9e8e00f, type: 3}
+    m_FontSize: 62
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -212,6 +212,10 @@ PrefabInstance:
     - target: {fileID: 907236280056616584, guid: 1dc71b445e4a8244cbf98851ffa1528f, type: 3}
       propertyPath: m_Name
       value: LevelManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 907236280056616584, guid: 1dc71b445e4a8244cbf98851ffa1528f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1615186441275908019, guid: 1dc71b445e4a8244cbf98851ffa1528f, type: 3}
       propertyPath: m_IsActive

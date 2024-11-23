@@ -133,6 +133,7 @@ public class GOLEM_BOSS : Enemy
             HEALTHBAR.SetActive(false);
             BORDER_L.SetActive(false);
             BORDER_R.SetActive(false);
+            PlayerController.Instance.pState.killedABoss = true;
             Destroy(gameObject, 2f);
         }
         if (!PlayerController.Instance.pState.isAlive)
