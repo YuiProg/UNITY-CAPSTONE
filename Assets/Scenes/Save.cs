@@ -46,6 +46,7 @@ public class Save : MonoBehaviour
         PlayerPrefs.SetFloat("C_Damage", PlayerController.Instance.normal_slash_Damage);
         PlayerPrefs.SetInt("Levels", PlayerController.Instance.levels);
         PlayerPrefs.SetInt("MainLevel", PlayerController.Instance.mainLevel);
+        PlayerPrefs.SetInt("Barya", PlayerController.Instance.barya);
         //print("SAVED DATA");
 
     }
@@ -63,6 +64,7 @@ public class Save : MonoBehaviour
         PlayerPrefs.SetFloat("H_Damage", PlayerController.Instance.normal_hdamage);
         PlayerPrefs.SetFloat("C_Damage", PlayerController.Instance.normal_slash_Damage);
         PlayerPrefs.SetInt("Levels", PlayerController.Instance.levels);
+        PlayerPrefs.SetInt("Barya", PlayerController.Instance.barya);
         PlayerPrefs.SetInt("MainLevel", PlayerController.Instance.mainLevel);
         print("SAVED STATS");
     }
@@ -87,6 +89,7 @@ public class Save : MonoBehaviour
             int levels = PlayerPrefs.GetInt("Levels");
             int mainLevel = PlayerPrefs.GetInt("MainLevel");
             int potions = PlayerPrefs.GetInt("Potion");
+            int barya = PlayerPrefs.GetInt("Barya");
             //health
             PlayerController.Instance.potionCount = potions;
             PlayerController.Instance.health = health;
@@ -106,6 +109,7 @@ public class Save : MonoBehaviour
             //levels
             PlayerController.Instance.levels = levels;
             PlayerController.Instance.mainLevel = mainLevel;
+            PlayerController.Instance.barya = barya;
         }
         catch (System.NullReferenceException test)
         {

@@ -20,6 +20,10 @@ public class GOLEM_BOSS : Enemy
     [SerializeField] GameObject HEALTHBAR;
     [SerializeField] GameObject BORDER_R;
     [SerializeField] GameObject BORDER_L;
+    //essencedrop
+    int count;
+    [SerializeField] GameObject Essence;
+
     public static GOLEM_BOSS Instance;
 
     protected override void Start()
@@ -133,6 +137,7 @@ public class GOLEM_BOSS : Enemy
             HEALTHBAR.SetActive(false);
             BORDER_L.SetActive(false);
             BORDER_R.SetActive(false);
+            dropE();
             PlayerController.Instance.pState.killedABoss = true;
             Destroy(gameObject, 2f);
         }
@@ -141,6 +146,14 @@ public class GOLEM_BOSS : Enemy
             canMove = false;
             canAttack = false;
             HEALTHBAR.SetActive(false);
+        }
+    }
+
+    void dropE()
+    {
+        if (count != 1)
+        {
+            Instantiate(Essence, transform.position, Quaternion.identity);
         }
     }
     void attackBehavior()
