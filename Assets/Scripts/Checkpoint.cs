@@ -37,6 +37,11 @@ public class Checkpoint : MonoBehaviour
         {
             PlayerPrefs.SetInt("LOAD", 1);
             onTrigger = true;
+            PlayerController.Instance.health = PlayerController.Instance.maxHealth;
+            PlayerController.Instance.HealthBar.fillAmount = PlayerController.Instance.maxHealth;
+            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+            PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
+            PlayerController.Instance.ShieldBar.fillAmount = PlayerController.Instance.maxShield;
             Save.instance.saveData();
             StartCoroutine(save());
             PlayerController.Instance.updatecheckpoint(respawnpoint.position);

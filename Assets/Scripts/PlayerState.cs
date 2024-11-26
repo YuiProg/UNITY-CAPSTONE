@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
+    private void Update()
+    {
+        obtainedSpear = PlayerPrefs.GetInt("HERALD GOLEM") == 1;
+        obtainedMAP = PlayerPrefs.GetInt("MAP") == 1;
+    }
     //OTHER
     public bool isPaused = false;
     public bool Transitioning = false;
@@ -20,6 +25,7 @@ public class PlayerState : MonoBehaviour
     public bool isAlive = true;
     public bool canAttack = true;
     public bool killedABoss = false;
+    public bool SkillBOSS = false;
 
     //parry,block
     public bool blocking = false;
@@ -33,8 +39,13 @@ public class PlayerState : MonoBehaviour
     //KEY CHECK
     public bool hasKey = false;
 
+    //obtainskills
+    public bool obtainedMAP = false;
+    public bool obtainedSpear = false;
+
 
     //SKILLS
+    public bool SpearDash = false;
     public bool SLASH = false;
     public bool HPBUFF = false;
 

@@ -49,7 +49,8 @@ public class CUTSCENETRIGGER : MonoBehaviour
         NPCTEXT.SetActive(true);
         Cursor.visible = true;
         PlayerController.Instance.pState.isNPC = true;
-
+        PlayerPrefs.DeleteKey("Quest");
+        QuestTracker.instance.hasQuest = false;
         string[] dialogues1 = new[]
         {
             "This isn’t funny. Where did you guys go?",
@@ -141,6 +142,7 @@ public class CUTSCENETRIGGER : MonoBehaviour
         TeleportToCS.instance.canEnter = true;
         yield return new WaitForSeconds(time);     
         Cursor.visible = false;
+        PlayerPrefs.SetString("Quest", "Go to the forest");
         PlayerController.Instance.pState.isNPC = false;
         NPCTEXT.SetActive(false);
         GameUI.SetActive(true);

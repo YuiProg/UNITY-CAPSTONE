@@ -7,6 +7,7 @@ public class TransitionState : MonoBehaviour
     Animator anim;
     [SerializeField] public GameObject TransitionPIC;
     [SerializeField] GameObject DEFEATEDUI;
+    [SerializeField] GameObject DEFEATEDSKILLUI;
     float time;
     private void Start()
     {
@@ -33,9 +34,19 @@ public class TransitionState : MonoBehaviour
         }
         else
         {
-            time = 0f;
             DEFEATEDUI.SetActive(true);
         }
+        if (PlayerController.Instance.pState.SkillBOSS)
+        {
+            DEFEATEDSKILLUI.SetActive(true);
+            anim.Play("BOSSDEFEATEDSKILL");
+            PlayerController.Instance.pState.SkillBOSS = false;
+        }
+        else
+        {
+            DEFEATEDSKILLUI.SetActive(false);
+        }
+
     }
 
     IEnumerator MoveState(float time)

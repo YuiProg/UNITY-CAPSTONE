@@ -23,6 +23,7 @@ public class GOLEM_BOSS : Enemy
     //essencedrop
     int count;
     [SerializeField] GameObject Essence;
+    [SerializeField] Transform EssenceDROP;
 
     public static GOLEM_BOSS Instance;
 
@@ -138,7 +139,9 @@ public class GOLEM_BOSS : Enemy
             BORDER_L.SetActive(false);
             BORDER_R.SetActive(false);
             dropE();
-            PlayerController.Instance.pState.killedABoss = true;
+            spottedPlayer = false;
+            Save.instance.saveData();
+            PlayerController.Instance.pState.SkillBOSS = true;
             Destroy(gameObject, 2f);
         }
         if (!PlayerController.Instance.pState.isAlive)
@@ -151,9 +154,10 @@ public class GOLEM_BOSS : Enemy
 
     void dropE()
     {
-        if (count != 1)
+        if (count != 3)
         {
-            Instantiate(Essence, transform.position, Quaternion.identity);
+            count++;
+            Instantiate(Essence, EssenceDROP.position, Quaternion.identity);
         }
     }
     void attackBehavior()

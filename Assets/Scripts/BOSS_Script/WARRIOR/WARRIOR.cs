@@ -21,6 +21,8 @@ public class WARRIOR : Enemy
     [SerializeField] public GameObject teleportFX;
     [SerializeField] public GameObject swordhitFX;
 
+    //essence
+    [SerializeField] public GameObject essence;
 
     //BORDER
     [SerializeField] GameObject Border_L;
@@ -31,6 +33,7 @@ public class WARRIOR : Enemy
     bool canjump = false;
     bool canUlti = false;
     bool isAttacking = false;
+    bool isdead = false;
     [SerializeField] GameObject healthBarUI;
 
     protected override void Start()
@@ -118,13 +121,6 @@ public class WARRIOR : Enemy
             ultiTimer = 0;
             canUlti = true;
         }
-        if (isAlive == false)
-        {
-            PlayerController.Instance.maxHealth += 0.03f;
-            PlayerController.Instance.maxstamina += 0.03f;
-            PlayerController.Instance.health = PlayerController.Instance.maxHealth;
-            PlayerController.Instance.HealthBar.fillAmount = PlayerController.Instance.health;
-        }
         if (health <= 0)
         {
             aliveTimer += Time.deltaTime;
@@ -136,15 +132,19 @@ public class WARRIOR : Enemy
             Border_R.SetActive(false);
             anim.SetBool("Chase", false);
             anim.SetTrigger("Death");
+            essencedrop();
+            PlayerPrefs.SetString("Quest", "Return to statue");
+            Save.instance.saveData();
             if (aliveTimer > 5)
             {
-                Save.instance.saveData();
+                Save.instance.saveStats();
                 gameObject.SetActive(false);
             }
+
         }
         else
         {
-            if (canMove && spottedPlayer && !isAttacking)
+            if (canMove && spottedPlayer && !isAttacking && PlayerController.Instance.pState.isAlive)
             {
                 switch (currentEnemyStates)
                 {
@@ -202,6 +202,17 @@ public class WARRIOR : Enemy
         
         
     }
+
+    void essencedrop()
+    {
+        if (!isdead)
+        {
+            isdead = true;
+            PlayerController.Instance.pState.killedABoss = true;
+            Instantiate(essence, transform.position, Quaternion.identity);
+        }
+        
+    }
     void Flip()
     {
         if (!isAttacking && !parried)
@@ -236,7 +247,7 @@ public class WARRIOR : Enemy
     bool inRange()
     {
         float _dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        return _dist < 2.8f;
+        return _dist < 7f;
     }
 
     IEnumerator Ultimate(float time)

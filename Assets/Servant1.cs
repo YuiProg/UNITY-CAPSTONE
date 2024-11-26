@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Servant1 : Enemy
@@ -8,10 +9,13 @@ public class Servant1 : Enemy
     bool spottedPlayer = false;
     bool isAttacking = false;
     public float chaseDistance;
+
     protected override void Start()
     {
         base.Start();
         anim = GetComponent<Animator>();
+        canMove = true;
+        canAttack = true;
         rb.gravityScale = 12f;
         ChangeStates(EnemyStates.S1_Idle);
     }
@@ -23,25 +27,34 @@ public class Servant1 : Enemy
         flip();
 
         float distance = Vector2.Distance(PlayerController.Instance.transform.position, transform.position);
-        if (canMove && Servant_Enemy.instance.servantscanATK)
+        if (canMove)
         {
             switch (currentEnemyStates)
             {
                 case EnemyStates.S1_Idle:
-                    if (chaseDistance < distance)
+                    if (distance < chaseDistance)
                     {
+                        spottedPlayer = true;
                         ChangeStates(EnemyStates.S1_Chase);
                     }
                     break;
                 case EnemyStates.S1_Chase:
-                    anim.SetBool("Running", true);
-                    transform.position = Vector2.MoveTowards(transform.position,
-                        new Vector2(PlayerController.Instance.transform.position.x, transform.position.y), speed * Time.deltaTime);
-
-                    if (distanceCheck())
+                    if (spottedPlayer)
                     {
-                        ChangeStates(EnemyStates.S1_AttackBehavior);
+                        anim.SetBool("Running", true);
+                        transform.position = Vector2.MoveTowards(transform.position,
+                            new Vector2(PlayerController.Instance.transform.position.x, transform.position.y), speed * Time.deltaTime);
+
+                        if (distanceCheck())
+                        {
+                            ChangeStates(EnemyStates.S1_AttackBehavior);
+                        }
                     }
+                    else
+                    {
+                        ChangeStates(EnemyStates.S1_Idle);
+                    }
+                    
                     break;
                 case EnemyStates.S1_AttackBehavior:
                     if (!isAttacking)
@@ -60,6 +73,7 @@ public class Servant1 : Enemy
         StopCoroutine(Attack1());
         StopCoroutine(Attack2());
     }
+
     void stateCheck()
     {
         canMove = !spottedPlayer;
@@ -73,13 +87,14 @@ public class Servant1 : Enemy
         {
             canAttack = false;
             canMove = false;
-            Destroy(gameObject);
+            anim.SetTrigger("Death");
+            Destroy(gameObject, 1f);
         }
     }
     bool distanceCheck()
     {
         float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        return distance < 1f;
+        return distance < 2.5f;
     }
 
     void AttackBehavior()

@@ -34,7 +34,7 @@ public class EnterCave : MonoBehaviour
     IEnumerator tpstart(float time)
     {
         PlayerController.Instance.pState.Transitioning = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
         PlayerController.Instance.transform.position = tphere.transform.position;
         yield return new WaitForSeconds(time);
         PlayerController.Instance.pState.Transitioning = false;

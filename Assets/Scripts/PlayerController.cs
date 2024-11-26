@@ -42,14 +42,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float normal_damage;
     [SerializeField] public float normal_hdamage;
     [SerializeField] public float normal_slash_Damage;
+    [SerializeField] public float spearDamage;
+    [SerializeField] public float normal_spear_damage;
     [SerializeField] public Text parryCounter;
     [SerializeField] public Text comboCounter;
+    [SerializeField] public Text SpearTimer;
     bool attack = true;
 
 
     //skill
     bool combo = true;
+    bool DashSpear = true;
     [SerializeField] float comboTimer;
+    public float SpearDashTimer;
     [SerializeField] ParticleSystem comboFX;
 
     //heal skill
@@ -105,6 +110,7 @@ public class PlayerController : MonoBehaviour
     public float maxHealth;
     public Enemy Edamage;
     public int potionCount;
+    public int maxPotions;
     public float potionHealBar = 10f;
     bool canHeal = false;
     [Space(5)]
@@ -176,11 +182,13 @@ public class PlayerController : MonoBehaviour
         text.text = $"FLASK: {potionCount}";
         parryCounter.text = "";
 
-        health = maxHealth;
         stamina = maxstamina;
         shieldCount = maxShield;
+        potionCount = maxPotions;
+        HealthBar.fillAmount = health / maxHealth;
         comboTimer = 5;
         healTimer = 30;
+        SpearDashTimer = 5;
         Save.instance.loadStats();
         statCheck();
     }
@@ -191,6 +199,7 @@ public class PlayerController : MonoBehaviour
         comboTimer += Time.deltaTime;
         healTimer += Time.deltaTime;
         timeSinceAttack += Time.deltaTime;
+        SpearDashTimer += Time.deltaTime;
 
         //methods
         GetInputs();
@@ -233,6 +242,18 @@ public class PlayerController : MonoBehaviour
             }
             
         }
+        if (DashSpear && pState.SpearDash)
+        {
+            if (SpearDashTimer >= 5)
+            {
+                StartCoroutine(DashAttack());
+            }
+        }
+        //skill timers
+        if (SpearDashTimer > 5)
+        {
+            SpearDashTimer = 5;
+        }
         if (comboTimer > 5)
         {
             comboTimer = 5;
@@ -249,7 +270,7 @@ public class PlayerController : MonoBehaviour
         {
             canrun = false;
             canjump = false;
-            walkSpeed = 5;
+            walkSpeed = 7;
         }
         if (health >= maxHealth)
         {
@@ -288,6 +309,7 @@ public class PlayerController : MonoBehaviour
         }
         comboCounter.text = $"{Math.Round(comboTimer)}";
         healtxtCount.text = $"{Math.Round(healTimer)}";
+        SpearTimer.text = $"{Mathf.Round(SpearDashTimer)}";
     }
 
     bool hasDied = false;
@@ -300,13 +322,16 @@ public class PlayerController : MonoBehaviour
             normal_hdamage = PlayerPrefs.GetFloat("H_Damage");
             normal_damage = PlayerPrefs.GetFloat("N_Damage");
             normal_slash_Damage = PlayerPrefs.GetFloat("C_Damage");
+            normal_spear_damage = PlayerPrefs.GetFloat("Spear Damage");
             maxHealth = PlayerPrefs.GetFloat("Max Health");
             maxstamina = PlayerPrefs.GetFloat("Max Stamina");
             maxShield = PlayerPrefs.GetFloat("Max Shield");
             potionCount = PlayerPrefs.GetInt("Potion");
+            maxPotions = PlayerPrefs.GetInt("MaxPotion");
             damage = normal_damage;
             hdamage = normal_hdamage;
             Cdamage = normal_slash_Damage;
+            spearDamage = normal_spear_damage;
             mainLevel = PlayerPrefs.GetInt("MainLevel");
             Debug.Log("HAS STATS");
         }
@@ -315,6 +340,8 @@ public class PlayerController : MonoBehaviour
             normal_damage = 2;
             normal_hdamage = 4;
             normal_slash_Damage = 10;
+            normal_spear_damage = 15;
+            spearDamage = normal_spear_damage;
             damage = normal_damage;
             hdamage = normal_hdamage;
             Cdamage = normal_slash_Damage;
@@ -322,7 +349,7 @@ public class PlayerController : MonoBehaviour
             maxstamina = 100;
             maxShield = 50;
             mainLevel = 0;
-            potionCount = 3;
+            maxPotions = 3;
             Debug.Log("NO STATS");
         }
     }
@@ -505,18 +532,26 @@ public class PlayerController : MonoBehaviour
         yAxis = Input.GetAxisRaw("Vertical");
         attack = Input.GetMouseButtonDown(0);
         combo = Input.GetKeyDown(KeyCode.R);
+        DashSpear = Input.GetKeyDown(KeyCode.R);
         HardAttack = Input.GetMouseButtonDown(1);
         
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             pState.SLASH = true;
             pState.HPBUFF = false;
+            pState.SpearDash = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             pState.SLASH = false;
             pState.HPBUFF = true;
-            
+            pState.SpearDash = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1) && pState.obtainedSpear)
+        {
+            pState.SLASH = false;
+            pState.HPBUFF = false;
+            pState.SpearDash = true;
         }
         if (Input.GetKeyDown(KeyCode.R) && pState.HPBUFF)
         {
@@ -532,6 +567,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject HealIMG;
     [SerializeField] ParticleSystem HealFX;
     [SerializeField] Text healtxtCount;
+    [SerializeField] GameObject DASHIMG;
     void checkSkills()
     {
         if (!pState.SLASH)
@@ -550,6 +586,14 @@ public class PlayerController : MonoBehaviour
         {
             HealIMG.SetActive(true);
         }
+        if (!pState.SpearDash)
+        {
+            DASHIMG.SetActive(false);
+        }
+        else
+        {
+            DASHIMG.SetActive(true);
+        }
     }
     private void OnDrawGizmos()
     {
@@ -563,6 +607,7 @@ public class PlayerController : MonoBehaviour
         damage = damage + parryDamageBonus;
         hdamage = hdamage + parryDamageBonus;
         Cdamage = Cdamage + parryDamageBonus;
+        spearDamage = spearDamage + parryDamageBonus;
     }
     public void TakeDamage(float _damage)
     {
@@ -573,6 +618,7 @@ public class PlayerController : MonoBehaviour
             damage = normal_damage;
             hdamage = normal_hdamage;
             Cdamage = normal_slash_Damage;
+            spearDamage = normal_spear_damage;
             print("Player is taking damage.");
             GameObject _enemyBlood = Instantiate(blood, transform.position, Quaternion.identity);
             Destroy(_enemyBlood, 5.5f);
@@ -737,6 +783,187 @@ public class PlayerController : MonoBehaviour
             }
         }                         
     }
+
+    IEnumerator DashAttack()
+    {
+        if (lookingleft && Grounded())
+        {
+            if (DashSpear && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
+            {
+                canDash = false;
+                SpearDashTimer = 0;
+                pState.invincible = true;
+
+                timeSinceAttack = 0;
+                pState.canAttack = false;
+                anim.SetTrigger("SpearDash");
+                rb.AddForce(new Vector2(-.5f, transform.position.y), ForceMode2D.Force);
+
+                if (yAxis == 0 || yAxis < 0 && Grounded())
+                {
+                    int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                    print("COMBO ATTACK");
+                    SpearHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+                }
+                else if (yAxis > 0)
+                {
+                    print("upattackarea: " + upAttackArea);
+                    SpearHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+                }
+                else if (yAxis < 0 && !Grounded())
+                {
+                    print("downattackarea: " + downAttackArea);
+                    SpearHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+                }
+            }
+            yield return new WaitForSeconds(0.3f);
+
+
+            if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
+            {
+                timeSinceAttack = 0;
+                pState.canAttack = false;
+                anim.SetTrigger("SpearDash");
+                rb.AddForce(new Vector2(-.5f, transform.position.y), ForceMode2D.Force);
+                if (yAxis == 0 || yAxis < 0 && Grounded())
+                {
+                    int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                    print("COMBO ATTACK");
+                    SpearHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+                }
+                else if (yAxis > 0)
+                {
+                    print("upattackarea: " + upAttackArea);
+                    SpearHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+                }
+                else if (yAxis < 0 && !Grounded())
+                {
+                    print("downattackarea: " + downAttackArea);
+                    SpearHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+                }
+            }
+            yield return new WaitForSeconds(0.3f);
+
+
+            if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
+            {
+                timeSinceAttack = 0;
+                pState.canAttack = false;
+
+                anim.SetTrigger("SpearDash");
+                rb.AddForce(new Vector2(-.5f, transform.position.y), ForceMode2D.Force);
+                if (yAxis == 0 || yAxis < 0 && Grounded())
+                {
+                    int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                    print("COMBO ATTACK");
+                    SpearHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+                }
+                else if (yAxis > 0)
+                {
+                    print("upattackarea: " + upAttackArea);
+                    SpearHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+                }
+                else if (yAxis < 0 && !Grounded())
+                {
+                    print("downattackarea: " + downAttackArea);
+                    SpearHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+                }
+            }
+            yield return new WaitForSeconds(0.3f);
+            pState.invincible = false;
+            canDash = true;
+
+        }
+        else if (lookingright && Grounded())
+        {
+            if (DashSpear && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
+            {
+                canDash = false;
+                SpearDashTimer = 0;
+                pState.invincible = true;
+
+                timeSinceAttack = 0;
+                pState.canAttack = false;
+                anim.SetTrigger("SpearDash");
+                rb.AddForce(new Vector2(.5f, transform.position.y), ForceMode2D.Force);
+
+                if (yAxis == 0 || yAxis < 0 && Grounded())
+                {
+                    int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                    print("COMBO ATTACK");
+                    SpearHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+                }
+                else if (yAxis > 0)
+                {
+                    print("upattackarea: " + upAttackArea);
+                    SpearHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+                }
+                else if (yAxis < 0 && !Grounded())
+                {
+                    print("downattackarea: " + downAttackArea);
+                    SpearHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+                }
+            }
+            yield return new WaitForSeconds(0.3f);
+
+
+            if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
+            {
+                timeSinceAttack = 0;
+                pState.canAttack = false;
+                anim.SetTrigger("SpearDash");
+                rb.AddForce(new Vector2(.5f, transform.position.y), ForceMode2D.Force);
+                if (yAxis == 0 || yAxis < 0 && Grounded())
+                {
+                    int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                    print("COMBO ATTACK");
+                    SpearHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+                }
+                else if (yAxis > 0)
+                {
+                    print("upattackarea: " + upAttackArea);
+                    SpearHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+                }
+                else if (yAxis < 0 && !Grounded())
+                {
+                    print("downattackarea: " + downAttackArea);
+                    SpearHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+                }
+            }
+            yield return new WaitForSeconds(0.3f);
+
+
+            if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
+            {
+                timeSinceAttack = 0;
+                pState.canAttack = false;
+
+                anim.SetTrigger("SpearDash");
+                rb.AddForce(new Vector2(.5f, transform.position.y), ForceMode2D.Force);
+                if (yAxis == 0 || yAxis < 0 && Grounded())
+                {
+                    int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
+                    print("COMBO ATTACK");
+                    SpearHit(sideAttack, sideAttackArea, ref pState.recoilingX, Vector2.right * -_lookingLeftorRight, -recoilXSpeed);
+                }
+                else if (yAxis > 0)
+                {
+                    print("upattackarea: " + upAttackArea);
+                    SpearHit(upAttack, upAttackArea, ref pState.recoilingX, Vector2.up, recoilXSpeed);
+                }
+                else if (yAxis < 0 && !Grounded())
+                {
+                    print("downattackarea: " + downAttackArea);
+                    SpearHit(downAttack, downAttackArea, ref pState.recoilingY, Vector2.down, recoilYSpeed);
+                }
+            }
+            yield return new WaitForSeconds(0.3f);
+            pState.invincible = false;
+            canDash = true;
+
+        }
+
+    }
     IEnumerator ComboAttack()
     {
         if (combo && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
@@ -830,7 +1057,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    private void ComboHit(Transform _attackTransform, Vector2 _attackArea, ref bool _recoilBool, Vector2 _recoilDir, float _recoilStrength)
+    private void SpearHit(Transform _attackTransform, Vector2 _attackArea, ref bool _recoilBool, Vector2 _recoilDir, float _recoilStrength)
     {
         Collider2D[] objectstohit = Physics2D.OverlapBoxAll(_attackTransform.position, _attackArea, 0, attackable);
         List<Enemy> hitenemies = new List<Enemy>();
@@ -847,6 +1074,33 @@ public class PlayerController : MonoBehaviour
                 if (e && !hitenemies.Contains(e))
                 {
                     e.EnemyHit(Cdamage, (transform.position - objectstohit[i].transform.position).normalized, _recoilStrength);
+                    hitenemies.Add(e);
+                }
+                health += normalAttackLS;
+                HealthBar.fillAmount = health / maxHealth;
+
+                shieldCount += normalAttackLS + 2;
+                ShieldBar.fillAmount = shieldCount / maxShield;
+            }
+        }
+    }
+    private void ComboHit(Transform _attackTransform, Vector2 _attackArea, ref bool _recoilBool, Vector2 _recoilDir, float _recoilStrength)
+    {
+        Collider2D[] objectstohit = Physics2D.OverlapBoxAll(_attackTransform.position, _attackArea, 0, attackable);
+        List<Enemy> hitenemies = new List<Enemy>();
+        if (objectstohit.Length > 0)
+        {
+            print("HIT");
+            _recoilBool = true;
+        }
+        for (int i = 0; i < objectstohit.Length; i++)
+        {
+            if (objectstohit[i].GetComponent<Enemy>() != null)
+            {
+                Enemy e = objectstohit[i].GetComponent<Enemy>();
+                if (e && !hitenemies.Contains(e))
+                {
+                    e.EnemyHit(spearDamage, (transform.position - objectstohit[i].transform.position).normalized, _recoilStrength);
                     hitenemies.Add(e);
                 }
                 health += normalAttackLS;
@@ -946,7 +1200,8 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-
+    public bool lookingleft;
+    public bool lookingright;
     void Flip()
     {
         if (pState.isAlive && !pState.isPaused && !pState.isNPC)
@@ -957,12 +1212,16 @@ public class PlayerController : MonoBehaviour
             }
             if (xAxis < 0)
             {
-                transform.localScale = new Vector2(-1, transform.localScale.y);
+                lookingleft = true;
+                lookingright = false;
+                transform.localScale = new Vector2(-2.24868f, transform.localScale.y);
                 pState.lookingRight = false;
             }
             else if (xAxis > 0)
             {
-                transform.localScale = new Vector2(1, transform.localScale.y);
+                lookingleft = false;
+                lookingright = true;
+                transform.localScale = new Vector2(2.24868f, transform.localScale.y);
                 pState.lookingRight = true;
             }
         }               
@@ -992,7 +1251,8 @@ public class PlayerController : MonoBehaviour
         else if (pState.canMove == false && pState.isAlive == false)
         {
             anim.SetBool("Death", true);
-            rb.MovePosition(rb.position);
+            //rb.MovePosition(rb.position);
+            rb.velocity = Vector2.zero;
         }
         
              

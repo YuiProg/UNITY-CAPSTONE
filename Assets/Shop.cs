@@ -134,7 +134,8 @@ public class Shop : MonoBehaviour
             hasFunds = true;
             purchaseCount++;
             PlayerController.Instance.barya = PlayerController.Instance.barya - 40;
-            PlayerController.Instance.potionCount = PlayerController.Instance.potionCount + 1;
+            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions + 1;
         }
         else
         {

@@ -9,7 +9,7 @@ public class EssenceDrop : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        rb.AddForce(new Vector2(0, 8), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

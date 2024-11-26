@@ -66,6 +66,8 @@ public class TeleportToCS : MonoBehaviour
 
     IEnumerator Transition(float time)
     {
+        QuestTracker.instance.hasQuest = false;
+        PlayerPrefs.DeleteKey("Quest");
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2f);
         PlayerController.Instance.transform.position = tpHere.transform.position;

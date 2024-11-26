@@ -167,6 +167,8 @@ public class NPC1 : MonoBehaviour
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
         interact.text = "E to Interact";
+        QuestTracker.instance.hasQuest = true;
+        PlayerPrefs.SetString("Quest", "Find the Cave");
         PlayerPrefs.SetInt("ATENTRANCE", 1);
         Destroy(BORDER1);
         talking = true;
@@ -228,6 +230,7 @@ public class NPC1 : MonoBehaviour
         Cursor.visible = false;
         talking = true;
         PlayerPrefs.SetInt("NPCINCAVE", 1);
+        PlayerPrefs.SetString("Quest", "Proceed to the Cave");
         interact.text = "E to Interact";
         GameUI.SetActive(true);
     }
@@ -281,6 +284,7 @@ public class NPC1 : MonoBehaviour
         Cursor.visible = false;
         talking = true;
         PlayerPrefs.SetInt("HIDENPC", 1);
+        PlayerPrefs.SetString("Quest", "Find the jar");
         count2++;
         Destroy(BORDER2);
         GameUI.SetActive(true);

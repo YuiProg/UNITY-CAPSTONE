@@ -97,13 +97,17 @@ public class Servant_Enemy : Enemy
         DLG.SetActive(true);
         dialogue.text = "The book—it’s in his hands! Take it!";
         npcName.text = "Servant";
+        QuestTracker.instance.hasQuest = true;
         yield return new WaitForSeconds(time);
         PlayerController.Instance.pState.isNPC = false;
         chaseDistance = 30f;
         canMove = true;
         DLG.SetActive(false);
+        dialogue.text = "";
+        npcName.text = "";
         isTalking = false;
         servantscanATK = true;
+        PlayerPrefs.SetString("Quest", "Defeat the servants");
         ChangeStates(EnemyStates.S_Idle);
     }
     void stopattacks()
@@ -129,13 +133,14 @@ public class Servant_Enemy : Enemy
         {
             canAttack = false;
             canMove = false;
-            Destroy(gameObject);
+            anim.SetTrigger("Death");
+            Destroy(gameObject, 1f);
         }
     }
     public bool distanceCheck()
     {
         float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        return distance < 1f;
+        return distance < 2.5f;
     }
 
     void AttackBehavior()

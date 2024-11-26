@@ -54,7 +54,7 @@ public class Archer : Enemy
     void stateCheck()
     {
         canAttack = PlayerController.Instance.pState.isAlive;
-        if (health < 0)
+        if (health <= 0)
         {
             canMove = false;
             canAttack = false;

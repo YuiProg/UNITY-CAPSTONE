@@ -9,6 +9,22 @@ public class Pause_Menu : MonoBehaviour
     [SerializeField] GameObject UI;
     [SerializeField] GameObject SettingsUI;
     [SerializeField] GameObject StatsUI;
+    //world map
+    [SerializeField] GameObject WORLDMAP;
+    [SerializeField] GameObject WORLDMAPBTN;
+
+    private void Update()
+    {
+        if (PlayerController.Instance.pState.obtainedMAP)
+        {
+            WORLDMAPBTN.SetActive(true);
+        }
+        else
+        {
+            WORLDMAPBTN.SetActive(false);
+        }
+        
+    }
     public void ResumeGame()
     {
         Cursor.visible = false;
@@ -17,6 +33,8 @@ public class Pause_Menu : MonoBehaviour
         PlayerController.Instance.pState.isPaused = false;
         pauseMenu.SetActive(false);
         SettingsUI.SetActive(false);
+
+        
     }
 
     public void QuitGame()
@@ -45,6 +63,18 @@ public class Pause_Menu : MonoBehaviour
     public void settingstoMenu()
     {
         SettingsUI.SetActive(false);
+        pauseMenu.SetActive(true);
+    }
+
+    public void WORLDMAPUI()
+    {
+        SettingsUI.SetActive(false);
+        WORLDMAP.SetActive(true);
+    }
+
+    public void worldmaptosettings()
+    {
+        WORLDMAP.SetActive(false);
         pauseMenu.SetActive(true);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +15,16 @@ public class LevelSystem : MonoBehaviour
     public Text stamina;
     public Text Defense;
     public Text AllLevel;
+    //obtained skill
+    public Text spearDamage;
+    [SerializeField] GameObject spearDMG;
     float AllDamage;
     int mainLevel;
+
+    private void Start()
+    {
+        spearDMG.SetActive(PlayerController.Instance.pState.obtainedSpear = true);
+    }
     void Update()
     {
         display();
@@ -29,7 +38,7 @@ public class LevelSystem : MonoBehaviour
             levels.text = $"ESSENCE: {PlayerPrefs.GetInt("Levels")}";
             AllLevel.text = $"LEVEL {PlayerController.Instance.mainLevel}";
             AllDamage = PlayerController.Instance.normal_damage + PlayerController.Instance.normal_hdamage;
-
+            spearDamage.text = $"SPEAR DAMAGE: {PlayerController.Instance.normal_spear_damage} + 2";
             ovDamage.text = $"OVERALL DAMAGE: {AllDamage}";
             nDamage.text = $"NORMAL DAMAGE: {PlayerController.Instance.normal_damage} + 2";
             hDamage.text = $"HARD DAMAGE: {PlayerController.Instance.normal_hdamage} + 2";
@@ -44,7 +53,7 @@ public class LevelSystem : MonoBehaviour
             levels.text = $"ESSENCE: {PlayerPrefs.GetInt("Levels")}";
             AllLevel.text = $"LEVEL {PlayerController.Instance.mainLevel}";
             AllDamage = PlayerController.Instance.normal_damage + PlayerController.Instance.normal_hdamage;
-
+            spearDamage.text = $"SPEAR DAMAGE: {PlayerController.Instance.normal_spear_damage}";
             ovDamage.text = $"OVERALL DAMAGE: {AllDamage}";
             nDamage.text = $"NORMAL DAMAGE: {PlayerController.Instance.normal_damage}";
             hDamage.text = $"HARD DAMAGE: {PlayerController.Instance.normal_hdamage}";
@@ -62,9 +71,11 @@ public class LevelSystem : MonoBehaviour
             PlayerController.Instance.normal_damage = PlayerController.Instance.normal_damage + 2;
             PlayerController.Instance.normal_hdamage = PlayerController.Instance.normal_hdamage  + 2;
             PlayerController.Instance.normal_slash_Damage = PlayerController.Instance.normal_slash_Damage + 2;
+            PlayerController.Instance.normal_spear_damage = PlayerController.Instance.normal_spear_damage + 2;
             PlayerController.Instance.damage = PlayerController.Instance.normal_damage;
             PlayerController.Instance.hdamage = PlayerController.Instance.normal_hdamage;
             PlayerController.Instance.Cdamage = PlayerController.Instance.normal_slash_Damage;
+            PlayerController.Instance.spearDamage = PlayerController.Instance.normal_spear_damage;
             PlayerController.Instance.mainLevel++;
 
             Save.instance.saveData();
