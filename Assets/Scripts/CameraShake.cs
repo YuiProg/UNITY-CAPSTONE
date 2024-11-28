@@ -54,6 +54,10 @@ public class CameraShake : MonoBehaviour
     }
     void Update()
     {
+        if (!PlayerController.Instance.pState.isAlive)
+        {
+            UI.SetActive(false);
+        }
         if (PlayerController.Instance.takingDamage)
         {
             ShakeCamera();
@@ -66,7 +70,7 @@ public class CameraShake : MonoBehaviour
                 StopShake();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && PlayerController.Instance.pState.canPause)
         {
             if (isPaused)
             {
@@ -90,7 +94,6 @@ public class CameraShake : MonoBehaviour
                 statUI.SetActive(false);
                 isPaused = true;
                 pauseMenu.SetActive(true);
-                
             }
         }
     }

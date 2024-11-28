@@ -141,6 +141,11 @@ public class Enemy : MonoBehaviour
         S1_Chase,
         S1_AttackBehavior,
 
+        //servantDIALOGUEMAP
+        S2_Idle,
+        S2_Chase,
+        S2_AttackBehavior,
+
         //GOLEM BOSS
         G_Idle,
         G_Chase,

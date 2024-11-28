@@ -4,14 +4,16 @@ public class PlayerState : MonoBehaviour
 {
     private void Update()
     {
-        obtainedSpear = PlayerPrefs.GetInt("HERALD GOLEM") == 1;
+        obtainedSpear = PlayerPrefs.GetInt("SPEAR") == 1;
         obtainedMAP = PlayerPrefs.GetInt("MAP") == 1;
+        hasBOOK = PlayerPrefs.GetInt("HASBOOK") == 1;
     }
     //OTHER
     public bool isPaused = false;
     public bool Transitioning = false;
     public bool inParkourState = false;
     public bool isNPC = false;
+    public bool canPause = true;
 
     //movement bool
     public bool jumping = false;
@@ -26,6 +28,7 @@ public class PlayerState : MonoBehaviour
     public bool canAttack = true;
     public bool killedABoss = false;
     public bool SkillBOSS = false;
+    public bool hasBOOK = false;
 
     //parry,block
     public bool blocking = false;

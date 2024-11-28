@@ -36,18 +36,35 @@ public class TutorialTrigger : MonoBehaviour
     IEnumerator dialogues(float time)
     {
         onGoing = true;
+        PlayerController.Instance.pState.isNPC = true;
         DLG.SetActive(true);
-        dialogue.text = "Left Click for Normal Attack";
-        yield return new WaitForSeconds(time);
-        dialogue.text = "Right Click for Heavy Attack";
-        yield return new WaitForSeconds(time);
-        dialogue.text = "E to Block";
-        yield return new WaitForSeconds(time);
-        dialogue.text = "Left Ctrl to Dodge";
-        yield return new WaitForSeconds(time);
-        dialogue.text = "Left Alt to Heal";
-        yield return new WaitForSeconds(time);
-        DLG.SetActive(false);
+        string[] words = new[]
+        {
+            "Whose steps disturb the timeless divine.",
+            "Because of its power, chaos shall arise, Threatening existence, to our demise.",
+            "Only he, the chosen, can stand and fight, To preserve the threads of our day and night.",
+            "Find the three artifacts, protect the gate, For the rogue traveler's power before it's too late"
+        };
+
+        for (int i = 0; i < words.Length; i++)
+        {
+            float elapsedtime = 0f;
+            dialogue.text = words[i];
+            while (elapsedtime < time)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    elapsedtime = time;
+                    break;
+                }
+                elapsedtime += Time.deltaTime;
+                yield return null;
+            }
+
+        }
+        onGoing = false;
+        DLG.SetActive(false); 
+        PlayerController.Instance.pState.isNPC = false;
         Destroy(gameObject);
     }
 }

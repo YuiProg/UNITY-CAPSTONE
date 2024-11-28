@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [Header("Horizontal Movement Settings:")]
-    [SerializeField] private float walkSpeed;
+    [SerializeField] public float walkSpeed;
     [Space(5)]
 
     [Header("Vertical Movement Settings")]
@@ -293,6 +293,11 @@ public class PlayerController : MonoBehaviour
             pState.running = false;
             pState.dashing = false;
             pState.isAlive = false;
+            health = PlayerPrefs.GetFloat("Max Health");
+            stamina = PlayerPrefs.GetFloat("Max Stamina");
+            shieldCount = PlayerPrefs.GetFloat("Max Shield");
+            potionCount = PlayerPrefs.GetInt("MaxPotion");
+            Save.instance.saveStats();
             rb.drag = 1000;
             rb.velocity = Vector2.zero;
             Dead();

@@ -65,6 +65,7 @@ public class QuestionAndAnswer2 : MonoBehaviour
 
     IEnumerator Dialogue(float time)
     {
+        PlayerController.Instance.pState.canPause = false;
         Cursor.visible = true;
         isTalking = true;
         PlayerController.Instance.pState.isNPC = true;
@@ -154,10 +155,12 @@ public class QuestionAndAnswer2 : MonoBehaviour
         PlayerController.Instance.pState.isNPC = false;
         NPCDIALOGUE.SetActive(false);
         isTalking = false;
+        PlayerController.Instance.pState.canPause = true;
         Cursor.visible = false;
     }
     IEnumerator dialogue2(float time)
     {
+        PlayerController.Instance.pState.canPause = false;
         Cursor.visible = true;
         isTalking = true;
         PlayerController.Instance.pState.isNPC = true;
@@ -191,6 +194,7 @@ public class QuestionAndAnswer2 : MonoBehaviour
         isTalking = false;
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Find the lever");
+        PlayerController.Instance.pState.canPause = true;
         PlayerController.Instance.pState.isNPC = false;
     }
 }

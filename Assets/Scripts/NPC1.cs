@@ -114,6 +114,7 @@ public class NPC1 : MonoBehaviour
     }
     IEnumerator Dialogue1(float time)
     {
+        PlayerController.Instance.pState.canPause = false;
         GameUI.SetActive(false);
         npcDLG.SetActive(true);
         talking = false;
@@ -169,6 +170,7 @@ public class NPC1 : MonoBehaviour
         interact.text = "E to Interact";
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Find the Cave");
+        PlayerController.Instance.pState.canPause = true;
         PlayerPrefs.SetInt("ATENTRANCE", 1);
         Destroy(BORDER1);
         talking = true;
@@ -178,6 +180,7 @@ public class NPC1 : MonoBehaviour
 
     IEnumerator Dialogue2(float time)
     {
+        PlayerController.Instance.pState.canPause = false;
         GameUI.SetActive(false);
         npcDLG.SetActive(true);
         Cursor.visible = true;
@@ -231,12 +234,14 @@ public class NPC1 : MonoBehaviour
         talking = true;
         PlayerPrefs.SetInt("NPCINCAVE", 1);
         PlayerPrefs.SetString("Quest", "Proceed to the Cave");
+        PlayerController.Instance.pState.canPause = true;
         interact.text = "E to Interact";
         GameUI.SetActive(true);
     }
 
     IEnumerator Dialogue3(float time)
     {
+        PlayerController.Instance.pState.canPause = false;
         GameUI.SetActive(false);
         npcDLG.SetActive(true);
         Cursor.visible = true;
@@ -285,6 +290,7 @@ public class NPC1 : MonoBehaviour
         talking = true;
         PlayerPrefs.SetInt("HIDENPC", 1);
         PlayerPrefs.SetString("Quest", "Find the jar");
+        PlayerController.Instance.pState.canPause = true;
         count2++;
         Destroy(BORDER2);
         GameUI.SetActive(true);

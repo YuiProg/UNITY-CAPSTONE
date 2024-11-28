@@ -41,7 +41,7 @@ public class WorldMap : MonoBehaviour
         MACTANSKKILL.SetActive(false);
         MACTANENTERBTN.SetActive(false);
         EnterArea.text = "Select Area";
-        //unlockCheck();
+        unlockCheck();
     }
 
 
@@ -72,6 +72,7 @@ public class WorldMap : MonoBehaviour
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
         StartCoroutine(TPMACTAN());
+        Cursor.visible = false;
     }
 
     public void enterIFUGAO()
@@ -79,6 +80,7 @@ public class WorldMap : MonoBehaviour
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
         StartCoroutine(TPIFUGAO());
+        Cursor.visible = false;
     }
 
     public void IFUGAO()
@@ -105,11 +107,12 @@ public class WorldMap : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2.5f);
         PlayerController.Instance.transform.position = MACTANTP.transform.position;
-        PlayerController.Instance.pState.Transitioning = false;
-        PlayerController.Instance.pState.isPaused = false;
-        UI.SetActive(true);
+        PlayerController.Instance.health = PlayerController.Instance.maxHealth;
+        PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
+        PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+        Save.instance.saveData();
         teleporting = false;
-        MAP.SetActive(false);
+        LevelManager.instance.loadscene("Cave_1");
     }
 
     IEnumerator TPIFUGAO()
@@ -118,11 +121,12 @@ public class WorldMap : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2.5f);
         PlayerController.Instance.transform.position = IFUGAOTP.transform.position;
-        PlayerController.Instance.pState.Transitioning = false;
-        PlayerController.Instance.pState.isPaused = false;
-        UI.SetActive(true);
+        PlayerController.Instance.health = PlayerController.Instance.maxHealth;
+        PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
+        PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+        Save.instance.saveData();
         teleporting = false;
-        MAP.SetActive(false);
+        LevelManager.instance.loadscene("Cave_1");
     }
 
     public void exitWM()

@@ -118,6 +118,7 @@ public class GOLEM_BOSS : Enemy
         float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
         return distance < 3f;
     }
+    bool isalive = true;
     void stateCheck()
     {
         canMove = !parried;
@@ -141,7 +142,10 @@ public class GOLEM_BOSS : Enemy
             dropE();
             spottedPlayer = false;
             Save.instance.saveData();
-            PlayerController.Instance.pState.SkillBOSS = true;
+            QuestTracker.instance.hasQuest = true;
+            PlayerPrefs.SetString("Quest", "Return to the igorot leader");
+            dead();
+            PlayerController.Instance.pState.killedABoss = true;
             Destroy(gameObject, 2f);
         }
         if (!PlayerController.Instance.pState.isAlive)
@@ -151,7 +155,16 @@ public class GOLEM_BOSS : Enemy
             HEALTHBAR.SetActive(false);
         }
     }
-
+    void dead()
+    {
+        if (isalive)
+        {
+            isalive = false;
+            QuestTracker.instance.hasQuest = true;
+            PlayerPrefs.SetString("Quest", "Return to the igorot leader");
+            PlayerController.Instance.pState.killedABoss = true;
+        }
+    }
     void dropE()
     {
         if (count != 3)

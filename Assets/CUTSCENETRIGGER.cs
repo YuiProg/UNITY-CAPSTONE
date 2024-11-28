@@ -62,19 +62,19 @@ public class CUTSCENETRIGGER : MonoBehaviour
         for (int i = 0; i < dialogues1.Length; i++)
         {
             dlg.text = dialogues1[i];
-            float elapsedtime = 0f;
-            while (elapsedtime < time)
+            float elapsedtime1 = 0f;
+            while (elapsedtime1 < time)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    elapsedtime = time;
+                    elapsedtime1 = time;
                     break;
                 }
-                elapsedtime += Time.deltaTime;
+                elapsedtime1 += Time.deltaTime;
                 yield return null;
             }
         }
-
+        NPCTEXT.SetActive(false);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2f);
         Destroy(jar1);
@@ -84,7 +84,7 @@ public class CUTSCENETRIGGER : MonoBehaviour
         Destroy(jar5);
         yield return new WaitForSeconds(time + 1f); 
         PlayerController.Instance.pState.Transitioning = false;
-
+        NPCTEXT.SetActive(true);
         string[] dialogue2 = new[]
         {
             "Alright, stay calm, Zieck. You’ve been in strange situations before. Just… think. Where could they have gone? and the artifacts also are not here",
@@ -97,25 +97,26 @@ public class CUTSCENETRIGGER : MonoBehaviour
         for (int i = 0; i < dialogue2.Length; i++)
         {
             dlg.text = dialogue2[i];
-            float elapsedtime = 0f;
-            while (elapsedtime < time)
+            float elapsedtime2 = 0f;
+            while (elapsedtime2 < time)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    elapsedtime = time;
+                    elapsedtime2 = time;
                     break;
                 }
-                elapsedtime += Time.deltaTime;
+                elapsedtime2 += Time.deltaTime;
                 yield return null;
             }
         }
         dlg.text = "";
-
+        NPCTEXT.SetActive(false);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2f);
         PlayerController.Instance.transform.position = player.transform.position;
         yield return new WaitForSeconds(time + 1f);
         PlayerController.Instance.pState.Transitioning = false;
+        NPCTEXT.SetActive(true);
         string[] dialogue3 = new[]
         {
             "Where did they go?",
@@ -126,15 +127,15 @@ public class CUTSCENETRIGGER : MonoBehaviour
         for (int i = 0; i < dialogue3.Length; i++)
         {
             dlg.text = dialogue3[i];
-            float elapsedtime = 0f;
-            while (elapsedtime < time)
+            float elapsedtime3 = 0f;
+            while (elapsedtime3 < time)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    elapsedtime = time;
+                    elapsedtime3 = time;
                     break;
                 }
-                elapsedtime += Time.deltaTime;
+                elapsedtime3 += Time.deltaTime;
                 yield return null;
             }
         }

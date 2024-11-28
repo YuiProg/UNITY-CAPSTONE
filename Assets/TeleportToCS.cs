@@ -69,6 +69,7 @@ public class TeleportToCS : MonoBehaviour
         QuestTracker.instance.hasQuest = false;
         PlayerPrefs.DeleteKey("Quest");
         PlayerController.Instance.pState.Transitioning = true;
+        PlayerPrefs.SetInt("HASBOOK", 1);
         yield return new WaitForSeconds(2f);
         PlayerController.Instance.transform.position = tpHere.transform.position;
         Save.instance.saveData();

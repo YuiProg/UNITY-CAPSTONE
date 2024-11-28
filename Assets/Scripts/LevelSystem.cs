@@ -21,13 +21,17 @@ public class LevelSystem : MonoBehaviour
     float AllDamage;
     int mainLevel;
 
-    private void Start()
-    {
-        spearDMG.SetActive(PlayerController.Instance.pState.obtainedSpear = true);
-    }
     void Update()
     {
         display();
+        if (PlayerPrefs.GetInt("SPEAR") == 1)
+        {
+            spearDMG.SetActive(true);
+        }
+        else
+        {
+            spearDMG.SetActive(false);
+        }
     }
 
     void display()
