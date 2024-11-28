@@ -102,31 +102,47 @@ public class WorldMap : MonoBehaviour
     //teleporters
     IEnumerator TPMACTAN()
     {
+
+        if (!teleporting)
+        {
+            teleporting = true;
+            PlayerController.Instance.pState.Transitioning = true;
+            yield return new WaitForSeconds(2.5f);
+            PlayerController.Instance.transform.position = MACTANTP.transform.position;
+            PlayerController.Instance.health = PlayerController.Instance.maxHealth;
+            PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
+            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+            Save.instance.saveData();
+            teleporting = false;
+            LevelManager.instance.loadscene("Cave_1");
+        }
+        else
+        {
+            yield return null;
+        }
         
-        teleporting = true;
-        PlayerController.Instance.pState.Transitioning = true;
-        yield return new WaitForSeconds(2.5f);
-        PlayerController.Instance.transform.position = MACTANTP.transform.position;
-        PlayerController.Instance.health = PlayerController.Instance.maxHealth;
-        PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
-        PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
-        Save.instance.saveData();
-        teleporting = false;
-        LevelManager.instance.loadscene("Cave_1");
     }
 
     IEnumerator TPIFUGAO()
     {
-        teleporting = true;
-        PlayerController.Instance.pState.Transitioning = true;
-        yield return new WaitForSeconds(2.5f);
-        PlayerController.Instance.transform.position = IFUGAOTP.transform.position;
-        PlayerController.Instance.health = PlayerController.Instance.maxHealth;
-        PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
-        PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
-        Save.instance.saveData();
-        teleporting = false;
-        LevelManager.instance.loadscene("Cave_1");
+        if (!teleporting)
+        {
+            teleporting = true;
+            PlayerController.Instance.pState.Transitioning = true;
+            yield return new WaitForSeconds(2.5f);
+            PlayerController.Instance.transform.position = IFUGAOTP.transform.position;
+            PlayerController.Instance.health = PlayerController.Instance.maxHealth;
+            PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
+            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+            Save.instance.saveData();
+            teleporting = false;
+            LevelManager.instance.loadscene("Cave_1");
+        }
+        else
+        {
+            yield return null;
+        }
+        
     }
 
     public void exitWM()

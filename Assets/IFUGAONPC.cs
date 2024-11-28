@@ -21,8 +21,17 @@ public class IFUGAONPC : MonoBehaviour
 
     bool onTrigger;
     bool isTalking = false;
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("IFUGAONPC") == 1)
+        {
+            BORDER.SetActive(false);
+        }
+        BORDER2.SetActive(false);
+    }
     private void Update()
     {
+        
         flip();
         if (onTrigger && Input.GetKeyDown(KeyCode.E) && PlayerPrefs.GetInt("IFUGAONPC") != 1)
         {
@@ -39,13 +48,10 @@ public class IFUGAONPC : MonoBehaviour
                 }
             }
         }
-        if (PlayerPrefs.GetInt("IFUGAONPC") == 1)
-        {
-            Destroy(BORDER);
-            Destroy(BORDER2);
-        }
+        
         if (PlayerPrefs.GetInt("HERALD GOLEM") == 1) transform.position = loc2.transform.position;
-
+        if (PlayerPrefs.GetInt("HERALD GOLEM") == 1) BORDER2.SetActive(true);
+        if (PlayerPrefs.GetInt("HERALD GOLEM") == 1) BORDER2.SetActive(true);
     }
 
 
