@@ -14,10 +14,16 @@ public class Desert_BOSS : Enemy
     [SerializeField] GameObject BORDER_R;
     [SerializeField] GameObject BORDER_L;
     [SerializeField] AudioSource music;
-    [SerializeField] GameObject CheckPoint;
+
+    //essence
+    [SerializeField] GameObject essence;
+    [SerializeField] Transform essenceloc;
+
+    //world map
+
+    int count;
     bool dead = false;
     public static Desert_BOSS instance;
-    
     protected override void Start()
     {
         base.Start();
@@ -29,13 +35,11 @@ public class Desert_BOSS : Enemy
         BORDER_L.SetActive(false);
         BORDER_R.SetActive(false);
         HEALTHBAR.SetActive(false);
-        CheckPoint.SetActive(false);
     }
     private void Awake()
     {
         HEALTHBAR.SetActive(PlayerPrefs.GetInt("Desert") != 1);
         gameObject.SetActive(PlayerPrefs.GetInt("Desert") != 1);
-        CheckPoint.SetActive(PlayerPrefs.GetInt("Desert") == 1);
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -53,10 +57,10 @@ public class Desert_BOSS : Enemy
         statusCheck();
         if (health <= 0 && !dead)
         {
-            PlayerController.Instance.levels = PlayerController.Instance.levels + 1;
             anim.SetTrigger("Dead");
+            PlayerController.Instance.pState.killedABoss = true;
+            PlayerPrefs.SetString("Quest", "Return to statue");
             Save.instance.saveData();
-            CheckPoint.SetActive(true);
             dead = true;
         }
         if (canMove && !attacking)
@@ -83,6 +87,14 @@ public class Desert_BOSS : Enemy
         }
     }
 
+    void dropEssence()
+    {
+        if (count != 5)
+        {
+            count++;
+            Instantiate(essence, essenceloc.position, Quaternion.identity);
+        }
+    }
     void statusCheck()
     {
         canMove = !parried;       
@@ -95,13 +107,14 @@ public class Desert_BOSS : Enemy
         
         if (health <= 0)
         {
+            dropEssence();
             canMove = false;
             canAttack = false;
             music.volume -= Time.deltaTime;
             spottedPlayer = false;
             HEALTHBAR.SetActive(false);
             BORDER_L.SetActive(false);
-            BORDER_R.SetActive(false);
+            BORDER_R.SetActive(false);        
             PlayerPrefs.SetInt("Desert", 1);
             Destroy(gameObject, 2f);
         }

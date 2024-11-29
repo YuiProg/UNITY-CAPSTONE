@@ -11,6 +11,8 @@ public class WorldMap : MonoBehaviour
     [Header("MAP DETAILS")]
     [SerializeField] GameObject MACTANART;
     [SerializeField] GameObject MACTANSKKILL;
+    [SerializeField] GameObject MACTANSQART;
+    [SerializeField] GameObject MACTANSQSKILL;
     [SerializeField] GameObject IFUGAOART;
     [SerializeField] GameObject IFUGAOSKILL;
     [Space(5)]
@@ -19,6 +21,10 @@ public class WorldMap : MonoBehaviour
     [SerializeField] GameObject IFUGAOENTERBTN;
     [SerializeField] GameObject MACTANBTN;
     [SerializeField] GameObject MACTANENTERBTN;
+    [SerializeField] GameObject MACTANSQENTERBTN;
+    [Space(5)]
+    [Header("SIDE QUEST BTNS")]
+    [SerializeField] GameObject SIDEQUEST1BTNMACTAN;
     [Space(5)]
     [Header("Texts")]
     [SerializeField] Text EnterArea;
@@ -26,6 +32,7 @@ public class WorldMap : MonoBehaviour
     [Header("Teleporter")]
     [SerializeField] Transform MACTANTP;
     [SerializeField] Transform IFUGAOTP;
+    [SerializeField] Transform MACTANSIDEQUEST;
     [Space(5)]
     [Header("Pause Menu")]
     [SerializeField] GameObject Pausemenu;
@@ -47,9 +54,10 @@ public class WorldMap : MonoBehaviour
 
     void unlockCheck()
     {
-        if (PlayerPrefs.GetInt("Ifugao") == 0 || !PlayerPrefs.HasKey("Ifugao"))
+        if (PlayerPrefs.GetInt("Mactan") == 0 || !PlayerPrefs.HasKey("Mactan"))
         {
-            IFUGAOBTN.SetActive(false);
+            MACTANBTN.SetActive(false);
+            SIDEQUEST1BTNMACTAN.SetActive(false);
         }
 
     }
@@ -57,7 +65,7 @@ public class WorldMap : MonoBehaviour
     //mactan
     public void MACTAN()
     {
-        mactan++;
+        mactan++;//wala nato katamad na ibahin baka mag iba pa
         ifugao = 0;
         EnterArea.text = "Enter MACTAN";
         MACTANART.SetActive(true);
@@ -65,6 +73,24 @@ public class WorldMap : MonoBehaviour
         MACTANENTERBTN.SetActive(true);
         IFUGAOART.SetActive(false);
         IFUGAOSKILL.SetActive(false);
+        IFUGAOENTERBTN.SetActive(false);
+        MACTANSQART.SetActive(false);
+        MACTANSQSKILL.SetActive(false);
+        MACTANSQENTERBTN.SetActive(false);
+    }
+
+    public void MACTANSIDEQUESTART()
+    {
+        EnterArea.text = "Mactan SideQuest";
+        MACTANART.SetActive(false);
+        MACTANSKKILL.SetActive(false);
+        MACTANENTERBTN.SetActive(false);
+        IFUGAOART.SetActive(false);
+        IFUGAOSKILL.SetActive(false);
+        IFUGAOENTERBTN.SetActive(false);
+        MACTANSQART.SetActive(true);
+        MACTANSQSKILL.SetActive(true);
+        MACTANSQENTERBTN.SetActive(true);
     }
 
     public void enterMACTAN()
@@ -75,6 +101,13 @@ public class WorldMap : MonoBehaviour
         Cursor.visible = false;
     }
 
+    public void enterMactanSQ()
+    {
+        Time.timeScale = 1f;
+        Pausemenu.SetActive(false);
+        StartCoroutine(TPSIDEQUESTMACTAN());
+        Cursor.visible = false;
+    }
     public void enterIFUGAO()
     {
         Time.timeScale = 1f;
@@ -82,6 +115,8 @@ public class WorldMap : MonoBehaviour
         StartCoroutine(TPIFUGAO());
         Cursor.visible = false;
     }
+
+
 
     public void IFUGAO()
     {
@@ -94,6 +129,9 @@ public class WorldMap : MonoBehaviour
         IFUGAOART.SetActive(true);
         IFUGAOSKILL.SetActive(true);
         IFUGAOENTERBTN.SetActive(true);
+        MACTANSQART.SetActive(false);
+        MACTANSQSKILL.SetActive(false);
+        MACTANSQENTERBTN.SetActive(false);
     }
     //ifugao
 
@@ -145,6 +183,26 @@ public class WorldMap : MonoBehaviour
         
     }
 
+    IEnumerator TPSIDEQUESTMACTAN()//SIDE QUEST MACTAN
+    {
+        if (!teleporting)
+        {
+            teleporting = true;
+            PlayerController.Instance.pState.Transitioning = true;
+            yield return new WaitForSeconds(2.5f);
+            PlayerController.Instance.transform.position = MACTANSIDEQUEST.transform.position;
+            PlayerController.Instance.health = PlayerController.Instance.maxHealth;
+            PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
+            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+            Save.instance.saveData();
+            teleporting = false;
+            LevelManager.instance.loadscene("Cave_1");
+        }
+        else
+        {
+            yield return null;
+        }
+    }
     public void exitWM()
     {
 

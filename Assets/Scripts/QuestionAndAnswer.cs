@@ -28,18 +28,19 @@ public class QuestionAndAnswer : MonoBehaviour
     {
         if (inTrigger && Input.GetKeyDown(KeyCode.E) && !isTalking)
         {
-            NPCDIALOGUE.SetActive(true);
-            if (PlayerPrefs.GetInt("Desert") != 1)
+            if (PlayerPrefs.GetInt("Desert") != 1 && PlayerPrefs.GetInt("SideQuest1") != 1)
             {
                 isTalking = true;
                 StartCoroutine(DialogueNPCQNA(4.5f));
             }
-            else if (PlayerPrefs.GetInt("Desert") == 1)
+            if (PlayerPrefs.GetInt("WARRIOR") == 1 && PlayerPrefs.GetInt("SideQuest1") == 1)
             {
                 isTalking = true;
                 StartCoroutine(EssenceDialogue(4.5f));
             }
         }
+
+        if (PlayerPrefs.GetInt("SideQuest1") == 1) BORDER.SetActive(false);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -60,8 +61,11 @@ public class QuestionAndAnswer : MonoBehaviour
     
     IEnumerator EssenceDialogue(float time)
     {
+        QuestTracker.instance.hasQuest = false;
+        PlayerPrefs.DeleteKey("Quest");
         Cursor.visible = true;
         PlayerController.Instance.pState.isNPC = true;
+        NPCDIALOGUE.SetActive(true);
         string[] dialogues = new[]
         {
             "Well done. His sacrifice and his work on our country lives on",
@@ -88,10 +92,10 @@ public class QuestionAndAnswer : MonoBehaviour
         NPCDIALOGUE.SetActive(false);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(time);
+        PlayerController.Instance.pState.Transitioning = false;
         STATUE2.SetActive(true);
         STATUE1.SetActive(false);
         yield return new WaitForSeconds(time);
-        PlayerController.Instance.pState.Transitioning = false;
         NPCDIALOGUE.SetActive(true);
         dialogue.text = "You may now proceed on your adventure";
         yield return new WaitForSeconds(time);
@@ -106,7 +110,7 @@ public class QuestionAndAnswer : MonoBehaviour
         Cursor.visible = true;
         PlayerController.Instance.pState.isNPC = true;
 
-        
+        NPCDIALOGUE.SetActive(true);
 
         string[] dialogues = new string[]
         {
@@ -125,6 +129,7 @@ public class QuestionAndAnswer : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     elapsedtime = time;
+                    break;
                 }
                 elapsedtime += Time.deltaTime;
                 yield return null;
@@ -150,7 +155,7 @@ public class QuestionAndAnswer : MonoBehaviour
         string[] dialogues = new[]
         {
             "Yes... the curse has been broke but you can't leave here without the heroic essence.",
-            "You must defeat the datu batungan to obtain his essence.",
+            "You must defeat Panday Tulisán to obtain his essence.",
             ""
         };
 
@@ -169,7 +174,7 @@ public class QuestionAndAnswer : MonoBehaviour
                 yield return null;
             }
         }
-        yield return new WaitForSeconds(3f);
+        PlayerPrefs.SetInt("SideQuest1", 1);
         dialogue.text = "";
         NPCDIALOGUE.SetActive(false);
         Cursor.visible = false;

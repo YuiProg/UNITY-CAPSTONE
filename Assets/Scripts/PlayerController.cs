@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
     private bool dashed;
 
 
-    [Header("Attack")]
+    [Header("Attack")] //pag nag level 10, 20 and 30 mas mataas dapat lifesteal
     [SerializeField] float normalAttackLS;
     [SerializeField] float hardAttackLS;
     [SerializeField] float jumpAttackLS;
@@ -802,7 +802,7 @@ public class PlayerController : MonoBehaviour
                 timeSinceAttack = 0;
                 pState.canAttack = false;
                 anim.SetTrigger("SpearDash");
-                rb.AddForce(new Vector2(-.5f, transform.position.y), ForceMode2D.Force);
+                rb.AddForce(new Vector2(-.5f, 0), ForceMode2D.Force);
 
                 if (yAxis == 0 || yAxis < 0 && Grounded())
                 {
@@ -829,7 +829,7 @@ public class PlayerController : MonoBehaviour
                 timeSinceAttack = 0;
                 pState.canAttack = false;
                 anim.SetTrigger("SpearDash");
-                rb.AddForce(new Vector2(-.5f, transform.position.y), ForceMode2D.Force);
+                rb.AddForce(new Vector2(-.5f, 0), ForceMode2D.Force);
                 if (yAxis == 0 || yAxis < 0 && Grounded())
                 {
                     int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
@@ -856,7 +856,7 @@ public class PlayerController : MonoBehaviour
                 pState.canAttack = false;
 
                 anim.SetTrigger("SpearDash");
-                rb.AddForce(new Vector2(-.5f, transform.position.y), ForceMode2D.Force);
+                rb.AddForce(new Vector2(-.5f, 0), ForceMode2D.Force);
                 if (yAxis == 0 || yAxis < 0 && Grounded())
                 {
                     int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
@@ -890,7 +890,7 @@ public class PlayerController : MonoBehaviour
                 timeSinceAttack = 0;
                 pState.canAttack = false;
                 anim.SetTrigger("SpearDash");
-                rb.AddForce(new Vector2(.5f, transform.position.y), ForceMode2D.Force);
+                rb.AddForce(new Vector2(.5f, 0), ForceMode2D.Force);
 
                 if (yAxis == 0 || yAxis < 0 && Grounded())
                 {
@@ -917,7 +917,7 @@ public class PlayerController : MonoBehaviour
                 timeSinceAttack = 0;
                 pState.canAttack = false;
                 anim.SetTrigger("SpearDash");
-                rb.AddForce(new Vector2(.5f, transform.position.y), ForceMode2D.Force);
+                rb.AddForce(new Vector2(.5f, 0), ForceMode2D.Force);
                 if (yAxis == 0 || yAxis < 0 && Grounded())
                 {
                     int _lookingLeftorRight = pState.lookingRight ? 1 : -1;
@@ -944,7 +944,7 @@ public class PlayerController : MonoBehaviour
                 pState.canAttack = false;
 
                 anim.SetTrigger("SpearDash");
-                rb.AddForce(new Vector2(.5f, transform.position.y), ForceMode2D.Force);
+                rb.AddForce(new Vector2(.5f, 0), ForceMode2D.Force);
                 if (yAxis == 0 || yAxis < 0 && Grounded())
                 {
                     int _lookingLeftorRight = pState.lookingRight ? 1 : -1;

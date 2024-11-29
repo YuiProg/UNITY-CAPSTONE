@@ -17,29 +17,25 @@ public class QuestionAndAnswer2 : MonoBehaviour
 
     public bool inTrigger = false;
     bool isTalking = false;
-    bool bossdead = false;
     private void Start()
     {
         QNA.SetActive(false);
         InputAnswer.SetActive(false);
-        BORDER.SetActive(PlayerPrefs.GetInt("Desert2") != 1);
-        if (PlayerPrefs.GetInt("WARRIOR") == 1)
-        {
-            bossdead = true;
-        }
     }
 
     private void Update()
     {
+        if (PlayerPrefs.GetInt("SideQuest2") == 1) BORDER.SetActive(false);
+
         if (inTrigger)
         {
             if (Input.GetKeyDown(KeyCode.E) && !isTalking)
             {
-                if (PlayerPrefs.GetInt("WARRIOR") == 1 && bossdead)
+                if (PlayerPrefs.GetInt("Desert") == 1)
                 {
                     StartCoroutine(winDLG(4.5f));
                 }
-                if (PlayerPrefs.GetInt("Desert2") != 1 && !bossdead)
+                if (PlayerPrefs.GetInt("Desert") != 1 && PlayerPrefs.GetInt("SideQuest2") != 1)
                 {
                     StartCoroutine(Dialogue(4.5f));
                 }
@@ -187,13 +183,13 @@ public class QuestionAndAnswer2 : MonoBehaviour
                 yield return null;
             }
         }
-        PlayerPrefs.SetInt("Desert2", 1);
         NPCDIALOGUE.SetActive(false);
         BORDER.SetActive(false);
         Cursor.visible = false;
         isTalking = false;
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Find the lever");
+        PlayerPrefs.SetInt("SideQuest2", 1);
         PlayerController.Instance.pState.canPause = true;
         PlayerController.Instance.pState.isNPC = false;
     }

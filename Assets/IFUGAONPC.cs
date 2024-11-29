@@ -21,6 +21,7 @@ public class IFUGAONPC : MonoBehaviour
 
     bool onTrigger;
     bool isTalking = false;
+    bool haskilled = false;
     private void Start()
     {
         if (PlayerPrefs.GetInt("IFUGAONPC") == 1)
@@ -50,8 +51,13 @@ public class IFUGAONPC : MonoBehaviour
         }
         
         if (PlayerPrefs.GetInt("HERALD GOLEM") == 1) transform.position = loc2.transform.position;
-        if (PlayerPrefs.GetInt("HERALD GOLEM") == 1) BORDER2.SetActive(true);
-        if (PlayerPrefs.GetInt("HERALD GOLEM") == 1) BORDER2.SetActive(true);
+        if (PlayerPrefs.GetInt("IFUGAONPC") == 1) BORDER2.SetActive(false);
+
+        if (PlayerPrefs.GetInt("HERALD GOLEM") == 1 && !haskilled)
+        {
+            haskilled = true;
+            BORDER2.SetActive(true);
+        }
     }
 
 

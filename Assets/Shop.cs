@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -63,43 +64,41 @@ public class Shop : MonoBehaviour
                 purchased.text = "";
             }
         }
-        else
+        if (hasFunds)
         {
-            if (hasFunds)
+            if (purchaseCount > 1)
             {
-                if (purchaseCount > 1)
-                {
-                    purchased.text = $"Purchased {purchaseCount} Potions!";
-                }
-                else
-                {
-                    purchased.text = $"Purchased {purchaseCount} Potion!";
-                }
+                purchased.text = $"Purchased {purchaseCount} Potions!";
             }
             else
             {
-                purchased.text = "Insufficient Funds!";
-            }
-
-            yield return new WaitForSeconds(time);
-
-            if (elapsedTime >= time)
-            {
-                purchased.text = "";
+                purchased.text = $"Purchased {purchaseCount} Potion!";
             }
         }
-        
+        else
+        {
+            purchased.text = "Insufficient Funds!";
+        }
+
+        yield return new WaitForSeconds(time);
+
+        if (elapsedTime >= time)
+        {
+            purchased.text = "";
+        }
+
     }
     public void BuyEssence()
     {
         elapsedTime = 0;
 
-        if (PlayerController.Instance.barya >= 50)
+        if (PlayerController.Instance.barya >= 20)
         {
             hasFunds = true;
             purchaseCount++;
-            PlayerController.Instance.barya = PlayerController.Instance.barya - 50; 
-            PlayerController.Instance.levels = PlayerController.Instance.levels + 1; 
+            PlayerController.Instance.barya = PlayerController.Instance.barya - 20; 
+            PlayerController.Instance.levels = PlayerController.Instance.levels + 1;
+            Save.instance.saveStats();
         }
         else
         {
@@ -128,24 +127,32 @@ public class Shop : MonoBehaviour
     public void purchasePotion()
     {
         elapsedTime = 0;
-
-        if (PlayerController.Instance.barya >= 40)
+        if (PlayerController.Instance.maxPotions <= 8)
         {
-            hasFunds = true;
-            purchaseCount++;
-            PlayerController.Instance.barya = PlayerController.Instance.barya - 40;
-            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
-            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions + 1;
+            if (PlayerController.Instance.barya >= 25)
+            {
+                hasFunds = true;
+                purchaseCount++;
+                PlayerController.Instance.barya = PlayerController.Instance.barya - 25;
+                PlayerController.Instance.maxPotions = PlayerController.Instance.maxPotions + 1;
+                PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+                Save.instance.saveStats();
+            }
+            else
+            {
+                hasFunds = false;
+            }
+            if (purchaseCoroutine != null)
+            {
+                StopCoroutine(purchaseCoroutine);
+            }
+            purchaseCoroutine = StartCoroutine(PurchasePotion(2f));
         }
         else
         {
-            hasFunds = false;
+            purchased.text = "You have all the potions!";
         }
+        
 
-        if (purchaseCoroutine != null)
-        {
-            StopCoroutine(purchaseCoroutine);
-        }
-        purchaseCoroutine = StartCoroutine(PurchasePotion(2f));
     }
 }

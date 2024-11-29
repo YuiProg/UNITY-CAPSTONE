@@ -155,6 +155,10 @@ public class Enemy : MonoBehaviour
         //archer enemy
         ARCH_Idle,
         ARCH_Attack,
+
+        //mactan archer
+        MA_Idle,
+        MA_Attack,
     }
 
     protected EnemyStates currentEnemyStates;

@@ -144,6 +144,7 @@ public class GOLEM_BOSS : Enemy
             Save.instance.saveData();
             QuestTracker.instance.hasQuest = true;
             PlayerPrefs.SetString("Quest", "Return to the igorot leader");
+            PlayerPrefs.SetInt("Mactan", 1);
             dead();
             PlayerController.Instance.pState.killedABoss = true;
             Destroy(gameObject, 2f);
@@ -159,6 +160,7 @@ public class GOLEM_BOSS : Enemy
     {
         if (isalive)
         {
+            PlayerPrefs.SetInt("Mactan", 1);
             isalive = false;
             QuestTracker.instance.hasQuest = true;
             PlayerPrefs.SetString("Quest", "Return to the igorot leader");
