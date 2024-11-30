@@ -55,6 +55,8 @@ public class MACTANNPC : MonoBehaviour
 
     IEnumerator Dialogue1(float time)
     {
+        QuestTracker.instance.hasQuest = false;
+        PlayerPrefs.DeleteKey("Quest");
         UI.SetActive(false);
         istalking = true;
         notiftext.SetActive(false);

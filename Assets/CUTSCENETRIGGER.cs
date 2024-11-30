@@ -16,7 +16,6 @@ public class CUTSCENETRIGGER : MonoBehaviour
     [SerializeField] GameObject jar4;
     [SerializeField] GameObject jar5;
     [SerializeField] Transform player;
-    [SerializeField] GameObject border;
     [SerializeField] GameObject GameUI;
     // Update is called once per frame
     void Update()
@@ -77,11 +76,11 @@ public class CUTSCENETRIGGER : MonoBehaviour
         NPCTEXT.SetActive(false);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2f);
-        Destroy(jar1);
-        Destroy(jar2);
-        Destroy(jar3);
-        Destroy(jar4);
-        Destroy(jar5);
+        jar1.SetActive(false);
+        jar2.SetActive(false);
+        jar3.SetActive(false);
+        jar4.SetActive(false);
+        jar5.SetActive(false);
         yield return new WaitForSeconds(time + 1f); 
         PlayerController.Instance.pState.Transitioning = false;
         NPCTEXT.SetActive(true);
@@ -140,8 +139,7 @@ public class CUTSCENETRIGGER : MonoBehaviour
             }
         }
 
-        TeleportToCS.instance.canEnter = true;
-        yield return new WaitForSeconds(time);     
+        TeleportToCS.instance.canEnter = true;   
         Cursor.visible = false;
         PlayerPrefs.SetString("Quest", "Go to the forest");
         PlayerController.Instance.pState.isNPC = false;

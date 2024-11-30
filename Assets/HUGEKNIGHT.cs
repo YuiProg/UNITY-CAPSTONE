@@ -32,7 +32,7 @@ public class HUGEKNIGHT : Enemy
 
     private void Awake()
     {
-        //loadCheck();
+        loadCheck();
     }
 
     void loadCheck()
@@ -40,6 +40,8 @@ public class HUGEKNIGHT : Enemy
         if (PlayerPrefs.GetInt("HK") == 1)
         {
             Destroy(gameObject);
+            BORDERL.SetActive(false);
+            BORDERR.SetActive(false);
         }
     }
 
@@ -108,6 +110,7 @@ public class HUGEKNIGHT : Enemy
             canAttack = false;
             anim.SetTrigger("Death");
             PlayerPrefs.SetInt("HK", 1);
+            PlayerPrefs.SetString("Quest","Talk to the scout");
             Destroy(gameObject, 5f);
         }
         if (isdead && !hasdroppeditems)
