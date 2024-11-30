@@ -19,6 +19,10 @@ public class STATS : MonoBehaviour
         getStats();
     }
 
+    private void Update()
+    {
+        getStats();
+    }
     void getStats()
     {
         LEVEL.text = $"LEVEL {PlayerController.Instance.mainLevel}";

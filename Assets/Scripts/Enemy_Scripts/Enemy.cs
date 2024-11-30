@@ -159,6 +159,12 @@ public class Enemy : MonoBehaviour
         //mactan archer
         MA_Idle,
         MA_Attack,
+
+        //HUGE KNIGHTS
+        HK_Idle,
+        HK_Chase,
+        HK_AttackBehavior,
+
     }
 
     protected EnemyStates currentEnemyStates;

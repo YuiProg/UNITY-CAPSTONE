@@ -140,6 +140,7 @@ public class IFUGAONPC : MonoBehaviour
         PlayerPrefs.SetInt("SPEAR", 1);
         yield return new WaitForSeconds(time);
         PlayerController.Instance.pState.SkillBOSS = true;
+        PlayerPrefs.SetInt("Mactan", 1);
         QuestTracker.instance.hasQuest = false;
         PlayerPrefs.DeleteKey("Quest");
         PlayerPrefs.SetInt("IFUGAONPC", 1);
