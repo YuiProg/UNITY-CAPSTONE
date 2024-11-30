@@ -1219,14 +1219,14 @@ public class PlayerController : MonoBehaviour
             {
                 lookingleft = true;
                 lookingright = false;
-                transform.localScale = new Vector2(-2.24868f, transform.localScale.y);
+                transform.localScale = new Vector2(-1.672545f, transform.localScale.y);
                 pState.lookingRight = false;
             }
             else if (xAxis > 0)
             {
                 lookingleft = false;
                 lookingright = true;
-                transform.localScale = new Vector2(2.24868f, transform.localScale.y);
+                transform.localScale = new Vector2(1.672545f, transform.localScale.y);
                 pState.lookingRight = true;
             }
         }               
