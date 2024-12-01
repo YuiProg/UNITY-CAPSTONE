@@ -151,5 +151,6 @@ public class MACTANNPC : MonoBehaviour
         istalking = false;
         PlayerController.Instance.pState.isNPC = false;
         UI.SetActive(true);
+        Save.instance.saveData();
     }
 }

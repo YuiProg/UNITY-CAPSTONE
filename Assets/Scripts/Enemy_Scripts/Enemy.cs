@@ -165,6 +165,15 @@ public class Enemy : MonoBehaviour
         HK_Chase,
         HK_AttackBehavior,
 
+        //MAGELLAN
+        MG_IDLE,
+        MG_CHASE,
+        MG_ATTACKBEHAVIOR,
+        MG_TRANSFORM,
+        MG_E_IDLE,
+        MG_E_CHASE,
+        MG_E_ATTACKBEHAVIOR,
+
     }
 
     protected EnemyStates currentEnemyStates;
