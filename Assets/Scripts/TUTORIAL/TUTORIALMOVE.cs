@@ -9,10 +9,15 @@ public class TUTORIALMOVE : MonoBehaviour
     bool onGoing = false;
     [SerializeField] GameObject DLG;
     [SerializeField] Text dialogue;
+    [SerializeField] GameObject UI;
 
 
     private void Update()
     {
+        if (PlayerPrefs.GetInt("MOVEMENT TUTORIAL") == 1)
+        {
+            gameObject.SetActive(false);
+        }
         if (onTrigger && !onGoing && PlayerPrefs.GetInt("MOVEMENT TUTORIAL") == 0)
         {
             onGoing = true;
@@ -40,6 +45,7 @@ public class TUTORIALMOVE : MonoBehaviour
 
     IEnumerator startTutorial()
     {
+        UI.SetActive(false);
         Time.timeScale = 1;
         DLG.SetActive(false);
         PlayerController.Instance.pState.isNPC = false;
@@ -85,5 +91,7 @@ public class TUTORIALMOVE : MonoBehaviour
         PlayerController.Instance.pState.isNPC = false;
         dialogue.text = "";
         PlayerPrefs.SetInt("MOVEMENT TUTORIAL", 1);
+        gameObject.SetActive(false);
+        UI.SetActive(true);
     }
 }

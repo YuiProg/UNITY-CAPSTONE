@@ -15,6 +15,10 @@ public class WorldMap : MonoBehaviour
     [SerializeField] GameObject MACTANSQSKILL;
     [SerializeField] GameObject IFUGAOART;
     [SerializeField] GameObject IFUGAOSKILL;
+    [SerializeField] GameObject TONDOART;
+    [SerializeField] GameObject TONDOSKILL;
+    [SerializeField] GameObject TONDOSQART;
+    [SerializeField] GameObject TONDOSQSKILL;
     [Space(5)]
     [Header("BTNS")]
     [SerializeField] GameObject IFUGAOBTN;
@@ -22,9 +26,13 @@ public class WorldMap : MonoBehaviour
     [SerializeField] GameObject MACTANBTN;
     [SerializeField] GameObject MACTANENTERBTN;
     [SerializeField] GameObject MACTANSQENTERBTN;
+    [SerializeField] GameObject TONDOBTN;
+    [SerializeField] GameObject TONDOENTERBTN;
+    [SerializeField] GameObject TONDOSQENTERBTN;
     [Space(5)]
     [Header("SIDE QUEST BTNS")]
     [SerializeField] GameObject SIDEQUEST1BTNMACTAN;
+    [SerializeField] GameObject SIDEQUEST2BTNTONDO;
     [Space(5)]
     [Header("Texts")]
     [SerializeField] Text EnterArea;
@@ -33,6 +41,8 @@ public class WorldMap : MonoBehaviour
     [SerializeField] Transform MACTANTP;
     [SerializeField] Transform IFUGAOTP;
     [SerializeField] Transform MACTANSIDEQUEST;
+    [SerializeField] Transform TONDOTP;
+    [SerializeField] Transform TONDOSQTP;
     [Space(5)]
     [Header("Pause Menu")]
     [SerializeField] GameObject Pausemenu;
@@ -62,6 +72,21 @@ public class WorldMap : MonoBehaviour
             MACTANBTN.SetActive(false);
             SIDEQUEST1BTNMACTAN.SetActive(false);
         }
+        else
+        {
+            MACTANBTN.SetActive(true);
+            SIDEQUEST1BTNMACTAN.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("Tondo") == 0 || !PlayerPrefs.HasKey("Tondo"))
+        {
+            TONDOBTN.SetActive(false);
+            SIDEQUEST2BTNTONDO.SetActive(false);
+        }
+        else
+        {
+            TONDOBTN.SetActive(true);
+            SIDEQUEST2BTNTONDO.SetActive(true);
+        }
 
     }
 
@@ -80,6 +105,12 @@ public class WorldMap : MonoBehaviour
         MACTANSQART.SetActive(false);
         MACTANSQSKILL.SetActive(false);
         MACTANSQENTERBTN.SetActive(false);
+        TONDOART.SetActive(false);
+        TONDOENTERBTN.SetActive(false);
+        TONDOSQART.SetActive(false);
+        TONDOSKILL.SetActive(false);
+        TONDOSQSKILL.SetActive(false);
+        TONDOSQENTERBTN.SetActive(false);
     }
 
     public void MACTANSIDEQUESTART()
@@ -94,13 +125,72 @@ public class WorldMap : MonoBehaviour
         MACTANSQART.SetActive(true);
         MACTANSQSKILL.SetActive(true);
         MACTANSQENTERBTN.SetActive(true);
+        TONDOART.SetActive(false);
+        TONDOENTERBTN.SetActive(false);
+        TONDOSQART.SetActive(false);
+        TONDOSKILL.SetActive(false);
+        TONDOSQSKILL.SetActive(false);
+        TONDOSQENTERBTN.SetActive(false);
     }
 
+    public void TONDO()
+    {
+        EnterArea.text = "Enter Tondo";
+        MACTANART.SetActive(false);
+        MACTANSKKILL.SetActive(false);
+        MACTANENTERBTN.SetActive(false);
+        IFUGAOART.SetActive(false);
+        IFUGAOSKILL.SetActive(false);
+        IFUGAOENTERBTN.SetActive(false);
+        MACTANSQART.SetActive(false);
+        MACTANSQSKILL.SetActive(false);
+        MACTANSQENTERBTN.SetActive(false);
+        TONDOART.SetActive(true);
+        TONDOENTERBTN.SetActive(true);
+        TONDOSQART.SetActive(false);
+        TONDOSKILL.SetActive(true);
+        TONDOSQSKILL.SetActive(false);
+        TONDOSQENTERBTN.SetActive(false);
+    }
+
+    public void TONDOSIDEQUESTART()
+    {
+        EnterArea.text = "Tondo SideQuest";
+        MACTANART.SetActive(false);
+        MACTANSKKILL.SetActive(false);
+        MACTANENTERBTN.SetActive(false);
+        IFUGAOART.SetActive(false);
+        IFUGAOSKILL.SetActive(false);
+        IFUGAOENTERBTN.SetActive(false);
+        MACTANSQART.SetActive(false);
+        MACTANSQSKILL.SetActive(false);
+        MACTANSQENTERBTN.SetActive(false);
+        TONDOART.SetActive(false);
+        TONDOENTERBTN.SetActive(false);
+        TONDOSQART.SetActive(true);
+        TONDOSKILL.SetActive(false);
+        TONDOSQSKILL.SetActive(true);
+        TONDOSQENTERBTN.SetActive(true);
+    }
     public void enterMACTAN()
     {
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
         StartCoroutine(TPMACTAN());
+        Cursor.visible = false;
+    }
+    public void enterTONDO()
+    {
+        Time.timeScale = 1f;
+        Pausemenu.SetActive(false);
+        StartCoroutine(TPITONDO());
+        Cursor.visible = false;
+    }
+    public void enterTONDOSQ()
+    {
+        Time.timeScale = 1f;
+        Pausemenu.SetActive(false);
+        StartCoroutine(TPSIDEQUESTTONDO());
         Cursor.visible = false;
     }
 
@@ -123,8 +213,6 @@ public class WorldMap : MonoBehaviour
 
     public void IFUGAO()
     {
-        mactan = 0;
-        ifugao++;
         EnterArea.text = "Enter IFUGAO";
         MACTANART.SetActive(false);
         MACTANSKKILL.SetActive(false);
@@ -135,6 +223,12 @@ public class WorldMap : MonoBehaviour
         MACTANSQART.SetActive(false);
         MACTANSQSKILL.SetActive(false);
         MACTANSQENTERBTN.SetActive(false);
+        TONDOART.SetActive(false);
+        TONDOENTERBTN.SetActive(false);
+        TONDOSQART.SetActive(false);
+        TONDOSKILL.SetActive(false);
+        TONDOSQSKILL.SetActive(false);
+        TONDOSQENTERBTN.SetActive(false);
     }
     //ifugao
 
@@ -185,7 +279,27 @@ public class WorldMap : MonoBehaviour
         }
         
     }
+    IEnumerator TPITONDO()
+    {
+        if (!teleporting)
+        {
+            teleporting = true;
+            PlayerController.Instance.pState.Transitioning = true;
+            yield return new WaitForSeconds(2.5f);
+            PlayerController.Instance.transform.position = TONDOTP.transform.position;
+            PlayerController.Instance.health = PlayerController.Instance.maxHealth;
+            PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
+            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+            Save.instance.saveData();
+            teleporting = false;
+            LevelManager.instance.loadscene("Cave_1");
+        }
+        else
+        {
+            yield return null;
+        }
 
+    }
     IEnumerator TPSIDEQUESTMACTAN()//SIDE QUEST MACTAN
     {
         if (!teleporting)
@@ -194,6 +308,26 @@ public class WorldMap : MonoBehaviour
             PlayerController.Instance.pState.Transitioning = true;
             yield return new WaitForSeconds(2.5f);
             PlayerController.Instance.transform.position = MACTANSIDEQUEST.transform.position;
+            PlayerController.Instance.health = PlayerController.Instance.maxHealth;
+            PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
+            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+            Save.instance.saveData();
+            teleporting = false;
+            LevelManager.instance.loadscene("Cave_1");
+        }
+        else
+        {
+            yield return null;
+        }
+    }
+    IEnumerator TPSIDEQUESTTONDO()//SIDE QUEST TONDO
+    {
+        if (!teleporting)
+        {
+            teleporting = true;
+            PlayerController.Instance.pState.Transitioning = true;
+            yield return new WaitForSeconds(2.5f);
+            PlayerController.Instance.transform.position = TONDOSQTP.transform.position;
             PlayerController.Instance.health = PlayerController.Instance.maxHealth;
             PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
             PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;

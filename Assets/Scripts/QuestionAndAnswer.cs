@@ -13,6 +13,9 @@ public class QuestionAndAnswer : MonoBehaviour
     [SerializeField] GameObject STATUE2;
     [SerializeField] Text dialogue;
     [SerializeField] GameObject BORDER;
+
+    [SerializeField] Transform lastPOS;
+
     public bool inTrigger = false;
     bool isTalking = false;
     private void Start()
@@ -100,8 +103,13 @@ public class QuestionAndAnswer : MonoBehaviour
         dialogue.text = "You may now proceed on your adventure";
         yield return new WaitForSeconds(time);
         dialogue.text = "";
-        PlayerController.Instance.pState.isNPC = false;
         NPCDIALOGUE.SetActive(false);
+        PlayerController.Instance.pState.Transitioning = true;
+        yield return new WaitForSeconds(time - 2);
+        PlayerController.Instance.pState.Transitioning = false;
+        PlayerController.Instance.transform.position = lastPOS.transform.position;
+        Save.instance.saveData();      
+        PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
     }
 

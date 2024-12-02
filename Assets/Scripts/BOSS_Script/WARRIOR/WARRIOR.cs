@@ -28,7 +28,7 @@ public class WARRIOR : Enemy
     [SerializeField] GameObject Border_L;
     [SerializeField] GameObject Border_R;
     float aliveTimer;
-    bool spottedPlayer = false;
+    public bool spottedPlayer = false;
     bool isulti = false;
     bool canjump = false;
     bool canUlti = false;

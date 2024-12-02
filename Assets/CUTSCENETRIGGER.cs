@@ -55,7 +55,6 @@ public class CUTSCENETRIGGER : MonoBehaviour
             "This isn’t funny. Where did you guys go?",
             "Hello guys?, Are you in there?",
             "Maybe I should go inside.",
-            "",
         };
 
         for (int i = 0; i < dialogues1.Length; i++)
@@ -114,6 +113,7 @@ public class CUTSCENETRIGGER : MonoBehaviour
         yield return new WaitForSeconds(2f);
         PlayerController.Instance.transform.position = player.transform.position;
         yield return new WaitForSeconds(time + 1f);
+        Save.instance.saveData();
         PlayerController.Instance.pState.Transitioning = false;
         NPCTEXT.SetActive(true);
         string[] dialogue3 = new[]

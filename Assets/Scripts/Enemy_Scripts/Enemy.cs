@@ -174,6 +174,15 @@ public class Enemy : MonoBehaviour
         MG_E_CHASE,
         MG_E_ATTACKBEHAVIOR,
 
+        //FINAL BOSS
+        FB_IDLE,
+        FB_CHASE,
+        FB_ATTACKBEHAVIOR,
+        FB_TRANSFORM,
+        FB_E_IDLE,
+        FB_E_CHASE,
+        FB_E_ATTACKBEHAVIOR,
+
     }
 
     protected EnemyStates currentEnemyStates;

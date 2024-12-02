@@ -225,10 +225,10 @@ public class NPC1 : MonoBehaviour
         npcDLG.SetActive(false);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2.5f);
+        PlayerController.Instance.pState.Transitioning = false;
         npc1.transform.position = loc3.transform.position;
         npc2.transform.position = loc4.transform.position;
-        yield return new WaitForSeconds(time + 1);
-        PlayerController.Instance.pState.Transitioning = false;
+        yield return new WaitForSeconds(time + 1);        
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
         talking = true;

@@ -6,7 +6,7 @@ public class HUGEKNIGHT : Enemy
 {
     public float chaseDistance;
     bool isAttacking = false;
-    bool spottedPlayer = false;
+    public bool spottedPlayer = false;
     int count;
     Animator anim;
 
@@ -16,11 +16,12 @@ public class HUGEKNIGHT : Enemy
 
     //drops
     [SerializeField] GameObject ambers;
-
+    [SerializeField] Transform amberLOC;
 
     //ui
     [SerializeField] GameObject HEALTHBAR;
 
+    public static HUGEKNIGHT instance;
     protected override void Start()
     {
         base.Start();
@@ -33,6 +34,14 @@ public class HUGEKNIGHT : Enemy
     private void Awake()
     {
         loadCheck();
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     void loadCheck()
@@ -48,7 +57,7 @@ public class HUGEKNIGHT : Enemy
     protected override void UpdateEnemyStates()
     {
         float dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        flip(!isAttacking);
+        flip(!isAttacking && PlayerController.Instance.pState.isAlive);
         stateCheck();
         if (canMove && PlayerController.Instance.pState.isAlive)
         {
@@ -87,7 +96,7 @@ public class HUGEKNIGHT : Enemy
     {
         if (count <= 10)
         {
-            Instantiate(ambers, transform.position, Quaternion.identity);
+            Instantiate(ambers, amberLOC.position, Quaternion.identity);
             count++;
         }
     }
@@ -108,6 +117,7 @@ public class HUGEKNIGHT : Enemy
             isdead = true;
             canMove = false;
             canAttack = false;
+            spottedPlayer = false;
             anim.SetTrigger("Death");
             PlayerPrefs.SetInt("HK", 1);
             PlayerPrefs.SetString("Quest","Talk to the scout");

@@ -12,31 +12,26 @@ public class MAGELLANNPC : MonoBehaviour
 
     bool inTrigger;
     bool isTalking = false;
-    void Start()
-    {
-        if (PlayerPrefs.GetInt("MAGELLAN") != 1)
-        {
-            gameObject.SetActive(false);
-            
-
-        }
-        else
-        {
-            gameObject.SetActive(true);
-        }
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+        if (PlayerPrefs.GetInt("MAGELLAN") == 1)
+        {
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
         flip();
+        
         if (inTrigger && Input.GetKeyDown(KeyCode.E) && !isTalking)
         {
             StartCoroutine(Dialogue(4.5f));
         }    
     }
-
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -90,7 +85,10 @@ public class MAGELLANNPC : MonoBehaviour
         }
         PlayerController.Instance.pState.SkillBOSS = true;
         PlayerController.Instance.pState.isNPC = false;
+        QuestTracker.instance.hasQuest = false;
+        PlayerPrefs.DeleteKey("Quest");
         PlayerPrefs.SetInt("MAGELLANNPC", 1);
+        PlayerPrefs.SetInt("Tondo", 1);
         DIALOGUE.SetActive(false);
     }
     void flip()

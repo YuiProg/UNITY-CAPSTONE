@@ -21,6 +21,10 @@ public class MAGELLANBOSS : Enemy
     [SerializeField] GameObject BORDERR;
     [SerializeField] GameObject BORDERL;
 
+
+    [SerializeField] GameObject NPC;
+    AudioManager audioManager;
+    public static MAGELLANBOSS instance;
     protected override void Start()
     {
         base.Start();
@@ -29,6 +33,7 @@ public class MAGELLANBOSS : Enemy
         isSecondPhase = false;
         spottedPlayer = false;
         rb.gravityScale = 12f;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         anim = GetComponent<Animator>();
         ChangeStates(EnemyStates.MG_IDLE);
 
@@ -38,6 +43,14 @@ public class MAGELLANBOSS : Enemy
     private void Awake()
     {
         loadCheck();
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
     int count;
     void loadCheck()
@@ -78,9 +91,7 @@ public class MAGELLANBOSS : Enemy
                         if (!isSecondPhase)
                         {
                             ChangeStates(EnemyStates.MG_CHASE);
-                        }
-                        
-                        
+                        }                                     
                     }
                     break;
                 case EnemyStates.MG_CHASE:
@@ -144,6 +155,22 @@ public class MAGELLANBOSS : Enemy
             }
         }
     }
+    //sounds
+
+    void AttackSounds()
+    {
+        audioManager.PlaySFX(audioManager.M_Attack);
+    }
+
+    void explosionSound()
+    {
+        audioManager.PlaySFX(audioManager.M_Explosion);
+    }
+
+    void ShakeCamera()
+    {
+        CameraShake.Instance.ShakeCamera();
+    }
     void stopallattacks()
     {
         StopAllCoroutines();
@@ -156,11 +183,12 @@ public class MAGELLANBOSS : Enemy
         HEALTHBAR.SetActive(spottedPlayer && health >= 0 && PlayerController.Instance.pState.isAlive);
         if (health <= 0)
         {
+            NPC.SetActive(true);
+            PlayerPrefs.SetInt("MAGELLAN", 1);
             canMove = false;
             isAttacking = true;
             canAttack = false;
-            spottedPlayer = false;
-            PlayerPrefs.SetInt("MAGELLAN", 1);
+            spottedPlayer = false;          
             anim.SetTrigger("MF_E_DEATH");
             dropEssence();
             PlayerPrefs.SetString("Quest", "Talk to the person");

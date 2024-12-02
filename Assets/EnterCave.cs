@@ -9,7 +9,7 @@ public class EnterCave : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ontrigger && Input.GetKeyDown(KeyCode.E))
+        if (ontrigger && PlayerPrefs.GetInt("NPCINCAVE") == 1)
         {
             StartCoroutine(tpstart(5f));
         }
@@ -36,7 +36,9 @@ public class EnterCave : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2.5f);
         PlayerController.Instance.transform.position = tphere.transform.position;
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time - 2);
+        Save.instance.saveData();
+        PlayerPrefs.SetString("Quest", "Talk to chrstina and balweg");
         PlayerController.Instance.pState.Transitioning = false;
     }
 

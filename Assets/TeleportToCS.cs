@@ -9,11 +9,13 @@ public class TeleportToCS : MonoBehaviour
     public Transform tpHere;
     public bool canEnter = false;
     public Text dlg;
+    [SerializeField] Text notif;
     public GameObject dialogue;
     bool triggered = false;
     public static TeleportToCS instance;
     private void Update()
     {
+        if (canEnter) notif.text = "!";
         if (onTrigger && Input.GetKeyDown(KeyCode.E) && canEnter)
         {
             StartCoroutine(Transition(5f));

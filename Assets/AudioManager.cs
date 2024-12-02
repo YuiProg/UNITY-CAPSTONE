@@ -7,13 +7,23 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Source")]
     [SerializeField] AudioSource sfxSource;
     [Space(2)]
-    [Header("SFX")]
+    [Header("SFX PLAYER")]
     public AudioClip NormalAttack;
     public AudioClip HardAttack;
     public AudioClip SpearSkill;
     public AudioClip Block;
     public AudioClip Parry;
     public AudioClip Hurt;
+    [Space(2)]
+    [Header("SFX FINAL BOSS")]
+    public AudioClip FB_Attack;
+    public AudioClip FB_Thunder;
+    public AudioClip Transform;
+    [Space(2)]
+    [Header("SFX MAGELLAN BOSS")]
+    public AudioClip M_Attack;
+    public AudioClip M_Explosion;
+    public AudioClip M_Death;
 
     public void PlaySFX(AudioClip clip)
     {
