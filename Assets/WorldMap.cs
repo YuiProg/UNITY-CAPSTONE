@@ -51,7 +51,10 @@ public class WorldMap : MonoBehaviour
         unlockCheck();
     }
 
-
+    private void Update()
+    {
+        unlockCheck();
+    }
     void unlockCheck()
     {
         if (PlayerPrefs.GetInt("Mactan") == 0 || !PlayerPrefs.HasKey("Mactan"))

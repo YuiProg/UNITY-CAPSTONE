@@ -14,13 +14,15 @@ public class IFUGAONPCTRIGGER : MonoBehaviour
 
     bool intrigger;
     bool activated = false;
-
-
+    private void Start()
+    {
+        NPC.SetActive(PlayerPrefs.GetInt("IFUGAONPC2") == 1);
+    }
     private void Update()
     {
+        
         if (!activated && intrigger && PlayerPrefs.GetInt("IFUGAONPC2") != 1)
         {
-            NPC.SetActive(false);
             StartCoroutine(dialogue1(4.5f));
         }
     }
@@ -49,6 +51,7 @@ public class IFUGAONPCTRIGGER : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(time - 2);
         PlayerController.Instance.pState.Transitioning = false;
+        yield return new WaitForSeconds(time - 2);
         DIALOGUE.SetActive(true);
         NPC.SetActive(true);
         string[] words = new[]

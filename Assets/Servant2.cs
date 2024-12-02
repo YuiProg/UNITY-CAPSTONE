@@ -157,7 +157,7 @@ public class Servant2 : Enemy
     bool distanceCheck()
     {
         float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        return distance < 2.5f;
+        return distance < 2f;
     }
 
     void AttackBehavior()

@@ -14,20 +14,8 @@ public class NPCSHOP : MonoBehaviour
     [SerializeField] Text Name;
     [SerializeField] GameObject ui;
     Animator anim;
-    public static NPCSHOP instance;
 
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
-
+    int count = 0;
 
     private void Start()
     {
@@ -37,12 +25,14 @@ public class NPCSHOP : MonoBehaviour
 
     private void Update()
     {
-        if (!isTalking && inTrigger && !shopopen)
+        if (!isTalking && inTrigger)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !shopopen)
             {
+                count++;
                 StartCoroutine(Dialogue(4.5f));
             }
+            
         }
     }
 

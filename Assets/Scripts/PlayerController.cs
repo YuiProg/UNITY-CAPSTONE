@@ -145,6 +145,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject DeathScreen;
     Vector2 checkpointpos;
 
+    //audio
+    AudioManager audiomanager;
     private void Awake()
     {
 
@@ -171,7 +173,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         anim = GetComponent<Animator>();
 
         pState = GetComponent<PlayerState>();
@@ -284,7 +286,7 @@ public class PlayerController : MonoBehaviour
         }
         text.text = $"POTION: {potionCount}";
         if (potionCount <= 0) text.text = $"POTION: EMPTY";
-        if (health <= 0 && !hasDied)
+        if (health <= 0 || HealthBar.fillAmount == 0 && !hasDied)
         {
             
             DeathScreen.SetActive(true);
@@ -618,6 +620,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!pState.blocking && !pState.invincible)
         {
+            audiomanager.PlaySFX(audiomanager.Hurt);
             parryDamageBonus = 0;
             parryCounter.text = "";
             damage = normal_damage;
@@ -634,6 +637,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (pState.parry)
         {
+            audiomanager.PlaySFX(audiomanager.Parry);
             Color color = Color.yellow;
             Color white = Color.white;
             parryFX.Play();
@@ -653,6 +657,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            audiomanager.PlaySFX(audiomanager.Block);
             parryDamageBonus = 0;
             parryCounter.text = "";
             damage = normal_damage;
@@ -756,6 +761,7 @@ public class PlayerController : MonoBehaviour
             
             if (attack && pState.isAlive && stamina > 10 && !pState.blocking)
             {
+                audiomanager.PlaySFX(audiomanager.NormalAttack);
                 timeSinceAttack = 0;
                 pState.canAttack = false;
                 anim.SetTrigger("Attacking");
@@ -795,6 +801,7 @@ public class PlayerController : MonoBehaviour
         {
             if (DashSpear && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
             {
+                audiomanager.PlaySFX(audiomanager.NormalAttack);
                 canDash = false;
                 SpearDashTimer = 0;
                 pState.invincible = true;
@@ -826,6 +833,7 @@ public class PlayerController : MonoBehaviour
 
             if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
             {
+                audiomanager.PlaySFX(audiomanager.NormalAttack);
                 timeSinceAttack = 0;
                 pState.canAttack = false;
                 anim.SetTrigger("SpearDash");
@@ -852,6 +860,7 @@ public class PlayerController : MonoBehaviour
 
             if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
             {
+                audiomanager.PlaySFX(audiomanager.NormalAttack);
                 timeSinceAttack = 0;
                 pState.canAttack = false;
 
@@ -883,6 +892,7 @@ public class PlayerController : MonoBehaviour
         {
             if (DashSpear && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
             {
+                audiomanager.PlaySFX(audiomanager.NormalAttack);
                 canDash = false;
                 SpearDashTimer = 0;
                 pState.invincible = true;
@@ -914,6 +924,7 @@ public class PlayerController : MonoBehaviour
 
             if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
             {
+                audiomanager.PlaySFX(audiomanager.NormalAttack);
                 timeSinceAttack = 0;
                 pState.canAttack = false;
                 anim.SetTrigger("SpearDash");
@@ -940,6 +951,7 @@ public class PlayerController : MonoBehaviour
 
             if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
             {
+                audiomanager.PlaySFX(audiomanager.NormalAttack);
                 timeSinceAttack = 0;
                 pState.canAttack = false;
 
@@ -973,6 +985,7 @@ public class PlayerController : MonoBehaviour
     {
         if (combo && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
         {
+            audiomanager.PlaySFX(audiomanager.NormalAttack);
             canDash = false;
             comboTimer = 0;
             rb.drag = 1000;
@@ -1005,6 +1018,7 @@ public class PlayerController : MonoBehaviour
 
         if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
         {
+            audiomanager.PlaySFX(audiomanager.NormalAttack);
             comboFX.Play();
             timeSinceAttack = 0;
             pState.canAttack = false;
@@ -1032,6 +1046,7 @@ public class PlayerController : MonoBehaviour
 
         if (pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
         {
+            audiomanager.PlaySFX(audiomanager.NormalAttack);
             comboFX.Play();
             timeSinceAttack = 0;
             pState.canAttack = false;
@@ -1178,6 +1193,7 @@ public class PlayerController : MonoBehaviour
         {           
             if (HardAttack && timeSinceAttack >= timeBetweenAttack && pState.isAlive)
             {
+                audiomanager.PlaySFX(audiomanager.NormalAttack);
                 timeSinceAttack = 0;
                 pState.canAttack = false;
                 anim.SetTrigger("Hard Attack");

@@ -18,7 +18,12 @@ public class Shop : MonoBehaviour
     bool hasFunds;
     public float elapsedTime;
     private Coroutine purchaseCoroutine;
+    NPCSHOP npcShop;
 
+    private void Start()
+    {
+        npcShop = FindObjectOfType<NPCSHOP>();
+    }
     private void Update()
     {
         elapsedTime += Time.deltaTime;
@@ -27,7 +32,7 @@ public class Shop : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             gameObject.SetActive(false);
-            NPCSHOP.instance.shopopen = false;
+            npcShop.shopopen = false;
             PlayerController.Instance.pState.isNPC = false;
             UI.SetActive(true);
         }

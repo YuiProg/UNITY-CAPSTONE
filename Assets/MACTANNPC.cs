@@ -14,7 +14,7 @@ public class MACTANNPC : MonoBehaviour
     [SerializeField] Text npcName;
     [SerializeField] GameObject UI;
     //notif
-    [SerializeField] GameObject notiftext;
+    [SerializeField] Text notiftext;
 
     //npcs
     [SerializeField] GameObject npc1;
@@ -59,7 +59,7 @@ public class MACTANNPC : MonoBehaviour
         PlayerPrefs.DeleteKey("Quest");
         UI.SetActive(false);
         istalking = true;
-        notiftext.SetActive(false);
+        notiftext.text = "";
         PlayerController.Instance.pState.isNPC = true;
         NPCDIALOGUE.SetActive(true);
         string[] words = new[]
@@ -151,6 +151,8 @@ public class MACTANNPC : MonoBehaviour
         istalking = false;
         PlayerController.Instance.pState.isNPC = false;
         UI.SetActive(true);
+        QuestTracker.instance.hasQuest = true;
+        PlayerPrefs.SetString("Quest", "Defeat Magellan");
         Save.instance.saveData();
     }
 }
