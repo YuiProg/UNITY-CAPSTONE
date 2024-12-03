@@ -11,6 +11,7 @@ public class IFUGAONPC : MonoBehaviour
     [SerializeField] GameObject DLG;
     [SerializeField] Text Dialogue;
     [SerializeField] Text NameNPC;
+    [SerializeField] GameObject UI;
 
     //loc
     [SerializeField] Transform loc2;
@@ -18,7 +19,11 @@ public class IFUGAONPC : MonoBehaviour
     //border
     [SerializeField] GameObject BORDER;
     [SerializeField] GameObject BORDER2;
+    //notif
+    [SerializeField] Text notif;
 
+    //world map
+    [SerializeField] GameObject worldMap;
     bool onTrigger;
     bool isTalking = false;
     bool haskilled = false;
@@ -34,6 +39,7 @@ public class IFUGAONPC : MonoBehaviour
     {
         
         flip();
+        if (PlayerPrefs.GetInt("IFUGAONPC") == 1) notif.text = "";
         if (onTrigger && Input.GetKeyDown(KeyCode.E) && PlayerPrefs.GetInt("IFUGAONPC") != 1)
         {
             if (!isTalking)
@@ -49,7 +55,7 @@ public class IFUGAONPC : MonoBehaviour
                 }
             }
         }
-        
+
         if (PlayerPrefs.GetInt("HERALD GOLEM") == 1) transform.position = loc2.transform.position;
         if (PlayerPrefs.GetInt("IFUGAONPC") == 1) BORDER2.SetActive(false);
 
@@ -80,6 +86,8 @@ public class IFUGAONPC : MonoBehaviour
     IEnumerator DIALOGUE(float time)
     {
         DLG.SetActive(true);
+        UI.SetActive(false);
+        notif.text = "";
         isTalking = true;
         PlayerController.Instance.pState.isNPC = true;
         PlayerController.Instance.pState.canPause = false;
@@ -122,6 +130,7 @@ public class IFUGAONPC : MonoBehaviour
         Dialogue.text = "";
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Defeat the invader and unknown creature.");
+        UI.SetActive(true);
         BORDER.SetActive(false);
         PlayerController.Instance.pState.isNPC = false;
         PlayerController.Instance.pState.canPause = true;
@@ -133,6 +142,9 @@ public class IFUGAONPC : MonoBehaviour
     IEnumerator Dialogue2(float time)
     {
         PlayerController.Instance.pState.isNPC = true;
+        PlayerController.Instance.pState.canPause = false;
+        UI.SetActive(false);
+        notif.text = "";
         DLG.SetActive(true);
         PlayerController.Instance.pState.canPause = false;
         Dialogue.text = "Thank you stranger may this spear  help you in your journey";
@@ -147,8 +159,13 @@ public class IFUGAONPC : MonoBehaviour
         Dialogue.text = "";
         DLG.SetActive(false);
         BORDER2.SetActive(false);
-        PlayerController.Instance.pState.isNPC = false;
-        PlayerController.Instance.pState.canPause = true;
+        yield return new WaitForSeconds(time);
+        PlayerController.Instance.pState.Transitioning = true;
+        yield return new WaitForSeconds(time - 2);
+        PlayerController.Instance.pState.Transitioning = false;
+        worldMap.SetActive(true);
+        Cursor.visible = true;
+        
     }
 
     void flip()

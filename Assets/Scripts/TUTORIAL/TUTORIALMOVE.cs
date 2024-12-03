@@ -45,6 +45,7 @@ public class TUTORIALMOVE : MonoBehaviour
 
     IEnumerator startTutorial()
     {
+        PlayerController.Instance.pState.canPause = false;
         UI.SetActive(false);
         Time.timeScale = 1;
         DLG.SetActive(false);
@@ -93,5 +94,6 @@ public class TUTORIALMOVE : MonoBehaviour
         PlayerPrefs.SetInt("MOVEMENT TUTORIAL", 1);
         gameObject.SetActive(false);
         UI.SetActive(true);
+        PlayerController.Instance.pState.canPause = true;
     }
 }

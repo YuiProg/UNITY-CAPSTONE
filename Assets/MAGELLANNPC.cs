@@ -8,7 +8,12 @@ public class MAGELLANNPC : MonoBehaviour
     [SerializeField] GameObject DIALOGUE;
     [SerializeField] Text dialogue;
     [SerializeField] Text npcName;
+    [SerializeField] GameObject UI;
+    //alert
+    [SerializeField] Text notif;
 
+    //world map
+    [SerializeField] GameObject worldMap;
 
     bool inTrigger;
     bool isTalking = false;
@@ -50,7 +55,10 @@ public class MAGELLANNPC : MonoBehaviour
 
     IEnumerator Dialogue(float time)
     {
+        UI.SetActive(false);
         PlayerController.Instance.pState.isNPC = true;
+        PlayerController.Instance.pState.canPause = false;
+        notif.text = "";
         DIALOGUE.SetActive(true);
         isTalking = true;
 
@@ -84,12 +92,18 @@ public class MAGELLANNPC : MonoBehaviour
             }
         }
         PlayerController.Instance.pState.SkillBOSS = true;
-        PlayerController.Instance.pState.isNPC = false;
         QuestTracker.instance.hasQuest = false;
         PlayerPrefs.DeleteKey("Quest");
         PlayerPrefs.SetInt("MAGELLANNPC", 1);
+        PlayerPrefs.SetInt("SLASH", 1);
         PlayerPrefs.SetInt("Tondo", 1);
         DIALOGUE.SetActive(false);
+        yield return new WaitForSeconds(time - 2);
+        PlayerController.Instance.pState.Transitioning = true;
+        yield return new WaitForSeconds(time - 2);
+        PlayerController.Instance.pState.Transitioning = false;
+        Cursor.visible = true;
+        worldMap.SetActive(true);
     }
     void flip()
     {

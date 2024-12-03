@@ -7,6 +7,7 @@ public class Checkpoint : MonoBehaviour
 {
     public Transform respawnpoint;
     [SerializeField] Text saveTXT;
+    [SerializeField] GameObject UI;
     public GameObject upgradeUI;
     bool onTrigger;
     bool onUI = false;
@@ -17,14 +18,18 @@ public class Checkpoint : MonoBehaviour
         {
             if (onUI)
             {
+                UI.SetActive(false);
                 PlayerController.Instance.pState.isNPC = true;
+                PlayerController.Instance.pState.canPause = false;
                 upgradeUI.SetActive(true);
                 Cursor.visible = true;
                 onUI = false;
             }
             else
             {
+                UI.SetActive(true);
                 PlayerController.Instance.pState.isNPC = false;
+                PlayerController.Instance.pState.canPause = true;
                 onUI = true;
                 Cursor.visible = false;
                 upgradeUI.SetActive(false);

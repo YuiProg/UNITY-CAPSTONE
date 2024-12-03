@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class SpearGirl : Enemy
     public bool spottedPlayer = false;
     [SerializeField] float chaseDistance;
     [SerializeField] GameObject HealthBar;
-    [SerializeField] GameObject Music;
+    [SerializeField] AudioSource Music;
     [SerializeField] public GameObject bullet;
     [SerializeField] public Transform bulletpos;
     [SerializeField] GameObject borderR;
@@ -19,6 +20,14 @@ public class SpearGirl : Enemy
     float transitionTime;
     bool isDead = false;
     public static SpearGirl instance;
+
+
+    //tp
+    [SerializeField] Transform returnPlayer;
+    [SerializeField] GameObject Essence;
+    [SerializeField] Transform EssenceLOC;
+
+
     bool dead = false;
     protected override void Start()
     {
@@ -28,7 +37,6 @@ public class SpearGirl : Enemy
         canMove = true;
         canAttack = true;
         attacking = false;
-        Music.SetActive(false);
         HealthBar.SetActive(false);
         borderL.SetActive(false);
         borderR.SetActive(false);
@@ -58,12 +66,14 @@ public class SpearGirl : Enemy
             borderR.SetActive(false);
         }
     }
-
+    bool hasdropped = false;
     protected override void UpdateEnemyStates()
     {
         
         float _dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
         healthCheck();
+        if (spottedPlayer) musicChecker(); ;
+        
         if (!attacking && spottedPlayer && !isDead)
         {
             flip();
@@ -82,11 +92,16 @@ public class SpearGirl : Enemy
         }
         if (health <= 0 && !dead)
         {
+            StartCoroutine(tpback(4.5f));
             PlayerPrefs.SetInt("SpearGirl", 1);
             canMove = false;
             canAttack = false;
-            PlayerController.Instance.levels = PlayerController.Instance.levels + 1;
             dead = true;
+        }
+
+        if (health <= 0 && !hasdropped)
+        {
+            dropEssence();
         }
         if (canMove && !attacking && !isDead)
         {
@@ -96,7 +111,6 @@ public class SpearGirl : Enemy
                     if (_dist < chaseDistance)
                     {
                         HealthBar.SetActive(true);
-                        Music.SetActive(true);
                         borderL.SetActive(true);
                         borderR.SetActive(true);
                         spottedPlayer = true;
@@ -145,6 +159,44 @@ public class SpearGirl : Enemy
         
     }
 
+    IEnumerator tpback(float time)
+    {
+        PlayerController.Instance.pState.killedABoss = true;
+        yield return new WaitForSeconds(time );
+        PlayerController.Instance.pState.Transitioning = true;
+        yield return new WaitForSeconds(time - 2);
+        PlayerController.Instance.pState.Transitioning = false;
+        PlayerController.Instance.transform.position = returnPlayer.transform.position;
+        Save.instance.saveData();
+
+    }
+    bool MusicPlaying = false;
+    void musicChecker()
+    {
+        if (spottedPlayer)
+        {
+            if (!MusicPlaying)
+            {
+                MusicPlaying = true;
+                Music.Play();
+            }
+            
+        }
+    }
+    //drops
+    int count;
+    void dropEssence()
+    {
+        if (count != 6)
+        {
+            count++;
+            Instantiate(Essence, EssenceLOC.transform.position, Quaternion.identity);
+        }
+        if (count == 6)
+        {
+            hasdropped = true;
+        }
+    }
     void chasePhase1()
     {
         float _dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
@@ -195,6 +247,7 @@ public class SpearGirl : Enemy
             stopAllAttacks();
             anim.SetBool("Walk", false);
             anim.SetBool("Run", false);
+            Music.volume -= Time.deltaTime;
             anim.SetTrigger("DEAD");
             canMove = false;
             isDead = true;
@@ -203,7 +256,7 @@ public class SpearGirl : Enemy
             borderR.SetActive(false);
             HealthBar.SetActive(false);
             spottedPlayer = false;
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 15f);
         }
     }
     void stopAllAttacks()

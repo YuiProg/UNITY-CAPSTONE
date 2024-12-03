@@ -5,6 +5,7 @@ public class PlayerState : MonoBehaviour
     private void Update()
     {
         obtainedSpear = PlayerPrefs.GetInt("SPEAR") == 1;
+        obtainedSLASH = PlayerPrefs.GetInt("SLASH") == 1;
         obtainedMAP = PlayerPrefs.GetInt("MAP") == 1;
         hasBOOK = PlayerPrefs.GetInt("HASBOOK") == 1;
     }
@@ -45,6 +46,7 @@ public class PlayerState : MonoBehaviour
     //obtainskills
     public bool obtainedMAP = false;
     public bool obtainedSpear = false;
+    public bool obtainedSLASH = false;
 
 
     //SKILLS

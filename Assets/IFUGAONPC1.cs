@@ -13,7 +13,6 @@ public class IFUGAONPC1 : MonoBehaviour
     [SerializeField] Text npcName;
 
     [SerializeField] Transform loc2;
-
     private void Update()
     {
         if (PlayerPrefs.GetInt("HK") == 1) transform.position = loc2.transform.position;
@@ -47,6 +46,7 @@ public class IFUGAONPC1 : MonoBehaviour
         isSpeaking = true;
         UI.SetActive(false);
         PlayerController.Instance.pState.isNPC = true;
+        PlayerController.Instance.pState.canPause = false;
         DIALOGUE.SetActive(true);
 
         string[] words = new[]
@@ -85,6 +85,7 @@ public class IFUGAONPC1 : MonoBehaviour
         isSpeaking = false;
         DIALOGUE.SetActive(false);
         PlayerController.Instance.pState.isNPC = false;
+        PlayerController.Instance.pState.canPause = false;
         UI.SetActive(true);
     }
 

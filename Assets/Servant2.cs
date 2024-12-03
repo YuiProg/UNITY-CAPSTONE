@@ -142,8 +142,6 @@ public class Servant2 : Enemy
             yield return new WaitForSeconds(time);
             dlg.text = "Lets go in Ifugao";
             yield return new WaitForSeconds(time);
-
-            PlayerController.Instance.pState.isNPC = false;
             DIALOGUE.SetActive(false);
             istalking = false;
             Cursor.visible = true;

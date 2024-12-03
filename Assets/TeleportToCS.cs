@@ -15,7 +15,8 @@ public class TeleportToCS : MonoBehaviour
     public static TeleportToCS instance;
     private void Update()
     {
-        if (canEnter) notif.text = "!";
+        if (PlayerPrefs.GetString("Quest") == "Go to the forest") notif.text = "!";
+        if (PlayerPrefs.GetString("Quest") == "Go to the forest") canEnter = true;
         if (onTrigger && Input.GetKeyDown(KeyCode.E) && canEnter)
         {
             StartCoroutine(Transition(5f));

@@ -24,9 +24,18 @@ public class AudioManager : MonoBehaviour
     public AudioClip M_Attack;
     public AudioClip M_Explosion;
     public AudioClip M_Death;
+    [Space(2)]
+    [Header("SFX HORSE BOSS")]
+    public AudioClip H_Attack;
+    public AudioClip H_Chase;
 
     public void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
+    }
+
+    public void StopSFX()
+    {
+        sfxSource.Stop();
     }
 }

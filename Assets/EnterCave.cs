@@ -6,10 +6,12 @@ public class EnterCave : MonoBehaviour
 {
     bool ontrigger;
     public Transform tphere;
+    [SerializeField] GameObject BORDER;
     // Update is called once per frame
     void Update()
     {
-        if (ontrigger && PlayerPrefs.GetInt("NPCINCAVE") == 1)
+        BORDER.SetActive(PlayerPrefs.GetString("Quest") == "Go to the forest");
+        if (ontrigger && PlayerPrefs.GetInt("NPCINCAVE") == 1 && PlayerPrefs.GetString("Quest") != "Go to the forest")
         {
             StartCoroutine(tpstart(5f));
         }

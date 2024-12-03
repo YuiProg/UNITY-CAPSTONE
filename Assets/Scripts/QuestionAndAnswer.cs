@@ -13,8 +13,8 @@ public class QuestionAndAnswer : MonoBehaviour
     [SerializeField] GameObject STATUE2;
     [SerializeField] Text dialogue;
     [SerializeField] GameObject BORDER;
-
-    [SerializeField] Transform lastPOS;
+    [SerializeField] GameObject UI;
+    [SerializeField] GameObject worldMap;
 
     public bool inTrigger = false;
     bool isTalking = false;
@@ -64,6 +64,7 @@ public class QuestionAndAnswer : MonoBehaviour
     
     IEnumerator EssenceDialogue(float time)
     {
+        UI.SetActive(false);
         QuestTracker.instance.hasQuest = false;
         PlayerPrefs.DeleteKey("Quest");
         Cursor.visible = true;
@@ -107,17 +108,15 @@ public class QuestionAndAnswer : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(time - 2);
         PlayerController.Instance.pState.Transitioning = false;
-        PlayerController.Instance.transform.position = lastPOS.transform.position;
+        worldMap.SetActive(true);
         Save.instance.saveData();      
-        PlayerController.Instance.pState.isNPC = false;
-        Cursor.visible = false;
     }
 
     IEnumerator DialogueNPCQNA(float time)
     {
         Cursor.visible = true;
         PlayerController.Instance.pState.isNPC = true;
-
+        UI.SetActive(false);
         NPCDIALOGUE.SetActive(true);
 
         string[] dialogues = new string[]
@@ -164,7 +163,6 @@ public class QuestionAndAnswer : MonoBehaviour
         {
             "Yes... the curse has been broke but you can't leave here without the heroic essence.",
             "You must defeat Panday Tulisán to obtain his essence.",
-            ""
         };
 
         for (int i = 0; i < dialogues.Length; i++)
@@ -187,6 +185,7 @@ public class QuestionAndAnswer : MonoBehaviour
         NPCDIALOGUE.SetActive(false);
         Cursor.visible = false;
         PlayerController.Instance.pState.isNPC = false;
+        UI.SetActive(true);
         isTalking = false;
         Destroy(BORDER);
     }

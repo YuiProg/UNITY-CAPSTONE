@@ -183,6 +183,17 @@ public class Enemy : MonoBehaviour
         FB_E_CHASE,
         FB_E_ATTACKBEHAVIOR,
 
+        //HORSE MINI BOSS
+        H_Idle,
+        H_Chase,
+        H_Charge,
+        H_AttackBehavior,
+        
+        //Small Knight
+        SK_Idle,
+        SK_Chase,
+        SK_Attack,
+
     }
 
     protected EnemyStates currentEnemyStates;

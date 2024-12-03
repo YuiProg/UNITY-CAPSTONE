@@ -286,7 +286,7 @@ public class PlayerController : MonoBehaviour
         }
         text.text = $"POTION: {potionCount}";
         if (potionCount <= 0) text.text = $"POTION: EMPTY";
-        if (health <= 0 || HealthBar.fillAmount == 0 && !hasDied)
+        if ((health <= 0 || HealthBar.fillAmount == 0) && !hasDied)
         {
             
             DeathScreen.SetActive(true);
@@ -542,7 +542,7 @@ public class PlayerController : MonoBehaviour
         DashSpear = Input.GetKeyDown(KeyCode.R);
         HardAttack = Input.GetMouseButtonDown(1);
         
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && pState.obtainedSLASH)
         {
             pState.SLASH = true;
             pState.HPBUFF = false;

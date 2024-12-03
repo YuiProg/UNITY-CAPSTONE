@@ -16,6 +16,7 @@ public class Servant_Enemy : Enemy
     [SerializeField] GameObject DLG;
     [SerializeField] Text dialogue;
     [SerializeField] Text npcName;
+    [SerializeField] GameObject UI;
     public static Servant_Enemy instance;
     protected override void Start()
     {
@@ -92,14 +93,17 @@ public class Servant_Enemy : Enemy
     IEnumerator Dialogue(float time)
     {
         PlayerController.Instance.pState.isNPC = true;
+        PlayerController.Instance.pState.canPause = false;
+        UI.SetActive(false);
         isTalking = true;
         canMove = false;
         DLG.SetActive(true);
-        dialogue.text = "The book—it’s in his hands! Take it!";
+        dialogue.text = "He has the book! Take it!";
         npcName.text = "Servant";
         QuestTracker.instance.hasQuest = true;
         yield return new WaitForSeconds(time);
         PlayerController.Instance.pState.isNPC = false;
+        PlayerController.Instance.pState.canPause = true;
         chaseDistance = 30f;
         canMove = true;
         DLG.SetActive(false);
@@ -107,6 +111,7 @@ public class Servant_Enemy : Enemy
         npcName.text = "";
         isTalking = false;
         servantscanATK = true;
+        UI.SetActive(true);
         PlayerPrefs.SetString("Quest", "Defeat the servants");
         ChangeStates(EnemyStates.S_Idle);
     }

@@ -57,7 +57,7 @@ public class HUGEKNIGHT : Enemy
     protected override void UpdateEnemyStates()
     {
         float dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        flip(!isAttacking && PlayerController.Instance.pState.isAlive);
+        flip(!isAttacking && health > 0);
         stateCheck();
         if (canMove && PlayerController.Instance.pState.isAlive)
         {

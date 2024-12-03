@@ -57,6 +57,7 @@ public class NPCSHOP : MonoBehaviour
         isTalking = true;
         ui.SetActive(false);
         PlayerController.Instance.pState.isNPC = true;
+        PlayerController.Instance.pState.canPause = false;
         Cursor.visible = true;
         string[] dialogue = new[]
         {

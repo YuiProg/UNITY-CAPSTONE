@@ -18,6 +18,7 @@ public class LevelSystem : MonoBehaviour
     //obtained skill
     public Text spearDamage;
     [SerializeField] GameObject spearDMG;
+    [SerializeField] GameObject slashDMG;
     float AllDamage;
     int mainLevel;
 
@@ -31,6 +32,14 @@ public class LevelSystem : MonoBehaviour
         else
         {
             spearDMG.SetActive(false);
+        }
+        if (PlayerPrefs.GetInt("SLASH") == 1)
+        {
+            slashDMG.SetActive(true);
+        }
+        else
+        {
+            slashDMG.SetActive(false);
         }
     }
 

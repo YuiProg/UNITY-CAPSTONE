@@ -93,11 +93,13 @@ public class Reaper : Enemy
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
             healthBar.transform.eulerAngles = new Vector3(0, 0, 0);
+            status.transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
             healthBar.transform.eulerAngles = new Vector3(0, 0, 0);
+            status.transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
     

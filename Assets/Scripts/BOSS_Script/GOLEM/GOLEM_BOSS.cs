@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GOLEM_BOSS : Enemy
 {
@@ -24,6 +25,11 @@ public class GOLEM_BOSS : Enemy
     int count;
     [SerializeField] GameObject Essence;
     [SerializeField] Transform EssenceDROP;
+
+    //alerts
+    [SerializeField] Text alert1;
+    [SerializeField] Text alert2;
+    [SerializeField] Text alert3;
 
     public static GOLEM_BOSS Instance;
 
@@ -200,6 +206,9 @@ public class GOLEM_BOSS : Enemy
     IEnumerator Rolling()
     {
         isAttacking = true;
+        alert1.text = "!";
+        alert2.text = "!";
+        alert3.text = "!";
         anim.SetTrigger("Roll");
         damage = 2000f;
         float rollDuration = 3f; 
@@ -226,6 +235,9 @@ public class GOLEM_BOSS : Enemy
         damage = 6f;
         yield return new WaitForSeconds(2f);
         isAttacking = false;
+        alert1.text = "";
+        alert2.text = "";
+        alert3.text = "";
         ChangeStates(EnemyStates.G_Idle);
     }
     IEnumerator Attack1()

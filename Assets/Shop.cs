@@ -22,7 +22,7 @@ public class Shop : MonoBehaviour
 
     private void Start()
     {
-        npcShop = FindObjectOfType<NPCSHOP>();
+        npcShop = GameObject.FindGameObjectWithTag("Shop").GetComponent<NPCSHOP>();
     }
     private void Update()
     {
@@ -31,9 +31,11 @@ public class Shop : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Cursor.visible = false;
             gameObject.SetActive(false);
             npcShop.shopopen = false;
             PlayerController.Instance.pState.isNPC = false;
+            PlayerController.Instance.pState.canPause = true;
             UI.SetActive(true);
         }
     }

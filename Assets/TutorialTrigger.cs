@@ -9,6 +9,7 @@ public class TutorialTrigger : MonoBehaviour
     bool onGoing = false;
     [SerializeField] GameObject DLG;
     [SerializeField] Text dialogue;
+    [SerializeField] GameObject UI;
 
     private void Update()
     {
@@ -35,8 +36,10 @@ public class TutorialTrigger : MonoBehaviour
 
     IEnumerator dialogues(float time)
     {
+        UI.SetActive(false);
         onGoing = true;
         PlayerController.Instance.pState.isNPC = true;
+        PlayerController.Instance.pState.canPause = false;
         DLG.SetActive(true);
         string[] words = new[]
         {
@@ -65,6 +68,8 @@ public class TutorialTrigger : MonoBehaviour
         onGoing = false;
         DLG.SetActive(false); 
         PlayerController.Instance.pState.isNPC = false;
+        PlayerController.Instance.pState.canPause = true;
+        UI.SetActive(true);
         Destroy(gameObject);
     }
 }

@@ -167,7 +167,7 @@ public class NPC1 : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = false;
         PlayerController.Instance.pState.isNPC = false;
         Cursor.visible = false;
-        interact.text = "E to Interact";
+        interact.text = "!";
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Find the Cave");
         PlayerController.Instance.pState.canPause = true;
@@ -235,7 +235,7 @@ public class NPC1 : MonoBehaviour
         PlayerPrefs.SetInt("NPCINCAVE", 1);
         PlayerPrefs.SetString("Quest", "Proceed to the Cave");
         PlayerController.Instance.pState.canPause = true;
-        interact.text = "E to Interact";
+        interact.text = "!";
         GameUI.SetActive(true);
     }
 
