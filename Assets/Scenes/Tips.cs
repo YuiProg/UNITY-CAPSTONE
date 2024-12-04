@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // For Text UI
-using TMPro;          // Uncomment if using TextMeshPro
+using UnityEngine.UI;
+using TMPro;        
 
 public class TextShuffler : MonoBehaviour
 {
-    public Text uiText; // For UnityEngine.UI.Text
-    // public TextMeshProUGUI uiText; // Uncomment if using TextMeshPro
+    public Text uiText; 
 
-    public float shuffleInterval = 2f; // Time between shuffles in seconds
+    public float shuffleInterval = 2f; 
     private List<string> stringsToShuffle = new List<string>
     {
         "You can skip the side quest but it will be a difficult journey if you dare.",
@@ -23,8 +22,8 @@ public class TextShuffler : MonoBehaviour
     {
         if (uiText == null)
         {
-            uiText = GetComponent<Text>(); // Automatically find the Text component
-            // uiText = GetComponent<TextMeshProUGUI>(); // Uncomment if using TextMeshPro
+            uiText = GetComponent<Text>(); 
+
         }
 
         if (uiText != null)
@@ -35,22 +34,20 @@ public class TextShuffler : MonoBehaviour
 
     private IEnumerator ShuffleStrings()
     {
-        // Shuffle the list of strings once before the loop
+
         ShuffleList(stringsToShuffle);
 
         int index = 0;
 
         while (true)
         {
-            // Display the current string
+
             uiText.text = stringsToShuffle[index];
 
-            // Move to the next string
             index = (index + 1) % stringsToShuffle.Count;
 
             yield return new WaitForSeconds(shuffleInterval);
 
-            // Reshuffle the list when the cycle is complete
             if (index == 0)
             {
                 ShuffleList(stringsToShuffle);
@@ -63,7 +60,6 @@ public class TextShuffler : MonoBehaviour
         for (int i = list.Count - 1; i > 0; i--)
         {
             int randomIndex = Random.Range(0, i + 1);
-            // Swap elements
             T temp = list[i];
             list[i] = list[randomIndex];
             list[randomIndex] = temp;

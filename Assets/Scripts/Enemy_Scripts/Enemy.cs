@@ -183,6 +183,15 @@ public class Enemy : MonoBehaviour
         FB_E_CHASE,
         FB_E_ATTACKBEHAVIOR,
 
+        //TONDO BOSS
+        TB_IDLE,
+        TB_CHASE,
+        TB_ATTACKBEHAVIOR,
+        TB_TRANSFORM,
+        TB_E_IDLE,
+        TB_E_CHASE,
+        TB_E_ATTACKBEHAVIOR,
+
         //HORSE MINI BOSS
         H_Idle,
         H_Chase,

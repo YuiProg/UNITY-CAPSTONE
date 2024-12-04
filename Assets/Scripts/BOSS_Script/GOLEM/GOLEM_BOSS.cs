@@ -128,7 +128,7 @@ public class GOLEM_BOSS : Enemy
     void stateCheck()
     {
         canMove = !parried;
-        canFlip = !isAttacking;
+        canFlip = !isAttacking && health >= 0;
         anim.SetBool("Parried", parried);
         if (spottedPlayer)
         {

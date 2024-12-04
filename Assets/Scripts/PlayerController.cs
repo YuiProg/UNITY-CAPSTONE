@@ -284,8 +284,8 @@ public class PlayerController : MonoBehaviour
         {
             canHeal = true;
         }
-        text.text = $"POTION: {potionCount}";
-        if (potionCount <= 0) text.text = $"POTION: EMPTY";
+        text.text = $"{potionCount}";
+        if (potionCount <= 0) text.text = $"EMPTY";
         if ((health <= 0 || HealthBar.fillAmount == 0) && !hasDied)
         {
             
@@ -1235,14 +1235,14 @@ public class PlayerController : MonoBehaviour
             {
                 lookingleft = true;
                 lookingright = false;
-                transform.localScale = new Vector2(-1.672545f, transform.localScale.y);
+                transform.localScale = new Vector2(-1.320268f, transform.localScale.y);
                 pState.lookingRight = false;
             }
             else if (xAxis > 0)
             {
                 lookingleft = false;
                 lookingright = true;
-                transform.localScale = new Vector2(1.672545f, transform.localScale.y);
+                transform.localScale = new Vector2(1.320268f, transform.localScale.y);
                 pState.lookingRight = true;
             }
         }               
