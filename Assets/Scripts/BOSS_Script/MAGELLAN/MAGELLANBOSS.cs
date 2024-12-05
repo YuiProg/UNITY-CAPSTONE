@@ -175,6 +175,7 @@ public class MAGELLANBOSS : Enemy
     {
         StopAllCoroutines();
     }
+    bool banner = false;
     void stateCheck()
     {
         canMove = !parried;
@@ -193,6 +194,11 @@ public class MAGELLANBOSS : Enemy
             dropEssence();
             PlayerPrefs.SetString("Quest", "Talk to the person");
             Destroy(gameObject, 3f);
+        }
+
+        if (health <= 0 && !banner)
+        {
+            PlayerController.Instance.pState.killedABoss = true;
         }
     }
     void dropEssence()

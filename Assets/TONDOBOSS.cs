@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TONDOBOSS : Enemy
 {
@@ -8,14 +9,27 @@ public class TONDOBOSS : Enemy
     public bool spottedPlayer = false;
     bool isAttacking = false;
     bool isSecondPhase = false;
-    bool hasTransform = false;
+    bool hasTransformed = false;
     [SerializeField] GameObject HEALTBAR;
+    [SerializeField] GameObject PARRYBAR;
     [SerializeField] GameObject Amber;
+    [SerializeField] GameObject Essence;
     [SerializeField] Transform amberLOC;
     [SerializeField] GameObject BORDERR;
     [SerializeField] GameObject BORDERL;
     Animator anim;
     AudioManager audiomanager;
+
+
+    //dialogue
+    [SerializeField] GameObject DIALOGUE;
+    [SerializeField] Text dialogue;
+    [SerializeField] GameObject UI;
+    [SerializeField] Transform tpHere;
+
+
+
+    public static TONDOBOSS instance;
     protected override void Start()
     {
         base.Start();
@@ -27,12 +41,39 @@ public class TONDOBOSS : Enemy
         ChangeStates(EnemyStates.TB_IDLE);
     }
 
+    private void Awake()
+    {
+        //loadCheck();
+
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
+    void loadCheck()
+    {
+        BORDERL.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") == 1);
+        BORDERR.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") == 1);
+        HEALTBAR.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") == 1);
+        gameObject.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") == 1);
+    }
+
     protected override void UpdateEnemyStates()
     {
         float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
         stateCheck();
-        flip(!isAttacking && health >= 0);
+        flip(!isAttacking && health > 0 && !parried);
         isSecondPhase = health <= maxHealth / 2;
+        if (isSecondPhase && !hasTransformed)
+        {
+            hasTransformed = true;
+            StartCoroutine(Transform(5f));
+        }
         if (canMove && PlayerController.Instance.pState.isAlive)
         {
             switch (currentEnemyStates)
@@ -65,9 +106,9 @@ public class TONDOBOSS : Enemy
                     }
                     break;
                 case EnemyStates.TB_TRANSFORM:
-                    if (!hasTransform)
+                    if (!hasTransformed)
                     {
-                        hasTransform = true;
+                        hasTransformed = true;
                         StartCoroutine(Transform(3f));
                     }
                     break;
@@ -96,19 +137,123 @@ public class TONDOBOSS : Enemy
             }
         }
     }
-    void stateCheck()
-    {
-        canMove = !parried || health >= 0;
-        canAttack = !parried || health >= 0;
-        BORDERL.SetActive(spottedPlayer && health >= 0);
-        BORDERR.SetActive(spottedPlayer && health >= 0);
-        HEALTBAR.SetActive(spottedPlayer && PlayerController.Instance.pState.isAlive && health >= 0);
-        if (health <= 0)
-        {
 
-        }
+    //sounds
+
+    public void AttackSound()
+    {
 
     }
+
+    public void TransformSound()
+    {
+
+    }
+
+    public void SlamSound()
+    {
+
+    }
+
+    public void CameraShakeFX()
+    {
+        CameraShake.Instance.ShakeCamera();
+    }
+    bool banner = false;
+    bool dropped = false;
+    bool startedDialogue = false;
+    void stateCheck()
+    {
+        canMove = !parried && health > 0;
+        canAttack = !parried && health > 0;
+        BORDERL.SetActive(spottedPlayer && health > 0);
+        BORDERR.SetActive(spottedPlayer && health > 0);
+        HEALTBAR.SetActive(spottedPlayer && PlayerController.Instance.pState.isAlive && health > 0);
+        if (health <= 0)
+        {
+            QuestTracker.instance.hasQuest = false;
+            PlayerPrefs.DeleteKey("Quest");
+            PlayerPrefs.SetInt("TONDOMBOSS", 1);
+            spottedPlayer = false;
+            PARRYBAR.SetActive(false);
+            anim.SetTrigger("Death");
+        }
+        if (health <= 0 && !banner)
+        {
+            banner = true;
+            PlayerController.Instance.pState.killedABoss = true;
+        }
+        if (health <= 0 && !dropped)
+        {
+            amberDrop();
+        }
+        if (health <= 0 && !startedDialogue)
+        {
+            startedDialogue = true;
+            StartCoroutine(Dialogue1(4.5f));
+        }
+    }
+
+    //dialogue tas cutscene
+
+    IEnumerator Dialogue1(float time)
+    {
+        yield return new WaitForSeconds(time + 1.5f);
+        PlayerController.Instance.pState.canPause = false;
+        PlayerController.Instance.pState.isNPC = true;
+        DIALOGUE.SetActive(true);
+        UI.SetActive(false);
+        Cursor.visible = true;
+
+        string[] words = new[]
+        {
+            "Trusted by the marked warrior of blood, Whose steps uphold the eternal light.",
+            "Because of his peace, order shall thrive, Ensuring existence, keeping us alive.",
+            "Only he, the chosen one, can unravel the threads of night. With these artifacts, one mistake will open the gate.",
+            "In the chosen one's battle, the rogue traveler's power awaits. Our existence depends on his fate."
+        };
+
+        for (int i = 0; i < words.Length; i++)
+        {
+            float elapsedtime = 0f;
+            dialogue.text = words[i];
+            while (elapsedtime < time)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    elapsedtime = time;
+                    break;
+                }
+                elapsedtime += Time.deltaTime;
+                yield return null;
+            }
+        }
+        DIALOGUE.SetActive(false);
+        PlayerController.Instance.pState.Transitioning = true;
+        yield return new WaitForSeconds(time - 2);
+        PlayerController.Instance.pState.Transitioning = false;
+        PlayerController.Instance.transform.position = tpHere.position;
+        Save.instance.saveData();
+        LevelManager.instance.loadscene("Cave_1");
+    }
+    
+    int Ambercount;
+    int Essencecount;
+    void amberDrop()
+    {
+        if (Ambercount != 15)
+        {
+            Ambercount++;
+            Instantiate(Amber, amberLOC.position, Quaternion.identity);
+        }
+        if (Essencecount != 4)
+        {
+            Essencecount++;
+            Instantiate(Essence, amberLOC.position, Quaternion.identity);
+        }
+        if (Ambercount == 15 && Essencecount == 4) dropped = true;
+    }
+
     IEnumerator Transform(float time)
     {
         canMove = false;
@@ -242,7 +387,7 @@ public class TONDOBOSS : Enemy
         isAttacking = true;
         canMove = false;
         anim.SetTrigger("TB_T_SKILL1");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         isAttacking = false;
         canMove = true;
         ChangeStates(EnemyStates.TB_E_CHASE);
@@ -253,7 +398,7 @@ public class TONDOBOSS : Enemy
         isAttacking = true;
         canMove = false;
         anim.SetTrigger("TB_T_SKILL2");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         isAttacking = false;
         canMove = true;
         ChangeStates(EnemyStates.TB_E_CHASE);
@@ -262,7 +407,7 @@ public class TONDOBOSS : Enemy
     bool distanceCheck()
     {
         float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        return distance < 5.5f;
+        return distance < 6f;
     }
 
     void flip(bool canFlip)
@@ -272,10 +417,12 @@ public class TONDOBOSS : Enemy
             if (PlayerController.Instance.transform.position.x < transform.position.x)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
+                HEALTBAR.transform.eulerAngles = new Vector3(0,0,0);
             }
             else
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
+                HEALTBAR.transform.eulerAngles = new Vector3(0, 0, 0);
             }
         }
     }

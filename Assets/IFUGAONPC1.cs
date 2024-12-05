@@ -85,7 +85,7 @@ public class IFUGAONPC1 : MonoBehaviour
         isSpeaking = false;
         DIALOGUE.SetActive(false);
         PlayerController.Instance.pState.isNPC = false;
-        PlayerController.Instance.pState.canPause = false;
+        PlayerController.Instance.pState.canPause = true;
         UI.SetActive(true);
     }
 

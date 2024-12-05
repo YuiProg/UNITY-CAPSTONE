@@ -130,6 +130,8 @@ public class PlayerController : MonoBehaviour
     //statistics
     public int barya;
     public int levels;
+    public Text baryaCount;
+    public Text levelsCount;
     public int mainLevel;
     bool restoreTime;
     float restoreTimeSpeed;
@@ -317,8 +319,18 @@ public class PlayerController : MonoBehaviour
         comboCounter.text = $"{Math.Round(comboTimer)}";
         healtxtCount.text = $"{Math.Round(healTimer)}";
         SpearTimer.text = $"{Mathf.Round(SpearDashTimer)}";
+        if (PlayerPrefs.GetInt("LOAD") >= 1)
+        {
+            baryaCount.text = $"{PlayerPrefs.GetInt("Barya")}";
+            levelsCount.text = $"{PlayerPrefs.GetInt("Levels")}";
+        }
+        else
+        {
+            baryaCount.text = "0";
+            levelsCount.text = "0";
+        }
     }
-
+    
     bool hasDied = false;
     bool isRespawning = false;
 
@@ -704,7 +716,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {               
-                if (parryTimer < 0.3f)
+                if (parryTimer < 0.2f)
                 {
                     pState.parry = true;
                     parryTimer = 0;                    
@@ -1235,14 +1247,14 @@ public class PlayerController : MonoBehaviour
             {
                 lookingleft = true;
                 lookingright = false;
-                transform.localScale = new Vector2(-1.320268f, transform.localScale.y);
+                transform.localScale = new Vector2(-1.760973f, transform.localScale.y);
                 pState.lookingRight = false;
             }
             else if (xAxis > 0)
             {
                 lookingleft = false;
                 lookingright = true;
-                transform.localScale = new Vector2(1.320268f, transform.localScale.y);
+                transform.localScale = new Vector2(1.760973f, transform.localScale.y);
                 pState.lookingRight = true;
             }
         }               

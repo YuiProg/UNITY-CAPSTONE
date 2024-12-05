@@ -28,6 +28,12 @@ public class AudioManager : MonoBehaviour
     [Header("SFX HORSE BOSS")]
     public AudioClip H_Attack;
     public AudioClip H_Chase;
+    [Space(2)]
+    [Header("SFX TONDO BOSS")]
+    public AudioClip TB_Attack;
+    public AudioClip TB_SLAM;
+    public AudioClip TB_Transform;
+
 
     public void PlaySFX(AudioClip clip)
     {

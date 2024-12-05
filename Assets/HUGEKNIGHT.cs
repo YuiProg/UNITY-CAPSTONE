@@ -102,6 +102,7 @@ public class HUGEKNIGHT : Enemy
     }
     bool isdead = false;
     bool hasdroppeditems = false;
+    bool banner = false;
     void stateCheck()
     {
         BORDERL.SetActive(spottedPlayer);
@@ -130,6 +131,11 @@ public class HUGEKNIGHT : Enemy
             {
                 hasdroppeditems = true;
             }
+        }
+        if (health <= 0 && !banner)
+        {
+            banner = true;
+            PlayerController.Instance.pState.killedABoss = true;
         }
     }
     bool distanceCheck()
