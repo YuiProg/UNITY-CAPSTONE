@@ -290,7 +290,7 @@ public class PlayerController : MonoBehaviour
         if (potionCount <= 0) text.text = $"EMPTY";
         if ((health <= 0 || HealthBar.fillAmount == 0) && !hasDied)
         {
-            
+            pState.canPause = false;
             DeathScreen.SetActive(true);
             pState.canMove = false;
             pState.jumping = false;
@@ -311,7 +311,7 @@ public class PlayerController : MonoBehaviour
         Hp.text = $"{Mathf.RoundToInt(health)}/{Mathf.RoundToInt(maxHealth)}";
         StaminaCount.text = $"{Mathf.RoundToInt(stamina)}/{Mathf.RoundToInt(maxstamina)}";
         parryTimer += Time.deltaTime;
-        if (parryTimer > 0.3f)
+        if (parryTimer > 0.2f)
         {
             parryTimer = 0;
             pState.parry = false;
@@ -358,8 +358,8 @@ public class PlayerController : MonoBehaviour
         {
             normal_damage = 2;
             normal_hdamage = 4;
-            normal_slash_Damage = 10;
-            normal_spear_damage = 15;
+            normal_slash_Damage = 8;
+            normal_spear_damage = 10;
             spearDamage = normal_spear_damage;
             damage = normal_damage;
             hdamage = normal_hdamage;
@@ -630,58 +630,61 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeDamage(float _damage)
     {
-        if (!pState.blocking && !pState.invincible)
+        if (pState.isAlive)
         {
-            audiomanager.PlaySFX(audiomanager.Hurt);
-            parryDamageBonus = 0;
-            parryCounter.text = "";
-            damage = normal_damage;
-            hdamage = normal_hdamage;
-            Cdamage = normal_slash_Damage;
-            spearDamage = normal_spear_damage;
-            print("Player is taking damage.");
-            GameObject _enemyBlood = Instantiate(blood, transform.position, Quaternion.identity);
-            Destroy(_enemyBlood, 5.5f);
-            takingDamage = true;
-            health -= Mathf.RoundToInt(_damage);
-            HealthBar.fillAmount = health / maxHealth;
-            StartCoroutine(StopTakingDamage());
-        }
-        else if (pState.parry)
-        {
-            audiomanager.PlaySFX(audiomanager.Parry);
-            Color color = Color.yellow;
-            Color white = Color.white;
-            parryFX.Play();
-            parryDamageBonus = parryDamageBonus + 1;
-            parryCounter.text = $"{parryDamageBonus}";
-            parryDamagePlus();
-            print("Player is parrying damage.");                     
-            if (parryDamageBonus > 5)
+            if (!pState.blocking && !pState.invincible)
             {
-                parryCounter.color = color;
+                audiomanager.PlaySFX(audiomanager.Hurt);
+                parryDamageBonus = 0;
+                parryCounter.text = "";
+                damage = normal_damage;
+                hdamage = normal_hdamage;
+                Cdamage = normal_slash_Damage;
+                spearDamage = normal_spear_damage;
+                print("Player is taking damage.");
+                GameObject _enemyBlood = Instantiate(blood, transform.position, Quaternion.identity);
+                Destroy(_enemyBlood, 5.5f);
+                takingDamage = true;
+                health -= Mathf.RoundToInt(_damage);
+                HealthBar.fillAmount = health / maxHealth;
+                StartCoroutine(StopTakingDamage());
+            }
+            else if (pState.parry)
+            {
+                audiomanager.PlaySFX(audiomanager.Parry);
+                Color color = Color.yellow;
+                Color white = Color.white;
+                parryFX.Play();
+                parryDamageBonus = parryDamageBonus + 1;
+                parryCounter.text = $"{parryDamageBonus}";
+                parryDamagePlus();
+                print("Player is parrying damage.");
+                if (parryDamageBonus > 5)
+                {
+                    parryCounter.color = color;
+                }
+                else
+                {
+                    parryCounter.color = white;
+                }
+                CameraShake.Instance.ShakeCamera();
             }
             else
             {
-                parryCounter.color = white;
+                audiomanager.PlaySFX(audiomanager.Block);
+                parryDamageBonus = 0;
+                parryCounter.text = "";
+                damage = normal_damage;
+                hdamage = normal_hdamage;
+                Cdamage = normal_slash_Damage;
+                print("Player is blocking damage.");
+                GameObject _enemyBlood = Instantiate(blockFx, transform.position, Quaternion.identity);
+                Destroy(_enemyBlood, 5.5f);
+                shieldCount -= Mathf.RoundToInt(_damage);
+                ShieldBar.fillAmount = shieldCount / maxShield;
+                CameraShake.Instance.ShakeCamera();
             }
-            CameraShake.Instance.ShakeCamera();
-        }
-        else
-        {
-            audiomanager.PlaySFX(audiomanager.Block);
-            parryDamageBonus = 0;
-            parryCounter.text = "";
-            damage = normal_damage;
-            hdamage = normal_hdamage;
-            Cdamage = normal_slash_Damage;
-            print("Player is blocking damage.");
-            GameObject _enemyBlood = Instantiate(blockFx, transform.position, Quaternion.identity);
-            Destroy(_enemyBlood, 5.5f);
-            shieldCount -= Mathf.RoundToInt(_damage);
-            ShieldBar.fillAmount = shieldCount / maxShield;
-            CameraShake.Instance.ShakeCamera();
-        }       
+        }      
     }
 
     IEnumerator StopTakingDamage()

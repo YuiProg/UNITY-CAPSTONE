@@ -142,17 +142,17 @@ public class TONDOBOSS : Enemy
 
     public void AttackSound()
     {
-
+        audiomanager.PlaySFX(audiomanager.TB_Attack);
     }
 
     public void TransformSound()
     {
-
+        audiomanager.PlaySFX(audiomanager.TB_Transform);
     }
 
     public void SlamSound()
     {
-
+        audiomanager.PlaySFX(audiomanager.TB_SLAM);
     }
 
     public void CameraShakeFX()

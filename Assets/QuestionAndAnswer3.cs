@@ -34,11 +34,11 @@ public class QuestionAndAnswer3 : MonoBehaviour
         {
             if (!isTalking && Input.GetKeyDown(KeyCode.E))
             {
-                if (PlayerPrefs.GetInt("SideQuest3") != 1 && PlayerPrefs.GetInt("SpearGirl") != 1)
+                if (PlayerPrefs.GetInt("SideQuest3") != 1 && PlayerPrefs.GetInt("QNCNPC3") != 1)
                 {
                     StartCoroutine(dialogue1(4.5f));
                 }
-                else
+                if(PlayerPrefs.GetInt("SpearGirl") == 1)
                 {
                     StartCoroutine(winDLG(4.5f));
                 }
@@ -134,7 +134,7 @@ public class QuestionAndAnswer3 : MonoBehaviour
         }
 
         dialogue.text = "";
-        PlayerPrefs.SetInt("SideQuest3", 1);
+        PlayerPrefs.SetInt("QNANPC3", 1);
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Defeat the area boss");
         NPCDIALOGUE.SetActive(false);

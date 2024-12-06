@@ -75,7 +75,7 @@ public class TUTORIALMOVE : MonoBehaviour
         Time.timeScale = 0;
         PlayerController.Instance.pState.isNPC = true;
         DLG.SetActive(true);
-        dialogue.text = "E FOR INTERACT";
+        dialogue.text = "E TO INTERACT AND BLOCK/PARRY";
         yield return new WaitForSecondsRealtime(3f);
         Time.timeScale = 1;
         DLG.SetActive(false);
