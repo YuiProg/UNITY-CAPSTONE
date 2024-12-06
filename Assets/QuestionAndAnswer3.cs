@@ -21,6 +21,7 @@ public class QuestionAndAnswer3 : MonoBehaviour
 
     public bool inTrigger = false;
     bool isTalking = false;
+    bool worldlmapactive = false;
     private void Start()
     {
         QNA.SetActive(false);
@@ -32,15 +33,16 @@ public class QuestionAndAnswer3 : MonoBehaviour
         BORDER.SetActive(PlayerPrefs.GetInt("SideQuest3") != 1);
         if (inTrigger)
         {
-            if (!isTalking && Input.GetKeyDown(KeyCode.E))
+            if (!isTalking && Input.GetKeyDown(KeyCode.E) && !worldlmapactive)
             {
-                if (PlayerPrefs.GetInt("SideQuest3") != 1 && PlayerPrefs.GetInt("QNCNPC3") != 1)
-                {
-                    StartCoroutine(dialogue1(4.5f));
-                }
-                if(PlayerPrefs.GetInt("SpearGirl") == 1)
+                if (PlayerPrefs.GetInt("SpearGirl") == 1)
                 {
                     StartCoroutine(winDLG(4.5f));
+                    return;
+                }
+                if (PlayerPrefs.GetInt("SideQuest3") != 1)
+                {
+                    StartCoroutine(dialogue1(4.5f));
                 }
             }
             
@@ -134,7 +136,7 @@ public class QuestionAndAnswer3 : MonoBehaviour
         }
 
         dialogue.text = "";
-        PlayerPrefs.SetInt("QNANPC3", 1);
+        PlayerPrefs.SetInt("SideQuest3", 1);
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Defeat the area boss");
         NPCDIALOGUE.SetActive(false);
@@ -196,6 +198,7 @@ public class QuestionAndAnswer3 : MonoBehaviour
         yield return new WaitForSeconds(time - 2);
         PlayerController.Instance.pState.Transitioning = false;
         Cursor.visible = true;
+        worldlmapactive = true;
         worldMap.SetActive(true);
         
         isTalking = false;

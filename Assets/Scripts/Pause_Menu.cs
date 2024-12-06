@@ -9,6 +9,7 @@ public class Pause_Menu : MonoBehaviour
     [SerializeField] GameObject UI;
     [SerializeField] GameObject SettingsUI;
     [SerializeField] GameObject StatsUI;
+    [SerializeField] GameObject TUTORIAL;
     //world map
     [SerializeField] GameObject WORLDMAP;
     [SerializeField] GameObject WORLDMAPBTN;
@@ -76,5 +77,11 @@ public class Pause_Menu : MonoBehaviour
     {
         WORLDMAP.SetActive(false);
         pauseMenu.SetActive(true);
+    }
+
+    public void tutorialMenu()
+    {
+        pauseMenu.SetActive(false);
+        TUTORIAL.SetActive(true);
     }
 }
