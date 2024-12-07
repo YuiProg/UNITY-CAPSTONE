@@ -193,6 +193,7 @@ public class QuestionAndAnswer3 : MonoBehaviour
         yield return new WaitForSeconds(time);
         NPCDIALOGUE.SetActive(false);
         dialogue.text = "";
+        PlayerPrefs.SetInt("SIDEQUEST3COMP", 1);
         yield return new WaitForSeconds(time - 2);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(time - 2);

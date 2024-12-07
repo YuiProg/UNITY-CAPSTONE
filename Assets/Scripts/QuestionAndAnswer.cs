@@ -31,12 +31,12 @@ public class QuestionAndAnswer : MonoBehaviour
     {
         if (inTrigger && Input.GetKeyDown(KeyCode.E) && !isTalking)
         {
-            if (PlayerPrefs.GetInt("Desert") != 1 && PlayerPrefs.GetInt("SideQuest1") != 1)
+            if (PlayerPrefs.GetInt("Bandit") != 1 && PlayerPrefs.GetInt("SideQuest1") != 1)
             {
                 isTalking = true;
                 StartCoroutine(DialogueNPCQNA(4.5f));
             }
-            if (PlayerPrefs.GetInt("WARRIOR") == 1 && PlayerPrefs.GetInt("SideQuest1") == 1)
+            if (PlayerPrefs.GetInt("Bandit") == 1 && PlayerPrefs.GetInt("SideQuest1") == 1)
             {
                 isTalking = true;
                 StartCoroutine(EssenceDialogue(4.5f));
@@ -105,6 +105,7 @@ public class QuestionAndAnswer : MonoBehaviour
         yield return new WaitForSeconds(time);
         dialogue.text = "";
         NPCDIALOGUE.SetActive(false);
+        PlayerPrefs.SetInt("SIDEQUESTCOMP", 1);
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(time - 2);
         PlayerController.Instance.pState.Transitioning = false;

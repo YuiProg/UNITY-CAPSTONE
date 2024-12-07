@@ -13,6 +13,7 @@ public class CameraShake : MonoBehaviour
     [SerializeField] GameObject settingsUI;
     [SerializeField] GameObject statUI;
     [SerializeField] GameObject WORLDMAP;
+    [SerializeField] GameObject TUTORIAL;
 
     private float timer;
     private CinemachineBasicMultiChannelPerlin _cbmcp;
@@ -74,6 +75,7 @@ public class CameraShake : MonoBehaviour
         {
             if (isPaused)
             {
+                TUTORIAL.SetActive(false);
                 WORLDMAP.SetActive(false);
                 Cursor.visible = false;
                 Time.timeScale = 1;

@@ -10,13 +10,17 @@ public class BANDIT_BOSS : Enemy
     [SerializeField] public Transform bulletpos;
     [SerializeField] GameObject HealthBar;
     [SerializeField] AudioSource music;
-    
+    [SerializeField] GameObject BORDERR;
+    [SerializeField] GameObject BORDERL;
     public float chaseDistance;
     public float jumpHeight;
     bool attacking = false;
     public bool spottedPlayer = false;
     float throwTimer;
     Animator anim;
+
+    [SerializeField] Transform AmberLOC;
+    [SerializeField] GameObject Amber;
 
 
 
@@ -50,6 +54,8 @@ public class BANDIT_BOSS : Enemy
         int ActiveCheck = PlayerPrefs.GetInt("Bandit");
         if (ActiveCheck == 1)
         {
+            BORDERL.SetActive(false);
+            BORDERR.SetActive(false);
             HealthBar.SetActive(false);
             gameObject.SetActive(false);
         }
@@ -96,6 +102,8 @@ public class BANDIT_BOSS : Enemy
         }
     }
     bool MusicPlaying = false;
+    bool hasDropped = false;
+    int drop;
     void checker()
     {
         canMove = !parried;
@@ -106,13 +114,21 @@ public class BANDIT_BOSS : Enemy
         if (spottedPlayer)
         {
             HealthBar.SetActive(true);
+            BORDERR.SetActive(true);
+            BORDERL.SetActive(true);
             if (!MusicPlaying)
             {
                 MusicPlaying = true;
                 music.Play();
                 return;
             }
-            
+
+        }
+        else
+        {
+            HealthBar.SetActive(false);
+            BORDERR.SetActive(false);
+            BORDERL.SetActive(false);
         }
         if (health <= 0)
         {
@@ -134,6 +150,18 @@ public class BANDIT_BOSS : Enemy
         else
         {
             anim.SetBool("Parried", false);
+        }
+        if (health <= 0 && !hasDropped)
+        {
+            if (drop != 5)
+            {
+                drop++;
+                Instantiate(Amber, AmberLOC.position, Quaternion.identity);
+            }
+            if (drop == 5)
+            {
+                hasDropped = true;
+            }
         }
         
     }

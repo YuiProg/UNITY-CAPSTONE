@@ -105,6 +105,7 @@ public class HUGEKNIGHT : Enemy
     bool banner = false;
     void stateCheck()
     {
+        if (parried) anim.SetTrigger("Parried") ;
         BORDERL.SetActive(spottedPlayer);
         BORDERR.SetActive(spottedPlayer);
         HEALTHBAR.SetActive(spottedPlayer);

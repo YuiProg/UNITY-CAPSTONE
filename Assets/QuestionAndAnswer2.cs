@@ -13,7 +13,10 @@ public class QuestionAndAnswer2 : MonoBehaviour
     [SerializeField] GameObject STATUE2;
     [SerializeField] Text dialogue;
     [SerializeField] GameObject BORDER;
+    [SerializeField] GameObject UI;
+    //world map
 
+    [SerializeField] GameObject WORLDMAP;
 
     public bool inTrigger = false;
     bool isTalking = false;
@@ -61,6 +64,7 @@ public class QuestionAndAnswer2 : MonoBehaviour
 
     IEnumerator Dialogue(float time)
     {
+        UI.SetActive(false);
         PlayerController.Instance.pState.canPause = false;
         Cursor.visible = true;
         isTalking = true;
@@ -109,6 +113,7 @@ public class QuestionAndAnswer2 : MonoBehaviour
 
     IEnumerator winDLG(float time)
     {
+        UI.SetActive(false);
         Cursor.visible = true;
         isTalking = true;
         NPCDIALOGUE.SetActive(true);
@@ -147,12 +152,14 @@ public class QuestionAndAnswer2 : MonoBehaviour
         NPCDIALOGUE.SetActive(true);
         dialogue.text = "You may now proceed on your adventure";
         yield return new WaitForSeconds(time);
-        dialogue.text = "";
-        PlayerController.Instance.pState.isNPC = false;
+        PlayerController.Instance.pState.Transitioning = true;
         NPCDIALOGUE.SetActive(false);
+        yield return new WaitForSeconds(time - 2);
+        PlayerController.Instance.pState.Transitioning = false;
+        PlayerPrefs.SetInt("SIDEQUEST2COMP", 1);
+        dialogue.text = "";
         isTalking = false;
-        PlayerController.Instance.pState.canPause = true;
-        Cursor.visible = false;
+        WORLDMAP.SetActive(true);
     }
     IEnumerator dialogue2(float time)
     {
@@ -192,5 +199,6 @@ public class QuestionAndAnswer2 : MonoBehaviour
         PlayerPrefs.SetInt("SideQuest2", 1);
         PlayerController.Instance.pState.canPause = true;
         PlayerController.Instance.pState.isNPC = false;
+        UI.SetActive(true);
     }
 }

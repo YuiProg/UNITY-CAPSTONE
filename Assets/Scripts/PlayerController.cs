@@ -288,7 +288,7 @@ public class PlayerController : MonoBehaviour
         }
         text.text = $"{potionCount}";
         if (potionCount <= 0) text.text = $"EMPTY";
-        if ((health <= 0 || HealthBar.fillAmount == 0) && !hasDied)
+        if ((Mathf.RoundToInt(health) <= 0) && !hasDied)
         {
             pState.canPause = false;
             DeathScreen.SetActive(true);

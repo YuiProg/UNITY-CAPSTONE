@@ -234,7 +234,7 @@ public class TONDOBOSS : Enemy
         PlayerController.Instance.pState.Transitioning = false;
         PlayerController.Instance.transform.position = tpHere.position;
         Save.instance.saveData();
-        LevelManager.instance.loadscene("Cave_1");
+        LevelManager.instance.loadscene("CUTSCENE3");
     }
     
     int Ambercount;

@@ -154,7 +154,7 @@ public class MACTANNPC : MonoBehaviour
         UI.SetActive(true);
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Defeat Magellan");
-        PlayerController.Instance.pState.canPause = false;
+        PlayerController.Instance.pState.canPause = true;
         Save.instance.saveData();
     }
 }

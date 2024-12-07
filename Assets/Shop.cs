@@ -10,9 +10,6 @@ public class Shop : MonoBehaviour
     [SerializeField] Text remainingCoins;
     [SerializeField] GameObject UI;
 
-    //shop
-    [SerializeField] GameObject essenceShop;
-    [SerializeField] GameObject potionShop;
 
     public int purchaseCount;
     bool hasFunds;
@@ -119,17 +116,6 @@ public class Shop : MonoBehaviour
         purchaseCoroutine = StartCoroutine(PurchaseEssence(2f));
     }
 
-    public void showPotionShop()
-    {
-        potionShop.SetActive(true);
-        essenceShop.SetActive(false);
-    }
-
-    public void showEssenceShop()
-    {
-        potionShop.SetActive(false);
-        essenceShop.SetActive(true);
-    }
 
     public void purchasePotion()
     {

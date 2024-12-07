@@ -54,6 +54,7 @@ public class Desert_BOSS : Enemy
     protected override void UpdateEnemyStates()
     {
         float _dist = Vector2.Distance(PlayerController.Instance.transform.position, transform.position);
+        if (parried) anim.SetTrigger("Parried");
         statusCheck();
         if (health <= 0 && !dead)
         {
