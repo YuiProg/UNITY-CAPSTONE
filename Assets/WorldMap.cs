@@ -377,6 +377,8 @@ public class WorldMap : MonoBehaviour
             PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
             PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
             Save.instance.saveStats();
+            PlayerController.Instance.pState.isNPC = false;
+            PlayerController.Instance.pState.canPause = true;
             PlayerController.Instance.pState.isPaused = false;
             UI.SetActive(true);
             teleporting = false;
