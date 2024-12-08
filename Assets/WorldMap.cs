@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ public class WorldMap : MonoBehaviour
     [SerializeField] GameObject TONDOSKILL;
     [SerializeField] GameObject TONDOSQART;
     [SerializeField] GameObject TONDOSQSKILL;
+    [SerializeField] GameObject SHOPART;
+    [SerializeField] GameObject SHOPSKILL;
     [Space(5)]
     [Header("BTNS")]
     [SerializeField] GameObject IFUGAOBTN;
@@ -32,6 +35,8 @@ public class WorldMap : MonoBehaviour
     [SerializeField] GameObject TONDOBTN;
     [SerializeField] GameObject TONDOENTERBTN;
     [SerializeField] GameObject TONDOSQENTERBTN;
+    [SerializeField] GameObject SHOPBTN;
+    [SerializeField] GameObject SHOPENTERBTN;
     [Space(5)]
     [Header("SIDE QUEST BTNS")]
     [SerializeField] GameObject SIDEQUESTBTNIFUGAO;
@@ -48,6 +53,7 @@ public class WorldMap : MonoBehaviour
     [SerializeField] Transform TONDOTP;
     [SerializeField] Transform TONDOSQTP;
     [SerializeField] Transform IFUGAOSQTP;
+    [SerializeField] Transform SHOPTP;
     [Space(5)]
     [Header("Pause Menu")]
     [SerializeField] GameObject Pausemenu;
@@ -142,6 +148,9 @@ public class WorldMap : MonoBehaviour
         IFUGAOSQART.SetActive(false);
         IFUGAOSQSKILL.SetActive(false);
         IFUGAOENTERBTN.SetActive(false);
+        SHOPART.SetActive(false);
+        SHOPSKILL.SetActive(false);
+        SHOPENTERBTN.SetActive(false);
     }
 
     public void MACTANSIDEQUESTART()
@@ -165,6 +174,9 @@ public class WorldMap : MonoBehaviour
         IFUGAOSQART.SetActive(false);
         IFUGAOSQSKILL.SetActive(false);
         IFUGAOENTERBTN.SetActive(false);
+        SHOPART.SetActive(false);
+        SHOPSKILL.SetActive(false);
+        SHOPENTERBTN.SetActive(false);
     }
 
     public void TONDO()
@@ -188,6 +200,9 @@ public class WorldMap : MonoBehaviour
         IFUGAOSQART.SetActive(false);
         IFUGAOSQSKILL.SetActive(false);
         IFUGAOENTERBTN.SetActive(false);
+        SHOPART.SetActive(false);
+        SHOPSKILL.SetActive(false);
+        SHOPENTERBTN.SetActive(false);
     }
 
     public void TONDOSIDEQUESTART()
@@ -211,6 +226,9 @@ public class WorldMap : MonoBehaviour
         IFUGAOSQART.SetActive(false);
         IFUGAOSQSKILL.SetActive(false);
         IFUGAOENTERBTN.SetActive(false);
+        SHOPART.SetActive(false);
+        SHOPSKILL.SetActive(false);
+        SHOPENTERBTN.SetActive(false);
     }
 
     public void IFUGAOSIDEQUESTART()
@@ -234,6 +252,34 @@ public class WorldMap : MonoBehaviour
         IFUGAOSQART.SetActive(true);
         IFUGAOSQSKILL.SetActive(true);
         IFUGAOSQENTERBTN.SetActive(true);
+        SHOPART.SetActive(false);
+        SHOPSKILL.SetActive(false);
+        SHOPENTERBTN.SetActive(false);
+    }
+    public void SHOPMAINART()
+    {
+        EnterArea.text = "Balweg's Shop";
+        MACTANART.SetActive(false);
+        MACTANSKKILL.SetActive(false);
+        MACTANENTERBTN.SetActive(false);
+        IFUGAOART.SetActive(false);
+        IFUGAOSKILL.SetActive(false);
+        IFUGAOENTERBTN.SetActive(false);
+        MACTANSQART.SetActive(false);
+        MACTANSQSKILL.SetActive(false);
+        MACTANSQENTERBTN.SetActive(false);
+        TONDOART.SetActive(false);
+        TONDOENTERBTN.SetActive(false);
+        TONDOSQART.SetActive(false);
+        TONDOSKILL.SetActive(false);
+        TONDOSQSKILL.SetActive(false);
+        TONDOSQENTERBTN.SetActive(false);
+        IFUGAOSQART.SetActive(false);
+        IFUGAOSQSKILL.SetActive(false);
+        IFUGAOSQENTERBTN.SetActive(false);
+        SHOPART.SetActive(true);
+        SHOPSKILL.SetActive(true);
+        SHOPENTERBTN.SetActive(true);
     }
     public void enterMACTAN()
     {
@@ -278,7 +324,14 @@ public class WorldMap : MonoBehaviour
         StartCoroutine(TPIFUGAO());
         Cursor.visible = false;
     }
-
+    
+    public void enterSHOP()
+    {
+        Time.timeScale = 1f;
+        Pausemenu.SetActive(false);
+        StartCoroutine(SHOPTPFUNC());
+        Cursor.visible = false;
+    }
 
 
     public void IFUGAO()
@@ -301,13 +354,38 @@ public class WorldMap : MonoBehaviour
         TONDOSQENTERBTN.SetActive(false);
         IFUGAOSQART.SetActive(false);
         IFUGAOSQSKILL.SetActive(false);
+        SHOPART.SetActive(false);
+        SHOPSKILL.SetActive(false);
+        SHOPENTERBTN.SetActive(false);
     }
     //ifugao
 
 
     
     //teleporters
-
+    IEnumerator SHOPTPFUNC()
+    {
+        if (!teleporting)
+        {
+            teleporting = true;
+            PlayerController.Instance.pState.Transitioning = true;
+            yield return new WaitForSeconds(2.5f);
+            MAP.SetActive(false);
+            PlayerController.Instance.pState.Transitioning = false;
+            PlayerController.Instance.transform.position = SHOPTP.transform.position;
+            PlayerController.Instance.health = PlayerController.Instance.maxHealth;
+            PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
+            PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
+            Save.instance.saveStats();
+            PlayerController.Instance.pState.isPaused = false;
+            UI.SetActive(true);
+            teleporting = false;
+        }
+        else
+        {
+            yield return null;
+        }
+    }
     IEnumerator IFUGAOSQ()
     {
         if (!teleporting)

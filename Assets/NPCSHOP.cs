@@ -63,11 +63,13 @@ public class NPCSHOP : MonoBehaviour
         {
             "Hey it's you again!",
             "I sell and upgrade everything you need for your journey!",
-            "Feel free to look"
+            "Feel free to look",
+            "You can use that teleporter to go back when you're done!"
         };
 
         string[] name = new[]
         {
+            "Balweg",
             "Balweg",
             "Balweg",
             "Balweg"
