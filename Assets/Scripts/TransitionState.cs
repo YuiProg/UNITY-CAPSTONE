@@ -8,6 +8,11 @@ public class TransitionState : MonoBehaviour
     [SerializeField] public GameObject TransitionPIC;
     [SerializeField] GameObject DEFEATEDUI;
     [SerializeField] GameObject DEFEATEDSKILLUI;
+
+    //location
+    [SerializeField] GameObject IFUGAO;
+    [SerializeField] GameObject MACTAN;
+
     float time;
     private void Start()
     {
@@ -45,6 +50,16 @@ public class TransitionState : MonoBehaviour
         else
         {
             DEFEATEDSKILLUI.SetActive(false);
+        }
+        if (PlayerController.Instance.pState.inIfugao)
+        {
+            IFUGAO.SetActive(true);
+            anim.Play("IFUGAO");
+            PlayerController.Instance.pState.inIfugao = false;
+        }
+        else
+        {
+            IFUGAO.SetActive(false);
         }
 
     }

@@ -54,5 +54,10 @@ public class PlayerState : MonoBehaviour
     public bool SLASH = false;
     public bool HPBUFF = false;
 
+    //locations
+    public bool inIfugao = false;
+    public bool inMactan = false;
+    public bool inTondo = false;
+
 
 }
