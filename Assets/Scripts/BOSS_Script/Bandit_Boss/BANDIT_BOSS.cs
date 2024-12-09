@@ -104,6 +104,7 @@ public class BANDIT_BOSS : Enemy
     bool MusicPlaying = false;
     bool hasDropped = false;
     int drop;
+    bool banner = false;
     void checker()
     {
         canMove = !parried;
@@ -163,7 +164,12 @@ public class BANDIT_BOSS : Enemy
                 hasDropped = true;
             }
         }
-        
+        if (health <= 0 && !banner)
+        {
+            banner = true;
+            PlayerController.Instance.pState.killedABoss = true;
+            PlayerPrefs.SetString("Quest", "Return to statue");
+        }
     }
     
     bool inRange()

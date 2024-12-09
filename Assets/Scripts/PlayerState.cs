@@ -58,6 +58,7 @@ public class PlayerState : MonoBehaviour
     public bool inIfugao = false;
     public bool inMactan = false;
     public bool inTondo = false;
+    public bool inBalweg = false;
 
 
 }

@@ -12,6 +12,8 @@ public class TransitionState : MonoBehaviour
     //location
     [SerializeField] GameObject IFUGAO;
     [SerializeField] GameObject MACTAN;
+    [SerializeField] GameObject TONDO;
+    [SerializeField] GameObject BALWEG;
 
     float time;
     private void Start()
@@ -60,6 +62,36 @@ public class TransitionState : MonoBehaviour
         else
         {
             IFUGAO.SetActive(false);
+        }
+        if (PlayerController.Instance.pState.inMactan)
+        {
+            MACTAN.SetActive(true);
+            anim.Play("MACTAN");
+            PlayerController.Instance.pState.inMactan = false;
+        }
+        else
+        {
+            MACTAN.SetActive(false);
+        }
+        if (PlayerController.Instance.pState.inTondo)
+        {
+            TONDO.SetActive(true);
+            anim.Play("TONDO");
+            PlayerController.Instance.pState.inTondo = false;
+        }
+        else
+        {
+            TONDO.SetActive(false);
+        }
+        if (PlayerController.Instance.pState.inBalweg)
+        {
+            anim.Play("BALWEGANIMSHOP");
+            BALWEG.SetActive(true);
+            PlayerController.Instance.pState.inBalweg = false;
+        }
+        else
+        {
+            BALWEG.SetActive(false);
         }
 
     }

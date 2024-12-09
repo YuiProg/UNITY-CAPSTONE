@@ -90,7 +90,7 @@ public class Desert_BOSS : Enemy
 
     void dropEssence()
     {
-        if (count != 5)
+        if (count != 3)
         {
             count++;
             Instantiate(essence, essenceloc.position, Quaternion.identity);

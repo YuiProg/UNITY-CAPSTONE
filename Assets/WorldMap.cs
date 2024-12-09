@@ -120,6 +120,14 @@ public class WorldMap : MonoBehaviour
             TONDOBTN.SetActive(true);
             SIDEQUEST2BTNTONDO.SetActive(true);
         }
+        if (PlayerPrefs.GetInt("SIDEQUEST2COMP") == 1)
+        {
+            SIDEQUESTBTNIFUGAO.SetActive(false);
+        }
+        else
+        {
+            SIDEQUESTBTNIFUGAO.SetActive(true);
+        }
         
 
     }

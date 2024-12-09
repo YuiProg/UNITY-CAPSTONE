@@ -199,6 +199,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        onGround = Grounded();
         //timers
         comboTimer += Time.deltaTime;
         healTimer += Time.deltaTime;
@@ -1355,7 +1356,7 @@ public class PlayerController : MonoBehaviour
         canDash = true;
         pState.invincible = false;
     }
-
+    public bool onGround;
     public bool Grounded()
     {
         if (Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, whatIsGround)
