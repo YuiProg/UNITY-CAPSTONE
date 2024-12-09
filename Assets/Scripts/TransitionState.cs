@@ -83,16 +83,7 @@ public class TransitionState : MonoBehaviour
         {
             TONDO.SetActive(false);
         }
-        if (PlayerController.Instance.pState.inBalweg)
-        {
-            anim.Play("BALWEGANIMSHOP");
-            BALWEG.SetActive(true);
-            PlayerController.Instance.pState.inBalweg = false;
-        }
-        else
-        {
-            BALWEG.SetActive(false);
-        }
+
 
     }
 
