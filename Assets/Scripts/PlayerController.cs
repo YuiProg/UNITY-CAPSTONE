@@ -199,26 +199,26 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        onGround = Grounded();
         //timers
         comboTimer += Time.deltaTime;
         healTimer += Time.deltaTime;
         timeSinceAttack += Time.deltaTime;
         SpearDashTimer += Time.deltaTime;
-
+        if (stamina <= 0f) stamina = 0;
         //methods
         GetInputs();
         checkSkills();
         if (pState.dashing) return;
+        runCheck();
+        Move();
+        Jump();
+        StartDash();
         RestoreTimeScale();
         Flip();
         //Recoil();
         Attack();
         Block();
-        runCheck();
-        Move();
-        Jump();
-        StartDash();               
+                    
         RegenPotion();
         FlashWhileInvincible();
         pState.canAttack = timeSinceAttack > timeBetweenAttack; //lantaran if else dito pano to
@@ -412,13 +412,14 @@ public class PlayerController : MonoBehaviour
                 
                 if (Grounded() || doubleJump)
                 {
+                    if (recharge != null) StopCoroutine(recharge);
+                    recharge = StartCoroutine(RechargeStamina());
+                    stamina -= jumpCost;
+                    Stamina.fillAmount = stamina / maxstamina;
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                     doubleJump = !doubleJump;
                 }
-                if (recharge != null) StopCoroutine(recharge);
-                recharge = StartCoroutine(RechargeStamina());
-                stamina -= jumpCost;
-                Stamina.fillAmount = stamina / maxstamina;
+                
             }
         }
         else if (Grounded())
@@ -1366,7 +1367,7 @@ public class PlayerController : MonoBehaviour
         canDash = true;
         pState.invincible = false;
     }
-    public bool onGround;
+
     public bool Grounded()
     {
         if (Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, whatIsGround)

@@ -101,7 +101,7 @@ public class CameraShake : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J) && PlayerController.Instance.pState.hasBOOK)
         {
             if (!journalOpen)
             {
