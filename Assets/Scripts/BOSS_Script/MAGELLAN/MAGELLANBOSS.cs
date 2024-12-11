@@ -192,7 +192,7 @@ public class MAGELLANBOSS : Enemy
             spottedPlayer = false;          
             anim.SetTrigger("MF_E_DEATH");
             dropEssence();
-            PlayerPrefs.SetString("Quest", "Talk to the person");
+            PlayerPrefs.SetString("Quest", "Talk to the Tausug");
             Destroy(gameObject, 3f);
         }
 

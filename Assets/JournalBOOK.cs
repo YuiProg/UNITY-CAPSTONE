@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JournalBOOK : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class JournalBOOK : MonoBehaviour
     [SerializeField] GameObject TONDO;
     //lock
     [SerializeField] GameObject Lock;
+    [SerializeField] Text locktxt;
 
     public void IFUGAOBTN()
     {
@@ -21,6 +23,7 @@ public class JournalBOOK : MonoBehaviour
         }
         else
         {
+            locktxt.text = "COMPLETE IFUGAO AREA TO UNLOCK PAGE.";
             Lock.SetActive(true);
         }
     }
@@ -36,6 +39,7 @@ public class JournalBOOK : MonoBehaviour
         }
         else
         {
+            locktxt.text = "COMPLETE MACTAN AREA TO UNLOCK PAGE.";
             Lock.SetActive(true);
         }
     }
@@ -51,6 +55,7 @@ public class JournalBOOK : MonoBehaviour
         }
         else
         {
+            locktxt.text = "COMPLETE TONDO AREA TO UNLOCK PAGE.";
             Lock.SetActive(true);
         }
     }

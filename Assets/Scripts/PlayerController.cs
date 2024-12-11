@@ -190,9 +190,9 @@ public class PlayerController : MonoBehaviour
         shieldCount = maxShield;
         potionCount = maxPotions;
         HealthBar.fillAmount = health / maxHealth;
-        comboTimer = 5;
-        healTimer = 30;
-        SpearDashTimer = 5;
+        comboTimer = 18;
+        healTimer = 25;
+        SpearDashTimer = 12;
         Save.instance.loadStats();
         statCheck();
     }
@@ -206,6 +206,7 @@ public class PlayerController : MonoBehaviour
         SpearDashTimer += Time.deltaTime;
         if (stamina <= 0f) stamina = 0;
         //methods
+        skillCD();
         GetInputs();
         checkSkills();
         if (pState.dashing) return;
@@ -255,13 +256,13 @@ public class PlayerController : MonoBehaviour
             }
         }
         //skill timers
-        if (SpearDashTimer > 5)
+        if (SpearDashTimer > 12)
         {
-            SpearDashTimer = 5;
+            SpearDashTimer = 12;
         }
-        if (comboTimer > 5)
+        if (comboTimer > 18)
         {
-            comboTimer = 5;
+            comboTimer = 18;
         }
         if (healTimer > 25)
         {
@@ -317,9 +318,7 @@ public class PlayerController : MonoBehaviour
             parryTimer = 0;
             pState.parry = false;
         }
-        comboCounter.text = $"{Math.Round(comboTimer)}";
-        healtxtCount.text = $"{Math.Round(healTimer)}";
-        SpearTimer.text = $"{Mathf.Round(SpearDashTimer)}";
+        
         if (PlayerPrefs.GetInt("LOAD") >= 1)
         {
             baryaCount.text = $"{PlayerPrefs.GetInt("Barya")}";
@@ -334,7 +333,34 @@ public class PlayerController : MonoBehaviour
     
     bool hasDied = false;
     bool isRespawning = false;
-
+    void skillCD()
+    {
+        if (comboTimer >= 18)
+        {
+            comboCounter.text = "";
+        }
+        else
+        {
+            comboCounter.text = $"{Math.Round(comboTimer)}";
+        }
+        if (healTimer >= 25)
+        {
+            healtxtCount.text = "";
+        }
+        else
+        {
+            healtxtCount.text = $"{Math.Round(healTimer)}";
+        }
+        if (SpearDashTimer >= 12)
+        {
+            SpearTimer.text = "";
+        }
+        else
+        {
+            SpearTimer.text = $"{Mathf.Round(SpearDashTimer)}";
+        }
+               
+    }
     void statCheck()
     {
         if (PlayerPrefs.GetInt("LOAD") >= 1)
@@ -667,11 +693,11 @@ public class PlayerController : MonoBehaviour
                 Color color = Color.yellow;
                 Color white = Color.white;
                 parryFX.Play();
-                parryDamageBonus = parryDamageBonus + 1;
+                if(parryDamageBonus != 5) parryDamageBonus = parryDamageBonus + 1;
                 parryCounter.text = $"{parryDamageBonus}";
                 parryDamagePlus();
                 print("Player is parrying damage.");
-                if (parryDamageBonus > 5)
+                if (parryDamageBonus > 3)
                 {
                     parryCounter.color = color;
                 }

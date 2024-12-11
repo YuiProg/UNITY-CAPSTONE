@@ -30,7 +30,11 @@ public class MovingTrap : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            PlayerController.Instance.TakeDamage(50);
+            if (!PlayerController.Instance.pState.invincible)
+            {
+                PlayerController.Instance.TakeDamage(50);
+            }
+            
         }
     }
 }
