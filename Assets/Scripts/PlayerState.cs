@@ -8,6 +8,7 @@ public class PlayerState : MonoBehaviour
         obtainedSLASH = PlayerPrefs.GetInt("SLASH") == 1;
         obtainedMAP = PlayerPrefs.GetInt("MAP") == 1;
         hasBOOK = PlayerPrefs.GetInt("HASBOOK") == 1;
+        obtainedHeal = PlayerPrefs.GetInt("HEAL") == 1;
     }
     //OTHER
     public bool isPaused = false;
@@ -47,7 +48,7 @@ public class PlayerState : MonoBehaviour
     public bool obtainedMAP = false;
     public bool obtainedSpear = false;
     public bool obtainedSLASH = false;
-
+    public bool obtainedHeal = false;
 
     //SKILLS
     public bool SpearDash = false;

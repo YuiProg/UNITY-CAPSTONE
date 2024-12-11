@@ -59,7 +59,8 @@ public class WorldMap : MonoBehaviour
     [SerializeField] GameObject Pausemenu;
     [SerializeField] GameObject UI;
 
-
+    //wala black lang
+    [SerializeField] GameObject BLACK;
     public int mactan;
     public int ifugao;
     public bool teleporting = false;
@@ -402,7 +403,8 @@ public class WorldMap : MonoBehaviour
         {
             teleporting = true;
             PlayerController.Instance.pState.Transitioning = true;
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2f);
+            BLACK.SetActive(true);
             PlayerController.Instance.transform.position = IFUGAOSQTP.transform.position;
             PlayerController.Instance.health = PlayerController.Instance.maxHealth;
             PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
@@ -423,7 +425,8 @@ public class WorldMap : MonoBehaviour
         {
             teleporting = true;
             PlayerController.Instance.pState.Transitioning = true;
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2f);
+            BLACK.SetActive(true);
             PlayerController.Instance.transform.position = MACTANTP.transform.position;
             PlayerController.Instance.health = PlayerController.Instance.maxHealth;
             PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
@@ -445,7 +448,8 @@ public class WorldMap : MonoBehaviour
         {
             teleporting = true;
             PlayerController.Instance.pState.Transitioning = true;
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2f);
+            BLACK.SetActive(true);
             PlayerController.Instance.transform.position = IFUGAOTP.transform.position;
             PlayerController.Instance.health = PlayerController.Instance.maxHealth;
             PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
@@ -466,7 +470,8 @@ public class WorldMap : MonoBehaviour
         {
             teleporting = true;
             PlayerController.Instance.pState.Transitioning = true;
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2f);
+            BLACK.SetActive(true);
             PlayerController.Instance.transform.position = TONDOTP.transform.position;
             PlayerController.Instance.health = PlayerController.Instance.maxHealth;
             PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
@@ -487,7 +492,8 @@ public class WorldMap : MonoBehaviour
         {
             teleporting = true;
             PlayerController.Instance.pState.Transitioning = true;
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2f);
+            BLACK.SetActive(true);
             PlayerController.Instance.transform.position = MACTANSIDEQUEST.transform.position;
             PlayerController.Instance.health = PlayerController.Instance.maxHealth;
             PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
@@ -507,7 +513,8 @@ public class WorldMap : MonoBehaviour
         {
             teleporting = true;
             PlayerController.Instance.pState.Transitioning = true;
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2f);
+            BLACK.SetActive(true);
             PlayerController.Instance.transform.position = TONDOSQTP.transform.position;
             PlayerController.Instance.health = PlayerController.Instance.maxHealth;
             PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;

@@ -30,11 +30,12 @@ public class GOLEM_BOSS : Enemy
     [SerializeField] Text alert1;
     [SerializeField] Text alert2;
     [SerializeField] Text alert3;
-
+    AudioManager audioManager;
     public static GOLEM_BOSS Instance;
 
     protected override void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         base.Start();
         rb.gravityScale = 12f;
         anim = GetComponent<Animator>();
@@ -118,6 +119,26 @@ public class GOLEM_BOSS : Enemy
                     break;
             }
         }
+    }
+
+    public void SmashSOUND()
+    {
+        audioManager.PlaySFX(audioManager.G_Swing);
+    }
+
+    public void RolllSOUND()
+    {
+        audioManager.PlaySFX(audioManager.G_Roll);
+    }
+
+    public void DieSOUND()
+    {
+        audioManager.PlaySFX(audioManager.G_Die);
+    }
+
+    public void ShakeCamera()
+    {
+        CameraShake.Instance.ShakeCamera();
     }
     public bool distanceCheck()
     {

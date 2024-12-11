@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour
         if (pState.dashing) return;
         RestoreTimeScale();
         Flip();
-        Recoil();
+        //Recoil();
         Attack();
         Block();
         runCheck();
@@ -263,9 +263,9 @@ public class PlayerController : MonoBehaviour
         {
             comboTimer = 5;
         }
-        if (healTimer > 30)
+        if (healTimer > 25)
         {
-            healTimer = 30;
+            healTimer = 25;
         }         
         if (pState.running == false)
         {
@@ -561,7 +561,7 @@ public class PlayerController : MonoBehaviour
             pState.HPBUFF = false;
             pState.SpearDash = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && pState.obtainedHeal)
         {
             pState.SLASH = false;
             pState.HPBUFF = true;
@@ -573,15 +573,25 @@ public class PlayerController : MonoBehaviour
             pState.HPBUFF = false;
             pState.SpearDash = true;
         }
-        if (Input.GetKeyDown(KeyCode.R) && pState.HPBUFF)
+        if (Input.GetKeyDown(KeyCode.R) && pState.HPBUFF && Grounded() && health < maxHealth)
         {
-            if (healTimer > 30)
+            if (healTimer > 25)
             {
-                health = maxHealth;
-                HealthBar.fillAmount = health;
-                healTimer = 0;
+                StartCoroutine(HealSkill(2f));
             }           
         }
+    }
+    IEnumerator HealSkill(float time)
+    {
+        pState.isNPC = true;
+        health = (health) + maxHealth * 0.35f;
+        HealthBar.fillAmount = health / maxHealth;
+        healTimer = 0;
+        anim.SetTrigger("Heal");
+        parryFX.Play();
+        audiomanager.PlaySFX(audiomanager.HealSkill);
+        yield return new WaitForSeconds(time);
+        pState.isNPC = false;
     }
     [SerializeField] GameObject SlashIMG;
     [SerializeField] GameObject HealIMG;

@@ -55,7 +55,7 @@ public class TUTORIALMOVE : MonoBehaviour
         PlayerController.Instance.pState.isNPC = true;
         Time.timeScale = 0;
         DLG.SetActive(true);
-        dialogue.text = "A AND D FOR MOVEMENT KEYS";
+        dialogue.text = "A AND D FOR MOVEMENT KEYS, LEFT SHIFT TO SPRINT";
         yield return new WaitForSecondsRealtime(3f);
         Time.timeScale = 1;
         DLG.SetActive(false);

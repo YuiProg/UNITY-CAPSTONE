@@ -14,6 +14,7 @@ public class CameraShake : MonoBehaviour
     [SerializeField] GameObject statUI;
     [SerializeField] GameObject WORLDMAP;
     [SerializeField] GameObject TUTORIAL;
+    [SerializeField] GameObject JOURNAL;
 
     private float timer;
     private CinemachineBasicMultiChannelPerlin _cbmcp;
@@ -53,6 +54,7 @@ public class CameraShake : MonoBehaviour
         _cbmcp.m_AmplitudeGain = 0f;
         timer = 0;
     }
+    bool journalOpen = false;
     void Update()
     {
         if (!PlayerController.Instance.pState.isAlive)
@@ -96,6 +98,26 @@ public class CameraShake : MonoBehaviour
                 statUI.SetActive(false);
                 isPaused = true;
                 pauseMenu.SetActive(true);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (!journalOpen)
+            {
+                UI.SetActive(false);
+                Cursor.visible = true;
+                PlayerController.Instance.pState.isNPC = true;
+                JOURNAL.SetActive(true);
+                journalOpen = true;
+            }
+            else
+            {
+                UI.SetActive(true);
+                Cursor.visible = false;
+                PlayerController.Instance.pState.isNPC = false;
+                JOURNAL.SetActive(false);
+                journalOpen = false;
             }
         }
     }

@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip Block;
     public AudioClip Parry;
     public AudioClip Hurt;
+    public AudioClip HealSkill;
     [Space(2)]
     [Header("SFX FINAL BOSS")]
     public AudioClip FB_Attack;
@@ -33,6 +34,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip TB_Attack;
     public AudioClip TB_SLAM;
     public AudioClip TB_Transform;
+    [Space(2)]
+    [Header("SFX GOLEM BOSS")]
+    public AudioClip G_Swing;
+    public AudioClip G_Roll;
+    public AudioClip G_Die;
 
 
     public void PlaySFX(AudioClip clip)
