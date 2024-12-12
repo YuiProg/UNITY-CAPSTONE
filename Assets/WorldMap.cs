@@ -72,21 +72,6 @@ public class WorldMap : MonoBehaviour
         EnterArea.text = "Select Area";
         unlockCheck();
     }
-    private void Awake()
-    {
-        //if (PlayerPrefs.GetInt("SIDEQUEST3COMP") == 1)
-        //{
-        //    SIDEQUEST2BTNTONDO.SetActive(false);
-        //}
-        //if (PlayerPrefs.GetInt("SIDEQUESTCOMP") == 1)
-        //{
-        //    SIDEQUEST1BTNMACTAN.SetActive(false);
-        //}
-        //if (PlayerPrefs.GetInt("SIDEQUEST2COMP") == 1)
-        //{
-        //    SIDEQUESTBTNIFUGAO.SetActive(false);
-        //}
-    }
     private void Update()
     {
         unlockCheck();

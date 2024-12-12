@@ -203,6 +203,16 @@ public class Enemy : MonoBehaviour
         SK_Chase,
         SK_Attack,
 
+        //AXE ENEMY FINAL
+        AXE_IDLE,
+        AXE_CHASE,
+        AXE_ATTACKBEHAVIOR,
+
+        //assasin
+        A_Idle,
+        A_Chase,
+        A_ATTACKBEHAVIOR,
+
     }
 
     protected EnemyStates currentEnemyStates;

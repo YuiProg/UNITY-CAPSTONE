@@ -610,6 +610,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator HealSkill(float time)
     {
+        pState.invincible = true;
         pState.isNPC = true;
         health = (health) + maxHealth * 0.35f;
         HealthBar.fillAmount = health / maxHealth;
@@ -619,6 +620,7 @@ public class PlayerController : MonoBehaviour
         audiomanager.PlaySFX(audiomanager.HealSkill);
         yield return new WaitForSeconds(time);
         pState.isNPC = false;
+        pState.invincible = false;
     }
     [SerializeField] GameObject SlashIMG;
     [SerializeField] GameObject HealIMG;
@@ -1325,11 +1327,8 @@ public class PlayerController : MonoBehaviour
         else if (pState.canMove == false && pState.isAlive == false)
         {
             anim.SetBool("Death", true);
-            //rb.MovePosition(rb.position);
             rb.velocity = Vector2.zero;
-        }
-        
-             
+        }             
     }
     void runCheck()
     {
