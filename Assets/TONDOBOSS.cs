@@ -43,7 +43,7 @@ public class TONDOBOSS : Enemy
 
     private void Awake()
     {
-        //loadCheck();
+        loadCheck();
 
         if (instance != null && instance != this)
         {
@@ -57,10 +57,10 @@ public class TONDOBOSS : Enemy
 
     void loadCheck()
     {
-        BORDERL.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") == 1);
-        BORDERR.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") == 1);
-        HEALTBAR.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") == 1);
-        gameObject.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") == 1);
+        BORDERL.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") != 1);
+        BORDERR.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") != 1);
+        HEALTBAR.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") != 1);
+        gameObject.SetActive(PlayerPrefs.GetInt("TONDOMBOSS") != 1);
     }
 
     protected override void UpdateEnemyStates()
@@ -171,8 +171,8 @@ public class TONDOBOSS : Enemy
         HEALTBAR.SetActive(spottedPlayer && PlayerController.Instance.pState.isAlive && health > 0);
         if (health <= 0)
         {
-            QuestTracker.instance.hasQuest = false;
-            PlayerPrefs.DeleteKey("Quest");
+            QuestTracker.instance.hasQuest = true;
+            PlayerPrefs.SetString("Quest", "Search the area");
             PlayerPrefs.SetInt("TONDOMBOSS", 1);
             spottedPlayer = false;
             PARRYBAR.SetActive(false);
@@ -199,42 +199,14 @@ public class TONDOBOSS : Enemy
     IEnumerator Dialogue1(float time)
     {
         yield return new WaitForSeconds(time + 1.5f);
+        UI.SetActive(false);
         PlayerController.Instance.pState.canPause = false;
         PlayerController.Instance.pState.isNPC = true;
         DIALOGUE.SetActive(true);
         UI.SetActive(false);
         Cursor.visible = true;
-
-        string[] words = new[]
-        {
-            "Trusted by the marked warrior of blood, Whose steps uphold the eternal light.",
-            "Because of his peace, order shall thrive, Ensuring existence, keeping us alive.",
-            "Only he, the chosen one, can unravel the threads of night. With these artifacts, one mistake will open the gate.",
-            "In the chosen one's battle, the rogue traveler's power awaits. Our existence depends on his fate."
-        };
-
-        for (int i = 0; i < words.Length; i++)
-        {
-            float elapsedtime = 0f;
-            dialogue.text = words[i];
-            while (elapsedtime < time)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    elapsedtime = time;
-                    break;
-                }
-                elapsedtime += Time.deltaTime;
-                yield return null;
-            }
-        }
-        DIALOGUE.SetActive(false);
-        PlayerController.Instance.pState.Transitioning = true;
-        yield return new WaitForSeconds(time - 2);
-        PlayerController.Instance.pState.Transitioning = false;
-        PlayerController.Instance.transform.position = tpHere.position;
         Save.instance.saveData();
-        LevelManager.instance.loadscene("DEMO");
+        LevelManager.instance.loadscene("CUTSCENE3");
     }
     
     int Ambercount;

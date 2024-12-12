@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour
         }
         if (combo && pState.SLASH)
         {
-            if (comboTimer > 5)
+            if (comboTimer > 18)
             {
                 StartCoroutine(ComboAttack());
             }
@@ -250,7 +250,7 @@ public class PlayerController : MonoBehaviour
         }
         if (DashSpear && pState.SpearDash)
         {
-            if (SpearDashTimer >= 5)
+            if (SpearDashTimer >= 12)
             {
                 StartCoroutine(DashAttack());
             }
