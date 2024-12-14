@@ -142,6 +142,7 @@ public class WorldMap : MonoBehaviour
         IFUGAOSQART.SetActive(false);
         IFUGAOSQSKILL.SetActive(false);
         IFUGAOENTERBTN.SetActive(false);
+        IFUGAOSQENTERBTN.SetActive(false);
         SHOPART.SetActive(false);
         SHOPSKILL.SetActive(false);
         SHOPENTERBTN.SetActive(false);
@@ -168,6 +169,7 @@ public class WorldMap : MonoBehaviour
         IFUGAOSQART.SetActive(false);
         IFUGAOSQSKILL.SetActive(false);
         IFUGAOENTERBTN.SetActive(false);
+        IFUGAOSQENTERBTN.SetActive(false);
         SHOPART.SetActive(false);
         SHOPSKILL.SetActive(false);
         SHOPENTERBTN.SetActive(false);
@@ -220,6 +222,7 @@ public class WorldMap : MonoBehaviour
         IFUGAOSQART.SetActive(false);
         IFUGAOSQSKILL.SetActive(false);
         IFUGAOENTERBTN.SetActive(false);
+        IFUGAOSQENTERBTN.SetActive(false);
         SHOPART.SetActive(false);
         SHOPSKILL.SetActive(false);
         SHOPENTERBTN.SetActive(false);
@@ -348,6 +351,7 @@ public class WorldMap : MonoBehaviour
         TONDOSQENTERBTN.SetActive(false);
         IFUGAOSQART.SetActive(false);
         IFUGAOSQSKILL.SetActive(false);
+        IFUGAOSQENTERBTN.SetActive(false);
         SHOPART.SetActive(false);
         SHOPSKILL.SetActive(false);
         SHOPENTERBTN.SetActive(false);

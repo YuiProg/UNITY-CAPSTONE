@@ -17,7 +17,7 @@ public class IFUGAONPC1 : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("HK") == 1) transform.position = loc2.transform.position;
         if (PlayerPrefs.GetInt("HK") == 1) gameObject.SetActive(true);
-        if (inTrigger && !isSpeaking && Input.GetKeyDown(KeyCode.E) && PlayerPrefs.GetInt("HK") == 1)
+        if (inTrigger && !isSpeaking && PlayerPrefs.GetInt("HK") == 1)
         {
             StartCoroutine(Dialogue(4.5f));
         }
@@ -77,6 +77,10 @@ public class IFUGAONPC1 : MonoBehaviour
                     elapsedtime = time;
                     break;
                 }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime = time;
+                }
                 elapsedtime += Time.deltaTime;
                 yield return null;
             }
@@ -88,6 +92,7 @@ public class IFUGAONPC1 : MonoBehaviour
         PlayerController.Instance.pState.canPause = true;
         UI.SetActive(true);
     }
+
 
 
 

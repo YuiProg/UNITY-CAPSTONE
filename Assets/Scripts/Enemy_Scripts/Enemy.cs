@@ -175,6 +175,8 @@ public class Enemy : MonoBehaviour
         MG_E_ATTACKBEHAVIOR,
 
         //FINAL BOSS
+        FB_Dialogue,
+        FB_D_Dialogue,
         FB_IDLE,
         FB_CHASE,
         FB_ATTACKBEHAVIOR,

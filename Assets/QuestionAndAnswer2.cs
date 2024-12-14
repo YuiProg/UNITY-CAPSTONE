@@ -66,6 +66,7 @@ public class QuestionAndAnswer2 : MonoBehaviour
     {
         UI.SetActive(false);
         PlayerController.Instance.pState.canPause = false;
+        PlayerController.Instance.pState.canOpenJournal = false;
         Cursor.visible = true;
         isTalking = true;
         PlayerController.Instance.pState.isNPC = true;
@@ -90,6 +91,10 @@ public class QuestionAndAnswer2 : MonoBehaviour
                     elapsedtime = time;
                     break;
                 }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime = time;
+                }
                 elapsedtime += Time.deltaTime;
                 yield return null;
             }
@@ -113,6 +118,8 @@ public class QuestionAndAnswer2 : MonoBehaviour
 
     IEnumerator winDLG(float time)
     {
+        PlayerController.Instance.pState.canOpenJournal = false;
+        PlayerController.Instance.pState.canPause = false;
         UI.SetActive(false);
         Cursor.visible = true;
         isTalking = true;
@@ -135,6 +142,10 @@ public class QuestionAndAnswer2 : MonoBehaviour
                 {
                     waitforseconds = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    waitforseconds = time;
                 }
                 waitforseconds += Time.deltaTime;
                 yield return null;
@@ -168,7 +179,6 @@ public class QuestionAndAnswer2 : MonoBehaviour
         isTalking = true;
         PlayerController.Instance.pState.isNPC = true;
         NPCDIALOGUE.SetActive(true);
-
         string[] words = new[]
         {
             "Before you leave.",
@@ -199,6 +209,7 @@ public class QuestionAndAnswer2 : MonoBehaviour
         PlayerPrefs.SetInt("SideQuest2", 1);
         PlayerController.Instance.pState.canPause = true;
         PlayerController.Instance.pState.isNPC = false;
+        PlayerController.Instance.pState.canOpenJournal = true;
         UI.SetActive(true);
     }
 }

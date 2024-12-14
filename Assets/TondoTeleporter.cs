@@ -15,7 +15,7 @@ public class TondoTeleporter : MonoBehaviour
     bool isTalking = false;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inTrigger && !isTalking)
+        if (inTrigger && !isTalking)
         {
             StartCoroutine(dialogue(4.5f));
         }
@@ -41,6 +41,8 @@ public class TondoTeleporter : MonoBehaviour
 
     IEnumerator dialogue(float time)
     {
+        PlayerPrefs.DeleteKey("Quest");
+        QuestTracker.instance.hasQuest = false;
         PlayerController.Instance.pState.canPause = false;
         PlayerController.Instance.pState.isNPC = true;
         DIALOGUE.SetActive(true);
@@ -65,6 +67,10 @@ public class TondoTeleporter : MonoBehaviour
                 {
                     elapsedtime = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime = time;
                 }
                 elapsedtime += Time.deltaTime;
                 yield return null;

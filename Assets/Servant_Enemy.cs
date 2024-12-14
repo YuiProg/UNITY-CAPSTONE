@@ -99,7 +99,7 @@ public class Servant_Enemy : Enemy
         canMove = false;
         DLG.SetActive(true);
         dialogue.text = "He has the book! Take it!";
-        npcName.text = "Servant";
+        npcName.text = "Time Walkers";
         QuestTracker.instance.hasQuest = true;
         yield return new WaitForSeconds(time);
         PlayerController.Instance.pState.isNPC = false;
@@ -112,7 +112,7 @@ public class Servant_Enemy : Enemy
         isTalking = false;
         servantscanATK = true;
         UI.SetActive(true);
-        PlayerPrefs.SetString("Quest", "Defeat the servants");
+        PlayerPrefs.SetString("Quest", "Defeat the time walkers");
         ChangeStates(EnemyStates.S_Idle);
     }
     void stopattacks()
@@ -128,11 +128,6 @@ public class Servant_Enemy : Enemy
         if (parried)
         {
             stopattacks();
-            status.text = "!!";
-        }
-        else
-        {
-            status.text = "";
         }
         if(health <= 0)
         {

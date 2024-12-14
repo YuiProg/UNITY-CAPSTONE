@@ -68,6 +68,10 @@ public class CUTSCENETRIGGER : MonoBehaviour
                     elapsedtime1 = time;
                     break;
                 }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime1 = time;
+                }
                 elapsedtime1 += Time.deltaTime;
                 yield return null;
             }
@@ -103,6 +107,10 @@ public class CUTSCENETRIGGER : MonoBehaviour
                     elapsedtime2 = time;
                     break;
                 }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime2 = time;
+                }
                 elapsedtime2 += Time.deltaTime;
                 yield return null;
             }
@@ -133,6 +141,10 @@ public class CUTSCENETRIGGER : MonoBehaviour
                 {
                     elapsedtime3 = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime3 = time;
                 }
                 elapsedtime3 += Time.deltaTime;
                 yield return null;

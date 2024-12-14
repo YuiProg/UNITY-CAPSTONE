@@ -27,13 +27,25 @@ public class MACTANNPC : MonoBehaviour
     [SerializeField] Transform bossLOC;
     private void Update()
     {
+        if (PlayerPrefs.GetInt("MAGELLAN") != 1)
+        {
+            notiftext.text = "!";
+        }
+        else
+        {
+            notiftext.text = "";
+        }
         if (inTrigger && Input.GetKeyDown(KeyCode.E))
         {
-            if (!istalking)
+            if (PlayerPrefs.GetInt("MAGELLAN") != 1)
             {
-                
-                StartCoroutine(Dialogue1(4.5f));
+                if (!istalking)
+                {
+
+                    StartCoroutine(Dialogue1(4.5f));
+                }
             }
+            
         }
     }
 
@@ -91,6 +103,10 @@ public class MACTANNPC : MonoBehaviour
                     elapsedtime = time;
                     break;
                 }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime = time;
+                }
                 elapsedtime += Time.deltaTime;
                 yield return null;
             }
@@ -138,6 +154,10 @@ public class MACTANNPC : MonoBehaviour
                 {
                     elapsedtime1 = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime1 = time;
                 }
                 elapsedtime1 += Time.deltaTime;
                 yield return null;

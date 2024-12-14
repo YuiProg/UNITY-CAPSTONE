@@ -157,13 +157,12 @@ public class HorseBOSS : Enemy
             spottedPlayer = false;
             anim.SetTrigger("Death");
             PlayerPrefs.SetInt("HORSEBOSS", 1);
-            PlayerPrefs.SetInt("HEAL", 1);
             Destroy(gameObject, 2f);
         }
         if (health <= 0 && !banner)
         {
             banner = true;
-            PlayerController.Instance.pState.SkillBOSS = true;
+            PlayerController.Instance.pState.killedABoss = true;
         }
         if (health <= 0 && !hasdropped)
         {

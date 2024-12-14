@@ -101,10 +101,10 @@ public class IFUGAONPC : MonoBehaviour
 
         string[] name = new[]
         {
-            "Igorot Leader",
-            "Igorot Leader",
-            "",
-            "Gilmoure Book",
+            "Igorot Elder Tribe",
+            "Igorot Elder Tribe",
+            "Zeick",
+            "Gilmoure of Ages",
         };
 
 
@@ -120,6 +120,10 @@ public class IFUGAONPC : MonoBehaviour
                 {
                     elapsedTime = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedTime = time;
                 }
                 elapsedTime += Time.deltaTime;
                 yield return null;

@@ -60,9 +60,9 @@ public class NPCTONDO : MonoBehaviour
 
         string[] names = new[]
         {
-            "",
+            "Zieck",
             "Warrior",
-            ""
+            "Zieck"
         };
 
         for (int i = 0; i < words.Length; i++)
@@ -76,6 +76,10 @@ public class NPCTONDO : MonoBehaviour
                 {
                     elapsedtime = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime = time;
                 }
                 elapsedtime += Time.deltaTime;
                 yield return null;

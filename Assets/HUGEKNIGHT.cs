@@ -122,7 +122,7 @@ public class HUGEKNIGHT : Enemy
             spottedPlayer = false;
             anim.SetTrigger("Death");
             PlayerPrefs.SetInt("HK", 1);
-            PlayerPrefs.SetString("Quest","Talk to the scout");
+            PlayerPrefs.SetString("Quest","Talk to the Tausug Scout");
             Destroy(gameObject, 5f);
         }
         if (isdead && !hasdroppeditems)

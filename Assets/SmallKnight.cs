@@ -81,7 +81,7 @@ public class SmallKnight : Enemy
     bool distanceCheck()
     {
         float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        return distance < 2f;
+        return distance < 1.5f;
     }
 
     void flip(bool canflip)

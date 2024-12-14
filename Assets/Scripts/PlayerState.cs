@@ -16,6 +16,8 @@ public class PlayerState : MonoBehaviour
     public bool inParkourState = false;
     public bool isNPC = false;
     public bool canPause = true;
+    public bool canOpenJournal = true;
+    public bool newSkill = false;
 
     //movement bool
     public bool jumping = false;

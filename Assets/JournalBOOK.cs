@@ -25,6 +25,9 @@ public class JournalBOOK : MonoBehaviour
         {
             locktxt.text = "COMPLETE IFUGAO AREA TO UNLOCK PAGE.";
             Lock.SetActive(true);
+            IFUGAO.SetActive(false);
+            MACTAN.SetActive(false);
+            TONDO.SetActive(false);
         }
     }
 
@@ -41,6 +44,9 @@ public class JournalBOOK : MonoBehaviour
         {
             locktxt.text = "COMPLETE MACTAN AREA TO UNLOCK PAGE.";
             Lock.SetActive(true);
+            IFUGAO.SetActive(false);
+            MACTAN.SetActive(false);
+            TONDO.SetActive(false);
         }
     }
 
@@ -55,8 +61,11 @@ public class JournalBOOK : MonoBehaviour
         }
         else
         {
-            locktxt.text = "COMPLETE TONDO AREA TO UNLOCK PAGE.";
+            locktxt.text = "COMPLETE BANGKUSAY AREA TO UNLOCK PAGE.";
             Lock.SetActive(true);
+            IFUGAO.SetActive(false);
+            MACTAN.SetActive(false);
+            TONDO.SetActive(false);
         }
     }
 }

@@ -5,6 +5,13 @@ using UnityEngine.UIElements;
 
 public class Paladin_BOSS : Enemy
 {
+    //BORDER
+    [SerializeField] GameObject BORDERR;
+    [SerializeField] GameObject BORDERL;
+
+    //AMBER
+    [SerializeField] Transform AmberLOC;
+    [SerializeField] GameObject AMBER;
 
     //AOE ATTACK
     [SerializeField] GameObject StartAOE;
@@ -62,6 +69,8 @@ public class Paladin_BOSS : Enemy
         {
             gameObject.SetActive(false);
             BossHP.SetActive(false);
+            BORDERL.SetActive(false);
+            BORDERR.SetActive(false);
             print("PALADIN DEAD");
         }
         else if (PlayerPrefs.GetInt("PALADIN") == 0)
@@ -70,35 +79,26 @@ public class Paladin_BOSS : Enemy
             print("PALADIN ALIVE");
         }
     }
+    bool banner = false;
+    bool amberdropped = false;
     protected override void UpdateEnemyStates()
     {
         ultitimer += Time.deltaTime;
         speed = canMove ? 5 : 0;
         float _dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
         Flip();
-        if (spottedPlayer)
+        canMove = spottedPlayer;
+        canAttack = spottedPlayer;
+        BORDERL.SetActive(spottedPlayer);
+        BORDERR.SetActive(spottedPlayer);
+        if (health <= 0 && !banner)
         {
-            canAttack = true;
-            canMove = true;
+            banner = true;
+            PlayerController.Instance.pState.killedABoss = true;
         }
-        else
+        if (health <= 0 && !amberdropped)
         {
-            canAttack = false;
-            canMove = false;           
-        }        
-        if (!PlayerController.Instance.pState.isAlive)
-        {
-            ChangeStates(EnemyStates.PL_Idle);
-            secondphase = false;
-            spottedPlayer = false;
-            ultitimer = 0;
-            BossHP.SetActive(false);
-            transform.position = spawnPoint;
-            health = maxHealth;
-            parrypercent = parrymax;
-            canAttack = false;
-            canMove = false;
-            return;
+            amberdrop();
         }
         if (health <= 0)
         {
@@ -108,10 +108,12 @@ public class Paladin_BOSS : Enemy
             canAttack = false;
             canMove = false;
             isAlive = false;
+            BORDERL.SetActive(false);
+            BORDERR.SetActive(false);
             BossHP.SetActive(false);
             Destroy(gameObject, 5f);
-            return;
         }
+        
         switch (currentEnemyStates)
         {            
             case EnemyStates.PL_Idle:
@@ -132,7 +134,19 @@ public class Paladin_BOSS : Enemy
                 break;
         }
     }
-
+    int count;
+    void amberdrop()
+    {
+        if (count != 10)
+        {
+            count++;
+            Instantiate(AMBER, AmberLOC.position, Quaternion.identity);
+        }
+        if (count == 10)
+        {
+            amberdropped = true;
+        }
+    }
     void FirstPhase()
     {
         if (spottedPlayer)
@@ -164,7 +178,7 @@ public class Paladin_BOSS : Enemy
     {
         if (spottedPlayer && canMove && PlayerController.Instance.pState.isAlive && !attacking && !isUlti)
         {
-            if (spottedPlayer && Vector2.Distance(transform.position, PlayerController.Instance.transform.position) <= 8f)
+            if (spottedPlayer && Vector2.Distance(transform.position, PlayerController.Instance.transform.position) <= 4f)
             {
                 Debug.Log("ATTACK");
                 anim.SetBool("Walk", false);
@@ -186,7 +200,7 @@ public class Paladin_BOSS : Enemy
     {
         if (spottedPlayer && canMove && PlayerController.Instance.pState.isAlive && !attacking && !isUlti)
         {
-            if (spottedPlayer && Vector2.Distance(transform.position, PlayerController.Instance.transform.position) <= 8f)
+            if (spottedPlayer && Vector2.Distance(transform.position, PlayerController.Instance.transform.position) <= 4f)
             {
                 Debug.Log("ATTACK");
                 anim.SetBool("Walk", false);

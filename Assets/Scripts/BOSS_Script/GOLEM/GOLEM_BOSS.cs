@@ -170,7 +170,7 @@ public class GOLEM_BOSS : Enemy
             spottedPlayer = false;
             Save.instance.saveData();
             QuestTracker.instance.hasQuest = true;
-            PlayerPrefs.SetString("Quest", "Return to the igorot leader");
+            PlayerPrefs.SetString("Quest", "Return to the Igorot Elder Tribe");
             dead();
             PlayerController.Instance.pState.killedABoss = true;
             Destroy(gameObject, 2f);
@@ -189,7 +189,7 @@ public class GOLEM_BOSS : Enemy
             PlayerPrefs.SetInt("Mactan", 1);
             isalive = false;
             QuestTracker.instance.hasQuest = true;
-            PlayerPrefs.SetString("Quest", "Return to the igorot leader");
+            PlayerPrefs.SetString("Quest", "Return to the Igorot Elder Tribe");
             PlayerController.Instance.pState.killedABoss = true;
         }
     }

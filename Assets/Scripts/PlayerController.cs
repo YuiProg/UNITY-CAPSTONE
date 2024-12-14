@@ -222,6 +222,10 @@ public class PlayerController : MonoBehaviour
                     
         RegenPotion();
         FlashWhileInvincible();
+        checker();
+    }
+    void checker()
+    {
         pState.canAttack = timeSinceAttack > timeBetweenAttack; //lantaran if else dito pano to
         if (pState.Transitioning || pState.blocking || pState.isNPC)
         {
@@ -232,7 +236,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.drag = 0.05f;
-            
+
         }
         if (rb.velocity.x == 0 && rb.velocity.y == 0)
         {
@@ -246,7 +250,7 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(ComboAttack());
             }
-            
+
         }
         if (DashSpear && pState.SpearDash)
         {
@@ -267,7 +271,7 @@ public class PlayerController : MonoBehaviour
         if (healTimer > 25)
         {
             healTimer = 25;
-        }         
+        }
         if (pState.running == false)
         {
             walkSpeed = 7;
@@ -280,7 +284,7 @@ public class PlayerController : MonoBehaviour
         }
         if (health >= maxHealth)
         {
-            
+
             health = maxHealth;
             canHeal = false;
         }
@@ -318,7 +322,7 @@ public class PlayerController : MonoBehaviour
             parryTimer = 0;
             pState.parry = false;
         }
-        
+
         if (PlayerPrefs.GetInt("LOAD") >= 1)
         {
             baryaCount.text = $"{PlayerPrefs.GetInt("Barya")}";
@@ -330,7 +334,6 @@ public class PlayerController : MonoBehaviour
             levelsCount.text = "0";
         }
     }
-    
     bool hasDied = false;
     bool isRespawning = false;
     void skillCD()
@@ -608,8 +611,10 @@ public class PlayerController : MonoBehaviour
             }           
         }
     }
+    bool skillheal = false;
     IEnumerator HealSkill(float time)
     {
+        skillheal = true;
         pState.invincible = true;
         pState.isNPC = true;
         health = (health) + maxHealth * 0.35f;
@@ -621,6 +626,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
         pState.isNPC = false;
         pState.invincible = false;
+        skillheal = false;
     }
     [SerializeField] GameObject SlashIMG;
     [SerializeField] GameObject HealIMG;
@@ -852,7 +858,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DashAttack()
     {
-        if (lookingleft && Grounded())
+        if (lookingleft && Grounded() && !skillheal)
         {
             if (DashSpear && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
             {
@@ -943,7 +949,7 @@ public class PlayerController : MonoBehaviour
             canDash = true;
 
         }
-        else if (lookingright && Grounded())
+        else if (lookingright && Grounded() && !skillheal)
         {
             if (DashSpear && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
             {
@@ -1038,7 +1044,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator ComboAttack()
     {
-        if (combo && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC)
+        if (combo && pState.isAlive && stamina > 10 && !pState.blocking && !pState.isNPC && !skillheal)
         {
             audiomanager.PlaySFX(audiomanager.NormalAttack);
             canDash = false;

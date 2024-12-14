@@ -66,6 +66,8 @@ public class QuestionAndAnswer : MonoBehaviour
     {
         UI.SetActive(false);
         QuestTracker.instance.hasQuest = false;
+        PlayerController.Instance.pState.canOpenJournal = false;
+        PlayerController.Instance.pState.canPause = false;
         PlayerPrefs.DeleteKey("Quest");
         Cursor.visible = true;
         PlayerController.Instance.pState.isNPC = true;
@@ -87,6 +89,10 @@ public class QuestionAndAnswer : MonoBehaviour
                 {
                     waitforseconds = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    waitforseconds = time;
                 }
                 waitforseconds += Time.deltaTime;
                 yield return null;
@@ -117,6 +123,8 @@ public class QuestionAndAnswer : MonoBehaviour
     {
         Cursor.visible = true;
         PlayerController.Instance.pState.isNPC = true;
+        PlayerController.Instance.pState.canOpenJournal = false;
+        PlayerController.Instance.pState.canPause = false;
         UI.SetActive(false);
         NPCDIALOGUE.SetActive(true);
 
@@ -186,6 +194,8 @@ public class QuestionAndAnswer : MonoBehaviour
         NPCDIALOGUE.SetActive(false);
         Cursor.visible = false;
         PlayerController.Instance.pState.isNPC = false;
+        PlayerController.Instance.pState.canOpenJournal = true;
+        PlayerController.Instance.pState.canPause = true;
         UI.SetActive(true);
         isTalking = false;
         Destroy(BORDER);

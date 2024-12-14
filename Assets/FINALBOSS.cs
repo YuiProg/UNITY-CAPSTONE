@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FINALBOSS : Enemy
 {
@@ -12,7 +13,16 @@ public class FINALBOSS : Enemy
     bool isSecondPhase = false;
     bool isAttacking = false;
     bool hasTransformed = false;
+    bool isTalking = false;
     AudioManager audioManager;
+
+    //dialogue
+    [SerializeField] GameObject DIALOGUE;
+    [SerializeField] Text dlg;
+    [SerializeField] Text npcName;
+    [SerializeField] GameObject UI;
+
+
     protected override void Start()
     {
         base.Start();
@@ -21,13 +31,22 @@ public class FINALBOSS : Enemy
         canAttack = true;
         anim = GetComponent<Animator>();
         rb.gravityScale = 12f;
-        ChangeStates(EnemyStates.FB_IDLE);
+        if (PlayerPrefs.GetInt("HASTALKEDFB") != 1)
+        {
+            ChangeStates(EnemyStates.FB_Dialogue);
+        }
+        else
+        {
+            chaseDistance = 25f;
+            ChangeStates(EnemyStates.FB_IDLE);
+        }
+        
     }
 
     protected override void UpdateEnemyStates()
     {
         isSecondPhase = health <= maxHealth / 2;
-        flip(!isAttacking);
+        flip(!isAttacking && !isTalking);
         stateCheck();
         if (isSecondPhase && !hasTransformed)
         {
@@ -39,6 +58,24 @@ public class FINALBOSS : Enemy
         {
             switch (currentEnemyStates)
             {
+                case EnemyStates.FB_Dialogue:
+                    if (dist < chaseDistance)
+                    {
+                        if (!isTalking)
+                        {
+                            StartCoroutine(Dialogue(4.5f));
+                        }
+                    }
+                    break;
+                case EnemyStates.FB_D_Dialogue:
+                    if (!isTalking)
+                    {
+                        anim.SetTrigger("Death");
+                        canMove = false;
+                        canAttack = false;
+                        StartCoroutine(DeathDialogue(4.5f));
+                    }
+                    break;
                 case EnemyStates.FB_IDLE:
                     if (dist < chaseDistance)
                     {
@@ -100,6 +137,137 @@ public class FINALBOSS : Enemy
             }
         }
     }
+
+    public void cameraShake()
+    {
+        CameraShake.Instance.ShakeCamera();
+    }
+    IEnumerator DeathDialogue(float time)
+    {
+        PlayerController.Instance.pState.canPause = false;
+        PlayerController.Instance.pState.canOpenJournal = false;
+        PlayerController.Instance.pState.isNPC = true;
+        isTalking = true;
+        UI.SetActive(false);
+        HEALTHBAR.SetActive(false);
+        yield return new WaitForSeconds(2.5f);
+        DIALOGUE.SetActive(true);
+
+        string[] dialogue = new[]
+        {
+            "You’re me. But why? Why destroy everything for this?",
+            "I was so close. I could’ve changed everything. Made us better.",
+            "You’ve destroyed timelines and universes, lives. All for power?",
+            "Power? No. Perfection be able to rewrite permanently, to erase every mistake. Don’t you want the same.",
+            "No. Our scars make us who we are. Perfection isn’t worth the cost of everything else.",
+            "Better isn’t worth it if it means erasing who we are. Our struggles, our memories—they matter. You’ve lost sight of that.",
+            "You’re naive.",
+            "I’ll fix this timeline. And I’ll fix you.",
+        };
+
+
+        string[] names = new[]
+        {
+            "",
+            "The Alternate Zieck",
+            "",
+            "The Alternate Zieck",
+            "",
+            "",
+            "The Alternate Zieck",
+            ""
+        };
+
+        for (int i = 0; i < dialogue.Length; i++)
+        {
+            dlg.text = dialogue[i];
+            npcName.text = names[i];
+            float elapsedtime = 0f;
+            while (elapsedtime < time)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    elapsedtime = time;
+                    break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime = time;
+                }
+                elapsedtime += Time.deltaTime;
+                yield return null;
+            }
+        }
+        dlg.text = "";
+        npcName.text = "";
+        DIALOGUE.SetActive(false);
+        UI.SetActive(true);
+        PlayerController.Instance.pState.canPause = true;
+        PlayerController.Instance.pState.canOpenJournal = true;
+        PlayerController.Instance.pState.isNPC = false;
+        PlayerController.Instance.pState.killedABoss = true;
+        Destroy(gameObject, 2f);
+        
+    }
+    IEnumerator Dialogue(float time)
+    {
+        PlayerController.Instance.pState.canPause = false;
+        PlayerController.Instance.pState.canOpenJournal = false;
+        PlayerController.Instance.pState.isNPC = true;
+        isTalking = true;
+        UI.SetActive(false);
+        DIALOGUE.SetActive(true);
+        string[] dialogue = new[]
+        {
+            "Because of what you’ve done, my timeline, my world, is on the brink of destruction.",
+            "I don’t care about the consequences. I can do whatever it takes to achieve my purpose.",
+            "Because I’ve seen the truth. The Grimoire of Ages doesn’t just show history; it shapes it. I’ve collected every one across universes.",
+            "To traverse in the future not just past and now, with yours, I’ll have them all.",
+        };
+
+        string[] names = new[]
+        {
+            "",
+            "The Alternate Zieck",
+            "The Alternate Zieck",
+            "The Alternate Zieck",
+        };
+
+        for (int i = 0; i < dialogue.Length; i++)
+        {
+            dlg.text = dialogue[i];
+            npcName.text = names[i];
+            float elapsetime = 0f;
+            while (elapsetime < time)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    elapsetime = time;
+                    break;
+                }
+                else if(Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsetime = time;
+                }
+                elapsetime += Time.deltaTime;
+                yield return null;
+            }
+        }
+        dlg.text = "";
+        npcName.text = "";
+        DIALOGUE.SetActive(false);
+        UI.SetActive(true);
+        PlayerController.Instance.pState.canPause = true;
+        PlayerController.Instance.pState.canOpenJournal = true;
+        PlayerController.Instance.pState.isNPC = false;
+        chaseDistance = 30f;
+        isTalking = false;
+        PlayerPrefs.SetInt("HASTALKEDFB", 1);
+
+        QuestTracker.instance.hasQuest = true;
+        PlayerPrefs.SetString("Quest", "Absorb the power of Altered Zieck");
+        ChangeStates(EnemyStates.FB_IDLE);
+    }
     IEnumerator Transform(float time)
     {
         canMove = false;
@@ -116,6 +284,7 @@ public class FINALBOSS : Enemy
         canMove = !parried;
         canAttack = !canAttack;
         HEALTHBAR.SetActive(spottedPlayer && health >= 0 && PlayerController.Instance.pState.isAlive);
+        if (health <= 0) ChangeStates(EnemyStates.FB_D_Dialogue);
     }
     void Phase1AttackPattern()
     {

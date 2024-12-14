@@ -87,21 +87,25 @@ public class CameraShake : MonoBehaviour
                 settingsUI.SetActive(false);
                 statUI.SetActive(false);
                 PlayerController.Instance.pState.isPaused = false;
+                PlayerController.Instance.pState.canOpenJournal = true;
             }
             else
             {
                 PlayerController.Instance.pState.isPaused = true;
+                PlayerController.Instance.pState.canOpenJournal = false;
                 Cursor.visible = true;
                 Time.timeScale = 0;
                 UI.SetActive(false);
                 settingsUI.SetActive(false);
+                JOURNAL.SetActive(false);
+                PlayerController.Instance.pState.isNPC = false;
                 statUI.SetActive(false);
                 isPaused = true;
                 pauseMenu.SetActive(true);
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.J) && PlayerController.Instance.pState.hasBOOK)
+        if (Input.GetKeyDown(KeyCode.J) && PlayerController.Instance.pState.hasBOOK && PlayerController.Instance.pState.canOpenJournal)
         {
             if (!journalOpen)
             {

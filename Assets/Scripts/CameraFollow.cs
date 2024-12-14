@@ -24,7 +24,7 @@ public class CameraFollow : MonoBehaviour
         }
         else if (PlayerController.Instance.pState.isNPC)
         {
-            Vector3 newPoss = new Vector3(target.position.x, target.position.y + Yoffset, -8f);
+            Vector3 newPoss = new Vector3(target.position.x, target.position.y + Yoffset, -10f);
             transform.position = Vector3.Slerp(transform.position, newPoss, FollowSpeed * Time.deltaTime);
         }
         else

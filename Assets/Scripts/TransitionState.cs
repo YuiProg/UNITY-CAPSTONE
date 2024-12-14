@@ -8,6 +8,7 @@ public class TransitionState : MonoBehaviour
     [SerializeField] public GameObject TransitionPIC;
     [SerializeField] GameObject DEFEATEDUI;
     [SerializeField] GameObject DEFEATEDSKILLUI;
+    [SerializeField] GameObject NEWSKILL;
 
     //location
     [SerializeField] GameObject IFUGAO;
@@ -52,6 +53,16 @@ public class TransitionState : MonoBehaviour
         else
         {
             DEFEATEDSKILLUI.SetActive(false);
+        }
+        if (PlayerController.Instance.pState.newSkill)
+        {
+            NEWSKILL.SetActive(true);
+            anim.Play("NEW SKILL");
+            PlayerController.Instance.pState.newSkill = false;
+        }
+        else
+        {
+            NEWSKILL.SetActive(false);
         }
         if (PlayerController.Instance.pState.inIfugao)
         {

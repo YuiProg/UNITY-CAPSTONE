@@ -135,7 +135,7 @@ public class NPC1 : MonoBehaviour
         "Christina",
         "Christina",
         "Balweg",
-        ""
+        "Zieck"
     };
 
         for (int i = 0; i < dialogues.Length; i++)
@@ -150,6 +150,10 @@ public class NPC1 : MonoBehaviour
                 {
                     elapsedTime = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedTime = time;
                 }
 
                 elapsedTime += Time.deltaTime;
@@ -198,7 +202,7 @@ public class NPC1 : MonoBehaviour
         {
             "Balweg",
             "Christina",
-            ""
+            "Zieck"
         };
 
         for (int i = 0; i < dialogues.Length; i++)
@@ -213,6 +217,10 @@ public class NPC1 : MonoBehaviour
                 {
                     elapsedTime = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedTime = time;
                 }
 
                 elapsedTime += Time.deltaTime;
@@ -256,7 +264,7 @@ public class NPC1 : MonoBehaviour
         string[] names = new[]
         {
             "Balweg",
-            ""
+            "Zieck"
         };
 
         for (int i = 0; i < dialogues.Length; i++)
@@ -271,6 +279,10 @@ public class NPC1 : MonoBehaviour
                 {
                     elapsedTime = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedTime = time;
                 }
 
                 elapsedTime += Time.deltaTime;

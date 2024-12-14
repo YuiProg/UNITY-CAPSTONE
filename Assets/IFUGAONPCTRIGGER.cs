@@ -68,10 +68,10 @@ public class IFUGAONPCTRIGGER : MonoBehaviour
         string[] names = new[]
         {
             "Tausug Scout",
-            "",
+            "Zieck",
             "Tausug Scout",
             "Tausug Scout",
-            "",
+            "Zieck",
             "Tausug Scout",
             "Tausug Scout"
         };
@@ -87,6 +87,10 @@ public class IFUGAONPCTRIGGER : MonoBehaviour
                 {
                     elapsedtime = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime = time;
                 }
                 elapsedtime += Time.deltaTime;
                 yield return null;

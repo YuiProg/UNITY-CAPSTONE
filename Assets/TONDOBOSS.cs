@@ -202,7 +202,6 @@ public class TONDOBOSS : Enemy
         UI.SetActive(false);
         PlayerController.Instance.pState.canPause = false;
         PlayerController.Instance.pState.isNPC = true;
-        DIALOGUE.SetActive(true);
         UI.SetActive(false);
         Cursor.visible = true;
         Save.instance.saveData();
@@ -379,7 +378,7 @@ public class TONDOBOSS : Enemy
     bool distanceCheck()
     {
         float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        return distance < 6f;
+        return distance < 5.5f;
     }
 
     void flip(bool canFlip)

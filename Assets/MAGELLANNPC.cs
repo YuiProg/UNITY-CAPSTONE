@@ -70,9 +70,9 @@ public class MAGELLANNPC : MonoBehaviour
         };
         string[] names = new[]
         {
-            "Tausug",
-            "Tausug",
-            "Tausug"
+            "Tausug Elder Tribe",
+            "Tausug Elder Tribe",
+            "Tausug Elder Tribe"
         };
 
         for (int i = 0; i < words.Length; i++)
@@ -86,6 +86,10 @@ public class MAGELLANNPC : MonoBehaviour
                 {
                     elapsedtime = time;
                     break;
+                }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime = time;
                 }
                 elapsedtime += Time.deltaTime;
                 yield return null;

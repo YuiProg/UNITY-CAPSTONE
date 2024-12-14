@@ -54,14 +54,16 @@ public class TONDONPC2 : MonoBehaviour
         {
             "Sultan! No!",
             "Do not let my sacrifice be in vain. Fight, Zieck. End this.",
+            "I will give you a power like no other.",
             "Your sacrifice will not be forgotten. I will honor you with victory!",
         };
 
         string[] names = new[]
         {
-            "",
+            "Zieck",
             "Sultan Sulayman",
-            ""
+            "Sultan Sulayman",
+            "Zieck"
         };
 
         for (int i = 0; i < words.Length; i++)
@@ -76,6 +78,10 @@ public class TONDONPC2 : MonoBehaviour
                     elapsedtime = time;
                     break;
                 }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime = time;
+                }
                 elapsedtime += Time.deltaTime;
                 yield return null;
             }
@@ -87,6 +93,8 @@ public class TONDONPC2 : MonoBehaviour
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Defeat Area BOSS.");
         PlayerPrefs.SetInt("TONDOBOSSNPC", 1);
+        PlayerPrefs.SetInt("HEAL", 1);
+        PlayerController.Instance.pState.newSkill = true;
         BORDER.SetActive(false);
         Cursor.visible = false;
         UI.SetActive(true);
