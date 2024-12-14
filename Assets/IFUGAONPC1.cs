@@ -15,6 +15,7 @@ public class IFUGAONPC1 : MonoBehaviour
     [SerializeField] Transform loc2;
     private void Update()
     {
+        flip();
         if (PlayerPrefs.GetInt("HK") == 1) transform.position = loc2.transform.position;
         if (PlayerPrefs.GetInt("HK") == 1) gameObject.SetActive(true);
         if (inTrigger && !isSpeaking && PlayerPrefs.GetInt("HK") == 1)
@@ -86,14 +87,23 @@ public class IFUGAONPC1 : MonoBehaviour
             }
         }
         PlayerPrefs.SetString("Quest", "Find the hideout");
-        isSpeaking = false;
         DIALOGUE.SetActive(false);
         PlayerController.Instance.pState.isNPC = false;
         PlayerController.Instance.pState.canPause = true;
         UI.SetActive(true);
     }
 
-
+    void flip()
+    {
+        if (PlayerController.Instance.transform.position.x < transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+    }
 
 
 }

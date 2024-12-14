@@ -46,6 +46,8 @@ public class IFUGAONPCTRIGGER : MonoBehaviour
     IEnumerator dialogue1(float time)
     {
         UI.SetActive(false);
+        QuestTracker.instance.hasQuest = false;
+        PlayerPrefs.DeleteKey("Quest");
         PlayerController.Instance.pState.isNPC = true;
         activated = true;
         PlayerController.Instance.pState.Transitioning = true;

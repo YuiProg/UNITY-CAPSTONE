@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Audio Source")]
     [SerializeField] AudioSource sfxSource;
+    [SerializeField] AudioSource BGFXSource;
     [Space(2)]
     [Header("SFX PLAYER")]
     public AudioClip NormalAttack;
@@ -15,6 +16,24 @@ public class AudioManager : MonoBehaviour
     public AudioClip Parry;
     public AudioClip Hurt;
     public AudioClip HealSkill;
+    public AudioClip BUTTONCLICK;
+    public AudioClip BUTTONCLICK2;
+
+    [Space(2)]
+    [Header("OTHER SFX")]
+    public AudioClip JournalFlip;
+
+    [Space(2)]
+    [Header("SFX BGM AREA")]
+    public AudioClip FirstArea;
+    public AudioClip ForestArea;
+    public AudioClip BeachArea;
+    public AudioClip TondoArea;
+    public AudioClip SpaceArea;
+    public AudioClip CaveArea;
+    public AudioClip SideQuest;
+
+
     [Space(2)]
     [Header("SFX FINAL BOSS")]
     public AudioClip FB_Attack;
@@ -41,9 +60,57 @@ public class AudioManager : MonoBehaviour
     public AudioClip G_Die;
 
 
+    bool BGMplaying = false;
+    
+    private void Update()
+    {
+        if (!BGMplaying)
+        {
+            checker();
+        }
+        
+    }
     public void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
+        
+    }
+    public void PlayBGSFX(AudioClip clip)
+    {
+        BGFXSource.PlayOneShot(clip);
+    }
+    void checker()
+    {
+        if (PlayerController.Instance.pState.inIfugaoSFX)
+        {
+            PlayBGSFX(FirstArea);
+            BGMplaying = true;
+        }
+        else if (PlayerController.Instance.pState.inMactanSFX)
+        {
+            PlayBGSFX(BeachArea);
+            BGMplaying = true;
+        }
+        else if (PlayerController.Instance.pState.inTondoSFX)
+        {
+            PlayBGSFX(TondoArea);
+            BGMplaying = true;
+        }
+        else if (PlayerController.Instance.pState.inCaveSFX)
+        {
+            PlayBGSFX(CaveArea);
+            BGMplaying = true;
+        }
+        else if (PlayerController.Instance.pState.inSpaceSFX)
+        {
+            PlayBGSFX(SpaceArea);
+            BGMplaying = true;
+        }
+        else if (PlayerController.Instance.pState.inSQSFX)
+        {
+            PlayBGSFX(SideQuest);
+            BGMplaying = true;
+        }
     }
 
     public void StopSFX()

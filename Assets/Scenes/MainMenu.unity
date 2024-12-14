@@ -1965,6 +1965,18 @@ MonoBehaviour:
           m_StringArgument: Cave_1
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1814189267}
+        m_TargetAssemblyTypeName: BtnAudio, Assembly-CSharp
+        m_MethodName: playClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1023820281
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2181,6 +2193,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1814189267}
+        m_TargetAssemblyTypeName: BtnAudio, Assembly-CSharp
+        m_MethodName: playClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1032427074
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2285,6 +2309,203 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037685876}
   m_CullTransparentMesh: 1
+--- !u!1 &1056902330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1056902332}
+  - component: {fileID: 1056902331}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Audio
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1056902331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056902330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5eec5865b93f0d4387e46754cee0d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxSource: {fileID: 1110716601}
+  NormalAttack: {fileID: 8300000, guid: 0fe4dc37481345a40b78e677e024fa2b, type: 3}
+  HardAttack: {fileID: 0}
+  SpearSkill: {fileID: 0}
+  Block: {fileID: 8300000, guid: 4e4e5d44f74b41847a68121341802772, type: 3}
+  Parry: {fileID: 8300000, guid: 0a1171bf0bd6f8240aaa3e1d65d3c392, type: 3}
+  Hurt: {fileID: 8300000, guid: 7e8e9d8d6647e504ebeb06a94cc46ccd, type: 3}
+  HealSkill: {fileID: 8300000, guid: 73930fcc9642d654987d8d0a6f984a56, type: 3}
+  BUTTONCLICK: {fileID: 8300000, guid: b27c433a95f38c64c878d3ba3f973f78, type: 3}
+  BUTTONCLICK2: {fileID: 8300000, guid: 2969e2e7d70b11e4db11d960278c2c6d, type: 3}
+  FB_Attack: {fileID: 8300000, guid: 616793f735ce31e44bea5aa503104e0e, type: 3}
+  FB_Thunder: {fileID: 8300000, guid: 448ba87a069f2ed4986c08655ef22c1d, type: 3}
+  Transform: {fileID: 8300000, guid: 64de0dc162f3d06499690224f914eb04, type: 3}
+  M_Attack: {fileID: 8300000, guid: d7299827b087d7d4a95901f4608e2527, type: 3}
+  M_Explosion: {fileID: 8300000, guid: 5ee84ac7ad7cee24297d0de64dad62bd, type: 3}
+  M_Death: {fileID: 8300000, guid: 0edd14fe778140149a848c0e71d08a80, type: 3}
+  H_Attack: {fileID: 8300000, guid: 1a2e4fa88d6e79748b8dba0fa7eea407, type: 3}
+  H_Chase: {fileID: 8300000, guid: 3e9ed50a55521f44a9caf2a3156fa7d4, type: 3}
+  TB_Attack: {fileID: 8300000, guid: f1584de34c776594a91c83a61f4ff23f, type: 3}
+  TB_SLAM: {fileID: 8300000, guid: 368edf4d737e3eb47b0da2e0582b1328, type: 3}
+  TB_Transform: {fileID: 8300000, guid: 6c77b1d0a79fa1b4fa2e704b7d1b5549, type: 3}
+  G_Swing: {fileID: 8300000, guid: 97462243aacbb5f41a2c34f8b47030b6, type: 3}
+  G_Roll: {fileID: 8300000, guid: e7ae09194cacb5b4e919807251c0ee67, type: 3}
+  G_Die: {fileID: 8300000, guid: 821dba26480189440bc007ff98105cab, type: 3}
+--- !u!4 &1056902332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056902330}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1110716602}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1110716600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110716602}
+  - component: {fileID: 1110716601}
+  m_Layer: 0
+  m_Name: SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1110716601
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110716600}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5388153251994258005, guid: d805119a0f2d6c84788e1c5de42f66c4, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1110716602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110716600}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1056902332}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1161923964
 GameObject:
   m_ObjectHideFlags: 0
@@ -2615,6 +2836,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1814189267}
+        m_TargetAssemblyTypeName: BtnAudio, Assembly-CSharp
+        m_MethodName: playClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1302743209
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2858,6 +3091,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1727033646}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
         m_MethodName: MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1814189267}
+        m_TargetAssemblyTypeName: BtnAudio, Assembly-CSharp
+        m_MethodName: playClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3470,6 +3715,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1480557866}
         m_TargetAssemblyTypeName: NEWGAMESAVE, Assembly-CSharp
         m_MethodName: confirmWINUP
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1814189267}
+        m_TargetAssemblyTypeName: BtnAudio, Assembly-CSharp
+        m_MethodName: playClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5002,6 +5259,7 @@ GameObject:
   - component: {fileID: 1814189264}
   - component: {fileID: 1814189265}
   - component: {fileID: 1814189266}
+  - component: {fileID: 1814189267}
   m_Layer: 5
   m_Name: BTNS
   m_TagString: Untagged
@@ -5070,6 +5328,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b78818fd49149c4fa78b3fa7ced0633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1814189267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814189262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc5c2a212e6f04449ba5e1f697d3b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1830343695
@@ -5589,6 +5859,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1814189267}
+        m_TargetAssemblyTypeName: BtnAudio, Assembly-CSharp
+        m_MethodName: playClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1998640377
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6048,3 +6330,4 @@ SceneRoots:
   - {fileID: 320771634}
   - {fileID: 2146346407}
   - {fileID: 1836076000}
+  - {fileID: 1056902332}

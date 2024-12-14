@@ -182,6 +182,7 @@ public class TONDOBOSS : Enemy
         {
             banner = true;
             PlayerController.Instance.pState.killedABoss = true;
+            StartCoroutine(newJournal(3f));
         }
         if (health <= 0 && !dropped)
         {
@@ -195,10 +196,14 @@ public class TONDOBOSS : Enemy
     }
 
     //dialogue tas cutscene
-
+    IEnumerator newJournal(float time)
+    {
+        yield return new WaitForSeconds(time);
+        PlayerController.Instance.pState.newJournalChapter = true;
+    }
     IEnumerator Dialogue1(float time)
     {
-        yield return new WaitForSeconds(time + 1.5f);
+        yield return new WaitForSeconds(time + 2f);
         UI.SetActive(false);
         PlayerController.Instance.pState.canPause = false;
         PlayerController.Instance.pState.isNPC = true;

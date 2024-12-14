@@ -19,9 +19,14 @@ public class LevelSystem : MonoBehaviour
     public Text spearDamage;
     [SerializeField] GameObject spearDMG;
     [SerializeField] GameObject slashDMG;
+    AudioManager audiomanager;
     float AllDamage;
     int mainLevel;
 
+    private void Start()
+    {
+        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     void Update()
     {
         display();
@@ -56,9 +61,9 @@ public class LevelSystem : MonoBehaviour
             nDamage.text = $"NORMAL DAMAGE: {PlayerController.Instance.normal_damage} + 2";
             hDamage.text = $"HARD DAMAGE: {PlayerController.Instance.normal_hdamage} + 2";
             sDamage.text = $"SKILL DAMAGE: {PlayerController.Instance.normal_slash_Damage} + 2";
-            health.text = $"HP: {PlayerController.Instance.maxHealth} + 2";
-            stamina.text = $"STAMINA: {PlayerController.Instance.maxstamina} + 2";
-            Defense.text = $"DEFENSE: {PlayerController.Instance.maxShield} + 5";
+            health.text = $"HP: {PlayerController.Instance.maxHealth} + 10";
+            stamina.text = $"STAMINA: {PlayerController.Instance.maxstamina} + 10";
+            Defense.text = $"DEFENSE: {PlayerController.Instance.maxShield} + 15";
         }
         else
         {
@@ -80,6 +85,7 @@ public class LevelSystem : MonoBehaviour
     {
         if (mainLevel > 0)
         {
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
             PlayerController.Instance.levels--;
             PlayerController.Instance.normal_damage = PlayerController.Instance.normal_damage + 2;
             PlayerController.Instance.normal_hdamage = PlayerController.Instance.normal_hdamage  + 2;
@@ -99,6 +105,7 @@ public class LevelSystem : MonoBehaviour
     {
         if (mainLevel > 0)
         {
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
             PlayerController.Instance.levels--;
             PlayerController.Instance.maxHealth = PlayerController.Instance.maxHealth + 10;
             PlayerController.Instance.health = PlayerController.Instance.maxHealth;
@@ -114,8 +121,9 @@ public class LevelSystem : MonoBehaviour
     {
         if (mainLevel > 0)
         {
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
             PlayerController.Instance.levels--;
-            PlayerController.Instance.maxShield = PlayerController.Instance.maxShield + 5;
+            PlayerController.Instance.maxShield = PlayerController.Instance.maxShield + 15;
             PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
             PlayerController.Instance.ShieldBar.fillAmount = PlayerController.Instance.shieldCount / PlayerController.Instance.maxShield;
             PlayerController.Instance.mainLevel++;

@@ -22,6 +22,9 @@ public class FINALBOSS : Enemy
     [SerializeField] Text npcName;
     [SerializeField] GameObject UI;
 
+    //audio
+    [SerializeField] AudioSource Music;
+
 
     protected override void Start()
     {
@@ -48,6 +51,7 @@ public class FINALBOSS : Enemy
         isSecondPhase = health <= maxHealth / 2;
         flip(!isAttacking && !isTalking);
         stateCheck();
+        damage = isSecondPhase ? 25 : 18;
         if (isSecondPhase && !hasTransformed)
         {
             hasTransformed = true;
@@ -144,6 +148,7 @@ public class FINALBOSS : Enemy
     }
     IEnumerator DeathDialogue(float time)
     {
+        HEALTHBAR.SetActive(false);
         PlayerController.Instance.pState.canPause = false;
         PlayerController.Instance.pState.canOpenJournal = false;
         PlayerController.Instance.pState.isNPC = true;
@@ -168,14 +173,14 @@ public class FINALBOSS : Enemy
 
         string[] names = new[]
         {
-            "",
+            "Zieck",
             "The Alternate Zieck",
-            "",
+            "Zieck",
             "The Alternate Zieck",
-            "",
-            "",
+            "Zieck",
+            "Zieck",
             "The Alternate Zieck",
-            ""
+            "Zieck"
         };
 
         for (int i = 0; i < dialogue.Length; i++)
@@ -202,6 +207,8 @@ public class FINALBOSS : Enemy
         npcName.text = "";
         DIALOGUE.SetActive(false);
         UI.SetActive(true);
+        QuestTracker.instance.hasQuest = true;
+        PlayerPrefs.SetString("Quest", "Absorb the power of Altered Zieck");
         PlayerController.Instance.pState.canPause = true;
         PlayerController.Instance.pState.canOpenJournal = true;
         PlayerController.Instance.pState.isNPC = false;
@@ -227,7 +234,7 @@ public class FINALBOSS : Enemy
 
         string[] names = new[]
         {
-            "",
+            "Zieck",
             "The Alternate Zieck",
             "The Alternate Zieck",
             "The Alternate Zieck",
@@ -265,7 +272,7 @@ public class FINALBOSS : Enemy
         PlayerPrefs.SetInt("HASTALKEDFB", 1);
 
         QuestTracker.instance.hasQuest = true;
-        PlayerPrefs.SetString("Quest", "Absorb the power of Altered Zieck");
+        PlayerPrefs.SetString("Quest", "Defeat Zieck");
         ChangeStates(EnemyStates.FB_IDLE);
     }
     IEnumerator Transform(float time)
@@ -279,12 +286,19 @@ public class FINALBOSS : Enemy
         isAttacking = false;
         ChangeStates(EnemyStates.FB_E_CHASE);
     }
+    bool musicPlaying = false;
     void stateCheck()
     {
+        if (health <= 0) Music.volume -= Time.deltaTime;
         canMove = !parried;
         canAttack = !canAttack;
-        HEALTHBAR.SetActive(spottedPlayer && health >= 0 && PlayerController.Instance.pState.isAlive);
+        HEALTHBAR.SetActive(spottedPlayer && health > 0 && PlayerController.Instance.pState.isAlive);
         if (health <= 0) ChangeStates(EnemyStates.FB_D_Dialogue);
+        if(spottedPlayer && !musicPlaying)
+        {
+            musicPlaying = true;
+            Music.Play();
+        }
     }
     void Phase1AttackPattern()
     {
@@ -437,7 +451,7 @@ public class FINALBOSS : Enemy
     bool distanceCheck()
     {
         float dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        return dist < 5f;
+        return dist < 4.5f;
     }
 
     void flip(bool canFlip)

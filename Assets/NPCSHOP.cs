@@ -69,10 +69,10 @@ public class NPCSHOP : MonoBehaviour
 
         string[] name = new[]
         {
-            "Balweg",
-            "Balweg",
-            "Balweg",
-            "Balweg"
+            "Oliver",
+            "Oliver",
+            "Oliver",
+            "Oliver"
         };
 
         for (int i = 0; i < dialogue.Length; i++)

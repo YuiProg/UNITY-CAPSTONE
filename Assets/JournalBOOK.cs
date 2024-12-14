@@ -12,6 +12,13 @@ public class JournalBOOK : MonoBehaviour
     [SerializeField] GameObject Lock;
     [SerializeField] Text locktxt;
 
+
+    AudioManager audiomanager;
+
+    private void Start()
+    {
+        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     public void IFUGAOBTN()
     {
         if (PlayerPrefs.GetInt("HERALD GOLEM") == 1)
@@ -20,6 +27,7 @@ public class JournalBOOK : MonoBehaviour
             MACTAN.SetActive(false);
             TONDO.SetActive(false);
             Lock.SetActive(false);
+            audiomanager.PlaySFX(audiomanager.JournalFlip);
         }
         else
         {
@@ -28,6 +36,7 @@ public class JournalBOOK : MonoBehaviour
             IFUGAO.SetActive(false);
             MACTAN.SetActive(false);
             TONDO.SetActive(false);
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
     }
 
@@ -39,6 +48,7 @@ public class JournalBOOK : MonoBehaviour
             IFUGAO.SetActive(false);
             TONDO.SetActive(false);
             Lock.SetActive(false);
+            audiomanager.PlaySFX(audiomanager.JournalFlip);
         }
         else
         {
@@ -47,6 +57,7 @@ public class JournalBOOK : MonoBehaviour
             IFUGAO.SetActive(false);
             MACTAN.SetActive(false);
             TONDO.SetActive(false);
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
     }
 
@@ -58,6 +69,7 @@ public class JournalBOOK : MonoBehaviour
             MACTAN.SetActive(false);
             IFUGAO.SetActive(false);
             Lock.SetActive(false);
+            audiomanager.PlaySFX(audiomanager.JournalFlip);
         }
         else
         {
@@ -66,6 +78,7 @@ public class JournalBOOK : MonoBehaviour
             IFUGAO.SetActive(false);
             MACTAN.SetActive(false);
             TONDO.SetActive(false);
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
     }
 }

@@ -11,7 +11,7 @@ public class BalwegCheck : MonoBehaviour
         if (inTrigger && !activated)
         {
             activated = true;
-            PlayerController.Instance.pState.inBalweg = true;
+            PlayerController.Instance.pState.inOliver = true;
         }
     }
 

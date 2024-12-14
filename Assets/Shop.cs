@@ -11,14 +11,17 @@ public class Shop : MonoBehaviour
     [SerializeField] GameObject UI;
 
 
-    public int purchaseCount;
+    public int purchaseCountEssence;
+    public int purchaseCountPotion;
     bool hasFunds;
     public float elapsedTime;
     private Coroutine purchaseCoroutine;
     NPCSHOP npcShop;
 
+    AudioManager audiomanager;
     private void Start()
     {
+        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         npcShop = GameObject.FindGameObjectWithTag("Shop").GetComponent<NPCSHOP>();
     }
     private void Update()
@@ -41,11 +44,13 @@ public class Shop : MonoBehaviour
     {
         if (hasFunds)
         {
-            purchased.text = $"Purchased {purchaseCount} Essence!";
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
+            purchased.text = $"Purchased {purchaseCountEssence} Essence!";
         }
         else
         {
             purchased.text = "Insufficient Funds!";
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
 
         yield return new WaitForSeconds(time);
@@ -60,6 +65,7 @@ public class Shop : MonoBehaviour
         if (PlayerController.Instance.potionCount > 8)
         {
             purchased.text = $"You have all the potions!";
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
 
             yield return new WaitForSeconds(time);
 
@@ -70,18 +76,21 @@ public class Shop : MonoBehaviour
         }
         if (hasFunds)
         {
-            if (purchaseCount > 1)
+            if (purchaseCountPotion > 1)
             {
-                purchased.text = $"Purchased {purchaseCount} Potions!";
+                audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
+                purchased.text = $"Purchased {purchaseCountPotion} Potions!";
             }
             else
             {
-                purchased.text = $"Purchased {purchaseCount} Potion!";
+                audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
+                purchased.text = $"Purchased {purchaseCountPotion} Potion!";
             }
         }
         else
         {
             purchased.text = "Insufficient Funds!";
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
 
         yield return new WaitForSeconds(time);
@@ -99,7 +108,7 @@ public class Shop : MonoBehaviour
         if (PlayerController.Instance.barya >= 20)
         {
             hasFunds = true;
-            purchaseCount++;
+            purchaseCountEssence++;
             PlayerController.Instance.barya = PlayerController.Instance.barya - 20; 
             PlayerController.Instance.levels = PlayerController.Instance.levels + 1;
             Save.instance.saveStats();
@@ -125,7 +134,7 @@ public class Shop : MonoBehaviour
             if (PlayerController.Instance.barya >= 25)
             {
                 hasFunds = true;
-                purchaseCount++;
+                purchaseCountPotion++;
                 PlayerController.Instance.barya = PlayerController.Instance.barya - 25;
                 PlayerController.Instance.maxPotions = PlayerController.Instance.maxPotions + 1;
                 PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;

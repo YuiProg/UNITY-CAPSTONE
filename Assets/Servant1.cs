@@ -24,7 +24,7 @@ public class Servant1 : Enemy
     protected override void UpdateEnemyStates()
     {
         stateCheck();
-        flip();
+        flip(!isAttacking && health >= 0);
 
         float distance = Vector2.Distance(PlayerController.Instance.transform.position, transform.position);
         if (canMove)
@@ -94,7 +94,7 @@ public class Servant1 : Enemy
     bool distanceCheck()
     {
         float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        return distance < 2.5f;
+        return distance < 2.2f;
     }
 
     void AttackBehavior()
@@ -137,17 +137,21 @@ public class Servant1 : Enemy
         canMove = true;
         ChangeStates(EnemyStates.S1_Chase);
     }
-    void flip()
+    void flip(bool canFlip)
     {
-        if (PlayerController.Instance.transform.position.x < transform.position.x)
+        if (canFlip)
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-            healthBar.transform.eulerAngles = new Vector3(0, 0, 0);
+            if (PlayerController.Instance.transform.position.x < transform.position.x)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+                healthBar.transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                healthBar.transform.eulerAngles = new Vector3(0, 0, 0);
+            }
         }
-        else
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            healthBar.transform.eulerAngles = new Vector3(0, 0, 0);
-        }
+        
     }
 }

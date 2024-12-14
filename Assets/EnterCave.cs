@@ -39,6 +39,7 @@ public class EnterCave : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         PlayerController.Instance.transform.position = tphere.transform.position;
         yield return new WaitForSeconds(time - 2);
+        PlayerPrefs.SetInt("inCave", 1);
         Save.instance.saveData();
         PlayerPrefs.SetString("Quest", "Talk to chrstina and balweg");
         PlayerController.Instance.pState.Transitioning = false;

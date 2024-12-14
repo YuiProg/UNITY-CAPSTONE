@@ -198,7 +198,8 @@ public class MAGELLANBOSS : Enemy
 
         if (health <= 0 && !banner)
         {
-            PlayerController.Instance.pState.killedABoss = true;
+            banner = true;
+            PlayerController.Instance.pState.newJournalChapter = true;
         }
     }
     void dropEssence()

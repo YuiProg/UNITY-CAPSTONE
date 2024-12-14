@@ -92,6 +92,8 @@ public class SpearGirl : Enemy
         }
         if (health <= 0 && !dead)
         {
+            QuestTracker.instance.hasQuest = false;
+            PlayerPrefs.DeleteKey("Quest");
             StartCoroutine(tpback(4.5f));
             PlayerPrefs.SetInt("SpearGirl", 1);
             canMove = false;
@@ -168,6 +170,7 @@ public class SpearGirl : Enemy
         PlayerController.Instance.pState.Transitioning = false;
         PlayerController.Instance.transform.position = returnPlayer.transform.position;
         Save.instance.saveData();
+        Destroy(gameObject, 1f);
 
     }
     bool MusicPlaying = false;

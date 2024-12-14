@@ -41,6 +41,7 @@ public class TondoTeleporter : MonoBehaviour
 
     IEnumerator dialogue(float time)
     {
+        isTalking = true;
         PlayerPrefs.DeleteKey("Quest");
         QuestTracker.instance.hasQuest = false;
         PlayerController.Instance.pState.canPause = false;
@@ -82,6 +83,11 @@ public class TondoTeleporter : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = false;
         PlayerController.Instance.transform.position = tpHere.position;
         Save.instance.saveData();
+        PlayerPrefs.SetInt("inMactan", 0);
+        PlayerPrefs.SetInt("inIfugao", 0);
+        PlayerPrefs.SetInt("inTondo", 0);
+        PlayerPrefs.SetInt("inCave", 0);
+        PlayerPrefs.SetInt("inSpace", 1);
         LevelManager.instance.loadscene("Cave_1");
     }
 

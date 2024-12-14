@@ -54,7 +54,7 @@ public class GOLEM_BOSS : Enemy
             HEALTHBAR.SetActive(false);
             BORDER_L.SetActive(false);
             BORDER_R.SetActive(false);
-            Destroy(gameObject);     
+            Destroy(gameObject);
         }
         if (Instance != this && Instance != null)
         {
@@ -65,7 +65,7 @@ public class GOLEM_BOSS : Enemy
             Instance = this;
         }
     }
-   
+
     protected override void UpdateEnemyStates()
     {
         rollTimer += Time.deltaTime;
@@ -146,6 +146,7 @@ public class GOLEM_BOSS : Enemy
         return distance < 3f;
     }
     bool isalive = true;
+    bool banner = false;
     void stateCheck()
     {
         canMove = !parried;
@@ -172,14 +173,18 @@ public class GOLEM_BOSS : Enemy
             QuestTracker.instance.hasQuest = true;
             PlayerPrefs.SetString("Quest", "Return to the Igorot Elder Tribe");
             dead();
-            PlayerController.Instance.pState.killedABoss = true;
-            Destroy(gameObject, 2f);
+            
         }
         if (!PlayerController.Instance.pState.isAlive)
         {
             canMove = false;
             canAttack = false;
             HEALTHBAR.SetActive(false);
+        }
+        if (health <= 0 && !banner)
+        {
+            banner = true;
+            PlayerController.Instance.pState.newJournalChapter = true;
         }
     }
     void dead()

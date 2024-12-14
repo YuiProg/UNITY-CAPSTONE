@@ -70,7 +70,7 @@ public class MactanDialogue : MonoBehaviour
                     elapsedtime = time;
                     break;
                 }
-                else if (Input.GetKeyDown(KeyCode.E))
+                else if (Input.GetKeyDown(KeyCode.F))
                 {
                     elapsedtime = time;
                 }

@@ -9,6 +9,7 @@ public class TransitionState : MonoBehaviour
     [SerializeField] GameObject DEFEATEDUI;
     [SerializeField] GameObject DEFEATEDSKILLUI;
     [SerializeField] GameObject NEWSKILL;
+    [SerializeField] GameObject NEWJOURNAL;
 
     //location
     [SerializeField] GameObject IFUGAO;
@@ -53,6 +54,16 @@ public class TransitionState : MonoBehaviour
         else
         {
             DEFEATEDSKILLUI.SetActive(false);
+        }
+        if (PlayerController.Instance.pState.newJournalChapter)
+        {
+            NEWJOURNAL.SetActive(true);
+            anim.Play("newJournal");
+            PlayerController.Instance.pState.newJournalChapter = false;
+        }
+        else
+        {
+            NEWJOURNAL.SetActive(false);
         }
         if (PlayerController.Instance.pState.newSkill)
         {

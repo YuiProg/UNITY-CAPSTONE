@@ -85,7 +85,7 @@ public class MACTANNPC : MonoBehaviour
 
         string[] names = new[]
         {
-            "",
+            "Zieck",
             "Tausūg Scout",
             "Tausūg Scout",
             "Tausūg Scout"
@@ -134,9 +134,9 @@ public class MACTANNPC : MonoBehaviour
         };
         string[] names2 = new[]
         {
-            "",
-            "",
-            "",
+            "Zieck",
+            "Zieck",
+            "Zieck",
             "Tausūg Scout",
             "Tausūg Warrior",
             "Tausūg Scout",

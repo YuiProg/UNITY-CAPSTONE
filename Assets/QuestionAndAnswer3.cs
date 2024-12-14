@@ -135,6 +135,10 @@ public class QuestionAndAnswer3 : MonoBehaviour
                     elapsedtime = time;
                     break;
                 }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    elapsedtime = time;
+                }
                 elapsedtime += Time.deltaTime;
                 yield return null;
             }

@@ -9,6 +9,14 @@ public class PlayerState : MonoBehaviour
         obtainedMAP = PlayerPrefs.GetInt("MAP") == 1;
         hasBOOK = PlayerPrefs.GetInt("HASBOOK") == 1;
         obtainedHeal = PlayerPrefs.GetInt("HEAL") == 1;
+
+
+        inMactanSFX = PlayerPrefs.GetInt("inMactan") == 1;
+        inTondoSFX = PlayerPrefs.GetInt("inTondo") == 1;
+        inIfugaoSFX = PlayerPrefs.GetInt("inIfugao") == 1;
+        inCaveSFX = PlayerPrefs.GetInt("inCave") == 1;
+        inSpaceSFX = PlayerPrefs.GetInt("inSpace") == 1;
+        inSQSFX = PlayerPrefs.GetInt("inSQ") == 1;
     }
     //OTHER
     public bool isPaused = false;
@@ -18,6 +26,7 @@ public class PlayerState : MonoBehaviour
     public bool canPause = true;
     public bool canOpenJournal = true;
     public bool newSkill = false;
+    public bool newJournalChapter = false;
 
     //movement bool
     public bool jumping = false;
@@ -61,7 +70,14 @@ public class PlayerState : MonoBehaviour
     public bool inIfugao = false;
     public bool inMactan = false;
     public bool inTondo = false;
-    public bool inBalweg = false;
-
+    public bool inOliver = false;
+    public bool inCave = false;
+    public bool inIfugaoSFX = false;
+    public bool inMactanSFX = false;
+    public bool inTondoSFX = false;
+    public bool inOliverSFX = false;
+    public bool inCaveSFX = false;
+    public bool inSpaceSFX = false;
+    public bool inSQSFX = false;
 
 }

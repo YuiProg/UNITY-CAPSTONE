@@ -215,7 +215,7 @@ public class HorseBOSS : Enemy
     bool distanceCheck()
     {
         float distance = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        return distance < 5f;
+        return distance < 4.3f;
     }
     
     void flip(bool canflip)
