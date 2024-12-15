@@ -287,6 +287,7 @@ public class WorldMap : MonoBehaviour
         PlayerPrefs.SetInt("inTondo", 0);
         PlayerPrefs.SetInt("inSQ", 0);
         PlayerPrefs.SetInt("inSpace", 0);
+        PlayerPrefs.SetInt("inCave", 0);
         StartCoroutine(TPMACTAN());
         Cursor.visible = false;
     }
@@ -299,6 +300,7 @@ public class WorldMap : MonoBehaviour
         PlayerPrefs.SetInt("inTondo", 1);
         PlayerPrefs.SetInt("inSQ", 0);
         PlayerPrefs.SetInt("inSpace", 0);
+        PlayerPrefs.SetInt("inCave", 0);
         StartCoroutine(TPITONDO());
         Cursor.visible = false;
     }
@@ -311,6 +313,7 @@ public class WorldMap : MonoBehaviour
         PlayerPrefs.SetInt("inTondo", 0);
         PlayerPrefs.SetInt("inSpace", 0);
         PlayerPrefs.SetInt("inSQ", 1);
+        PlayerPrefs.SetInt("inCave", 0);
         StartCoroutine(TPSIDEQUESTTONDO());
         Cursor.visible = false;
     }
@@ -324,6 +327,7 @@ public class WorldMap : MonoBehaviour
         PlayerPrefs.SetInt("inTondo", 0);
         PlayerPrefs.SetInt("inSQ", 1);
         PlayerPrefs.SetInt("inSpace", 0);
+        PlayerPrefs.SetInt("inCave", 0);
         StartCoroutine(IFUGAOSQ());
         Cursor.visible = false;
     }
@@ -336,6 +340,7 @@ public class WorldMap : MonoBehaviour
         PlayerPrefs.SetInt("inTondo", 0);
         PlayerPrefs.SetInt("inSQ", 1);
         PlayerPrefs.SetInt("inSpace", 0);
+        PlayerPrefs.SetInt("inCave", 0);
         StartCoroutine(TPSIDEQUESTMACTAN());
         Cursor.visible = false;
     }
@@ -348,6 +353,7 @@ public class WorldMap : MonoBehaviour
         PlayerPrefs.SetInt("inTondo", 0);
         PlayerPrefs.SetInt("inSQ", 0);
         PlayerPrefs.SetInt("inSpace", 0);
+        PlayerPrefs.SetInt("inCave", 0);
         StartCoroutine(TPIFUGAO());
         Cursor.visible = false;
     }
@@ -356,6 +362,12 @@ public class WorldMap : MonoBehaviour
     {
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
+        PlayerPrefs.SetInt("inIfugao", 0);
+        PlayerPrefs.SetInt("inMactan", 0);
+        PlayerPrefs.SetInt("inTondo", 0);
+        PlayerPrefs.SetInt("inSQ", 1);
+        PlayerPrefs.SetInt("inSpace", 0);
+        PlayerPrefs.SetInt("inCave", 0);
         StartCoroutine(SHOPTPFUNC());
         Cursor.visible = false;
     }
@@ -404,12 +416,9 @@ public class WorldMap : MonoBehaviour
             PlayerController.Instance.health = PlayerController.Instance.maxHealth;
             PlayerController.Instance.shieldCount = PlayerController.Instance.maxShield;
             PlayerController.Instance.potionCount = PlayerController.Instance.maxPotions;
-            Save.instance.saveStats();
-            PlayerController.Instance.pState.isNPC = false;
-            PlayerController.Instance.pState.canPause = true;
-            PlayerController.Instance.pState.isPaused = false;
-            UI.SetActive(true);
+            Save.instance.saveData();
             teleporting = false;
+            LevelManager.instance.loadscene("Cave_1");
         }
         else
         {

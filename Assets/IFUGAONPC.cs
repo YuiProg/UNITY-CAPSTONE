@@ -163,7 +163,7 @@ public class IFUGAONPC : MonoBehaviour
         QuestTracker.instance.hasQuest = false;
         yield return new WaitForSeconds(time - 2);
         DLG.SetActive(true);
-        Dialogue.text = "PRESS 1 - 5 AND THEN R TO USE SKILL.";
+        Dialogue.text = "PRESS 1 - 3 AND THEN R TO USE SKILL.";
         yield return new WaitForSeconds(time);
         PlayerPrefs.DeleteKey("Quest");
         PlayerPrefs.SetInt("IFUGAONPC", 1);

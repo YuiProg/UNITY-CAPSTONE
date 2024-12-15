@@ -54,6 +54,7 @@ public class FOGBORDERFINAL : MonoBehaviour
         PlayerController.Instance.pState.isNPC = false;
         DIAOGUE.SetActive(false);
         PlayerPrefs.SetInt("FINALAREABORDER", 1);
+        PlayerPrefs.SetString("Quest", "Find the Rogue Time Traveler");
         BORDER.SetActive(false);
         Destroy(gameObject);
     }

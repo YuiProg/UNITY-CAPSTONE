@@ -120,6 +120,12 @@ public class CUTSCENETRIGGER : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2f);
         PlayerController.Instance.transform.position = player.transform.position;
+        PlayerPrefs.SetInt("inIfugao", 1);
+        PlayerPrefs.SetInt("inMactan", 0);
+        PlayerPrefs.SetInt("inTondo", 0);
+        PlayerPrefs.SetInt("inSQ", 0);
+        PlayerPrefs.SetInt("inSpace", 0);
+        PlayerPrefs.SetInt("inCave", 0);
         yield return new WaitForSeconds(time + 1f);
         Save.instance.saveData();
         PlayerController.Instance.pState.Transitioning = false;

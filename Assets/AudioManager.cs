@@ -32,7 +32,13 @@ public class AudioManager : MonoBehaviour
     public AudioClip SpaceArea;
     public AudioClip CaveArea;
     public AudioClip SideQuest;
-
+    [Space(2)]
+    [Header("OLIVER")]
+    public AudioClip OLIVER1;
+    public AudioClip OLIVER2;
+    public AudioClip OLIVER3;
+    public AudioClip OLIVER4;
+    public AudioClip OLIVERTY;
 
     [Space(2)]
     [Header("SFX FINAL BOSS")]

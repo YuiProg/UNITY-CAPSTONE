@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] Text purchased;
     [SerializeField] Text remainingCoins;
     [SerializeField] GameObject UI;
 
@@ -29,13 +28,16 @@ public class Shop : MonoBehaviour
         elapsedTime += Time.deltaTime;
         remainingCoins.text =  $"{PlayerController.Instance.barya.ToString()}";
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
+            audiomanager.StopSFX();
+            audiomanager.PlaySFX(audiomanager.OLIVERTY);
             Cursor.visible = false;
             gameObject.SetActive(false);
             npcShop.shopopen = false;
             PlayerController.Instance.pState.isNPC = false;
             PlayerController.Instance.pState.canPause = true;
+            PlayerController.Instance.pState.canOpenJournal = true;
             UI.SetActive(true);
         }
     }
@@ -45,60 +47,41 @@ public class Shop : MonoBehaviour
         if (hasFunds)
         {
             audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
-            purchased.text = $"Purchased {purchaseCountEssence} Essence!";
         }
         else
         {
-            purchased.text = "Insufficient Funds!";
             audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
 
         yield return new WaitForSeconds(time);
 
-        if (elapsedTime >= time)
-        {
-            purchased.text = "";
-        }
     }
     IEnumerator PurchasePotion(float time)
     {
         if (PlayerController.Instance.potionCount > 8)
         {
-            purchased.text = $"You have all the potions!";
             audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
 
             yield return new WaitForSeconds(time);
-
-            if (elapsedTime >= time)
-            {
-                purchased.text = "";
-            }
         }
         if (hasFunds)
         {
             if (purchaseCountPotion > 1)
             {
                 audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
-                purchased.text = $"Purchased {purchaseCountPotion} Potions!";
             }
             else
             {
                 audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
-                purchased.text = $"Purchased {purchaseCountPotion} Potion!";
             }
         }
         else
         {
-            purchased.text = "Insufficient Funds!";
             audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
 
         yield return new WaitForSeconds(time);
 
-        if (elapsedTime >= time)
-        {
-            purchased.text = "";
-        }
 
     }
     public void BuyEssence()
@@ -152,7 +135,7 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            purchased.text = "You have all the potions!";
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
         
 

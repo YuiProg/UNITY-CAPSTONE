@@ -15,10 +15,13 @@ public class NPCSHOP : MonoBehaviour
     [SerializeField] GameObject ui;
     Animator anim;
 
+    AudioManager audioManager;
+
     int count = 0;
 
     private void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         anim = GetComponent<Animator>();
         SHOP.SetActive(false);
     }
@@ -30,9 +33,35 @@ public class NPCSHOP : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && !shopopen)
             {
                 count++;
-                StartCoroutine(Dialogue(4.5f));
+                audioManager.StopSFX();
+                OliverSounds();
+                openShop();
             }
             
+        }
+    }
+    
+
+    void OliverSounds()
+    {
+        int i = Random.Range(0,4);
+
+        switch (i)
+        {
+            case 0:
+                audioManager.PlaySFX(audioManager.OLIVER1);
+                break;
+            case 1:
+                audioManager.PlaySFX(audioManager.OLIVER2);
+                break;
+            case 2:
+                audioManager.PlaySFX(audioManager.OLIVER3);
+                break;
+            case 3:
+                audioManager.PlaySFX(audioManager.OLIVER4);
+                break;
+            default:
+                break;
         }
     }
 
@@ -108,5 +137,9 @@ public class NPCSHOP : MonoBehaviour
     {
         shopopen = true;
         SHOP.SetActive(true);
+        PlayerController.Instance.pState.isNPC = true;
+        PlayerController.Instance.pState.canPause = false;
+        PlayerController.Instance.pState.canOpenJournal = false;
+        Cursor.visible = true;
     }
 }

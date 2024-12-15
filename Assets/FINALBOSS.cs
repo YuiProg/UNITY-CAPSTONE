@@ -16,11 +16,18 @@ public class FINALBOSS : Enemy
     bool isTalking = false;
     AudioManager audioManager;
 
+    //BORDER
+    [SerializeField] GameObject BORDERL;
+    [SerializeField] GameObject BORDERR;
+
     //dialogue
     [SerializeField] GameObject DIALOGUE;
     [SerializeField] Text dlg;
     [SerializeField] Text npcName;
     [SerializeField] GameObject UI;
+
+    //npc
+    [SerializeField] GameObject ZIECKNPC;
 
     //audio
     [SerializeField] AudioSource Music;
@@ -29,6 +36,7 @@ public class FINALBOSS : Enemy
     protected override void Start()
     {
         base.Start();
+        ZIECKNPC.SetActive(false);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         canMove = true;
         canAttack = true;
@@ -45,6 +53,8 @@ public class FINALBOSS : Enemy
         }
         
     }
+
+
 
     protected override void UpdateEnemyStates()
     {
@@ -64,7 +74,7 @@ public class FINALBOSS : Enemy
             {
                 case EnemyStates.FB_Dialogue:
                     if (dist < chaseDistance)
-                    {
+                    {                      
                         if (!isTalking)
                         {
                             StartCoroutine(Dialogue(4.5f));
@@ -83,6 +93,8 @@ public class FINALBOSS : Enemy
                 case EnemyStates.FB_IDLE:
                     if (dist < chaseDistance)
                     {
+                        QuestTracker.instance.hasQuest = true;
+                        PlayerPrefs.SetString("Quest", "Defeat Zieck");
                         spottedPlayer = true;
                         if (!isSecondPhase)
                         {
@@ -148,6 +160,8 @@ public class FINALBOSS : Enemy
     }
     IEnumerator DeathDialogue(float time)
     {
+        QuestTracker.instance.hasQuest = false;
+        PlayerPrefs.DeleteKey("Quest");
         HEALTHBAR.SetActive(false);
         PlayerController.Instance.pState.canPause = false;
         PlayerController.Instance.pState.canOpenJournal = false;
@@ -157,9 +171,9 @@ public class FINALBOSS : Enemy
         HEALTHBAR.SetActive(false);
         yield return new WaitForSeconds(2.5f);
         DIALOGUE.SetActive(true);
-
         string[] dialogue = new[]
         {
+            "...",
             "You’re me. But why? Why destroy everything for this?",
             "I was so close. I could’ve changed everything. Made us better.",
             "You’ve destroyed timelines and universes, lives. All for power?",
@@ -173,6 +187,7 @@ public class FINALBOSS : Enemy
 
         string[] names = new[]
         {
+            "",
             "Zieck",
             "The Alternate Zieck",
             "Zieck",
@@ -207,17 +222,25 @@ public class FINALBOSS : Enemy
         npcName.text = "";
         DIALOGUE.SetActive(false);
         UI.SetActive(true);
+        yield return new WaitForSeconds(time - 2);
+        PlayerController.Instance.pState.Transitioning = true;
+        yield return new WaitForSeconds(time);
+        PlayerController.Instance.pState.newJournalChapter = true;
+        PlayerController.Instance.pState.Transitioning = false;
+        ZIECKNPC.SetActive(true);
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Absorb the power of Altered Zieck");
         PlayerController.Instance.pState.canPause = true;
         PlayerController.Instance.pState.canOpenJournal = true;
         PlayerController.Instance.pState.isNPC = false;
-        PlayerController.Instance.pState.killedABoss = true;
-        Destroy(gameObject, 2f);
+        Destroy(gameObject);
+        
         
     }
     IEnumerator Dialogue(float time)
     {
+        QuestTracker.instance.hasQuest = true;
+        PlayerPrefs.SetString("Quest", "Defeat Zieck");
         PlayerController.Instance.pState.canPause = false;
         PlayerController.Instance.pState.canOpenJournal = false;
         PlayerController.Instance.pState.isNPC = true;
@@ -289,6 +312,8 @@ public class FINALBOSS : Enemy
     bool musicPlaying = false;
     void stateCheck()
     {
+        BORDERL.SetActive(spottedPlayer && health > 0);
+        BORDERR.SetActive(spottedPlayer && health > 0);
         if (health <= 0) Music.volume -= Time.deltaTime;
         canMove = !parried;
         canAttack = !canAttack;

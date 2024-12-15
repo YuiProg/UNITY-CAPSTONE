@@ -88,6 +88,8 @@ public class TondoTeleporter : MonoBehaviour
         PlayerPrefs.SetInt("inTondo", 0);
         PlayerPrefs.SetInt("inCave", 0);
         PlayerPrefs.SetInt("inSpace", 1);
+        QuestTracker.instance.hasQuest = true;
+        PlayerPrefs.SetString("Quest", "Navigate the area");
         LevelManager.instance.loadscene("Cave_1");
     }
 
