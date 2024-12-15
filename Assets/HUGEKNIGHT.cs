@@ -18,6 +18,10 @@ public class HUGEKNIGHT : Enemy
     [SerializeField] GameObject ambers;
     [SerializeField] Transform amberLOC;
 
+    //music
+    [SerializeField] AudioSource music;
+    bool musicPlaying = false;
+
     //ui
     [SerializeField] GameObject HEALTHBAR;
 
@@ -105,6 +109,11 @@ public class HUGEKNIGHT : Enemy
     bool banner = false;
     void stateCheck()
     {
+        if (spottedPlayer && !musicPlaying)
+        {
+            musicPlaying = true;
+            music.Play();
+        }
         if (parried) anim.SetTrigger("Parried") ;
         BORDERL.SetActive(spottedPlayer);
         BORDERR.SetActive(spottedPlayer);
@@ -120,6 +129,7 @@ public class HUGEKNIGHT : Enemy
             canMove = false;
             canAttack = false;
             spottedPlayer = false;
+            music.volume -= Time.deltaTime;
             anim.SetTrigger("Death");
             PlayerPrefs.SetInt("HK", 1);
             PlayerPrefs.SetString("Quest","Talk to the Tausug Scout");

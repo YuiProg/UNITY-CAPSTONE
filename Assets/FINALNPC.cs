@@ -86,6 +86,7 @@ public class FINALNPC : MonoBehaviour
         PlayerPrefs.SetInt("inSQ", 0);
         PlayerPrefs.SetInt("inSpace", 0);
         PlayerPrefs.SetInt("inCave", 0);
+        Cursor.visible = true;
         LevelManager.instance.loadscene("ENDING CREDITS");
 
     }

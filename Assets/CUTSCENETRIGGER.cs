@@ -18,6 +18,13 @@ public class CUTSCENETRIGGER : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] GameObject GameUI;
     // Update is called once per frame
+
+    AudioManager audiomanager;
+
+    private void Start()
+    {
+        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     void Update()
     {
         if (ontrigger && !triggered)
@@ -120,6 +127,8 @@ public class CUTSCENETRIGGER : MonoBehaviour
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(2f);
         PlayerController.Instance.transform.position = player.transform.position;
+        audiomanager.StopBGFX();
+        audiomanager.PlayBGSFX(audiomanager.ForestArea);
         PlayerPrefs.SetInt("inIfugao", 1);
         PlayerPrefs.SetInt("inMactan", 0);
         PlayerPrefs.SetInt("inTondo", 0);
@@ -160,6 +169,7 @@ public class CUTSCENETRIGGER : MonoBehaviour
         TeleportToCS.instance.canEnter = true;   
         Cursor.visible = false;
         PlayerPrefs.SetString("Quest", "Go to the forest");
+        Save.instance.saveData();
         PlayerController.Instance.pState.isNPC = false;
         NPCTEXT.SetActive(false);
         GameUI.SetActive(true);

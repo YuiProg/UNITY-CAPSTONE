@@ -25,6 +25,10 @@ public class MAGELLANBOSS : Enemy
     [SerializeField] GameObject NPC;
     AudioManager audioManager;
     public static MAGELLANBOSS instance;
+
+    //music
+    [SerializeField] AudioSource music;
+    bool musicPlaying = false;
     protected override void Start()
     {
         base.Start();
@@ -178,10 +182,21 @@ public class MAGELLANBOSS : Enemy
     bool banner = false;
     void stateCheck()
     {
+        if (spottedPlayer && !musicPlaying)
+        {
+            musicPlaying = true;
+            music.Play();
+        }
         canMove = !parried;
         BORDERL.SetActive(spottedPlayer && health >= 0);
         BORDERR.SetActive(spottedPlayer && health >= 0);
         HEALTHBAR.SetActive(spottedPlayer && health >= 0 && PlayerController.Instance.pState.isAlive);
+
+        if (health <= 0 && !banner)
+        {
+            banner = true;
+            PlayerController.Instance.pState.newJournalChapter = true;
+        }
         if (health <= 0)
         {
             NPC.SetActive(true);
@@ -189,18 +204,19 @@ public class MAGELLANBOSS : Enemy
             canMove = false;
             isAttacking = true;
             canAttack = false;
-            spottedPlayer = false;          
+            spottedPlayer = false;
+            music.volume -= Time.deltaTime;
             anim.SetTrigger("MF_E_DEATH");
             dropEssence();
             PlayerPrefs.SetString("Quest", "Talk to the Tausug");
             Destroy(gameObject, 3f);
         }
-
-        if (health <= 0 && !banner)
+        if (spottedPlayer && !musicPlaying)
         {
-            banner = true;
-            PlayerController.Instance.pState.newJournalChapter = true;
+            musicPlaying = true;
+            music.Play();
         }
+
     }
     void dropEssence()
     {

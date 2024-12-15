@@ -267,7 +267,7 @@ public class WorldMap : MonoBehaviour
     public void SHOPMAINART()
     {
         audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
-        EnterArea.text = "Balweg's Shop";
+        EnterArea.text = "Oliver's Shop";
         MACTANART.SetActive(false);
         MACTANSKKILL.SetActive(false);
         MACTANENTERBTN.SetActive(false);

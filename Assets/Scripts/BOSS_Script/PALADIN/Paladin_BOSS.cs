@@ -28,6 +28,10 @@ public class Paladin_BOSS : Enemy
     [SerializeField] GameObject THUNDERULTI;
     bool isUlti = false;
 
+    //music
+    [SerializeField] AudioSource music;
+    bool musicPlaying = false;
+
     public bool spottedPlayer = false;
     Animator anim;
     [SerializeField] float chaseDistance;
@@ -91,6 +95,11 @@ public class Paladin_BOSS : Enemy
         canAttack = spottedPlayer;
         BORDERL.SetActive(spottedPlayer);
         BORDERR.SetActive(spottedPlayer);
+        if (spottedPlayer && !musicPlaying)
+        {
+            musicPlaying = true;
+            music.Play();
+        }
         if (health <= 0 && !banner)
         {
             banner = true;
@@ -104,6 +113,7 @@ public class Paladin_BOSS : Enemy
         {
             PlayerPrefs.SetInt("PALADIN", 1);
             anim.SetBool("Walking", false);
+            music.volume -= Time.deltaTime;
             anim.SetTrigger("Dead");
             canAttack = false;
             canMove = false;

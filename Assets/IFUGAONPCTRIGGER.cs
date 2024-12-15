@@ -46,6 +46,8 @@ public class IFUGAONPCTRIGGER : MonoBehaviour
     IEnumerator dialogue1(float time)
     {
         UI.SetActive(false);
+        PlayerController.Instance.pState.canOpenJournal = false;
+        PlayerController.Instance.pState.canPause = false;
         QuestTracker.instance.hasQuest = false;
         PlayerPrefs.DeleteKey("Quest");
         PlayerController.Instance.pState.isNPC = true;
@@ -103,6 +105,8 @@ public class IFUGAONPCTRIGGER : MonoBehaviour
         PlayerPrefs.SetString("Quest", "Defeat the knight");
         DIALOGUE.SetActive(false);
         PlayerController.Instance.pState.isNPC = false;
+        PlayerController.Instance.pState.canPause = true;
+        PlayerController.Instance.pState.canOpenJournal = true;
         UI.SetActive(true);
     }
 }

@@ -84,6 +84,25 @@ public class Shop : MonoBehaviour
 
 
     }
+
+    public void upgradeEffectiveness()
+    {
+        elapsedTime = 0;
+
+        if (PlayerController.Instance.barya >= 25)
+        {
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
+            hasFunds = true;
+            PlayerController.Instance.barya = PlayerController.Instance.barya - 25;
+            PlayerController.Instance.potionHealBar = PlayerController.Instance.potionHealBar + 5f;
+            Save.instance.saveStats();
+        }
+        else
+        {
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
+            hasFunds = false;
+        }
+    }
     public void BuyEssence()
     {
         elapsedTime = 0;

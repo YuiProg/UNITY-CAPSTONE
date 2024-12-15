@@ -150,7 +150,7 @@ public class GOLEM_BOSS : Enemy
     void stateCheck()
     {
         canMove = !parried;
-        canFlip = !isAttacking && health >= 0;
+        canFlip = !isAttacking && health > 0;
         anim.SetBool("Parried", parried);
         if (spottedPlayer)
         {
@@ -196,6 +196,7 @@ public class GOLEM_BOSS : Enemy
             QuestTracker.instance.hasQuest = true;
             PlayerPrefs.SetString("Quest", "Return to the Igorot Elder Tribe");
             PlayerController.Instance.pState.killedABoss = true;
+            Destroy(gameObject, 2f);
         }
     }
     void dropE()

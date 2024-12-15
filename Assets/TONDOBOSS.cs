@@ -19,7 +19,8 @@ public class TONDOBOSS : Enemy
     [SerializeField] GameObject BORDERL;
     Animator anim;
     AudioManager audiomanager;
-
+    [SerializeField] AudioSource music;
+    bool musicPlaying = false;
 
     //dialogue
     [SerializeField] GameObject DIALOGUE;
@@ -164,6 +165,11 @@ public class TONDOBOSS : Enemy
     bool startedDialogue = false;
     void stateCheck()
     {
+        if (spottedPlayer && !musicPlaying)
+        {
+            musicPlaying = true;
+            music.Play();
+        }
         canMove = !parried && health > 0;
         canAttack = !parried && health > 0;
         BORDERL.SetActive(spottedPlayer && health > 0);
@@ -176,6 +182,7 @@ public class TONDOBOSS : Enemy
             PlayerPrefs.SetInt("TONDOMBOSS", 1);
             spottedPlayer = false;
             PARRYBAR.SetActive(false);
+            music.volume -= Time.deltaTime;
             anim.SetTrigger("Death");
         }
         if (health <= 0 && !banner)

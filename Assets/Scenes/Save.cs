@@ -49,6 +49,7 @@ public class Save : MonoBehaviour
         PlayerPrefs.SetInt("Levels", PlayerController.Instance.levels);
         PlayerPrefs.SetInt("MainLevel", PlayerController.Instance.mainLevel);
         PlayerPrefs.SetInt("Barya", PlayerController.Instance.barya);
+        PlayerPrefs.SetFloat("PotionHeal", PlayerController.Instance.potionHealBar);
         //print("SAVED DATA");
 
     }
@@ -70,6 +71,7 @@ public class Save : MonoBehaviour
         PlayerPrefs.SetInt("Levels", PlayerController.Instance.levels);
         PlayerPrefs.SetInt("Barya", PlayerController.Instance.barya);
         PlayerPrefs.SetInt("MainLevel", PlayerController.Instance.mainLevel);
+        PlayerPrefs.SetFloat("PotionHeal", PlayerController.Instance.potionHealBar);
         print("SAVED STATS");
     }
 
@@ -96,6 +98,7 @@ public class Save : MonoBehaviour
             int potions = PlayerPrefs.GetInt("Potion");
             int barya = PlayerPrefs.GetInt("Barya");
             int maxPotion = PlayerPrefs.GetInt("MaxPotions");
+            float healBar = PlayerPrefs.GetFloat("PotionHeal");
             //health
             PlayerController.Instance.potionCount = potions;
             PlayerController.Instance.maxPotions = maxPotion;
@@ -103,6 +106,7 @@ public class Save : MonoBehaviour
             PlayerController.Instance.maxHealth = maxHealth;
             PlayerController.Instance.stamina = stamina;
             PlayerController.Instance.maxstamina = maxstamina;
+            PlayerController.Instance.potionHealBar = healBar;
             //shield
             PlayerController.Instance.shieldCount = shield;
             PlayerController.Instance.maxShield = maxShield;
@@ -139,6 +143,12 @@ public class Save : MonoBehaviour
 
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetFloat("VOLUME", 1);
+        PlayerPrefs.SetInt("inIfugao", 1);
+        PlayerPrefs.SetInt("inMactan", 0);
+        PlayerPrefs.SetInt("inTondo", 0);
+        PlayerPrefs.SetInt("inSQ", 0);
+        PlayerPrefs.SetInt("inSpace", 0);
+        PlayerPrefs.SetInt("inCave", 0);
     }
 
     public void saveLevels()

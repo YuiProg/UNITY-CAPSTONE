@@ -91,7 +91,7 @@ public class TONDONPC2 : MonoBehaviour
         PlayerController.Instance.pState.canPause = true;
         PlayerController.Instance.pState.isNPC = false;
         QuestTracker.instance.hasQuest = true;
-        PlayerPrefs.SetString("Quest", "Defeat Area BOSS.");
+        PlayerPrefs.SetString("Quest", "Defeat El Adelantado.");
         PlayerPrefs.SetInt("TONDOBOSSNPC", 1);
         PlayerPrefs.SetInt("HEAL", 1);
         PlayerController.Instance.pState.newSkill = true;

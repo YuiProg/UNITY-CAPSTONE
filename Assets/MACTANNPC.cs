@@ -68,6 +68,7 @@ public class MACTANNPC : MonoBehaviour
     IEnumerator Dialogue1(float time)
     {
         PlayerController.Instance.pState.canPause = false;
+        PlayerController.Instance.pState.canOpenJournal = false;
         QuestTracker.instance.hasQuest = false;
         PlayerPrefs.DeleteKey("Quest");
         UI.SetActive(false);
@@ -175,6 +176,7 @@ public class MACTANNPC : MonoBehaviour
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Defeat Magellan");
         PlayerController.Instance.pState.canPause = true;
+        PlayerController.Instance.pState.canOpenJournal = true;
         Save.instance.saveData();
     }
 }

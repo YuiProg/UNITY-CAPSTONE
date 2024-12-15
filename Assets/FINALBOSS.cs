@@ -94,7 +94,7 @@ public class FINALBOSS : Enemy
                     if (dist < chaseDistance)
                     {
                         QuestTracker.instance.hasQuest = true;
-                        PlayerPrefs.SetString("Quest", "Defeat Zieck");
+                        PlayerPrefs.SetString("Quest", "Defeat The Rogue Time Traveler");
                         spottedPlayer = true;
                         if (!isSecondPhase)
                         {
@@ -160,6 +160,7 @@ public class FINALBOSS : Enemy
     }
     IEnumerator DeathDialogue(float time)
     {
+        Cursor.visible = true;
         QuestTracker.instance.hasQuest = false;
         PlayerPrefs.DeleteKey("Quest");
         HEALTHBAR.SetActive(false);
@@ -240,8 +241,7 @@ public class FINALBOSS : Enemy
     }
     IEnumerator Dialogue(float time)
     {
-        QuestTracker.instance.hasQuest = true;
-        PlayerPrefs.SetString("Quest", "Defeat Zieck");
+        
         PlayerController.Instance.pState.canPause = false;
         PlayerController.Instance.pState.canOpenJournal = false;
         PlayerController.Instance.pState.isNPC = true;
@@ -294,7 +294,8 @@ public class FINALBOSS : Enemy
         chaseDistance = 30f;
         isTalking = false;
         PlayerPrefs.SetInt("HASTALKEDFB", 1);
-
+        QuestTracker.instance.hasQuest = true;
+        PlayerPrefs.SetString("Quest", "Defeat The Rogue Time Traveler");
         QuestTracker.instance.hasQuest = true;
         PlayerPrefs.SetString("Quest", "Defeat Zieck");
         ChangeStates(EnemyStates.FB_IDLE);

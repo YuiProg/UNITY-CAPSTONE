@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip Parry;
     public AudioClip Hurt;
     public AudioClip HealSkill;
+    public AudioClip Potion;
     public AudioClip BUTTONCLICK;
     public AudioClip BUTTONCLICK2;
 
@@ -122,5 +123,11 @@ public class AudioManager : MonoBehaviour
     public void StopSFX()
     {
         sfxSource.Stop();
+        
+    }
+
+    public void StopBGFX()
+    {
+        BGFXSource.Stop();
     }
 }

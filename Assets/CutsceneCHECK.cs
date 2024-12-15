@@ -31,7 +31,7 @@ public class CutsceneCHECK : MonoBehaviour
             else if (!pressedSpaceToSkip)
             {
                 pressedSpaceToSkip = true;
-                LevelManager.instance.loadscene("Cave_1");
+                LevelManager.instance.loadscene(scenename);
             }
         }
     }

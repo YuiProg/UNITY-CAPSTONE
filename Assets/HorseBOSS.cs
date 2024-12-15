@@ -29,6 +29,11 @@ public class HorseBOSS : Enemy
     public bool LookingLeft;
     public bool LookingRight;
 
+
+    //music
+    [SerializeField] AudioSource music;
+    bool musicPlaying = false;
+
     public static HorseBOSS instance;
     protected override void Start()
     {
@@ -79,7 +84,7 @@ public class HorseBOSS : Enemy
                     if (distance < chaseDistance)
                     {
                         spottedPlayer = true;
-                        PlayerPrefs.SetString("Quest", "Defeat The Knight");
+                        PlayerPrefs.SetString("Quest", "Defeat XAVIER");
                         ChangeStates(EnemyStates.H_Chase);
                     }
                     break;
@@ -143,6 +148,11 @@ public class HorseBOSS : Enemy
     bool banner = false;
     void statecheck()
     {
+        if (spottedPlayer && !musicPlaying)
+        {
+            musicPlaying = true;
+            music.Play();
+        }
         BORDERL.SetActive(spottedPlayer && health > 0);
         BORDERR.SetActive(spottedPlayer && health > 0);
         HEALTHBAR.SetActive(spottedPlayer && health > 0);
@@ -152,6 +162,7 @@ public class HorseBOSS : Enemy
         {
             PlayerPrefs.SetString("Quest", "Find Sultan");
             BORDERL.SetActive(false);
+            music.volume -= Time.deltaTime;
             BORDERR.SetActive(false);
             HEALTHBAR.SetActive(false);
             spottedPlayer = false;

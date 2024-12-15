@@ -206,6 +206,7 @@ public class PlayerController : MonoBehaviour
         SpearDashTimer += Time.deltaTime;
         if (stamina <= 0f) stamina = 0;
         //methods
+        RegenPotion();
         skillCD();
         GetInputs();
         checkSkills();
@@ -220,7 +221,7 @@ public class PlayerController : MonoBehaviour
         Attack();
         Block();
                     
-        RegenPotion();
+        
         FlashWhileInvincible();
         checker();
     }
@@ -377,6 +378,7 @@ public class PlayerController : MonoBehaviour
             maxShield = PlayerPrefs.GetFloat("Max Shield");
             potionCount = PlayerPrefs.GetInt("Potion");
             maxPotions = PlayerPrefs.GetInt("MaxPotion");
+            potionHealBar = PlayerPrefs.GetFloat("PotionHeal");
             damage = normal_damage;
             hdamage = normal_hdamage;
             Cdamage = normal_slash_Damage;
@@ -399,6 +401,7 @@ public class PlayerController : MonoBehaviour
             maxShield = 50;
             mainLevel = 0;
             maxPotions = 3;
+            potionHealBar = 10;
             Debug.Log("NO STATS");
         }
     }
@@ -465,6 +468,7 @@ public class PlayerController : MonoBehaviour
         if (potionCount > 8) potionCount = 8;
         if (Input.GetButtonDown("Heal") && potionCount > 0 && canHeal)
         {
+            audiomanager.PlaySFX(audiomanager.Potion);
             health += potionHealBar;
             HealthBar.fillAmount = health / maxHealth;
             potionCount--;

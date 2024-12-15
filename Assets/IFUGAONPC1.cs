@@ -48,6 +48,7 @@ public class IFUGAONPC1 : MonoBehaviour
         UI.SetActive(false);
         PlayerController.Instance.pState.isNPC = true;
         PlayerController.Instance.pState.canPause = false;
+        PlayerController.Instance.pState.canOpenJournal = false;
         DIALOGUE.SetActive(true);
 
         string[] words = new[]
@@ -90,6 +91,7 @@ public class IFUGAONPC1 : MonoBehaviour
         DIALOGUE.SetActive(false);
         PlayerController.Instance.pState.isNPC = false;
         PlayerController.Instance.pState.canPause = true;
+        PlayerController.Instance.pState.canOpenJournal = true;
         UI.SetActive(true);
     }
 
