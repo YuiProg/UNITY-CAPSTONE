@@ -8,6 +8,7 @@ public class BookChecker : MonoBehaviour
     [SerializeField] GameObject BOOK2;
     [SerializeField] GameObject BOOK3;
     [SerializeField] GameObject BOOK4;
+    [SerializeField] GameObject BOOK5;
 
     void Update()
     {
@@ -42,6 +43,14 @@ public class BookChecker : MonoBehaviour
         else
         {
             BOOK4.SetActive(false);
+        }
+        if (PlayerPrefs.GetInt("ALTZIECK") == 1)
+        {
+            BOOK5.SetActive(true);
+        }
+        else
+        {
+            BOOK5.SetActive(false);
         }
     }
 }

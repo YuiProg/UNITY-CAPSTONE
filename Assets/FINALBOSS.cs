@@ -226,6 +226,7 @@ public class FINALBOSS : Enemy
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(time);
         PlayerController.Instance.pState.newJournalChapter = true;
+        PlayerPrefs.SetInt("ALTZIECK", 1);
         PlayerController.Instance.pState.Transitioning = false;
         ZIECKNPC.SetActive(true);
         QuestTracker.instance.hasQuest = true;

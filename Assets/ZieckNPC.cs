@@ -35,6 +35,7 @@ public class ZieckNPC : MonoBehaviour
     }
     IEnumerator transition(float time)
     {
+        isSpeaking = true;
         PlayerController.Instance.pState.Transitioning = true;
         yield return new WaitForSeconds(time - 2);
         PlayerController.Instance.transform.position = TPHERE.position;

@@ -61,11 +61,16 @@ public class WorldMap : MonoBehaviour
 
     //wala black lang
     [SerializeField] GameObject BLACK;
+
+
+    AudioManager audiomanager;
+
     public int mactan;
     public int ifugao;
     public bool teleporting = false;
     private void Start()
     {
+        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         MACTANART.SetActive(false);
         MACTANSKKILL.SetActive(false);
         MACTANENTERBTN.SetActive(false);
@@ -122,6 +127,7 @@ public class WorldMap : MonoBehaviour
     public void MACTAN()
     {
         mactan++;//wala nato katamad na ibahin baka mag iba pa
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         ifugao = 0;
         EnterArea.text = "Enter MACTAN";
         MACTANART.SetActive(true);
@@ -146,10 +152,12 @@ public class WorldMap : MonoBehaviour
         SHOPART.SetActive(false);
         SHOPSKILL.SetActive(false);
         SHOPENTERBTN.SetActive(false);
+        
     }
 
     public void MACTANSIDEQUESTART()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         EnterArea.text = "Mactan SideQuest";
         MACTANART.SetActive(false);
         MACTANSKKILL.SetActive(false);
@@ -177,6 +185,7 @@ public class WorldMap : MonoBehaviour
 
     public void TONDO()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         EnterArea.text = "Enter Tondo";
         MACTANART.SetActive(false);
         MACTANSKKILL.SetActive(false);
@@ -203,6 +212,7 @@ public class WorldMap : MonoBehaviour
 
     public void TONDOSIDEQUESTART()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         EnterArea.text = "Tondo SideQuest";
         MACTANART.SetActive(false);
         MACTANSKKILL.SetActive(false);
@@ -230,6 +240,7 @@ public class WorldMap : MonoBehaviour
 
     public void IFUGAOSIDEQUESTART()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         EnterArea.text = "Ifugao SideQuest";
         MACTANART.SetActive(false);
         MACTANSKKILL.SetActive(false);
@@ -255,6 +266,7 @@ public class WorldMap : MonoBehaviour
     }
     public void SHOPMAINART()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         EnterArea.text = "Balweg's Shop";
         MACTANART.SetActive(false);
         MACTANSKKILL.SetActive(false);
@@ -280,6 +292,7 @@ public class WorldMap : MonoBehaviour
     }
     public void enterMACTAN()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
         PlayerPrefs.SetInt("inIfugao", 0);
@@ -293,6 +306,7 @@ public class WorldMap : MonoBehaviour
     }
     public void enterTONDO()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
         PlayerPrefs.SetInt("inIfugao", 0);
@@ -306,6 +320,7 @@ public class WorldMap : MonoBehaviour
     }
     public void enterTONDOSQ()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
         PlayerPrefs.SetInt("inIfugao", 0);
@@ -320,6 +335,7 @@ public class WorldMap : MonoBehaviour
     
     public void enterIFUGAOSQ()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
         PlayerPrefs.SetInt("inIfugao", 0);
@@ -333,6 +349,7 @@ public class WorldMap : MonoBehaviour
     }
     public void enterMactanSQ()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
         PlayerPrefs.SetInt("inIfugao", 0);
@@ -346,6 +363,7 @@ public class WorldMap : MonoBehaviour
     }
     public void enterIFUGAO()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
         PlayerPrefs.SetInt("inIfugao", 1);
@@ -360,6 +378,7 @@ public class WorldMap : MonoBehaviour
     
     public void enterSHOP()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         Time.timeScale = 1f;
         Pausemenu.SetActive(false);
         PlayerPrefs.SetInt("inIfugao", 0);
@@ -375,6 +394,7 @@ public class WorldMap : MonoBehaviour
 
     public void IFUGAO()
     {
+        audiomanager.PlaySFX(audiomanager.BUTTONCLICK);
         EnterArea.text = "Enter IFUGAO";
         MACTANART.SetActive(false);
         MACTANSKKILL.SetActive(false);

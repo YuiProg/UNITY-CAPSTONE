@@ -11,6 +11,7 @@ public class TutorialWindow : MonoBehaviour
     [SerializeField] GameObject DODGE;
     [SerializeField] GameObject PARRY;
     [SerializeField] GameObject LEVEL;
+    [SerializeField] GameObject JOURNAL;
 
 
     public void levelwin()
@@ -20,6 +21,7 @@ public class TutorialWindow : MonoBehaviour
         DODGE.SetActive(false);
         LEVEL.SetActive(true);
         PARRY.SetActive(false);
+        JOURNAL.SetActive(false);
     }
 
     public void essencewin()
@@ -29,6 +31,7 @@ public class TutorialWindow : MonoBehaviour
         DODGE.SetActive(false);
         LEVEL.SetActive(false);
         PARRY.SetActive(false);
+        JOURNAL.SetActive(false);
     }
 
     public void amberwin()
@@ -38,6 +41,7 @@ public class TutorialWindow : MonoBehaviour
         DODGE.SetActive(false);
         LEVEL.SetActive(false);
         PARRY.SetActive(false);
+        JOURNAL.SetActive(false);
     }
 
     public void dodge()
@@ -47,6 +51,7 @@ public class TutorialWindow : MonoBehaviour
         DODGE.SetActive(true);
         LEVEL.SetActive(false);
         PARRY.SetActive(false);
+        JOURNAL.SetActive(false);
     }
 
     public void parry()
@@ -56,6 +61,7 @@ public class TutorialWindow : MonoBehaviour
         DODGE.SetActive(false);
         LEVEL.SetActive(false);
         PARRY.SetActive(true);
+        JOURNAL.SetActive(false);
     }
 
     public void returntomenu()

@@ -8,6 +8,7 @@ public class JournalBOOK : MonoBehaviour
     [SerializeField] GameObject IFUGAO;
     [SerializeField] GameObject MACTAN;
     [SerializeField] GameObject TONDO;
+    [SerializeField] GameObject PALAWAN;
     //lock
     [SerializeField] GameObject Lock;
     [SerializeField] Text locktxt;
@@ -26,6 +27,7 @@ public class JournalBOOK : MonoBehaviour
             IFUGAO.SetActive(true);
             MACTAN.SetActive(false);
             TONDO.SetActive(false);
+            PALAWAN.SetActive(false);
             Lock.SetActive(false);
             audiomanager.PlaySFX(audiomanager.JournalFlip);
         }
@@ -36,6 +38,7 @@ public class JournalBOOK : MonoBehaviour
             IFUGAO.SetActive(false);
             MACTAN.SetActive(false);
             TONDO.SetActive(false);
+            PALAWAN.SetActive(false);
             audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
     }
@@ -48,6 +51,7 @@ public class JournalBOOK : MonoBehaviour
             IFUGAO.SetActive(false);
             TONDO.SetActive(false);
             Lock.SetActive(false);
+            PALAWAN.SetActive(false);
             audiomanager.PlaySFX(audiomanager.JournalFlip);
         }
         else
@@ -57,6 +61,7 @@ public class JournalBOOK : MonoBehaviour
             IFUGAO.SetActive(false);
             MACTAN.SetActive(false);
             TONDO.SetActive(false);
+            PALAWAN.SetActive(false);
             audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
     }
@@ -69,6 +74,7 @@ public class JournalBOOK : MonoBehaviour
             MACTAN.SetActive(false);
             IFUGAO.SetActive(false);
             Lock.SetActive(false);
+            PALAWAN.SetActive(false);
             audiomanager.PlaySFX(audiomanager.JournalFlip);
         }
         else
@@ -78,6 +84,30 @@ public class JournalBOOK : MonoBehaviour
             IFUGAO.SetActive(false);
             MACTAN.SetActive(false);
             TONDO.SetActive(false);
+            PALAWAN.SetActive(false);
+            audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
+        }
+    }
+
+    public void PALAWANBTN()
+    {
+        if (PlayerPrefs.GetInt("ALTZIECK") == 1)
+        {
+            TONDO.SetActive(false);
+            MACTAN.SetActive(false);
+            IFUGAO.SetActive(false);
+            Lock.SetActive(false);
+            PALAWAN.SetActive(true);
+            audiomanager.PlaySFX(audiomanager.JournalFlip);
+        }
+        else
+        {
+            locktxt.text = "FINISH THE STORY TO UNLOCK PAGE.";
+            Lock.SetActive(true);
+            IFUGAO.SetActive(false);
+            MACTAN.SetActive(false);
+            TONDO.SetActive(false);
+            PALAWAN.SetActive(false);
             audiomanager.PlaySFX(audiomanager.BUTTONCLICK2);
         }
     }
