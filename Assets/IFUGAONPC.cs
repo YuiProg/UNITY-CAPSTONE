@@ -93,8 +93,8 @@ public class IFUGAONPC : MonoBehaviour
         PlayerController.Instance.pState.canPause = false;
         string[] words = new[]
         {
-            "Our village has been raided by a huge unknown creature held by a man with a cloak",
-            "Are you with them?",
+            "Ang aming lugar ay sinalakay ng isang malaking batong gumagalaw na hindi ko maipaliwanag at mga lalaking may espada na naka itim na kapa.",
+            "Hindi po nandito ako para tumulong.",
             "No where are they I can help.",
             "We are on time"
         };
@@ -151,7 +151,7 @@ public class IFUGAONPC : MonoBehaviour
         notif.text = "";
         DLG.SetActive(true);
         PlayerController.Instance.pState.canPause = false;
-        Dialogue.text = "Thank you stranger may this spear  help you in your journey";
+        Dialogue.text = "Salamat estranghero, nawa'y makatulong sa iyong paglalakbay ang sibat na ito";
         NameNPC.text = "Igorot Leader";
         PlayerPrefs.SetInt("SPEAR", 1);
         yield return new WaitForSeconds(time);

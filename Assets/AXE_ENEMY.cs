@@ -8,12 +8,14 @@ public class AXE_ENEMY : Enemy
     bool spottedPlayer = false;
     bool isAttacking = false;
     Animator anim;
+    AudioManager audiomanager;
 
     protected override void Start()
     {
         base.Start();
         canMove = true;
         canAttack = true;
+        audiomanager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         rb.gravityScale = 12f;
         anim = GetComponent<Animator>();
         ChangeStates(EnemyStates.AXE_IDLE);
@@ -60,6 +62,10 @@ public class AXE_ENEMY : Enemy
 
     }
 
+    public void attackSound()
+    {
+        audiomanager.PlaySFX(audiomanager.HardAttack);
+    }
     void stateChecker()
     {
         canMove = !parried;

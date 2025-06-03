@@ -8,11 +8,13 @@ public class Assasin : Enemy
     bool spottedPlayer = false;
     bool isAttacking = false;
     Animator anim;
+    AudioManager audioManager;
     protected override void Start()
     {
         base.Start();
         canMove = true;
         canAttack = true;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         rb.gravityScale = 12f;
         anim = GetComponent<Animator>();
         ChangeStates(EnemyStates.A_Idle);
@@ -57,7 +59,10 @@ public class Assasin : Enemy
             }
         }
     }
-
+    public void attackSound()
+    {
+        audioManager.PlaySFX(audioManager.HardAttack);
+    }
     void stateChecker()
     {
         canAttack = !parried;
