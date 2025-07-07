@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     protected int potionChance;
     protected bool canMove = true;
     protected SpriteRenderer sr;
+    protected bool canBeDamaged = true;
     [SerializeField] protected Image healthBar;
     [SerializeField] public Image parryBar;
     [SerializeField] protected float stunTimer;
@@ -278,16 +279,18 @@ public class Enemy : MonoBehaviour
 
     public virtual void EnemyHit(float _damageDone, Vector2 _hitDirection, float _hitForce)
     {       
-
-        print("taking damage");
-        health -= _damageDone;
-        healthBar.fillAmount = health / maxHealth;
-        if (!isRecoiling)
-        {            
-            GameObject _enemyBlood = Instantiate(blood, transform.position, Quaternion.identity);
-            Destroy(_enemyBlood, 5.5f);
-            rb.velocity = _hitForce * recoilFactor * _hitDirection;
-            isRecoiling = true;
+        if (canBeDamaged)
+        {
+            print("taking damage");
+            health -= _damageDone;
+            healthBar.fillAmount = health / maxHealth;
+            if (!isRecoiling)
+            {
+                GameObject _enemyBlood = Instantiate(blood, transform.position, Quaternion.identity);
+                Destroy(_enemyBlood, 5.5f);
+                rb.velocity = _hitForce * recoilFactor * _hitDirection;
+                isRecoiling = true;
+            }
         }
     }
     protected void OnTriggerStay2D(Collider2D _other)
