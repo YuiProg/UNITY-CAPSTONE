@@ -2339,6 +2339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 1110716601}
+  BGFXSource: {fileID: 0}
   NormalAttack: {fileID: 8300000, guid: 0fe4dc37481345a40b78e677e024fa2b, type: 3}
   HardAttack: {fileID: 0}
   SpearSkill: {fileID: 0}
@@ -2346,8 +2347,22 @@ MonoBehaviour:
   Parry: {fileID: 8300000, guid: 0a1171bf0bd6f8240aaa3e1d65d3c392, type: 3}
   Hurt: {fileID: 8300000, guid: 7e8e9d8d6647e504ebeb06a94cc46ccd, type: 3}
   HealSkill: {fileID: 8300000, guid: 73930fcc9642d654987d8d0a6f984a56, type: 3}
+  Potion: {fileID: 0}
   BUTTONCLICK: {fileID: 8300000, guid: b27c433a95f38c64c878d3ba3f973f78, type: 3}
   BUTTONCLICK2: {fileID: 8300000, guid: 2969e2e7d70b11e4db11d960278c2c6d, type: 3}
+  JournalFlip: {fileID: 0}
+  FirstArea: {fileID: 0}
+  ForestArea: {fileID: 0}
+  BeachArea: {fileID: 0}
+  TondoArea: {fileID: 0}
+  SpaceArea: {fileID: 0}
+  CaveArea: {fileID: 0}
+  SideQuest: {fileID: 0}
+  OLIVER1: {fileID: 0}
+  OLIVER2: {fileID: 0}
+  OLIVER3: {fileID: 0}
+  OLIVER4: {fileID: 0}
+  OLIVERTY: {fileID: 0}
   FB_Attack: {fileID: 8300000, guid: 616793f735ce31e44bea5aa503104e0e, type: 3}
   FB_Thunder: {fileID: 8300000, guid: 448ba87a069f2ed4986c08655ef22c1d, type: 3}
   Transform: {fileID: 8300000, guid: 64de0dc162f3d06499690224f914eb04, type: 3}

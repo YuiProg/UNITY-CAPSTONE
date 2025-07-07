@@ -185,6 +185,14 @@ public class Enemy : MonoBehaviour
         FB_E_CHASE,
         FB_E_ATTACKBEHAVIOR,
 
+        //GOD BOSS
+        G_IDLE,
+        G_CHASE,
+        G_ATTACKBEHAVIOR,
+        G_TRANSFORM,
+        E_CHASE,
+        E_ATTACKBEHAVIOR,
+
         //TONDO BOSS
         TB_IDLE,
         TB_CHASE,
