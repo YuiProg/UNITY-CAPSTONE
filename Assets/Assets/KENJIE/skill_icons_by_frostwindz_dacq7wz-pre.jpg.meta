@@ -105,7 +105,7 @@ TextureImporter:
         width: 147
         height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -113,6 +113,27 @@ TextureImporter:
       bones: []
       spriteID: 0c62c7679655c5d40bd625b5c9229395
       internalID: 595790461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skill_icons_by_frostwindz_dacq7wz-pre_1
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 41
+        width: 147
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5036a093e5146b42b0de28de8337567
+      internalID: -1128168589
       vertices: []
       indices: 
       edges: []
@@ -129,6 +150,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       skill_icons_by_frostwindz_dacq7wz-pre_0: 595790461
+      skill_icons_by_frostwindz_dacq7wz-pre_1: -1128168589
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
