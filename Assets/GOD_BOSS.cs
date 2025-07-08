@@ -14,6 +14,15 @@ public class GOD_BOSS : Enemy
     AudioManager audioManager;
 
     [SerializeField] GameObject HPBAR;
+    [SerializeField] GameObject Projectile1;
+    [SerializeField] GameObject Projectile2;
+    [SerializeField] GameObject Projectile3;
+    [SerializeField] GameObject QuickProjectile;
+
+    //projectile pos
+    [SerializeField] Transform proj_pos1;
+    [SerializeField] Transform proj_pos2;
+    [SerializeField] Transform proj_pos3;
     protected override void Start()
     {
         base.Start();
@@ -26,12 +35,19 @@ public class GOD_BOSS : Enemy
     protected override void UpdateEnemyStates()
     {
         float dist = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
-        HPBAR.SetActive(spottedPlayer);
-        flip(!isAttacking);
-        canMove = !isAttacking || parried;
+        HPBAR.SetActive(spottedPlayer && health > 0);
+        flip(!isAttacking && health > 0);
+        canMove = !isAttacking && !parried;
         isSecondPhase = health <= maxHealth / 2;
         canAttack = !parried;
         anim.SetBool("G_DEFEND", parried);
+        if (health <= 0)
+        {
+            spottedPlayer = false;
+            canAttack = false;
+            canMove = false;
+            anim.Play("DEATH");
+        }
         if (parried && !isSecondPhase)
         {
             int shield_chance = Random.Range(0,3);
@@ -69,7 +85,7 @@ public class GOD_BOSS : Enemy
                     }
                     break;
                 case EnemyStates.G_ATTACKBEHAVIOR:
-                    if (!isAttacking)
+                    if (!isAttacking && !parried)
                     {
                         phase1AttackPattern();
                     }
@@ -77,9 +93,12 @@ public class GOD_BOSS : Enemy
                 case EnemyStates.G_TRANSFORM:
                     break;
                 case EnemyStates.E_CHASE:
-                    if (distanceCheck())
+                    if (distanceCheck() && !parried)
                     {
                         phase2AttackPatterns();
+                    } else if (distanceCheck() && PlayerController.Instance.pState.jumping)
+                    {
+                        StartCoroutine(G_ATTACK4());
                     } else
                     {
                         anim.SetBool("E_CHASE", true);
@@ -93,6 +112,10 @@ public class GOD_BOSS : Enemy
             }
         }
         
+    }
+    public void cameraShake()
+    {
+        CameraShake.Instance.ShakeCamera();
     }
 
     void phase1AttackPattern ()
@@ -112,7 +135,10 @@ public class GOD_BOSS : Enemy
                 StartCoroutine(G_ATTACK3());
                 break;
             case 3:
-                StartCoroutine(G_ATTACK4());
+                StartCoroutine(G_SKILL1());
+                break;
+            case 4:
+                StartCoroutine(G_SKILL2());
                 break;
         }
     }
@@ -125,6 +151,18 @@ public class GOD_BOSS : Enemy
         {
             case 0:
                 StartCoroutine(E_ATTACK1());
+                break;
+            case 1:
+                StartCoroutine(E_ATTACK2());
+                break;
+            case 2:
+                StartCoroutine(E_ATTACK3());
+                break;
+            case 3:
+                StartCoroutine(E_ATTACK4());
+                break;
+            case 4:
+                StartCoroutine(E_SKILL1());
                 break;
         }
     }
@@ -175,6 +213,24 @@ public class GOD_BOSS : Enemy
         ChangeStates(EnemyStates.G_IDLE);
     }
 
+    IEnumerator G_SKILL1 ()
+    {
+        isAttacking = true;
+        anim.SetTrigger("G_SKILL_1");
+        yield return new WaitForSeconds(2.5f);
+        isAttacking = false;
+        ChangeStates(EnemyStates.G_IDLE);
+    }
+
+    IEnumerator G_SKILL2()
+    {
+        isAttacking = true;
+        anim.SetTrigger("G_SKILL_2");
+        yield return new WaitForSeconds(2.5f);
+        isAttacking = false;
+        ChangeStates(EnemyStates.G_IDLE);
+    }
+
     IEnumerator TRANSFORM ()
     {
         canMove = false;
@@ -186,12 +242,57 @@ public class GOD_BOSS : Enemy
         ChangeStates(EnemyStates.E_CHASE);
     }
 
+    public void Release_Projectile ()
+    {
+        Instantiate(QuickProjectile, proj_pos2);
+    }
+
     //phase 2 attacks
 
     IEnumerator E_ATTACK1 ()
     {
         isAttacking = true;
         anim.SetTrigger("E_ATK_1");
+        yield return new WaitForSeconds(1f);
+        isAttacking = false;
+        ChangeStates(EnemyStates.E_CHASE);
+    }
+
+    IEnumerator E_ATTACK2 ()
+    {
+        isAttacking = true;
+        anim.SetTrigger("E_ATK_2");
+        yield return new WaitForSeconds(1f);
+        isAttacking = false;
+        ChangeStates(EnemyStates.E_CHASE);
+    }
+
+    IEnumerator E_ATTACK3()
+    {
+        isAttacking = true;
+        anim.SetTrigger("E_ATK_3");
+        yield return new WaitForSeconds(1.5f);
+        isAttacking = false;
+        ChangeStates(EnemyStates.E_CHASE);
+    }
+
+    IEnumerator E_ATTACK4()
+    {
+        isAttacking = true;
+        anim.SetTrigger("E_ATK_4");
+        yield return new WaitForSeconds(1f);
+        isAttacking = false;
+        ChangeStates(EnemyStates.E_CHASE);
+    }
+
+    IEnumerator E_SKILL1()
+    {
+        isAttacking = true;
+        anim.SetTrigger("E_SKILL_1");
+        yield return new WaitForSeconds(1f);
+        Instantiate(Projectile1, proj_pos1);
+        Instantiate(Projectile2, proj_pos2);
+        Instantiate(Projectile3, proj_pos3);
         yield return new WaitForSeconds(1f);
         isAttacking = false;
         ChangeStates(EnemyStates.E_CHASE);
