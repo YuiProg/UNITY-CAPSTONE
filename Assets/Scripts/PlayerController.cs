@@ -47,14 +47,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Text parryCounter;
     [SerializeField] public Text comboCounter;
     [SerializeField] public Text SpearTimer;
+    [SerializeField] public Text EndureTimerTXT;
     bool attack = true;
 
 
     //skill
     bool combo = true;
     bool DashSpear = true;
-    [SerializeField] float comboTimer;
+    bool endure = true;
+    public float comboTimer;
     public float SpearDashTimer;
+    public float endureTimer;
+    public bool isEndure;
     [SerializeField] ParticleSystem comboFX;
 
     //heal skill
@@ -193,6 +197,7 @@ public class PlayerController : MonoBehaviour
         comboTimer = 18;
         healTimer = 25;
         SpearDashTimer = 12;
+        endureTimer = 30;
         Save.instance.loadStats();
         statCheck();
     }
@@ -204,6 +209,7 @@ public class PlayerController : MonoBehaviour
         healTimer += Time.deltaTime;
         timeSinceAttack += Time.deltaTime;
         SpearDashTimer += Time.deltaTime;
+        endureTimer += Time.deltaTime;
         if (stamina <= 0f) stamina = 0;
         //methods
         RegenPotion();
@@ -224,6 +230,7 @@ public class PlayerController : MonoBehaviour
         
         FlashWhileInvincible();
         checker();
+        isEndure = endureTimer < 5;
     }
     void checker()
     {
@@ -260,6 +267,14 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(DashAttack());
             }
         }
+        if (endure && pState.ENDURE)
+        {
+            if (endureTimer >= 30)
+            {
+                endureTimer = 0;
+                StartCoroutine(Endure_Buff());
+            }
+        }
         //skill timers
         if (SpearDashTimer > 12)
         {
@@ -272,6 +287,10 @@ public class PlayerController : MonoBehaviour
         if (healTimer > 25)
         {
             healTimer = 25;
+        }
+        if (endureTimer > 30)
+        {
+            endureTimer = 30;
         }
         if (pState.running == false)
         {
@@ -363,7 +382,26 @@ public class PlayerController : MonoBehaviour
         {
             SpearTimer.text = $"{Mathf.Round(SpearDashTimer)}";
         }
-               
+        if (endureTimer >= 30)
+        {
+            EndureTimerTXT.text = "";
+        } else
+        {
+            EndureTimerTXT.text = $"{Mathf.Round(endureTimer)}";
+        }      
+    }
+
+    IEnumerator Endure_Buff ()
+    {
+        pState.canMove = false;
+        pState.canAttack = false;
+        anim.Play("buff");
+        pState.isNPC = true;
+        audiomanager.PlaySFX(audiomanager.HealSkill);
+        yield return new WaitForSeconds(1f);
+        pState.canMove = true;
+        pState.isNPC = false;
+        pState.canAttack = true;
     }
     void statCheck()
     {
@@ -546,16 +584,19 @@ public class PlayerController : MonoBehaviour
     }
     public void HitStopTime(float _newTimeScale, int _restoreSpeed, float _delay)
     {
-        restoreTimeSpeed = _restoreSpeed;
-        Time.timeScale = _newTimeScale;
-        if (_delay > 0)
+        if (!isEndure)
         {
-            StopCoroutine(StartTimeAgain(_delay));
-            StartCoroutine(StartTimeAgain(_delay));
-        }
-        else
-        {
-            restoreTime = true;
+            restoreTimeSpeed = _restoreSpeed;
+            Time.timeScale = _newTimeScale;
+            if (_delay > 0)
+            {
+                StopCoroutine(StartTimeAgain(_delay));
+                StartCoroutine(StartTimeAgain(_delay));
+            }
+            else
+            {
+                restoreTime = true;
+            }
         }
     }
 
@@ -587,6 +628,7 @@ public class PlayerController : MonoBehaviour
         attack = Input.GetMouseButtonDown(0);
         combo = Input.GetKeyDown(KeyCode.R);
         DashSpear = Input.GetKeyDown(KeyCode.R);
+        endure = Input.GetKeyDown(KeyCode.R);
         HardAttack = Input.GetMouseButtonDown(1);
         
         if (Input.GetKeyDown(KeyCode.Alpha2) && pState.obtainedSLASH)
@@ -594,18 +636,28 @@ public class PlayerController : MonoBehaviour
             pState.SLASH = true;
             pState.HPBUFF = false;
             pState.SpearDash = false;
+            pState.ENDURE = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && pState.obtainedHeal)
         {
             pState.SLASH = false;
             pState.HPBUFF = true;
             pState.SpearDash = false;
+            pState.ENDURE = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1) && pState.obtainedSpear)
         {
             pState.SLASH = false;
             pState.HPBUFF = false;
             pState.SpearDash = true;
+            pState.ENDURE = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && pState.obtainedEndure)
+        {
+            pState.ENDURE = true;
+            pState.SLASH = false;
+            pState.HPBUFF = false;
+            pState.SpearDash = false;
         }
         if (Input.GetKeyDown(KeyCode.R) && pState.HPBUFF && Grounded() && health < maxHealth)
         {
@@ -637,32 +689,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] ParticleSystem HealFX;
     [SerializeField] Text healtxtCount;
     [SerializeField] GameObject DASHIMG;
+    [SerializeField] GameObject ENDUREIMG;
     void checkSkills()
     {
-        if (!pState.SLASH)
-        {
-            SlashIMG.SetActive(false);
-        }
-        else
-        {
-            SlashIMG.SetActive(true);
-        }
-        if (!pState.HPBUFF)
-        {
-            HealIMG.SetActive(false);
-        }
-        else
-        {
-            HealIMG.SetActive(true);
-        }
-        if (!pState.SpearDash)
-        {
-            DASHIMG.SetActive(false);
-        }
-        else
-        {
-            DASHIMG.SetActive(true);
-        }
+        SlashIMG.SetActive(pState.SLASH);
+        HealIMG.SetActive(pState.HPBUFF);
+        DASHIMG.SetActive(pState.SpearDash);
+        ENDUREIMG.SetActive(pState.ENDURE);
     }
     private void OnDrawGizmos()
     {
@@ -682,7 +715,7 @@ public class PlayerController : MonoBehaviour
     {
         if (pState.isAlive)
         {
-            if (!pState.blocking && !pState.invincible)
+            if (!pState.blocking && !pState.invincible && !isEndure)
             {
                 audiomanager.PlaySFX(audiomanager.Hurt);
                 parryDamageBonus = 0;
@@ -719,6 +752,26 @@ public class PlayerController : MonoBehaviour
                 }
                 CameraShake.Instance.ShakeCamera();
             }
+            else if (isEndure)
+            {
+                audiomanager.PlaySFX(audiomanager.Parry);
+                Color color = Color.yellow;
+                Color white = Color.white;
+                parryFX.Play();
+                if (parryDamageBonus != 5) parryDamageBonus = parryDamageBonus + 1;
+                parryCounter.text = $"{parryDamageBonus}";
+                parryDamagePlus();
+                print("Player is parrying damage.");
+                if (parryDamageBonus > 3)
+                {
+                    parryCounter.color = color;
+                }
+                else
+                {
+                    parryCounter.color = white;
+                }
+                CameraShake.Instance.ShakeCamera();
+            }
             else
             {
                 audiomanager.PlaySFX(audiomanager.Block);
@@ -730,7 +783,7 @@ public class PlayerController : MonoBehaviour
                 print("Player is blocking damage.");
                 GameObject _enemyBlood = Instantiate(blockFx, transform.position, Quaternion.identity);
                 Destroy(_enemyBlood, 5.5f);
-                shieldCount -= Mathf.RoundToInt(_damage);
+                shieldCount -= Mathf.RoundToInt(_damage / 2);
                 ShieldBar.fillAmount = shieldCount / maxShield;
                 CameraShake.Instance.ShakeCamera();
             }
@@ -1300,14 +1353,14 @@ public class PlayerController : MonoBehaviour
             {
                 lookingleft = true;
                 lookingright = false;
-                transform.localScale = new Vector2(-2.068158f, transform.localScale.y);
+                transform.localScale = new Vector2(-1.895054f, transform.localScale.y);
                 pState.lookingRight = false;
             }
             else if (xAxis > 0)
             {
                 lookingleft = false;
                 lookingright = true;
-                transform.localScale = new Vector2(2.068158f, transform.localScale.y);
+                transform.localScale = new Vector2(1.895054f, transform.localScale.y);
                 pState.lookingRight = true;
             }
         }               

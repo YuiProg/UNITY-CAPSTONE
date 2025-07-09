@@ -60,12 +60,13 @@ public class PlayerState : MonoBehaviour
     public bool obtainedSpear = false;
     public bool obtainedSLASH = false;
     public bool obtainedHeal = false;
-    public bool obtainedEndure = false; // pag nag lamp lang siya ma rerecharge ONE TIME USE!!
+    public bool obtainedEndure = true; // pag nag lamp lang siya ma rerecharge ONE TIME USE!!
 
     //SKILLS
     public bool SpearDash = false;
     public bool SLASH = false;
     public bool HPBUFF = false;
+    public bool ENDURE = false;
 
     //locations
     public bool inIfugao = false;
