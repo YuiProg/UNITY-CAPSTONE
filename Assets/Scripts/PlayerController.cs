@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     public float endureTimer;
     public bool isEndure;
     [SerializeField] ParticleSystem comboFX;
+    [SerializeField] GameObject endureIMG;
 
     //heal skill
     float healAmount = 20f;
@@ -231,6 +232,7 @@ public class PlayerController : MonoBehaviour
         FlashWhileInvincible();
         checker();
         isEndure = endureTimer < 5;
+        endureIMG.SetActive(isEndure);
     }
     void checker()
     {

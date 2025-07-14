@@ -46,12 +46,15 @@ public class PROJECTILE_G : MonoBehaviour
         {
             Attack();
             Destroy(gameObject);
+        } else if (collision.CompareTag("Player") && PlayerController.Instance.pState.invincible)
+        {
+            Destroy(gameObject);
         }
     }
 
     private void Attack()
     {
-        if (!PlayerController.Instance.pState.blocking)
+        if (!PlayerController.Instance.pState.blocking && !PlayerController.Instance.pState.invincible)
         {
             PlayerController.Instance.TakeDamage(damage);
             PlayerController.Instance.HitStopTime(0, 5, 0.5f);
