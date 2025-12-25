@@ -1,0 +1,42 @@
+# 🎮 UNITY CAPSTONE — AHHAA
+
+Welcome to **UNITY CAPSTONE**, a Unity-powered 3D (or 2D) game project built as a *capstone showcase*. This repository contains all source files, assets, and logic for this Unity game prototype — a culmination of gameplay, design, and code creativity.  
+*Built with Unity and C#.*
+
+---
+
+## 🧠 About The Project
+
+This project was developed as a **capstone achievement** in Unity game development.  
+It demonstrates core gameplay systems such as:
+
+- Player controller & animation
+- Level mechanics and logic
+- Modular object interaction
+- Scene management
+- Visual & audio feedback
+- Gameplay polish and UX
+
+> This repo holds the full Unity Project including `Assets`, `Packages`, and necessary **Project Settings** so you can open, build, and run it in the Unity Editor.  
+(*If your GitHub UI doesn’t show contents — just clone or open the repo in Unity.*)
+
+---
+
+## 🚀 Features
+
+✔️ Interactive gameplay mechanics  
+✔️ Designed in Unity with C# scripting  
+✔️ Scalable architecture for further development  
+✔️ Core systems cleanly organized  
+✔️ Beginner-friendly & extensible code base  
+
+---
+
+## 📦 Project Structure
+
+UNITY-CAPSTONE/
+├── Assets/
+├── Packages/
+├── ProjectSettings/
+├── .gitignore
+└── README.md
